@@ -1,0 +1,27 @@
+package com.typingspeed.app;
+
+import java.io.IOException;
+import javafx.fxml.FXML;
+
+public class HomepageController {
+
+    @FXML
+    private void switchScene() throws IOException {
+        App.setRoot("homepage");
+    }
+    
+    @FXML
+    private void displayPractice() throws IOException {
+        App.setRoot("practice");
+    }
+    
+    @FXML
+    private void displayTimed() throws IOException {
+        App.setRoot("timed");
+    }
+    
+    @FXML
+    private void displayStats() throws IOException {
+        App.setRoot("stats");
+    }
+}

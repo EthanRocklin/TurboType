@@ -1,0 +1,33 @@
+#homepageContainer {
+    -fx-background-color: #1a1a1c;
+    -fx-min-width: 100%;
+    -fx-min-height: 100%;
+    -fx-pref-width: 100%;
+    -fx-pref-height: 100%;
+}
+
+.home-title {
+    -fx-align: center;
+    -fx-fill: #f79e45;
+    -fx-alignment: center;
+    -fx-font-family: "VT323";
+    -fx-font-size: 120;
+}
+
+#typeTitle {
+    -fx-padding: 0 0 200 0;
+}
+
+.homepage-btn {
+    -fx-background-color: #e8e8e8;
+    -fx-text-fill: #000000;
+    -fx-text-alignment: center;
+    -fx-alignment: center;
+    -fx-cursor: hand;
+    -fx-pref-width: 250;
+    -fx-pref-height: 60;
+    -fx-padding: 0;
+    -fx-font-family: "VT323";
+    -fx-font-size: 50;
+    -fx-effect: dropshadow(gaussian, rgba(255,0,0,0.5), 20, 0.5, 0, 0);
+}
