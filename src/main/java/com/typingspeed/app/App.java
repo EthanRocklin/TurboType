@@ -27,13 +27,17 @@ public class App extends Application {
     }
 
     static void setRoot(String fxml) throws IOException {
+        Parent root = loadFXML(fxml);
         scene.getStylesheets().clear();
-        scene.getStylesheets().add(App.class.getResource("/css/" + fxml + ".css").toExternalForm());
+        var cssUrl = App.class.getResource("/css/" + fxml + ".css");
+        if (cssUrl != null) {
+            scene.getStylesheets().add(cssUrl.toExternalForm());
+        }
         scene.setRoot(loadFXML(fxml));
     }
 
     private static Parent loadFXML(String fxml) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("/fxml/" +fxml + ".fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("/fxml/" + fxml + ".fxml"));
         return fxmlLoader.load();
     }
 

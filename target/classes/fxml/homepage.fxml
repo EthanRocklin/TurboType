@@ -43,12 +43,8 @@
       <Text id="turboTitle" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="home-title" text="Turbo" />
       <Text id="typeTitle" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="home-title" text="Type" />
       <Region prefHeight="100" />
-      <Button id="practiceBtn" mnemonicParsing="false" onAction="#displayPractice" styleClass="homepage-btn" text="Practice">
-          <VBox.margin><Insets bottom="40" /></VBox.margin>
-      </Button>
-      <Button id="timedBtn" mnemonicParsing="false" onAction="#displayTimed" styleClass="homepage-btn" text="Timed">
-          <VBox.margin><Insets bottom="40" /></VBox.margin>
-      </Button>
+      <Button id="practiceBtn" mnemonicParsing="false" onAction="#displayPractice" styleClass="homepage-btn" text="Practice" />
+      <Button id="timedBtn" mnemonicParsing="false" onAction="#displayTimed" styleClass="homepage-btn" text="Timed" />
       <Button id="statsBtn" mnemonicParsing="false" onAction="#displayStats" styleClass="homepage-btn" text="Statistics" />
   </children>
 </VBox>
