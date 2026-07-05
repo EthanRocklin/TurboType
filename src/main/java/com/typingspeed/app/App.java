@@ -17,38 +17,54 @@ public class App extends Application {
     private static Scene scene;
 
     @Override
-    public void start(Stage stage) throws IOException {
-        loadFonts();
-        scene = new Scene(loadFXML("homepage"), 640, 480);
-        scene.getStylesheets().add(getClass().getResource("/css/homepage.css").toExternalForm());
-        stage.setScene(scene);
-        stage.setMaximized(true);
-        stage.show();
+    public void start(Stage stage) {
+        try {
+            loadFonts();
+            scene = new Scene(loadFXML("homepage"), 640, 480);
+            scene.getStylesheets().add(getClass().getResource("/css/homepage.css").toExternalForm());
+            stage.setScene(scene);
+            stage.setMaximized(true);
+            stage.show();
+        } catch (IOException e) {
+            System.out.println("ERROR : " + e.getMessage());
+        }
     }
 
-    static void setRoot(String fxml) throws IOException {
-        Parent root = loadFXML(fxml);
-        scene.getStylesheets().clear();
-        var cssUrl = App.class.getResource("/css/" + fxml + ".css");
-        if (cssUrl != null) {
-            scene.getStylesheets().add(cssUrl.toExternalForm());
+    static void setRoot(String fxml) {
+        try {
+            Parent root = loadFXML(fxml);
+            scene.getStylesheets().clear();
+            var cssUrl = App.class.getResource("/css/" + fxml + ".css");
+            if (cssUrl != null) {
+                scene.getStylesheets().add(cssUrl.toExternalForm());
+            }
+            scene.setRoot(loadFXML(fxml));
+        } catch (IOException e) {
+            System.out.println("ERROR : " + e.getMessage());
         }
-        scene.setRoot(loadFXML(fxml));
     }
 
     private static Parent loadFXML(String fxml) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("/fxml/" + fxml + ".fxml"));
         return fxmlLoader.load();
     }
-
-    public static void main(String[] args) {
-        launch();
-    }
     
+    /**
+     * This method loads any special fonts used by the application that
+     * is not standard with CSS.
+     */
     private void loadFonts() {
         Font.loadFont(getClass().getResourceAsStream("/fonts/Micro5-Regular.ttf"), 14);
         Font.loadFont(getClass().getResourceAsStream("/fonts/NovaFlat-Regular.ttf"), 14);
         Font.loadFont(getClass().getResourceAsStream("/fonts/VT323-Regular.ttf"), 14);
+    }
+    
+    private void loadWords() {
+        
+    }
+    
+    public static void main(String[] args) {
+        launch();
     }
 
 }

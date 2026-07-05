@@ -46,7 +46,7 @@
             <Text id="practiceTitle" layoutX="289.0" layoutY="134.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Stats Page" />
             <Button id="homeBtn" layoutX="217.0" layoutY="350.0" mnemonicParsing="false" onAction="#displayHomepage" styleClass="navigation-btn" text="Home" />
             <Button id="practiceBtn" layoutX="368.0" layoutY="350.0" mnemonicParsing="false" onAction="#displayPractice" styleClass="navigation-btn" text="Practice" />
-            <Button id="statsBtn" layoutX="296.0" layoutY="350.0" mnemonicParsing="false" onAction="#displayTimed" styleClass="navigation-btn" text="Timed" />
+            <Button id="timedBtn" layoutX="296.0" layoutY="350.0" mnemonicParsing="false" onAction="#displayTimed" styleClass="navigation-btn" text="Timed" />
       </children>
     </AnchorPane>
   </children>
