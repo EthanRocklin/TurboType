@@ -9,11 +9,6 @@ import javafx.fxml.FXML;
  */
 
 public class HomepageController {
-
-    @FXML
-    private void switchScene() throws IOException {
-        App.setRoot("homepage");
-    }
     
     @FXML
     private void displayPractice() throws IOException {
