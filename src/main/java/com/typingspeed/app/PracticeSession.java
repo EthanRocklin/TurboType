@@ -1,9 +1,5 @@
 package com.typingspeed.app;
 
-import java.util.List;
-import java.util.ArrayList;
-
-
 /**
  * 
  * @author Ethan Rocklin

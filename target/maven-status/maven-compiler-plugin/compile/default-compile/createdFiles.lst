@@ -5,3 +5,4 @@ com\typingspeed\app\WordBank.class
 com\typingspeed\app\PracticeSession.class
 com\typingspeed\app\App.class
 com\typingspeed\app\HomepageController.class
+com\typingspeed\app\TimedSession.class

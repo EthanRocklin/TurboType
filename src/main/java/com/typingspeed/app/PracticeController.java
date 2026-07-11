@@ -3,7 +3,6 @@ package com.typingspeed.app;
 import java.io.IOException;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
-import java.util.List;
 
 /**
  * 
