@@ -16,7 +16,16 @@ public class TimedController {
     private TextField wordsField;
     @FXML
     private TextField typingField;
-    private PracticeSession session;
+    private TimedSession session;
+    
+    /**
+     * This method initializes the Timed Mode page after the page loads.
+     */
+    @FXML
+    public void initialize() {
+        session = new TimedSession();
+        wordsField.setText(WordBank.getWords());
+    }
     
     @FXML
     private void displayHomepage() throws IOException {

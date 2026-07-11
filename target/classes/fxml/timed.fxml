@@ -6,6 +6,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
+<?import javafx.geometry.Insets?>
 
 <VBox id="masterContainer" style="-fx-alignment: center;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.typingspeed.app.TimedController">
   <children>
@@ -22,8 +23,16 @@
     </AnchorPane>
       <HBox id="navContainer" prefHeight="100.0" prefWidth="200.0">
          <children>
-            <Button id="practiceBtn" mnemonicParsing="false" onAction="#displayPractice" styleClass="navigation-btn" text="Practice" />
-            <Button id="homeBtn" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#displayHomepage" styleClass="navigation-btn" text="Home" />
+             <Button id="practiceBtn" mnemonicParsing="false" onAction="#displayPractice" styleClass="navigation-btn" text="Practice">
+                 <HBox.margin>
+                    <Insets right="30.0" />
+                </HBox.margin>
+             </Button>
+             <Button id="homeBtn" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#displayHomepage" styleClass="navigation-btn" text="Home">
+                 <HBox.margin>
+                    <Insets right="30.0" />
+                </HBox.margin>
+             </Button>
             <Button id="statsBtn" mnemonicParsing="false" onAction="#displayStats" styleClass="navigation-btn" text="Statistics" />
          </children>
       </HBox>
