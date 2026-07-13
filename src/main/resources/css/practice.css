@@ -17,7 +17,7 @@
     -fx-font-size: 120;
 }
 
-.text-field {
+.text-area {
     -fx-background-color: #09090a;
     -fx-border-color: red;
     -fx-font-size: 24px;
@@ -25,8 +25,19 @@
     -fx-cursor: text;
 }
 
+.text-area .content {
+    -fx-background-color: #09090a;
+}
+
+.text-area .scroll-bar:vertical,
+.text-area .scroll-bar:horizontal {
+    -fx-opacity: 0;
+    -fx-pref-width: 0;
+    -fx-pref-height: 0;
+}
+
 #navContainer {
-    -fx-alignment: bottom-center;
+    -fx-alignment: top-center;
     -fx-border-color: blue;
 }
 

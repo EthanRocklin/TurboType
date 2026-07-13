@@ -2,7 +2,8 @@ package com.typingspeed.app;
 
 import java.io.IOException;
 import javafx.fxml.FXML;
-import javafx.scene.control.TextField;
+import javafx.scene.control.TextArea;
+import javafx.scene.input.ScrollEvent;
 
 /**
  * 
@@ -13,9 +14,9 @@ public class PracticeController {
     
     // Fields
     @FXML
-    private TextField wordsField;
+    private TextArea wordsArea;
     @FXML
-    private TextField typingField;
+    private TextArea typingArea;
     private PracticeSession session;
     
     /**
@@ -24,7 +25,21 @@ public class PracticeController {
     @FXML
     public void initialize() {
         session = new PracticeSession();
-        wordsField.setText(WordBank.getWords());
+        wordsArea.setText(WordBank.getWords());
+        
+        // Along with related XML, this disables scrolling in the text areas.
+        wordsArea.addEventFilter(ScrollEvent.SCROLL, ScrollEvent::consume);
+        typingArea.addEventFilter(ScrollEvent.SCROLL, ScrollEvent::consume);
+        
+        // Binds proportional sizing to the text areas
+        wordsArea.sceneProperty().addListener((obs, oldScene, newScene) -> {
+           if (newScene != null) {
+               wordsArea.prefWidthProperty().bind(newScene.widthProperty().multiply(0.5));
+               wordsArea.prefHeightProperty().bind(newScene.heightProperty().multiply(0.2));
+               typingArea.prefWidthProperty().bind(newScene.widthProperty().multiply(0.5));
+               typingArea.prefHeightProperty().bind(newScene.heightProperty().multiply(0.2));
+           } 
+        });
     }
     
     /**
@@ -62,7 +77,7 @@ public class PracticeController {
      */
     @FXML
     private String getTypedWords() {
-        System.out.println(typingField.getText());
+        System.out.println(typingArea.getText());
         return "";
     }
     

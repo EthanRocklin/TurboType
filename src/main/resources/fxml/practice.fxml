@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
@@ -10,13 +10,21 @@
 
 <VBox id="masterContainer" style="-fx-alignment: center;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.typingspeed.app.PracticeController">
   <children>
-    <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="640.0" VBox.vgrow="ALWAYS">
+    <AnchorPane VBox.vgrow="ALWAYS">
       <children>
-            <VBox id="practiceContainer" prefHeight="300.0" prefWidth="640.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <VBox id="practiceContainer" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
-                  <Text id="title" strokeType="OUTSIDE" strokeWidth="0.0" text="Practice Mode" />
-                  <TextField id="wordsField" fx:id="wordsField" editable="false" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="448.0" styleClass="text-field" />
-                  <TextField id="typingField" fx:id="typingField" maxHeight="-Infinity" maxWidth="-Infinity" onKeyTyped="#getTypedWords" prefHeight="30.0" prefWidth="487.0" styleClass="text-field" />
+                   <Text id="title" strokeType="OUTSIDE" strokeWidth="0.0" text="Practice Mode">
+                       <VBox.margin>
+                          <Insets bottom="200" />
+                       </VBox.margin>
+                   </Text>
+                  <TextArea id="wordsArea" fx:id="wordsArea" editable="false" focusTraversable="false"  wrapText="true" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="500.0" styleClass="text-area">
+                      <VBox.margin>
+                          <Insets bottom="20" />
+                      </VBox.margin>
+                  </TextArea>
+                   <TextArea id="typingArea" fx:id="typingArea" focusTraversable="false" wrapText="true" maxHeight="-Infinity" maxWidth="-Infinity" onKeyTyped="#getTypedWords" prefHeight="30.0" prefWidth="500.0" styleClass="text-area" />
                </children>
             </VBox>
       </children>
