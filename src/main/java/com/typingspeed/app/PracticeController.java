@@ -3,7 +3,10 @@ package com.typingspeed.app;
 import java.io.IOException;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
+import javafx.scene.text.Text;
 import javafx.scene.input.ScrollEvent;
+import java.util.List;
+import java.util.Arrays;
 
 /**
  * 
@@ -17,6 +20,12 @@ public class PracticeController {
     private TextArea wordsArea;
     @FXML
     private TextArea typingArea;
+    @FXML
+    private Text totalCounter;
+    @FXML
+    private Text correctCounter;
+    private List<String> practiceWords;
+    private List<String> typedWords;
     private PracticeSession session;
     
     /**
@@ -25,7 +34,10 @@ public class PracticeController {
     @FXML
     public void initialize() {
         session = new PracticeSession();
-        wordsArea.setText(WordBank.getWords());
+        // Populates text area with practice words
+        String words = WordBank.getWords();
+        wordsArea.setText(words);
+        practiceWords = createWordList(words);
         
         // Along with related XML, this disables scrolling in the text areas.
         wordsArea.addEventFilter(ScrollEvent.SCROLL, ScrollEvent::consume);
@@ -40,7 +52,26 @@ public class PracticeController {
                typingArea.prefHeightProperty().bind(newScene.heightProperty().multiply(0.2));
            } 
         });
+        
+        // Sets counters
+        totalCounter.setText(String.valueOf(practiceWords.size()));
+        correctCounter.setText("0");
     }
+    
+    // Class Methods
+    
+    /**
+     * This method takes a String of words that are delimited by spaces
+     * and returns them as a list, with each index being one word.
+     * @param str : A string consisting of one or more words.
+     * @return a List object
+     */
+    private List<String> createWordList(String str) {
+        String[] words = str.split(" ");
+        return Arrays.asList(words);
+    }
+    
+    // FXML Controller Methods
     
     /**
      * This method deloads the Practice Mode page and loads the hoempage.
@@ -69,16 +100,31 @@ public class PracticeController {
         App.setRoot("stats");
     }
     
-    // Getters and Setters
+    // Checkers
     
-    /**
-     * This method returns the words the user has typed;
-     * @return 
-     */
+    @FXML
+    private void checkForSpace() {
+        // TODO : Only check the typed words when the user types a space character
+    }
+    
+    // Getters
+    
     @FXML
     private String getTypedWords() {
         System.out.println(typingArea.getText());
         return "";
+    }
+    
+    // Setters
+    
+    @FXML
+    private void setCorrectWords() {
+        
+    }
+    
+    @FXML
+    private void setTotalWords() {
+        
     }
     
 }

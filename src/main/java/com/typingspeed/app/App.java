@@ -9,7 +9,7 @@ import javafx.scene.text.Font;
 import java.io.IOException;
 
 /**
- * Turbo Type application
+ * Turbo Type initizalizer
  * @author Ethan Rocklin
  */
 public class App extends Application {

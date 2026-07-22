@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
-<?import javafx.geometry.Insets?>
 
 <VBox id="masterContainer" style="-fx-alignment: center;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.typingspeed.app.PracticeController">
   <children>
@@ -16,15 +16,41 @@
                <children>
                    <Text id="title" strokeType="OUTSIDE" strokeWidth="0.0" text="Practice Mode">
                        <VBox.margin>
-                          <Insets bottom="200" />
+                          <Insets bottom="100" />
                        </VBox.margin>
                    </Text>
-                  <TextArea id="wordsArea" fx:id="wordsArea" editable="false" focusTraversable="false"  wrapText="true" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="500.0" styleClass="text-area">
+                  <HBox prefWidth="200.0" style="-fx-alignment: center;">
+                     <children>
+                        <Text id="totalLabel" fx:id="totalWords" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="label" text="Total Words:">
+                            <HBox.margin>
+                                <Insets right="20" />
+                            </HBox.margin>
+                         </Text>
+                        <Text id="totalCounter" fx:id="totalCounter" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="counter" />
+                     </children>
+                     <VBox.margin>
+                          <Insets bottom="20" />
+                     </VBox.margin>
+                  </HBox>
+                  <HBox prefWidth="200.0" style="-fx-alignment: center;">
+                     <children>
+                         <Text id="correctLabel" fx:id="correctWords" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="label" text="Correct:">
+                            <HBox.margin>
+                                <Insets right="20" />
+                            </HBox.margin>
+                         </Text>
+                        <Text id="correctCounter" fx:id="correctCounter" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="counter" />
+                     </children>
+                     <VBox.margin>
+                          <Insets bottom="50" />
+                     </VBox.margin>
+                  </HBox>
+                  <TextArea id="wordsArea" fx:id="wordsArea" editable="false" focusTraversable="false" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="500.0" styleClass="text-area" wrapText="true">
                       <VBox.margin>
                           <Insets bottom="20" />
                       </VBox.margin>
                   </TextArea>
-                   <TextArea id="typingArea" fx:id="typingArea" focusTraversable="false" wrapText="true" maxHeight="-Infinity" maxWidth="-Infinity" onKeyTyped="#getTypedWords" prefHeight="30.0" prefWidth="500.0" styleClass="text-area" />
+                   <TextArea id="typingArea" fx:id="typingArea" focusTraversable="false" maxHeight="-Infinity" maxWidth="-Infinity" onKeyTyped="#checkForSpace" prefHeight="30.0" prefWidth="500.0" styleClass="text-area" wrapText="true" />
                </children>
             </VBox>
       </children>

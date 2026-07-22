@@ -17,6 +17,23 @@
     -fx-font-size: 120;
 }
 
+.label, .counter {
+    -fx-font-family: "VT323";
+    -fx-font-size: 60;
+}
+
+#totalLabel, .counter {
+    -fx-fill: #ffffff;
+}
+
+#correctLabel {
+    -fx-fill: #77fc7b;
+}
+
+.counter {
+    
+}
+
 .text-area {
     -fx-background-color: #09090a;
     -fx-border-color: red;
