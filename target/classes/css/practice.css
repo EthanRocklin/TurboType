@@ -61,13 +61,33 @@
 .navigation-btn {
     -fx-background-color: #e8e8e8;
     -fx-text-fill: #000000;
-    -fx-text-alignment: center;
-    -fx-cursor: hand;
     -fx-pref-width: 250;
     -fx-pref-height: 60;
     -fx-padding: 0;
-    -fx-font-family: "VT323";
     -fx-font-size: 50;
     -fx-effect: dropshadow(gaussian, rgba(255,0,0,0.5), 20, 0.5, 0, 0);
+}
+
+.toggle {
+    -fx-font-size: 20;
+    -fx-pref-width: 100;
+    -fx-pref-height: 30;
+}
+
+.navigation-btn, .toggle {
     -fx-cursor: hand;
+    -fx-font-family: "VT323";
+    -fx-text-alignment: center;
+}
+
+.navigation-btn, .toggle, .dropdown {
+    -fx-padding: 0;
+}
+
+.dropdown {
+    -fx-pref-width: 100;
+    -fx-pref-height: 30;
+    -fx-padding: 0;
+    -fx-font-family: "VT323";
+    -fx-font-size: 20;
 }

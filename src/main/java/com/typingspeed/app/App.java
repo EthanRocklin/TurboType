@@ -21,6 +21,7 @@ public class App extends Application {
         try {
             loadFonts();
             loadWords();
+            loadSentences();
             scene = new Scene(loadFXML("homepage"), 640, 480);
             scene.getStylesheets().add(getClass().getResource("/css/homepage.css").toExternalForm());
             stage.setScene(scene);
@@ -66,9 +67,10 @@ public class App extends Application {
         Font.loadFont(getClass().getResourceAsStream("/fonts/VT323-Regular.ttf"), 14);
     }
     
-    /**
-     * 
-     */
+    private void loadSentences() {
+        SentenceBank bank = new SentenceBank();
+    }
+    
     private void loadWords() {
         WordBank bank = new WordBank();
     }

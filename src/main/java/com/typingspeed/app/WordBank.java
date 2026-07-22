@@ -31,13 +31,14 @@ public class WordBank {
     /**
      * This method generates and returns a list of words
      * from atomic_words.txt.
+     *  @param count : the number of words to include
      *  @return a String of words, each separated by a space character.
      */
-    public static String getWords() {
+    public static String getWords(int count) {
         StringBuilder words = new StringBuilder();
         Random rand = new Random();
         // Populates the List with random words from the "bank" field.
-        for (int i = 0; i < 50; i++) {
+        for (int i = 0; i < count; i++) {
             words.append(bank.get(rand.nextInt(bankSize)) + " ");
         }
         return words.toString();

@@ -4,6 +4,7 @@ import java.io.IOException;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.ToggleButton;
+import javafx.scene.control.Spinner;
 import javafx.scene.text.Text;
 import javafx.scene.input.ScrollEvent;
 import java.util.List;
@@ -27,6 +28,8 @@ public class PracticeController {
     private Text totalCounter;
     @FXML
     private ToggleButton sentencesToggle;
+    @FXML
+    private Spinner<Integer> sentenceCounter;
     
     private List<String> practiceWords;
     private List<String> typedWords;
@@ -37,14 +40,12 @@ public class PracticeController {
     @FXML
     public void initialize() {
         // Populates text area with practice words
-        String words = WordBank.getWords();
+        String words = WordBank.getWords(30);
         wordsArea.setText(words);
         practiceWords = createWordList(words);
-        
         // Along with related XML, this disables scrolling in the text areas.
         wordsArea.addEventFilter(ScrollEvent.SCROLL, ScrollEvent::consume);
         typingArea.addEventFilter(ScrollEvent.SCROLL, ScrollEvent::consume);
-        
         // Binds proportional sizing to the text areas
         wordsArea.sceneProperty().addListener((obs, oldScene, newScene) -> {
            if (newScene != null) {
@@ -54,10 +55,14 @@ public class PracticeController {
                typingArea.prefHeightProperty().bind(newScene.heightProperty().multiply(0.2));
            } 
         });
-        
         // Sets counters
         totalCounter.setText(String.valueOf(practiceWords.size()));
         correctCounter.setText("0");
+        // Sets Spinner values
+        int min = 1, max = 6, initial = 3;
+        sentenceCounter = new Spinner<>(min, max, initial);
+        sentenceCounter.getValueFactory().setValue(initial);
+        sentenceCounter.setVisible(false);
     }
     
     // Class Methods
@@ -75,12 +80,41 @@ public class PracticeController {
     
     @FXML
     private void togglePracticeWords() {
+        String words = "";
+        int count = 0;
         // If "Sentences" is selected
         if (sentencesToggle.isSelected()) {
-            sentencesToggle.setText("Random");
-        } else {
+            count = 3;
+            updatePracticeWords(count, true);
             sentencesToggle.setText("Sentences");
+            sentenceCounter.setVisible(true);
+        } else {
+            count = 30;
+            updatePracticeWords(count, false);
+            sentencesToggle.setText("Random");
+            sentenceCounter.setVisible(false);
         }
+    }
+    
+    /**
+     * 
+     * @param count : 
+     * @param sentences : 
+     */
+    private void updatePracticeWords(int count, boolean sentences) {
+        String words = "";
+        if (sentences)
+            words = SentenceBank.getSentences(count);
+        else
+            words = WordBank.getWords(count);
+        practiceWords = createWordList(words);
+        wordsArea.setText(words);
+        setTotalWordsCounter();
+    }
+    
+    @FXML
+    private void updateSentenceCount() {
+        updatePracticeWords(sentenceCounter.getValue(), true);
     }
     
     // Checkers
@@ -104,6 +138,11 @@ public class PracticeController {
     
     // Getters
     
+    @FXML 
+    private int getSentenceCount() {
+        return sentenceCounter.getValue();
+    }
+    
     @FXML
     private String getTypedWords() {
         System.out.println(typingArea.getText());
@@ -113,13 +152,9 @@ public class PracticeController {
     // Setters
     
     @FXML
-    private void setCorrectWords() {
-        
-    }
-    
-    @FXML
-    private void setTotalWords() {
-        
+    private void setTotalWordsCounter() {
+        String count = String.valueOf(practiceWords.size());
+        totalCounter.setText(count);
     }
  
     // FXML Controller Methods

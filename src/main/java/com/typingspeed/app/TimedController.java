@@ -25,7 +25,7 @@ public class TimedController {
     @FXML
     public void initialize() {
         session = new TimedSession();
-        wordsArea.setText(WordBank.getWords());
+        wordsArea.setText(WordBank.getWords(30));
         
         // Along with related XML, this disables scrolling in the text areas.
         wordsArea.addEventFilter(ScrollEvent.SCROLL, ScrollEvent::consume);
