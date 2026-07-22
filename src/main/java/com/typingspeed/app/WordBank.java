@@ -1,7 +1,6 @@
 package com.typingspeed.app;
 
 import java.util.List;
-import java.util.ArrayList;
 import java.util.stream.Collectors;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -21,7 +20,7 @@ public class WordBank {
     public WordBank() {
         // Loads words into the "bank" field.
         try (BufferedReader reader = new BufferedReader(
-                new InputStreamReader(getClass().getResourceAsStream("/words/basicWords.txt")))) {
+                new InputStreamReader(getClass().getResourceAsStream("/words/atomic_words.txt")))) {
             bank = reader.lines().collect(Collectors.toList());
             bankSize = bank.size();
         } catch (IOException e) {
@@ -31,7 +30,7 @@ public class WordBank {
     
     /**
      * This method generates and returns a list of words
-     * from the basicWords.txt list.
+     * from atomic_words.txt.
      *  @return a String of words, each separated by a space character.
      */
     public static String getWords() {

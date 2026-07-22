@@ -3,6 +3,7 @@ package com.typingspeed.app;
 import java.io.IOException;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.ToggleButton;
 import javafx.scene.text.Text;
 import javafx.scene.input.ScrollEvent;
 import java.util.List;
@@ -17,23 +18,24 @@ public class PracticeController {
     
     // Fields
     @FXML
+    private Text correctCounter;
+    @FXML
     private TextArea wordsArea;
     @FXML
     private TextArea typingArea;
     @FXML
     private Text totalCounter;
     @FXML
-    private Text correctCounter;
+    private ToggleButton sentencesToggle;
+    
     private List<String> practiceWords;
     private List<String> typedWords;
-    private PracticeSession session;
     
     /**
      * This method initializes the Practice Mode page after the page loads.
      */
     @FXML
     public void initialize() {
-        session = new PracticeSession();
         // Populates text area with practice words
         String words = WordBank.getWords();
         wordsArea.setText(words);
@@ -71,6 +73,55 @@ public class PracticeController {
         return Arrays.asList(words);
     }
     
+    @FXML
+    private void togglePracticeWords() {
+        // If "Sentences" is selected
+        if (sentencesToggle.isSelected()) {
+            sentencesToggle.setText("Random");
+        } else {
+            sentencesToggle.setText("Sentences");
+        }
+    }
+    
+    // Checkers
+    
+    @FXML
+    private void checkTypedWords() {
+        int correctWords = 0;
+        String typedContent = typingArea.getText();
+        String[] words = typedContent.split(" ");
+        typedWords = Arrays.asList(words);
+        // Checks typed words against practice words
+        for (int i = 0; i < typedWords.size(); i++) {
+            String practiceWord = practiceWords.get(i);
+            String typedWord = typedWords.get(i);
+            if (practiceWord.equals(typedWord)) {
+                correctWords++;
+            }
+        }
+        correctCounter.setText(String.valueOf(correctWords));
+    }
+    
+    // Getters
+    
+    @FXML
+    private String getTypedWords() {
+        System.out.println(typingArea.getText());
+        return "";
+    }
+    
+    // Setters
+    
+    @FXML
+    private void setCorrectWords() {
+        
+    }
+    
+    @FXML
+    private void setTotalWords() {
+        
+    }
+ 
     // FXML Controller Methods
     
     /**
@@ -98,33 +149,6 @@ public class PracticeController {
     @FXML
     private void displayStats() throws IOException {
         App.setRoot("stats");
-    }
-    
-    // Checkers
-    
-    @FXML
-    private void checkForSpace() {
-        // TODO : Only check the typed words when the user types a space character
-    }
-    
-    // Getters
-    
-    @FXML
-    private String getTypedWords() {
-        System.out.println(typingArea.getText());
-        return "";
-    }
-    
-    // Setters
-    
-    @FXML
-    private void setCorrectWords() {
-        
-    }
-    
-    @FXML
-    private void setTotalWords() {
-        
     }
     
 }
