@@ -7,8 +7,10 @@ import javafx.scene.control.ToggleButton;
 import javafx.scene.control.Spinner;
 import javafx.scene.text.Text;
 import javafx.scene.input.ScrollEvent;
+import javafx.scene.input.KeyEvent;
 import java.util.List;
 import java.util.Arrays;
+import javafx.scene.control.SpinnerValueFactory;
 
 /**
  * 
@@ -59,9 +61,9 @@ public class PracticeController {
         totalCounter.setText(String.valueOf(practiceWords.size()));
         correctCounter.setText("0");
         // Sets Spinner values
-        int min = 1, max = 6, initial = 3;
-        sentenceCounter = new Spinner<>(min, max, initial);
-        sentenceCounter.getValueFactory().setValue(initial);
+        int min = 1, max = 7, initial = 3;
+        sentenceCounter.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(min, max, initial));
+        sentenceCounter.addEventFilter(KeyEvent.ANY, KeyEvent::consume);
         sentenceCounter.setVisible(false);
     }
     

@@ -14,53 +14,63 @@
   <children>
     <AnchorPane VBox.vgrow="ALWAYS">
       <children>
-            <VBox id="practiceContainer" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <HBox prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <HBox prefHeight="100.0" prefWidth="200.0">
+                  <VBox prefHeight="200.0" prefWidth="100.0" />
+                  <VBox id="practiceContainer">
                      <children>
-                        <ToggleButton id="sentencesToggle" fx:id="sentencesToggle" mnemonicParsing="false" onAction="#togglePracticeWords" styleClass="toggle" text="Format" />
-                        <Spinner fx:id="sentenceCounter" onMouseReleased="#updateSentenceCount" />
-                     </children>
-                  </HBox>
-                   <Text id="title" strokeType="OUTSIDE" strokeWidth="0.0" text="Practice Mode">
-                       <VBox.margin>
-                          <Insets bottom="100" />
-                       </VBox.margin>
-                   </Text>
-                  <HBox prefWidth="200.0" style="-fx-alignment: center;">
-                     <children>
-                        <Text id="totalLabel" fx:id="totalWords" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="label" text="Total Words:">
-                            <HBox.margin>
-                                <Insets right="20" />
-                            </HBox.margin>
+                        <HBox prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                               <ToggleButton id="sentencesToggle" fx:id="sentencesToggle" mnemonicParsing="false" onAction="#togglePracticeWords" styleClass="toggle" text="Format">
+                                  <HBox.margin>
+                                      <Insets right="5" />
+                                  </HBox.margin>
+                               </ToggleButton>
+                              <Spinner id="sentenceCounter" fx:id="sentenceCounter" onMouseReleased="#updateSentenceCount" styleClass="spinner" />
+                           </children>
+                        </HBox>
+                         <Text id="title" strokeType="OUTSIDE" strokeWidth="0.0" text="Practice Mode">
+                             <VBox.margin>
+                                <Insets bottom="100" />
+                             </VBox.margin>
                          </Text>
-                        <Text id="totalCounter" fx:id="totalCounter" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="counter" />
+                        <HBox prefWidth="200.0" style="-fx-alignment: center;">
+                           <children>
+                              <Text id="totalLabel" fx:id="totalWords" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="label" text="Total Words:">
+                                  <HBox.margin>
+                                      <Insets right="20" />
+                                  </HBox.margin>
+                               </Text>
+                              <Text id="totalCounter" fx:id="totalCounter" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="counter" />
+                           </children>
+                           <VBox.margin>
+                                <Insets bottom="20" />
+                           </VBox.margin>
+                        </HBox>
+                        <HBox prefWidth="200.0" style="-fx-alignment: center;">
+                           <children>
+                               <Text id="correctLabel" fx:id="correctWords" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="label" text="Correct:">
+                                  <HBox.margin>
+                                      <Insets right="20" />
+                                  </HBox.margin>
+                               </Text>
+                              <Text id="correctCounter" fx:id="correctCounter" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="counter" />
+                           </children>
+                           <VBox.margin>
+                                <Insets bottom="50" />
+                           </VBox.margin>
+                        </HBox>
+                        <TextArea id="wordsArea" fx:id="wordsArea" editable="false" focusTraversable="false" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="500.0" styleClass="text-area" wrapText="true">
+                            <VBox.margin>
+                                <Insets bottom="20" />
+                            </VBox.margin>
+                        </TextArea>
+                         <TextArea id="typingArea" fx:id="typingArea" focusTraversable="false" maxHeight="-Infinity" maxWidth="-Infinity" onKeyTyped="#checkTypedWords" prefHeight="30.0" prefWidth="500.0" styleClass="text-area" wrapText="true" />
                      </children>
-                     <VBox.margin>
-                          <Insets bottom="20" />
-                     </VBox.margin>
-                  </HBox>
-                  <HBox prefWidth="200.0" style="-fx-alignment: center;">
-                     <children>
-                         <Text id="correctLabel" fx:id="correctWords" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="label" text="Correct:">
-                            <HBox.margin>
-                                <Insets right="20" />
-                            </HBox.margin>
-                         </Text>
-                        <Text id="correctCounter" fx:id="correctCounter" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="counter" />
-                     </children>
-                     <VBox.margin>
-                          <Insets bottom="50" />
-                     </VBox.margin>
-                  </HBox>
-                  <TextArea id="wordsArea" fx:id="wordsArea" editable="false" focusTraversable="false" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="500.0" styleClass="text-area" wrapText="true">
-                      <VBox.margin>
-                          <Insets bottom="20" />
-                      </VBox.margin>
-                  </TextArea>
-                   <TextArea id="typingArea" fx:id="typingArea" focusTraversable="false" maxHeight="-Infinity" maxWidth="-Infinity" onKeyTyped="#checkTypedWords" prefHeight="30.0" prefWidth="500.0" styleClass="text-area" wrapText="true" />
+                  </VBox>
+                  <VBox prefHeight="200.0" prefWidth="100.0" />
                </children>
-            </VBox>
+            </HBox>
       </children>
     </AnchorPane>
       <HBox id="navContainer" prefHeight="100.0" prefWidth="200.0">
