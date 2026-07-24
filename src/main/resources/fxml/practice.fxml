@@ -10,25 +10,18 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<VBox id="masterContainer" style="-fx-alignment: center;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.typingspeed.app.PracticeController">
+<VBox id="masterContainer" alignment="TOP_CENTER" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.typingspeed.app.PracticeController">
   <children>
-    <AnchorPane VBox.vgrow="ALWAYS">
-      <children>
-            <HBox prefHeight="100.0" prefWidth="200.0">
-               <children>
-                  <VBox prefHeight="200.0" prefWidth="100.0" />
-                  <VBox id="practiceContainer">
+      <HBox id="masterControlsContainer" fx:id="controlsContainer" alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+          <VBox.margin>
+              <Insets top="60.0" />
+          </VBox.margin>
+          <children>
+          <VBox id="leftControlContainer" alignment="CENTER" styleClass="control-container" maxWidth="Infinity" HBox.hgrow="ALWAYS" />
+          <AnchorPane>
+            <children>
+                  <VBox id="practiceContainer" alignment="CENTER">
                      <children>
-                        <HBox prefHeight="100.0" prefWidth="200.0">
-                           <children>
-                               <ToggleButton id="sentencesToggle" fx:id="sentencesToggle" mnemonicParsing="false" onAction="#togglePracticeWords" styleClass="toggle" text="Format">
-                                  <HBox.margin>
-                                      <Insets right="5" />
-                                  </HBox.margin>
-                               </ToggleButton>
-                              <Spinner id="sentenceCounter" fx:id="sentenceCounter" onMouseReleased="#updateSentenceCount" styleClass="spinner" />
-                           </children>
-                        </HBox>
                          <Text id="title" strokeType="OUTSIDE" strokeWidth="0.0" text="Practice Mode">
                              <VBox.margin>
                                 <Insets bottom="100" />
@@ -65,15 +58,27 @@
                                 <Insets bottom="20" />
                             </VBox.margin>
                         </TextArea>
-                         <TextArea id="typingArea" fx:id="typingArea" focusTraversable="false" maxHeight="-Infinity" maxWidth="-Infinity" onKeyTyped="#checkTypedWords" prefHeight="30.0" prefWidth="500.0" styleClass="text-area" wrapText="true" />
+                         <TextArea id="typingArea" fx:id="typingArea" focusTraversable="false" maxHeight="-Infinity" maxWidth="-Infinity" onKeyTyped="#checkTypedWords" prefHeight="30.0" prefWidth="500.0" styleClass="text-area" wrapText="true" promptText="Start typing here..." />
                      </children>
                   </VBox>
-                  <VBox prefHeight="200.0" prefWidth="100.0" />
-               </children>
-            </HBox>
-      </children>
-    </AnchorPane>
-      <HBox id="navContainer" prefHeight="100.0" prefWidth="200.0">
+            </children>
+          </AnchorPane>
+          <VBox id="rightControlContainer" alignment="CENTER" styleClass="control-container" maxWidth="Infinity" HBox.hgrow="ALWAYS">
+               <children>
+                  <HBox id="sentencesToggleContainer" maxWidth="250" prefWidth="0" prefHeight="40" alignment="CENTER">
+                     <children>
+                         <ToggleButton id="sentencesToggle" fx:id="sentencesToggle" mnemonicParsing="false" onAction="#togglePracticeWords" styleClass="toggle" text="Format">
+                            <HBox.margin>
+                                <Insets right="5" />
+                            </HBox.margin>
+                         </ToggleButton>
+                        <Spinner id="sentenceCounter" fx:id="sentenceCounter" onMouseReleased="#updateSentenceCount" styleClass="spinner" />
+                     </children>
+                  </HBox>
+               </children></VBox>
+         </children>
+      </HBox>
+      <HBox id="navigationContainer" alignment="CENTER" maxHeight="Infinity" maxWidth="Infinity" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
          <children>
              <Button id="timedBtn" mnemonicParsing="false" onAction="#displayTimed" styleClass="navigation-btn" text="Timed">
                 <HBox.margin>
