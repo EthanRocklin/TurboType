@@ -12,53 +12,53 @@
 
 <VBox id="masterContainer" alignment="TOP_CENTER" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.typingspeed.app.PracticeController">
   <children>
-      <HBox id="masterControlsContainer" fx:id="controlsContainer" alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+      <HBox id="masterControlsContainer" fx:id="controlsContainer">
           <VBox.margin>
               <Insets top="60.0" />
           </VBox.margin>
           <children>
-          <VBox id="leftControlContainer" alignment="CENTER" maxWidth="Infinity" styleClass="control-container" HBox.hgrow="ALWAYS" />
+          <VBox id="leftControlContainer" styleClass="control-container" HBox.hgrow="ALWAYS" />
           <AnchorPane fx:id="practicePane">
             <children>
-                  <VBox id="practiceContainer" alignment="CENTER">
+                  <VBox id="practiceContainer">
                      <children>
-                         <Text id="title" strokeType="OUTSIDE" strokeWidth="0.0" text="Practice Mode">
+                         <Text id="title" text="Practice Mode">
                              <VBox.margin>
                                 <Insets bottom="100" />
                              </VBox.margin>
                          </Text>
-                        <HBox prefWidth="200.0" style="-fx-alignment: center;">
+                        <HBox id="totalCounterContainer" styleClass="counterContainer">
                            <children>
-                              <Text id="totalLabel" fx:id="totalWords" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="label" text="Total Words:">
+                              <Text id="totalLabel" fx:id="totalWords" styleClass="label" text="Total Words:">
                                   <HBox.margin>
                                       <Insets right="20" />
                                   </HBox.margin>
                                </Text>
-                              <Text id="totalCounter" fx:id="totalCounter" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="counter" />
+                              <Text id="totalCounter" fx:id="totalCounter" styleClass="counter" />
                            </children>
                            <VBox.margin>
                                 <Insets bottom="20" />
                            </VBox.margin>
                         </HBox>
-                        <HBox prefWidth="200.0" style="-fx-alignment: center;">
+                        <HBox id="correctCounterContainer" styleClass="counterContainer">
                            <children>
-                               <Text id="correctLabel" fx:id="correctWords" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="label" text="Correct:">
+                               <Text id="correctLabel" fx:id="correctWords" styleClass="label" text="Correct:">
                                   <HBox.margin>
                                       <Insets right="20" />
                                   </HBox.margin>
                                </Text>
-                              <Text id="correctCounter" fx:id="correctCounter" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="counter" />
+                              <Text id="correctCounter" fx:id="correctCounter" styleClass="counter" />
                            </children>
                            <VBox.margin>
                                 <Insets bottom="50" />
                            </VBox.margin>
                         </HBox>
-                        <TextArea id="wordsArea" fx:id="wordsArea" editable="false" focusTraversable="false" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="500.0" styleClass="text-area" wrapText="true">
+                        <TextArea id="wordsArea" fx:id="wordsArea" styleClass="text-area" editable="false">
                             <VBox.margin>
                                 <Insets bottom="20" />
                             </VBox.margin>
                         </TextArea>
-                         <TextArea id="typingArea" fx:id="typingArea" focusTraversable="false" maxHeight="-Infinity" maxWidth="-Infinity" onKeyTyped="#checkTypedWords" prefHeight="30.0" prefWidth="500.0" promptText="Start typing here..." styleClass="text-area" wrapText="true" />
+                        <TextArea id="typingArea" fx:id="typingArea" styleClass="text-area" onKeyTyped="#checkTypedWords" promptText="Start typing here..." />
                      </children>
                   </VBox>
             </children>

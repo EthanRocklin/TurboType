@@ -10,6 +10,12 @@
     -fx-pref-height: 100%;
 }
 
+#masterControlContainer {
+    -fx-alignment: center;
+    -fx-pref-height: 100;
+    -fx-pref-width: 200;
+}
+
 #practiceContainer {
     -fx-alignment: center;
 }
@@ -18,6 +24,11 @@
     -fx-fill: #f79e45;
     -fx-font-family: "VT323";
     -fx-font-size: 120;
+}
+
+.counterContainer {
+    -fx-pref-width: 200;
+    -fx-alignment: center;
 }
 
 .label, .counter {
@@ -42,12 +53,17 @@
 }
 
 .text-area {
+    -fx-focus-traversable: false;
+    -fx-max-weight: -infinity;
+    -fx-max-height: -infinity;
+    -fx-pref-weight: 500;
     -fx-border-color: #09090a;
     -fx-border-radius: 5;
     -fx-border-insets: 0;
     -fx-font-size: 24;
     -fx-text-fill: #ffffff;
     -fx-cursor: text;
+    -fx-wrap-text: true;
 }
 
 .text-area .content {
