@@ -3,6 +3,8 @@ package com.typingspeed.app;
 import java.io.IOException;
 import javafx.fxml.FXML;
 import javafx.event.Event;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.ToggleButton;
@@ -31,7 +33,10 @@ public class PracticeController {
     @FXML
     private AnchorPane practicePane;
     @FXML
-    private Text correctCounter, totalCounter;
+    private ImageView targetImage;
+    @FXML
+    private Text correctCounter, totalCounter, accuracyLabel, accuracyValue,
+                 wpmLabel, wpmValue, statsMessage;
     @FXML
     private TextArea wordsArea, typingArea;
     @FXML
@@ -51,6 +56,21 @@ public class PracticeController {
         initializeSizeBindings();
         initializeUIValues();
         initializeUIListeners();
+        initializeVisibilities();
+        initializeGraphics();
+    }
+    private void initializeVisibilities() {
+        // Elements in the stats container (left side)
+        accuracyLabel.setVisible(false);
+        accuracyValue.setVisible(false);
+        wpmLabel.setVisible(false);
+        wpmValue.setVisible(false);
+        statsMessage.setVisible(false);
+        // Elements in the control box (right side)
+        sentenceSpinner.setVisible(false);
+        sentenceSpinner.setManaged(false);
+        randomSlider.setVisible(false);
+        randomSlider.setManaged(false);
     }
     private void initializeUIListeners() {
         // Listeners for Sliders
@@ -60,6 +80,10 @@ public class PracticeController {
             if (oldWordCount != newWordCount)
                 updatePracticeWords(newWordCount, false);
         });
+    }
+    private void initializeGraphics() {
+        Image image = new Image(getClass().getResource("/images/target1.png").toExternalForm());
+        targetImage.setImage(image);
     }
     private void initializeSizeBindings() {
         wordsArea.sceneProperty().addListener((obs, oldScene, newScene) -> {
@@ -75,6 +99,8 @@ public class PracticeController {
         // Disables scrolling in the text areas
         wordsArea.addEventFilter(ScrollEvent.SCROLL, ScrollEvent::consume);
         typingArea.addEventFilter(ScrollEvent.SCROLL, ScrollEvent::consume);
+        // Disables input in Spinner objects
+        sentenceSpinner.addEventFilter(KeyEvent.ANY, KeyEvent::consume);
         // Disables the user's ability to copy text
         practicePane.addEventFilter(ContextMenuEvent.CONTEXT_MENU_REQUESTED, Event::consume);
         wordsArea.addEventFilter(KeyEvent.KEY_PRESSED, this::blockCopyPaste);
@@ -96,9 +122,6 @@ public class PracticeController {
         // Sets Spinner values
         int min = 1, max = 6, initial = 3;
         sentenceSpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(min, max, initial));
-        sentenceSpinner.addEventFilter(KeyEvent.ANY, KeyEvent::consume);
-        sentenceSpinner.setVisible(false);
-        sentenceSpinner.setManaged(false);
         // Sets Slider values
         min = 10;
         max = 60;
@@ -107,9 +130,6 @@ public class PracticeController {
         randomSlider.setMax(max);
         randomSlider.setValue(initial);    
         randomSlider.setSnapToTicks(true);
-        randomSlider.setVisible(false);
-        randomSlider.setManaged(false);
-        
     }
     private void initializeWords() {
         String words = WordBank.getWords(30);

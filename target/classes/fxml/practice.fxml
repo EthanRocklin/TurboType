@@ -6,6 +6,7 @@
 <?import javafx.scene.control.Spinner?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
@@ -18,7 +19,21 @@
               <Insets top="60.0" />
           </VBox.margin>
           <children>
-          <VBox id="leftControlContainer" styleClass="control-box" HBox.hgrow="ALWAYS" />
+          <VBox id="leftControlContainer" styleClass="control-box" HBox.hgrow="ALWAYS">
+               <children>
+                  <ImageView id="accuracyIcon" fx:id="targetImage" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+                  <HBox id="accuracyContainer" prefHeight="100.0" prefWidth="200.0" styleClass="stat-container">
+                     <children>
+                        <Text id="accuracyLabel" fx:id="accuracyLabel" text="Accuracy: " />
+                        <Text id="accuracyValue" fx:id="accuracyValue" />
+                     </children></HBox>
+                  <HBox id="wordsPerMinuteContainer" prefHeight="100.0" prefWidth="200.0" styleClass="stat-container">
+                     <children>
+                        <Text id="wpmLabel" fx:id="wpmLabel" text="Words Per Minute: " />
+                        <Text id="wpmValue" fx:id="wpmValue" styleClass="stat" />
+                     </children></HBox>
+                  <Text id="statsMessage" fx:id="statsMessage" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="stat-element" />
+               </children></VBox>
           <AnchorPane fx:id="practicePane">
             <children>
                   <VBox id="practiceContainer">
@@ -59,7 +74,7 @@
                                 <Insets bottom="20" />
                             </VBox.margin>
                         </TextArea>
-                        <TextArea id="typingArea" fx:id="typingArea" onKeyTyped="#checkTypedWords" promptText="Start typing here..." styleClass="text-area" />
+                        <TextArea id="typingArea" fx:id="typingArea" onKeyTyped="#checkTypedWords" promptText="Start typing here. A timer will start at the first ketstroke." styleClass="text-area" />
                      </children>
                   </VBox>
             </children>
