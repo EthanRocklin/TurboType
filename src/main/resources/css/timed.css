@@ -1,32 +1,109 @@
+.root {
+    -fx-accent: #f5d6af;
+    -fx-background: #1a1a1c;
+    -fx-controls-border-color: #000000;
+    -fx-correct-label-color: #77fc7b;
+    -fx-navigation-shadow: dropshadow(gaussian, rgba(165,80,255,0.5), 20, 0.5, 0, 0);
+    -fx-navigation-background: #e8e8e8;
+    -fx-navigation-font-color: #000000;
+    -fx-slider-axis: #c58fff;
+    -fx-slider-ticks: #c58fff;
+    -fx-slider-minor-ticks: #e4c9ff;
+    -fx-slider-track: #f5d6af;
+    -fx-slider-thumb: #844cc2;
+    -fx-spinner-arrows: #f5d6af;
+    -fx-spinner-arrow-button: #000000;
+    -fx-spinner-background: #f5d6af;
+    -fx-text-area-color: #09090a;
+    -fx-text-area-font-color: #ffffff;
+    -fx-text-area-border-color: #09090a;
+    -fx-title-color: #f79e45;
+    -fx-toggle-background-color: #f5d6af;
+    -fx-total-label-color:  #ffffff;
+    -fx-typing-shadow: dropshadow(gaussian, rgba(255,0,0,0.5), 20, 0.5, 0, 0);
+    -fx-word-shadow: dropshadow(gaussian, rgba(119,255,123,0.5), 20, 0.5, 0, 0);
+}
+
 #masterContainer {
-    -fx-background-color: #1a1a1c;
-    -fx-min-width: 100%;
-    -fx-min-height: 100%;
-    -fx-pref-width: 100%;
-    -fx-pref-height: 100%;
+    -fx-background-color: -fx-background;
+}
+
+#masterControlContainer {
+    -fx-pref-height: 100;
+    -fx-pref-width: 200;
+}
+
+.controls-box {
+    -fx-maxWidth: infinity;
+}
+
+.control-container {
+    -fx-pref-height: 40;
+    -fx-pref-width: 0;
 }
 
 #timedContainer {
     -fx-alignment: center;
-    -fx-border-color: red;
 }
 
 #title {
-    -fx-fill: #f79e45;
+    -fx-fill: -fx-title-color;
     -fx-font-family: "VT323";
     -fx-font-size: 120;
 }
 
+.control-box {
+    -fx-alignment: center;
+    -fx-pref-width: 250;
+}
+
+.counterContainer {
+    -fx-pref-width: 200;
+    -fx-alignment: center;
+    -fx-pre-height: 40;
+}
+
+.label, .counter {
+    -fx-font-family: "VT323";
+    -fx-font-size: 60;
+}
+
+#totalLabel, .counter {
+    -fx-fill: -fx-total-label-color;
+}
+
+#correctLabel {
+    -fx-fill: -fx-correct-label-color;
+}
+
+.text-area,
+.text-area .content,
+.text-area .viewport {
+    -fx-background-color: -fx-text-area-color;
+    -fx-background-radius: 5;
+    -fx-background-insets: 0;
+}
+
 .text-area {
-    -fx-background-color: #09090a;
-    -fx-border-color: red;
-    -fx-font-size: 24px;
-    -fx-text-fill: #ffffff;
+    -fx-focus-traversable: false;
+    -fx-pref-width: 500;
+    -fx-border-color: -fx-text-area-border-color;
+    -fx-border-radius: 5;
+    -fx-border-insets: 0;
+    -fx-font-size: 24;
+    -fx-text-fill: -fx-text-area-font-color;
     -fx-cursor: text;
+    -fx-wrap-text: true;
 }
 
 .text-area .content {
-    -fx-background-color: #09090a;
+    -fx-background-color: -fx-text-area-color;
+    -fx-background-radius: 5;
+    -fx-background-insets: 0;
+}
+
+.text-area .corner {
+    -fx-background-color: transparent;
 }
 
 .text-area .scroll-bar:vertical,
@@ -36,21 +113,112 @@
     -fx-pref-height: 0;
 }
 
-#navContainer {
-    -fx-alignment: top-center;
-    -fx-border-color: blue;
+#wordsArea {
+    -fx-effect: -fx-word-shadow;
+}
+
+#typingArea {
+    -fx-effect: -fx-typing-shadow;
+}
+
+#navigationContainer {
+    -fx-alignment: center;
+    -fx-max-width: infinity;
+    -fx-max-height: infinity;
 }
 
 .navigation-btn {
-    -fx-background-color: #e8e8e8;
-    -fx-text-fill: #000000;
-    -fx-text-alignment: center;
-    -fx-cursor: hand;
+    -fx-background-color: -fx-navigation-background;
+    -fx-text-fill: -fx-navigation-font-color;
     -fx-pref-width: 250;
     -fx-pref-height: 60;
     -fx-padding: 0;
-    -fx-font-family: "VT323";
     -fx-font-size: 50;
-    -fx-effect: dropshadow(gaussian, rgba(255,0,0,0.5), 20, 0.5, 0, 0);
+    -fx-effect: -fx-navigation-shadow;
+}
+
+.navigation-btn, .toggle {
     -fx-cursor: hand;
+    -fx-font-family: "VT323";
+    -fx-text-alignment: center;
+}
+
+.navigation-btn, .toggle, .dropdown {
+    -fx-padding: 0;
+}
+
+
+.toggle {
+    -fx-font-size: 24;
+    -fx-pref-width: 120;
+    -fx-pref-height: 36;
+    -fx-background-color: -fx-toggle-background-color;
+}
+
+.toggle, .spinner {
+    -fx-border-width: 3;
+    -fx-border-radius: 0;
+    -fx-border-insets: 0;
+    -fx-border-color: -fx-controls-border-color;
+    -fx-background-radius: 0;
+    -fx-background-insets: 0;
+}
+
+#randomSlider {
+    -fx-block-increment: 1;
+    -fx-major-tick-unit: 10;
+    -fx-minor-tick-count: 9;
+    -fx-show-tick-labels: true;
+    -fx-show-tick-marks: true;
+    -fx-font-size: 14;
+    -fx-pref-width: 200;
+}
+
+.slider .track {
+    -fx-background-color: -fx-slider-track;
+}
+
+.slider .thumb {
+    -fx-background-color: -fx-slider-thumb;
+}
+
+.slider .axis {
+    -fx-tick-label-fill: -fx-slider-axis;
+}
+
+.slider .axis-tick-mark {
+    -fx-stroke: -fx-slider-ticks;
+}
+
+.slider .axis-minor-tick-mark {
+    -fx-stroke: -fx-slider-minor-ticks;
+}
+
+.spinner {
+    -fx-pref-width: 70;
+    -fx-padding: 0;
+    -fx-font-family: "VT323";
+    -fx-font-size: 20;
+    -fx-border-color: -fx-controls-border-color;
+}
+
+.spinner .text-field {
+    -fx-pref-height: 30;
+    -fx-background-color: -fx-spinner-background;
+}
+
+.spinner .increment-arrow-button,
+.spinner .decrement-arrow-button {
+    -fx-padding: 0 5 0 5;
+    -fx-pref-height: 18;
+    -fx-cursor: hand;
+    -fx-background-color: -fx-spinner-arrow-button;
+    -fx-background-radius: 0;
+}
+
+.spinner .increment-arrow,
+.spinner .decrement-arrow {
+    -fx-scale-x: 0.7;
+    -fx-scale-y: 0.7;
+    -fx-background-color: -fx-spinner-arrows;
 }

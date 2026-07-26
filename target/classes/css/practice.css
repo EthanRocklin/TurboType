@@ -7,6 +7,8 @@
     -fx-navigation-background: #e8e8e8;
     -fx-navigation-font-color: #000000;
     -fx-slider-axis: #c58fff;
+    -fx-slider-ticks: #c58fff;
+    -fx-slider-minor-ticks: #e4c9ff;
     -fx-slider-track: #f5d6af;
     -fx-slider-thumb: #844cc2;
     -fx-spinner-arrows: #f5d6af;
@@ -20,7 +22,6 @@
     -fx-total-label-color:  #ffffff;
     -fx-typing-shadow: dropshadow(gaussian, rgba(255,0,0,0.5), 20, 0.5, 0, 0);
     -fx-word-shadow: dropshadow(gaussian, rgba(119,255,123,0.5), 20, 0.5, 0, 0);
-    
 }
 
 #masterContainer {
@@ -28,18 +29,15 @@
 }
 
 #masterControlContainer {
-    -fx-alignment: center;
     -fx-pref-height: 100;
     -fx-pref-width: 200;
 }
 
 .controls-box {
-    -fx-alignment: center;
     -fx-maxWidth: infinity;
 }
 
 .control-container {
-    -fx-alignment: center;
     -fx-pref-height: 40;
     -fx-pref-width: 0;
 }
@@ -188,8 +186,12 @@
     -fx-tick-label-fill: -fx-slider-axis;
 }
 
-.slider .axis .tick-mark {
-    -fx-stroke: -fx-slider-axis;
+.slider .axis-tick-mark {
+    -fx-stroke: -fx-slider-ticks;
+}
+
+.slider .axis-minor-tick-mark {
+    -fx-stroke: -fx-slider-minor-ticks;
 }
 
 .spinner {

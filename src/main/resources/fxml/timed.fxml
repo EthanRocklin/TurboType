@@ -1,45 +1,96 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.Spinner?>
 <?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.ToggleButton?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
-<?import javafx.geometry.Insets?>
 
-<VBox id="masterContainer" style="-fx-alignment: center;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.typingspeed.app.TimedController">
+<VBox id="masterContainer" alignment="TOP_CENTER" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.typingspeed.app.TimedController">
   <children>
-    <AnchorPane VBox.vgrow="ALWAYS">
-      <children>
-            <VBox id="timedContainer" prefHeight="300.0" prefWidth="640.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <HBox id="masterControlsContainer" fx:id="controlsContainer">
+          <VBox.margin>
+              <Insets top="60.0" />
+          </VBox.margin>
+          <children>
+          <VBox id="leftControlContainer" styleClass="control-box" HBox.hgrow="ALWAYS" />
+          <AnchorPane fx:id="timedPane">
+            <children>
+                  <VBox id="timedContainer">
+                     <children>
+                         <Text id="title" text="Timed Mode">
+                             <VBox.margin>
+                                <Insets bottom="100" />
+                             </VBox.margin>
+                         </Text>
+                        <HBox id="totalCounterContainer" styleClass="counterContainer">
+                           <children>
+                              <Text id="totalLabel" fx:id="totalWords" styleClass="label" text="Total Words:">
+                                  <HBox.margin>
+                                      <Insets right="20" />
+                                  </HBox.margin>
+                               </Text>
+                              <Text id="totalCounter" fx:id="totalCounter" styleClass="counter" />
+                           </children>
+                           <VBox.margin>
+                                <Insets bottom="20" />
+                           </VBox.margin>
+                        </HBox>
+                        <HBox id="correctCounterContainer" styleClass="counterContainer">
+                           <children>
+                               <Text id="correctLabel" fx:id="correctWords" styleClass="label" text="Correct:">
+                                  <HBox.margin>
+                                      <Insets right="20" />
+                                  </HBox.margin>
+                               </Text>
+                              <Text id="correctCounter" fx:id="correctCounter" styleClass="counter" />
+                           </children>
+                           <VBox.margin>
+                                <Insets bottom="50" />
+                           </VBox.margin>
+                        </HBox>
+                        <TextArea id="wordsArea" fx:id="wordsArea" editable="false" styleClass="text-area">
+                            <VBox.margin>
+                                <Insets bottom="20" />
+                            </VBox.margin>
+                        </TextArea>
+                        <TextArea id="typingArea" fx:id="typingArea" onKeyTyped="#checkTypedWords" promptText="Start typing here..." styleClass="text-area" />
+                     </children>
+                  </VBox>
+            </children>
+          </AnchorPane>
+          <VBox id="rightControlContainer" styleClass="control-box" HBox.hgrow="ALWAYS">
                <children>
-                   <Text id="title" strokeType="OUTSIDE" strokeWidth="0.0" text="Timed Mode">
-                       <VBox.margin>
-                          <Insets bottom="200" />
-                       </VBox.margin>
-                   </Text>
-                  <TextArea id="wordsArea" fx:id="wordsArea" editable="false" focusTraversable="false"  wrapText="true" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="500.0" styleClass="text-area">
-                      <VBox.margin>
-                          <Insets bottom="20" />
-                      </VBox.margin>
-                  </TextArea>
-                  <TextArea id="typingArea" fx:id="typingArea" focusTraversable="false" wrapText="true" maxHeight="-Infinity" maxWidth="-Infinity" onKeyTyped="#getTypedWords" prefHeight="30.0" prefWidth="500.0" styleClass="text-area" />
-               </children>
-            </VBox>
-      </children>
-    </AnchorPane>
-      <HBox id="navContainer" prefHeight="100.0" prefWidth="200.0">
+                  <HBox id="sentencesToggleContainer" styleClass="control-container">
+                     <children>
+                         <ToggleButton id="sentencesToggle" fx:id="sentencesToggle" mnemonicParsing="false" onAction="#toggleTimedWords" styleClass="toggle" text="Format">
+                            <HBox.margin>
+                                <Insets left="50" right="5" />
+                            </HBox.margin>
+                         </ToggleButton>
+                        <Spinner id="sentenceSpinner" fx:id="sentenceSpinner" onMouseReleased="#updateSentenceCount" styleClass="spinner" />
+                        <Slider id="randomSlider" fx:id="randomSlider" styleClass="slider" />
+                     </children>
+                  </HBox>
+               </children></VBox>
+         </children>
+      </HBox>
+      <HBox id="navigationContainer" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
          <children>
-             <Button id="practiceBtn" mnemonicParsing="false" onAction="#displayPractice" styleClass="navigation-btn" text="Practice">
-                 <HBox.margin>
+             <Button id="timedBtn" mnemonicParsing="false" onAction="#displayPractice" styleClass="navigation-btn" text="Practice">
+                <HBox.margin>
                     <Insets right="30.0" />
                 </HBox.margin>
              </Button>
-             <Button id="homeBtn" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#displayHomepage" styleClass="navigation-btn" text="Home">
+             <Button id="homeBtn" mnemonicParsing="false" onAction="#displayHomepage" styleClass="navigation-btn" text="Home">
                  <HBox.margin>
                     <Insets right="30.0" />
-                </HBox.margin>
+                 </HBox.margin>
              </Button>
             <Button id="statsBtn" mnemonicParsing="false" onAction="#displayStats" styleClass="navigation-btn" text="Statistics" />
          </children>

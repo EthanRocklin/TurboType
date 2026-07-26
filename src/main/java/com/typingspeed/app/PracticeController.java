@@ -168,15 +168,11 @@ public class PracticeController {
             words = WordBank.getWords(count);
         practiceWords = createWordList(words);
         wordsArea.setText(words);
+        typingArea.clear();
         setTotalWordsCounter();
     }
     
     // Updaters
-    
-    @FXML
-    private void updateRandomCount() {
-        
-    }
     
     @FXML
     private void updateSentenceCount() {
@@ -184,11 +180,11 @@ public class PracticeController {
     }
     
     /**
-     * 
-     * 
+     * This method updates the color of the typingArea color based on the 
+     * progress of the user's correct words.
      */
     @FXML
-    private void updateAreaShadowColor(int correctCount) {
+    private void updateTypingShadowColor(int correctCount) {
        // Style to be applied to the TextArea 
        String style = "-fx-effect: dropshadow(gaussian, rgba(%d,%d,%d,0.5), 20, 0.5, 0, 0);";
        // Variables for calculations
@@ -232,7 +228,7 @@ public class PracticeController {
             if (practiceWord.equals(typedWord))
                 correctCount++;
         }
-        updateAreaShadowColor(correctCount);
+        updateTypingShadowColor(correctCount);
         correctCounter.setText(String.valueOf(correctCount));
     }
     

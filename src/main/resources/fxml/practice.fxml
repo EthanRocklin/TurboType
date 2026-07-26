@@ -70,11 +70,11 @@
                      <children>
                          <ToggleButton id="sentencesToggle" fx:id="sentencesToggle" mnemonicParsing="false" onAction="#togglePracticeWords" styleClass="toggle" text="Format">
                             <HBox.margin>
-                                <Insets right="5" />
+                                <Insets left="50" right="5" />
                             </HBox.margin>
                          </ToggleButton>
                         <Spinner id="sentenceSpinner" fx:id="sentenceSpinner" onMouseReleased="#updateSentenceCount" styleClass="spinner" />
-                        <Slider id="randomSlider" fx:id="randomSlider" onDragDetected="#updateRandomCount" styleClass="slider" />
+                        <Slider id="randomSlider" fx:id="randomSlider" styleClass="slider" />
                      </children>
                   </HBox>
                </children></VBox>
