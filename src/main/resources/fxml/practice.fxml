@@ -17,8 +17,8 @@
               <Insets top="60.0" />
           </VBox.margin>
           <children>
-          <VBox id="leftControlContainer" alignment="CENTER" styleClass="control-container" maxWidth="Infinity" HBox.hgrow="ALWAYS" />
-          <AnchorPane>
+          <VBox id="leftControlContainer" alignment="CENTER" maxWidth="Infinity" styleClass="control-container" HBox.hgrow="ALWAYS" />
+          <AnchorPane fx:id="practicePane">
             <children>
                   <VBox id="practiceContainer" alignment="CENTER">
                      <children>
@@ -58,14 +58,14 @@
                                 <Insets bottom="20" />
                             </VBox.margin>
                         </TextArea>
-                         <TextArea id="typingArea" fx:id="typingArea" focusTraversable="false" maxHeight="-Infinity" maxWidth="-Infinity" onKeyTyped="#checkTypedWords" prefHeight="30.0" prefWidth="500.0" styleClass="text-area" wrapText="true" promptText="Start typing here..." />
+                         <TextArea id="typingArea" fx:id="typingArea" focusTraversable="false" maxHeight="-Infinity" maxWidth="-Infinity" onKeyTyped="#checkTypedWords" prefHeight="30.0" prefWidth="500.0" promptText="Start typing here..." styleClass="text-area" wrapText="true" />
                      </children>
                   </VBox>
             </children>
           </AnchorPane>
-          <VBox id="rightControlContainer" alignment="CENTER" styleClass="control-container" maxWidth="Infinity" HBox.hgrow="ALWAYS">
+          <VBox id="rightControlContainer" alignment="CENTER" maxWidth="Infinity" styleClass="control-container" HBox.hgrow="ALWAYS">
                <children>
-                  <HBox id="sentencesToggleContainer" maxWidth="250" prefWidth="0" prefHeight="40" alignment="CENTER">
+                  <HBox id="sentencesToggleContainer" alignment="CENTER" maxWidth="250" prefHeight="40" prefWidth="0">
                      <children>
                          <ToggleButton id="sentencesToggle" fx:id="sentencesToggle" mnemonicParsing="false" onAction="#togglePracticeWords" styleClass="toggle" text="Format">
                             <HBox.margin>
