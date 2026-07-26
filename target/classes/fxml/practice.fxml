@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Slider?>
 <?import javafx.scene.control.Spinner?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.ToggleButton?>
@@ -53,12 +54,12 @@
                                 <Insets bottom="50" />
                            </VBox.margin>
                         </HBox>
-                        <TextArea id="wordsArea" fx:id="wordsArea" styleClass="text-area" editable="false">
+                        <TextArea id="wordsArea" fx:id="wordsArea" editable="false" styleClass="text-area">
                             <VBox.margin>
                                 <Insets bottom="20" />
                             </VBox.margin>
                         </TextArea>
-                        <TextArea id="typingArea" fx:id="typingArea" styleClass="text-area" onKeyTyped="#checkTypedWords" promptText="Start typing here..." />
+                        <TextArea id="typingArea" fx:id="typingArea" onKeyTyped="#checkTypedWords" promptText="Start typing here..." styleClass="text-area" />
                      </children>
                   </VBox>
             </children>
@@ -72,7 +73,8 @@
                                 <Insets right="5" />
                             </HBox.margin>
                          </ToggleButton>
-                        <Spinner id="sentenceCounter" fx:id="sentenceCounter" onMouseReleased="#updateSentenceCount" styleClass="spinner" />
+                        <Spinner id="sentenceSpinner" fx:id="sentenceSpinner" onMouseReleased="#updateSentenceCount" styleClass="spinner" />
+                        <Slider id="randomSlider" fx:id="randomSlider" onDragDetected="#updateRandomCount" styleClass="slider" />
                      </children>
                   </HBox>
                </children></VBox>

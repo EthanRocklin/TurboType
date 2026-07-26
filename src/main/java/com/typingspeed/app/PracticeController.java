@@ -8,6 +8,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.SpinnerValueFactory;
+import javafx.scene.control.Slider;
 import javafx.scene.text.Text;
 import javafx.scene.input.ScrollEvent;
 import javafx.scene.input.KeyEvent;
@@ -36,7 +37,9 @@ public class PracticeController {
     @FXML
     private ToggleButton sentencesToggle;
     @FXML
-    private Spinner<Integer> sentenceCounter;
+    private Slider randomSlider;
+    @FXML
+    private Spinner<Integer> sentenceSpinner;
     
     private List<String> practiceWords, typedWords;   
     
@@ -47,8 +50,17 @@ public class PracticeController {
         initializeUIRestrictions();
         initializeSizeBindings();
         initializeUIValues();
+        initializeUIListeners();
     }
-    // This method sets size bindings for initialize().
+    private void initializeUIListeners() {
+        // Listeners for Sliders
+        randomSlider.valueProperty().addListener((obs, oldValue, newValue) -> {
+            int oldWordCount = practiceWords.size(),
+            newWordCount = (int) randomSlider.getValue();
+            if (oldWordCount != newWordCount)
+                updatePracticeWords(newWordCount, false);
+        });
+    }
     private void initializeSizeBindings() {
         wordsArea.sceneProperty().addListener((obs, oldScene, newScene) -> {
            if (newScene != null) {
@@ -59,7 +71,6 @@ public class PracticeController {
            } 
         });
     }
-    // This method sets UI restrictions for initialize().
     private void initializeUIRestrictions() {
         // Disables scrolling in the text areas
         wordsArea.addEventFilter(ScrollEvent.SCROLL, ScrollEvent::consume);
@@ -69,7 +80,6 @@ public class PracticeController {
         wordsArea.addEventFilter(KeyEvent.KEY_PRESSED, this::blockCopyPaste);
         typingArea.addEventFilter(KeyEvent.KEY_PRESSED, this::blockCopyPaste);
     }
-    // This method helps initializeUIRestrictions().
     private void blockCopyPaste(KeyEvent event) {
         KeyCombination copy = new KeyCodeCombination(KeyCode.C, KeyCombination.SHORTCUT_DOWN);
         KeyCombination copyAlt = new KeyCodeCombination(KeyCode.INSERT, KeyCombination.CONTROL_DOWN);
@@ -79,18 +89,28 @@ public class PracticeController {
             event.consume();
         }
     }
-    // This method sets UI values for initialize() that are required. 
     private void initializeUIValues() {
         // Sets counters
         totalCounter.setText(String.valueOf(practiceWords.size()));
         correctCounter.setText("0");
         // Sets Spinner values
         int min = 1, max = 6, initial = 3;
-        sentenceCounter.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(min, max, initial));
-        sentenceCounter.addEventFilter(KeyEvent.ANY, KeyEvent::consume);
-        sentenceCounter.setVisible(false);
+        sentenceSpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(min, max, initial));
+        sentenceSpinner.addEventFilter(KeyEvent.ANY, KeyEvent::consume);
+        sentenceSpinner.setVisible(false);
+        sentenceSpinner.setManaged(false);
+        // Sets Slider values
+        min = 10;
+        max = 60;
+        initial = 30;
+        randomSlider.setMin(min);
+        randomSlider.setMax(max);
+        randomSlider.setValue(initial);    
+        randomSlider.setSnapToTicks(true);
+        randomSlider.setVisible(false);
+        randomSlider.setManaged(false);
+        
     }
-    // This method loads the words and sentences for initialize().
     private void initializeWords() {
         String words = WordBank.getWords(30);
         wordsArea.setText(words);
@@ -118,13 +138,19 @@ public class PracticeController {
         if (sentencesToggle.isSelected()) {
             count = 3;
             updatePracticeWords(count, true);
+            randomSlider.setVisible(false);
+            randomSlider.setManaged(false);
+            sentenceSpinner.setVisible(true);
+            sentenceSpinner.setManaged(true);
             sentencesToggle.setText("Sentences");
-            sentenceCounter.setVisible(true);
         } else {
             count = 30;
             updatePracticeWords(count, false);
             sentencesToggle.setText("Random");
-            sentenceCounter.setVisible(false);
+            sentenceSpinner.setVisible(false);
+            sentenceSpinner.setManaged(false);
+            randomSlider.setVisible(true);
+            randomSlider.setManaged(true);
         }
     }
     
@@ -148,8 +174,13 @@ public class PracticeController {
     // Updaters
     
     @FXML
+    private void updateRandomCount() {
+        
+    }
+    
+    @FXML
     private void updateSentenceCount() {
-        updatePracticeWords(sentenceCounter.getValue(), true);
+        updatePracticeWords(sentenceSpinner.getValue(), true);
     }
     
     /**
@@ -209,7 +240,7 @@ public class PracticeController {
     
     @FXML 
     private int getSentenceCount() {
-        return sentenceCounter.getValue();
+        return sentenceSpinner.getValue();
     }
     
     @FXML
