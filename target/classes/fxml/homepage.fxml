@@ -1,16 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
-<?import javafx.scene.layout.Region?>
-<?import javafx.geometry.Insets?>
 
-<VBox id="homepageContainer" alignment="CENTER" prefHeight="600.0" prefWidth="900.0" styleClass="main-container" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.typingspeed.app.HomepageController">
+<VBox id="homepageContainer" styleClass="main-container" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.typingspeed.app.HomepageController">
   <children>
-      <Text id="turboTitle" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="home-title" text="Turbo" />
-      <Text id="typeTitle" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="home-title" text="Type" />
-      <Region prefHeight="100" />
+      <Text id="turboTitle" styleClass="home-title" text="Turbo" />
+      <Text id="typeTitle" styleClass="home-title" text="Type">
+        <VBox.margin>
+              <Insets bottom="100" />
+        </VBox.margin>
+      </Text>
       <Button id="practiceBtn" mnemonicParsing="false" onAction="#displayPractice" styleClass="navigation-btn" text="Practice">
           <VBox.margin>
               <Insets bottom="30.0" />

@@ -4,16 +4,23 @@
 
 #masterContainer {
     -fx-background-color: #1a1a1c;
-    -fx-min-width: 100%;
-    -fx-min-height: 100%;
-    -fx-pref-width: 100%;
-    -fx-pref-height: 100%;
 }
 
 #masterControlContainer {
     -fx-alignment: center;
     -fx-pref-height: 100;
     -fx-pref-width: 200;
+}
+
+.controls-box {
+    -fx-alignment: center;
+    -fx-maxWidth: infinity;
+}
+
+.control-container {
+    -fx-alignment: center;
+    -fx-pref-height: 40;
+    -fx-pref-width: 0;
 }
 
 #practiceContainer {
@@ -26,9 +33,15 @@
     -fx-font-size: 120;
 }
 
+.control-box {
+    -fx-alignment: center;
+    -fx-pref-width: 250;
+}
+
 .counterContainer {
     -fx-pref-width: 200;
     -fx-alignment: center;
+    -fx-pre-height: 40;
 }
 
 .label, .counter {
@@ -54,9 +67,7 @@
 
 .text-area {
     -fx-focus-traversable: false;
-    -fx-max-weight: -infinity;
-    -fx-max-height: -infinity;
-    -fx-pref-weight: 500;
+    -fx-pref-width: 500;
     -fx-border-color: #09090a;
     -fx-border-radius: 5;
     -fx-border-insets: 0;
@@ -91,6 +102,12 @@
     -fx-effect: dropshadow(gaussian, rgba(255,0,0,0.5), 20, 0.5, 0, 0);
 }
 
+#navigationContainer {
+    -fx-alignment: center;
+    -fx-max-width: infinity;
+    -fx-max-height: infinity;
+}
+
 .navigation-btn {
     -fx-background-color: #e8e8e8;
     -fx-text-fill: #000000;
@@ -98,7 +115,7 @@
     -fx-pref-height: 60;
     -fx-padding: 0;
     -fx-font-size: 50;
-    -fx-effect: dropshadow(gaussian, rgba(255,0,0,0.5), 20, 0.5, 0, 0);
+    -fx-effect: dropshadow(gaussian, rgba(165,80,255,0.5), 20, 0.5, 0, 0);
 }
 
 .navigation-btn, .toggle {
@@ -155,8 +172,4 @@
     -fx-scale-x: 0.7;
     -fx-scale-y: 0.7;
     -fx-background-color: #f5d6af;
-}
-
-.control-container {
-    -fx-alignment: center;
 }

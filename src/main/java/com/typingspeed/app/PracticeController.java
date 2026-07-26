@@ -198,11 +198,10 @@ public class PracticeController {
         for (int i = 0; i < typedWords.size(); i++) {
             String practiceWord = practiceWords.get(i),
                    typedWord = typedWords.get(i);
-            if (practiceWord.equals(typedWord)) {
+            if (practiceWord.equals(typedWord))
                 correctCount++;
-                updateAreaShadowColor(correctCount);
-            }
         }
+        updateAreaShadowColor(correctCount);
         correctCounter.setText(String.valueOf(correctCount));
     }
     
