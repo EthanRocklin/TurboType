@@ -6,6 +6,7 @@ import javafx.event.Event;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.Spinner;
@@ -35,8 +36,9 @@ public class PracticeController {
     @FXML
     private ImageView targetImage;
     @FXML
-    private Text correctCounter, totalCounter, accuracyLabel, accuracyValue,
-                 wpmLabel, wpmValue, statsMessage;
+    private Label statsMessage;
+    @FXML
+    private Text correctCounter, totalCounter, accuracyValue, wpmValue;
     @FXML
     private TextArea wordsArea, typingArea;
     @FXML
@@ -47,8 +49,10 @@ public class PracticeController {
     private Spinner<Integer> sentenceSpinner;
     
     private List<String> practiceWords, typedWords;   
+    private boolean beganTyping = false;
+    private AttemptManager attempt;
     
-    //This method initializes the Practice Mode page after the page elements load.
+    // This method initializes the Practice Mode page after the page elements load.
     @FXML
     public void initialize() {
         initializeWords();
@@ -61,11 +65,12 @@ public class PracticeController {
     }
     private void initializeVisibilities() {
         // Elements in the stats container (left side)
-        accuracyLabel.setVisible(false);
-        accuracyValue.setVisible(false);
-        wpmLabel.setVisible(false);
-        wpmValue.setVisible(false);
-        statsMessage.setVisible(false);
+//        targetImage.setVisible(false);
+//        accuracyLabel.setVisible(false);
+//        accuracyValue.setVisible(false);
+//        wpmLabel.setVisible(false);
+//        wpmValue.setVisible(false);
+//        statsMessage.setVisible(false);
         // Elements in the control box (right side)
         sentenceSpinner.setVisible(false);
         sentenceSpinner.setManaged(false);
@@ -189,6 +194,7 @@ public class PracticeController {
         practiceWords = createWordList(words);
         wordsArea.setText(words);
         typingArea.clear();
+        beganTyping = false;
         setTotalWordsCounter();
     }
     
@@ -233,10 +239,38 @@ public class PracticeController {
         return (int) Math.round((start + (end - start) * progress));
     }
     
+    /**
+     * This method runs processes needed for each attempt completion.
+     */
+    private void processAttempt() {
+        attempt.setEndTimeMilli();
+        // Disables typing area
+        typingArea.setEditable(false);
+        // Computes stats
+        attempt.setCorrectWordCount(Integer.valueOf(correctCounter.getText()));
+        double accuracy = attempt.calculateAccuracy();
+        int wpm = attempt.calculateWPM();
+        accuracyValue.setText(String.valueOf(accuracy) + "%");
+        wpmValue.setText(String.valueOf(wpm));
+        // Displays message based on the attempt's performance
+        String message = attempt.getAttemptMessage();
+        statsMessage.setText(message);
+    }
+    
     // Checkers
+    
+    private void startAttempt() {
+            int wordCount = practiceWords.size();
+            boolean sentences = sentencesToggle.isSelected();
+            attempt = new AttemptManager(wordCount, sentences, 'p');
+            beganTyping = true;
+    }
     
     @FXML
     private void checkTypedWords() {
+        // Checks if the user has not began typing and is not typing
+        if (!beganTyping) startAttempt(); 
+       
         int correctCount = 0;
         String typedContent = typingArea.getText();
         String[] words = typedContent.split(" ");
@@ -250,6 +284,10 @@ public class PracticeController {
         }
         updateTypingShadowColor(correctCount);
         correctCounter.setText(String.valueOf(correctCount));
+        // Processes the attempt if the user completed typing the displayed words
+        if (typedWords.size() == practiceWords.size()) {
+            processAttempt();
+        }
     }
     
     // Getters
@@ -258,11 +296,16 @@ public class PracticeController {
     private int getSentenceCount() {
         return sentenceSpinner.getValue();
     }
-    
     @FXML
     private String getTypedWords() {
         System.out.println(typingArea.getText());
         return "";
+    }
+    public int getWordCount() {
+        return practiceWords.size();
+    }
+    public int getCorrectWordCount() {
+        return Integer.valueOf(correctCounter.getText());
     }
     
     // Setters
