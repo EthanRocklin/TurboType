@@ -6,7 +6,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 /**
- *
  * @author Ethan Rocklin
  */
 public class DatabaseManager {

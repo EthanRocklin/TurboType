@@ -14,17 +14,17 @@ public class AttemptManager {
     private final int ACCURACY_WEIGHT = 3;
     private final int WPM_WEIGHT = 10;
     private final String[] MESSAGES = {
-        "Everyone starts somewhere. Don't be discouraged. Keep trying!",
-        "Any progress is a success. Keep trying!",
-        "One step forward... One step forward... Boom, more improvement!",
+        "Everyone starts somewhere.\nDon't be discouraged.\nKeep trying!",
+        "Any progress is a success.\nKeep trying!",
+        "One step forward...\nOne step forward...\nBoom, more improvement!",
         "Keep the ball rolling!",
-        "Now you're getting it. Look at those fingers go!",
+        "Now you're getting it.\nLook at those fingers go!",
         "You're on your way to greatness. Keep up the good work!",
-        "Greatness called... It's wondering where you're at!",
-        "Look how much you've improved. That's quite the spectacle!",
+        "Greatness called...\nIt's wondering where you're at!",
+        "Look how much you've improved.\nThat's quite the spectacle!",
         "Just a little more accurate and you'll be bumped up!",
         "Just a little faster and you'll nail it!",
-        "WOW! You're fast and accurate! Great job!"
+        "WOW!\nYou're fast and accurate! Great job!"
     };
     
     // Fields

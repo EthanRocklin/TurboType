@@ -20,18 +20,18 @@
               <Insets top="60.0" />
           </VBox.margin>
           <children>
-          <VBox id="statsBox" HBox.hgrow="ALWAYS">
+          <VBox id="statsBox" fx:id="statsBox" HBox.hgrow="ALWAYS">
                <children>
                   <ImageView id="accuracyImage" fx:id="targetImage" pickOnBounds="true" preserveRatio="true" />
                   <HBox id="accuracyContainer" styleClass="stat-container">
                      <children>
                         <Text id="accuracyLabel" fx:id="accuracyLabel" styleClass="stat-label" text="Accuracy: " />
-                        <Text id="accuracyValue" fx:id="accuracyValue" styleClass="stat-text" />
+                        <Text id="accuracyValue" fx:id="accuracyValue" styleClass="stat-value" />
                      </children></HBox>
                   <HBox id="wordsPerMinuteContainer" styleClass="stat-container">
                      <children>
                         <Text id="wpmLabel" fx:id="wpmLabel" styleClass="stat-label" text="Words Per Minute: " />
-                        <Text id="wpmValue" fx:id="wpmValue" styleClass="stat-text" />
+                        <Text id="wpmValue" fx:id="wpmValue" styleClass="stat-value" />
                      </children></HBox>
                   <Label id="statsMessage" fx:id="statsMessage" />
                </children></VBox>
@@ -80,7 +80,7 @@
                   </VBox>
             </children>
           </AnchorPane>
-          <VBox id="controlBox" styleClass="control-box" HBox.hgrow="ALWAYS">
+          <VBox id="controlBox" fx:id="controlBox" styleClass="control-box" HBox.hgrow="ALWAYS">
                <children>
                   <HBox id="sentencesToggleContainer" styleClass="control-container">
                      <children>

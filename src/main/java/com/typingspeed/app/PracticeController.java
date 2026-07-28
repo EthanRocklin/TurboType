@@ -6,6 +6,7 @@ import javafx.event.Event;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.ToggleButton;
@@ -47,10 +48,14 @@ public class PracticeController {
     private Slider randomSlider;
     @FXML
     private Spinner<Integer> sentenceSpinner;
+    @FXML
+    private VBox statsBox, controlBox;
     
     private List<String> practiceWords, typedWords;   
     private boolean beganTyping = false;
     private AttemptManager attempt;
+    
+    // Initializers
     
     // This method initializes the Practice Mode page after the page elements load.
     @FXML
@@ -91,12 +96,15 @@ public class PracticeController {
         targetImage.setImage(image);
     }
     private void initializeSizeBindings() {
+        // Binds proportional size for wordsArea and other elements in the same scene
         wordsArea.sceneProperty().addListener((obs, oldScene, newScene) -> {
            if (newScene != null) {
                wordsArea.prefWidthProperty().bind(newScene.widthProperty().multiply(0.5));
                wordsArea.prefHeightProperty().bind(newScene.heightProperty().multiply(0.2));
                typingArea.prefWidthProperty().bind(newScene.widthProperty().multiply(0.5));
                typingArea.prefHeightProperty().bind(newScene.heightProperty().multiply(0.2));
+               statsBox.prefHeightProperty().bind(newScene.widthProperty().multiply(0.25));
+               controlBox.prefHeightProperty().bind(newScene.widthProperty().multiply(0.25));
            } 
         });
     }
@@ -142,7 +150,31 @@ public class PracticeController {
         practiceWords = createWordList(words);
     }
     
-    // Class Methods
+    // Methods
+    
+    @FXML
+    private void checkTypedWords() {
+        // Checks if the user has not began typing and is not typing
+        if (!beganTyping) startAttempt(); 
+       
+        int correctCount = 0;
+        String typedContent = typingArea.getText();
+        String[] words = typedContent.split(" ");
+        typedWords = Arrays.asList(words);
+        // Checks typed words against practice words
+        for (int i = 0; i < typedWords.size(); i++) {
+            String practiceWord = practiceWords.get(i),
+                   typedWord = typedWords.get(i);
+            if (practiceWord.equals(typedWord))
+                correctCount++;
+        }
+        updateTypingShadowColor(correctCount);
+        correctCounter.setText(String.valueOf(correctCount));
+        // Processes the attempt if the user completed typing the displayed words
+        if (typedWords.size() == practiceWords.size()) {
+            processAttempt();
+        }
+    }
     
     /**
      * This method takes a String of words that are delimited by spaces
@@ -155,6 +187,32 @@ public class PracticeController {
         return Arrays.asList(words);
     }
     
+    // This method runs processes needed for each attempt completion.
+    private void processAttempt() {
+        attempt.setEndTimeMilli();
+        // Disables typing area and onKeyTyped listener
+        typingArea.setEditable(false);
+        typingArea.setOnKeyTyped(null);
+        // Computes stats
+        attempt.setCorrectWordCount(Integer.valueOf(correctCounter.getText()));
+        double accuracy = attempt.calculateAccuracy();
+        int wpm = attempt.calculateWPM();
+        accuracyValue.setText(String.valueOf(accuracy) + "%");
+        wpmValue.setText(String.valueOf(wpm));
+        // Displays message based on the attempt's performance
+        String message = attempt.getAttemptMessage();
+        statsMessage.setText(message);
+    }
+    
+    // This method begins the attempt upon the first keystroke in typingArea.
+    private void startAttempt() {
+            int wordCount = practiceWords.size();
+            boolean sentences = sentencesToggle.isSelected();
+            attempt = new AttemptManager(wordCount, sentences, 'p');
+            beganTyping = true;
+    }
+    
+    // This method toggles the format of the words between random words and full sentences.
     @FXML
     private void togglePracticeWords() {
         String words = "";
@@ -198,8 +256,6 @@ public class PracticeController {
         setTotalWordsCounter();
     }
     
-    // Updaters
-    
     @FXML
     private void updateSentenceCount() {
         updatePracticeWords(sentenceSpinner.getValue(), true);
@@ -233,61 +289,9 @@ public class PracticeController {
        String result = String.format(style, typingR, typingG, typingB);
        typingArea.setStyle(result); 
     }
-    
     // This helper method is for computing linear interpolation for the updateAreaShadowColor() method.
     private int lerp(int start, int end, double progress) {
         return (int) Math.round((start + (end - start) * progress));
-    }
-    
-    /**
-     * This method runs processes needed for each attempt completion.
-     */
-    private void processAttempt() {
-        attempt.setEndTimeMilli();
-        // Disables typing area
-        typingArea.setEditable(false);
-        // Computes stats
-        attempt.setCorrectWordCount(Integer.valueOf(correctCounter.getText()));
-        double accuracy = attempt.calculateAccuracy();
-        int wpm = attempt.calculateWPM();
-        accuracyValue.setText(String.valueOf(accuracy) + "%");
-        wpmValue.setText(String.valueOf(wpm));
-        // Displays message based on the attempt's performance
-        String message = attempt.getAttemptMessage();
-        statsMessage.setText(message);
-    }
-    
-    // Checkers
-    
-    private void startAttempt() {
-            int wordCount = practiceWords.size();
-            boolean sentences = sentencesToggle.isSelected();
-            attempt = new AttemptManager(wordCount, sentences, 'p');
-            beganTyping = true;
-    }
-    
-    @FXML
-    private void checkTypedWords() {
-        // Checks if the user has not began typing and is not typing
-        if (!beganTyping) startAttempt(); 
-       
-        int correctCount = 0;
-        String typedContent = typingArea.getText();
-        String[] words = typedContent.split(" ");
-        typedWords = Arrays.asList(words);
-        // Checks typed words against practice words
-        for (int i = 0; i < typedWords.size(); i++) {
-            String practiceWord = practiceWords.get(i),
-                   typedWord = typedWords.get(i);
-            if (practiceWord.equals(typedWord))
-                correctCount++;
-        }
-        updateTypingShadowColor(correctCount);
-        correctCounter.setText(String.valueOf(correctCount));
-        // Processes the attempt if the user completed typing the displayed words
-        if (typedWords.size() == practiceWords.size()) {
-            processAttempt();
-        }
     }
     
     // Getters

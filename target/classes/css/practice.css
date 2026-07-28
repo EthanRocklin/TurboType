@@ -47,6 +47,15 @@
 
 #statsBox {
     -fx-alignment: center;
+    -fx-maxWidth: infinity;
+    -fx-pref-width: 250;
+}
+
+.stat-container {
+    -fx-alignment: center;
+    -fx-border-color: red;
+    -fx-pref-height: 100;
+    -fx-pref-width: 0;
 }
 
 #accuracyImage {
@@ -54,12 +63,9 @@
     -fx-fit-width: 200;
 }
 
-.stat-container {
-    -fx-alignment: center;
-}
-
 .stat-label,
-.stat-text {
+.stat-value,
+#statsMessage {
     -fx-font-family: "VT323";
     -fx-font-size: 36;
 }
@@ -68,13 +74,14 @@
     -fx-fill: -fx-stats-label-color;
 }
 
-.stat-text {
+.stat-value {
     -fx-fill: -fx-stats-value-color;
 }
 
 #statsMessage {
     -fx-fill: -fx-stats-message-color;
     -fx-wrap-text: true;
+    -fx-border-color: red;
 }
 
 /* Styles for the practice area */
@@ -148,7 +155,7 @@
 
 }
 
-/* Styles for the control box */
+/* Styles for the control box and controls */
 
 #controlBox {
     -fx-maxWidth: infinity;
@@ -160,8 +167,6 @@
     -fx-pref-height: 40;
     -fx-pref-width: 0;
 }
-
-/* Styles for the controls */
 
 .toggle {
     -fx-font-size: 24;
