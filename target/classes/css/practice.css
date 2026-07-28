@@ -1,33 +1,30 @@
-/* Colors for all the elements */
+/* Basic olors for all the elements */
 .root {
-    -fx-accent: #f5d6af;
+    -fx-accent-color: #f5d6af;
     -fx-background: #1a1a1c;
-    -fx-controls-border: #000000;
-    -fx-correct-label: #77fc7b;
-    -fx-navigation-shadow: dropshadow(gaussian, rgba(165,80,255,0.5), 20, 0.5, 0, 0);
-    -fx-navigation-background: #e8e8e8;
-    -fx-navigation-font: #000000;
-    -fx-slider-axis: #c58fff;
-    -fx-slider-ticks: #c58fff;
-    -fx-slider-minor-ticks: #e4c9ff;
-    -fx-slider-track: #f5d6af;
-    -fx-slider-thumb: #844cc2;
-    -fx-spinner-arrows: #f5d6af;
-    -fx-spinner-arrow-button: #000000;
-    -fx-spinner-background: #f5d6af;
-    -fx-stats-label: #ffffff;
-    -fx-stats-value: #ffffff;
-    -fx-stats-message: #ffffff;
-    -fx-text-area: #09090a;
-    -fx-text-area-font: #ffffff;
-    -fx-text-area-border: #09090a;
-    -fx-title: #f79e45;
-    -fx-toggle-background: #f5d6af;
-    -fx-total-label:  #ffffff;
-    -fx-typing-score-label: #ffffff;
-    -fx-typing-score: #ffffff;
-    -fx-typing-shadow: dropshadow(gaussian, rgba(255,0,0,0.5), 20, 0.5, 0, 0);
-    -fx-word-shadow: dropshadow(gaussian, rgba(119,255,123,0.5), 20, 0.5, 0, 0);
+    -fx-controls-border-color: #000000;
+    -fx-correct-label-color: #77fc7b;
+    -fx-navigation-background-color: #e8e8e8;
+    -fx-navigation-font-color: #000000;
+    -fx-slider-axis-color: #c58fff;
+    -fx-slider-ticks-color: #c58fff;
+    -fx-slider-minor-ticks-color: #e4c9ff;
+    -fx-slider-track-color: #f5d6af;
+    -fx-slider-thumb-color: #844cc2;
+    -fx-spinner-arrows-color: #f5d6af;
+    -fx-spinner-arrow-button-color: #000000;
+    -fx-spinner-background-color: #f5d6af;
+    -fx-stats-label-color: #ffffff;
+    -fx-stats-value-color: #ffffff;
+    -fx-stats-message-color: #ffffff;
+    -fx-text-area-color: #09090a;
+    -fx-text-area-font-color: #ffffff;
+    -fx-text-area-border-color: #09090a;
+    -fx-title-color: #f79e45;
+    -fx-toggle-background-color: #f5d6af;
+    -fx-total-label-color:  #ffffff;
+    -fx-typing-score-label-color: #ffffff;
+    -fx-typing-score-color: #ffffff;
 }
 
 #masterContainer {
@@ -40,7 +37,7 @@
 }
 
 #title {
-    -fx-fill: -fx-title;
+    -fx-fill: -fx-title-color;
     -fx-font-family: "VT323";
     -fx-font-size: 120;
 }
@@ -74,11 +71,11 @@
 }
 
 .stat-label {
-    -fx-fill: -fx-stats-label;
+    -fx-fill: -fx-stats-label-color;
 }
 
 .stat-value {
-    -fx-fill: -fx-stats-value;
+    -fx-fill: -fx-stats-value-color;
 }
 
 .typing-score-info {
@@ -86,17 +83,18 @@
 }
 
 #typingScoreLabel {
-    -fx-fill: -fx-typing-score-label;
+    -fx-fill: -fx-typing-score-label-color;
     -fx-font-size: 36;
 }
 
 #typingScore {
-    -fx-fill: -fx-typing-score;
+    -fx-fill: -fx-typing-score-color;
     -fx-font-size: 42;
 }
 
 #statsMessage {
-    -fx-fill: -fx-stats-message;
+    -fx-fill: -fx-stats-message-color;
+    -fx-text-alignment: center;
     -fx-wrap-text: true;
 }
 
@@ -118,17 +116,17 @@
 }
 
 #totalLabel, .counter {
-    -fx-fill: -fx-total-label;
+    -fx-fill: -fx-total-label-color;
 }
 
 #correctLabel {
-    -fx-fill: -fx-correct-label;
+    -fx-fill: -fx-correct-label-color;
 }
 
 .text-area,
 .text-area .content,
 .text-area .viewport {
-    -fx-background-color: -fx-text-area;
+    -fx-background-color: -fx-text-area-color;
     -fx-background-radius: 5;
     -fx-background-insets: 0;
 }
@@ -136,7 +134,7 @@
 .text-area {
     -fx-focus-traversable: false;
     -fx-pref-width: 500;
-    -fx-border-color: -fx-text-area-border;
+    -fx-border-color: -fx-text-area-border-color;
     -fx-border-radius: 5;
     -fx-border-insets: 0;
     -fx-font-size: 24;
@@ -146,7 +144,7 @@
 }
 
 .text-area .content {
-    -fx-background-color: -fx-text-area;
+    -fx-background-color: -fx-text-area-color;
     -fx-background-radius: 5;
     -fx-background-insets: 0;
 }
@@ -163,11 +161,11 @@
 }
 
 #wordsArea {
-    -fx-effect: -fx-word-shadow;
+    -fx-effect: dropshadow(gaussian, rgba(119,255,123,0.5), 20, 0.5, 0, 0);
 }
 
 #typingArea {
-    -fx-effect: -fx-typing-shadow;
+    -fx-effect: dropshadow(gaussian, rgba(255,0,0,0.5), 20, 0.5, 0, 0);;
 
 }
 
@@ -188,14 +186,14 @@
     -fx-font-size: 24;
     -fx-pref-width: 120;
     -fx-pref-height: 36;
-    -fx-background-color: -fx-toggle-background;
+    -fx-background-color: -fx-toggle-background-color;
 }
 
 .toggle, .spinner {
     -fx-border-width: 3;
     -fx-border-radius: 0;
     -fx-border-insets: 0;
-    -fx-border-color: -fx-controls-border;
+    -fx-border-color: -fx-controls-border-color;
     -fx-background-radius: 0;
     -fx-background-insets: 0;
 }
@@ -211,23 +209,23 @@
 }
 
 .slider .track {
-    -fx-background-color: -fx-slider-track;
+    -fx-background-color: -fx-slider-track-color;
 }
 
 .slider .thumb {
-    -fx-background-color: -fx-slider-thumb;
+    -fx-background-color: -fx-slider-thumb-color;
 }
 
 .slider .axis {
-    -fx-tick-label-fill: -fx-slider-axis;
+    -fx-tick-label-fill: -fx-slider-axis-color;
 }
 
 .slider .axis-tick-mark {
-    -fx-stroke: -fx-slider-ticks;
+    -fx-stroke: -fx-slider-ticks-color;
 }
 
 .slider .axis-minor-tick-mark {
-    -fx-stroke: -fx-slider-minor-ticks;
+    -fx-stroke: -fx-slider-minor-ticks-color;
 }
 
 .spinner {
@@ -235,12 +233,12 @@
     -fx-padding: 0;
     -fx-font-family: "VT323";
     -fx-font-size: 20;
-    -fx-border-color: -fx-controls-border;
+    -fx-border-color: -fx-controls-border-color;
 }
 
 .spinner .text-field {
     -fx-pref-height: 30;
-    -fx-background-color: -fx-spinner-background;
+    -fx-background-color: -fx-spinner-background-color;
 }
 
 .spinner .increment-arrow-button,
@@ -248,7 +246,7 @@
     -fx-padding: 0 5 0 5;
     -fx-pref-height: 18;
     -fx-cursor: hand;
-    -fx-background-color: -fx-spinner-arrow-button;
+    -fx-background-color: -fx-spinner-arrow-button-color;
     -fx-background-radius: 0;
 }
 
@@ -256,7 +254,7 @@
 .spinner .decrement-arrow {
     -fx-scale-x: 0.7;
     -fx-scale-y: 0.7;
-    -fx-background-color: -fx-spinner-arrows;
+    -fx-background-color: -fx-spinner-arrows-color;
 }
 
 /* Styles for the navigation area */
@@ -268,13 +266,13 @@
 }
 
 .navigation-btn {
-    -fx-background-color: -fx-navigation-background;
+    -fx-background-color: -fx-navigation-background-color;
     -fx-text-fill: #000000;
     -fx-pref-width: 250;
     -fx-pref-height: 60;
     -fx-padding: 0;
     -fx-font-size: 50;
-    -fx-effect: -fx-navigation-shadow;
+    -fx-effect: dropshadow(gaussian, rgba(165,80,255,0.5), 20, 0.5, 0, 0);
 }
 
 .navigation-btn, .toggle {

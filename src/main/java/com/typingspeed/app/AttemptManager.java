@@ -1,6 +1,7 @@
 package com.typingspeed.app;
 
 import java.time.Instant;
+import java.math.BigDecimal;
 
 /**
  * 
@@ -21,7 +22,7 @@ public class AttemptManager {
         "Now you're getting it.\nLook at those fingers go!",
         "You're on your way to greatness. Keep up the good work!",
         "Greatness called...\nIt's wondering where you're at!",
-        "Look how much you've improved.\nThat's quite the spectacle!",
+        "Look how much you've improved!\nThat's quite the spectacle!",
         "Just a little more accurate and you'll be bumped up!",
         "Just a little faster and you'll nail it!",
         "WOW!\nYou're fast and accurate! Great job!"
@@ -54,9 +55,10 @@ public class AttemptManager {
         endTimeMilli = 0;
     }
     
-    // Calculates and sets the accuracy for the attempt.
+    // Calculates and sets the accuracy (2 decimal places) for the attempt.
     public void calculateAccuracy() {
-        accuracy = ((double) correctWords / wordCount) * 100;
+        double rawAccuracy = ((double) correctWords / wordCount) * 100;
+        accuracy = Math.round(rawAccuracy * 100) / 100.0;
     }
     
     // Calculates and sets the Words Per Minute for the attempt.
