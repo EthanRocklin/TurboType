@@ -39,7 +39,7 @@ public class PracticeController {
     @FXML
     private Label statsMessage;
     @FXML
-    private Text correctCounter, totalCounter, accuracyValue, wpmValue;
+    private Text correctCounter, totalCounter, accuracyValue, wpmValue, typingScore;
     @FXML
     private TextArea wordsArea, typingArea;
     @FXML
@@ -103,8 +103,8 @@ public class PracticeController {
                wordsArea.prefHeightProperty().bind(newScene.heightProperty().multiply(0.2));
                typingArea.prefWidthProperty().bind(newScene.widthProperty().multiply(0.5));
                typingArea.prefHeightProperty().bind(newScene.heightProperty().multiply(0.2));
-               statsBox.prefHeightProperty().bind(newScene.widthProperty().multiply(0.25));
-               controlBox.prefHeightProperty().bind(newScene.widthProperty().multiply(0.25));
+               statsBox.prefWidthProperty().bind(newScene.widthProperty().multiply(0.25));
+               controlBox.prefWidthProperty().bind(newScene.widthProperty().multiply(0.25));
            } 
         });
     }
@@ -193,15 +193,16 @@ public class PracticeController {
         // Disables typing area and onKeyTyped listener
         typingArea.setEditable(false);
         typingArea.setOnKeyTyped(null);
-        // Computes stats
+        // Computes and displays stats
         attempt.setCorrectWordCount(Integer.valueOf(correctCounter.getText()));
-        double accuracy = attempt.calculateAccuracy();
-        int wpm = attempt.calculateWPM();
-        accuracyValue.setText(String.valueOf(accuracy) + "%");
-        wpmValue.setText(String.valueOf(wpm));
+        attempt.calculateAccuracy();
+        accuracyValue.setText(String.valueOf(attempt.getAccuracy()) + "%");
+        attempt.calculateWPM();
+        wpmValue.setText(String.valueOf(attempt.getWPM()));
+        attempt.calculateTypingScore();
+        typingScore.setText(String.valueOf(attempt.getTypingScore()));
         // Displays message based on the attempt's performance
-        String message = attempt.getAttemptMessage();
-        statsMessage.setText(message);
+        statsMessage.setText(attempt.getAttemptMessage());
     }
     
     // This method begins the attempt upon the first keystroke in typingArea.

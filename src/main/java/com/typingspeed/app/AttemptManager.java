@@ -29,7 +29,7 @@ public class AttemptManager {
     
     // Fields
     private double accuracy;
-    private int wpm, wordCount, correctWords;
+    private int wpm, wordCount, correctWords, typingScore;
     private long startTimeMilli, endTimeMilli;
     private boolean sentences;
     private char mode;
@@ -54,34 +54,44 @@ public class AttemptManager {
         endTimeMilli = 0;
     }
     
-    // Calculates, sets, and returns the accuracy for the attempt.
-    public double calculateAccuracy() {
+    // Calculates and sets the accuracy for the attempt.
+    public void calculateAccuracy() {
         accuracy = ((double) correctWords / wordCount) * 100;
-        return accuracy;
     }
     
-    // Calculates, sets, and returns the Words Per Minute for the attempt.
-    public int calculateWPM() {
+    // Calculates and sets the Words Per Minute for the attempt.
+    public void calculateWPM() {
         double minutes = (double) (endTimeMilli - startTimeMilli) / 60000;
         wpm = (int) (correctWords / minutes);
-        return wpm;
     }
     
-    // Getters
-    
-    // Caclulates and returns the stats message based on accuracy and WPM.
-    public String getAttemptMessage() {
+    // Calculates and sets the Typing Score for the attempt.
+    public void calculateTypingScore() {
         // Accuracy (0-3) and WPM (0-10) scores, accuracy has less impact on final score
         double accuracyScore = (accuracy / 100) * ACCURACY_WEIGHT;
         // In case someone is fast enough to break the calculation
         if (wpm > MAX_WPM)
             wpm = 100;
         double wpmScore = (double) (wpm / MAX_WPM) * WPM_WEIGHT;
-        // Converting to a final score from 0 - 10
-        double finalScore = ((accuracyScore + wpmScore) / (ACCURACY_WEIGHT + WPM_WEIGHT)) * 10;
-        // Messgae number from 0 to 10
-        int messageNumber = (int) Math.floor(finalScore);
-        return MESSAGES[messageNumber];
+        // Converts the typing score to the range 0 - 10
+        double rawScore = ((accuracyScore + wpmScore) / (ACCURACY_WEIGHT + WPM_WEIGHT)) * 10;
+        typingScore = (int) Math.floor(rawScore);
+    }
+    
+    // Getters
+    
+    // Returns the stats message based on the attempt's typing score.
+    public String getAttemptMessage() {
+        return MESSAGES[typingScore];
+    }
+    public double getAccuracy() {
+        return accuracy;
+    }
+    public int getWPM() {
+        return wpm;
+    }
+    public int getTypingScore() {
+        return typingScore;
     }
     
     // Setters

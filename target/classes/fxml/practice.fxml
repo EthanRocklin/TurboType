@@ -33,6 +33,8 @@
                         <Text id="wpmLabel" fx:id="wpmLabel" styleClass="stat-label" text="Words Per Minute: " />
                         <Text id="wpmValue" fx:id="wpmValue" styleClass="stat-value" />
                      </children></HBox>
+                  <Text id="typingScoreLabel" fx:id="typingScoreLabel" styleClass="typing-score-info" text="Typing Score" />
+                  <Text id="typingScore" fx:id="typingScore" styleClass="typing-score-info" text="" />
                   <Label id="statsMessage" fx:id="statsMessage" />
                </children></VBox>
           <AnchorPane fx:id="practicePane">

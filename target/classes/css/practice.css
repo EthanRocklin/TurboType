@@ -2,11 +2,11 @@
 .root {
     -fx-accent: #f5d6af;
     -fx-background: #1a1a1c;
-    -fx-controls-border-color: #000000;
-    -fx-correct-label-color: #77fc7b;
+    -fx-controls-border: #000000;
+    -fx-correct-label: #77fc7b;
     -fx-navigation-shadow: dropshadow(gaussian, rgba(165,80,255,0.5), 20, 0.5, 0, 0);
     -fx-navigation-background: #e8e8e8;
-    -fx-navigation-font-color: #000000;
+    -fx-navigation-font: #000000;
     -fx-slider-axis: #c58fff;
     -fx-slider-ticks: #c58fff;
     -fx-slider-minor-ticks: #e4c9ff;
@@ -15,15 +15,17 @@
     -fx-spinner-arrows: #f5d6af;
     -fx-spinner-arrow-button: #000000;
     -fx-spinner-background: #f5d6af;
-    -fx-stats-label-color: #ffffff;
-    -fx-stats-value-color: #ffffff;
-    -fx-stats-message-color: #ffffff;
-    -fx-text-area-color: #09090a;
-    -fx-text-area-font-color: #ffffff;
-    -fx-text-area-border-color: #09090a;
-    -fx-title-color: #f79e45;
-    -fx-toggle-background-color: #f5d6af;
-    -fx-total-label-color:  #ffffff;
+    -fx-stats-label: #ffffff;
+    -fx-stats-value: #ffffff;
+    -fx-stats-message: #ffffff;
+    -fx-text-area: #09090a;
+    -fx-text-area-font: #ffffff;
+    -fx-text-area-border: #09090a;
+    -fx-title: #f79e45;
+    -fx-toggle-background: #f5d6af;
+    -fx-total-label:  #ffffff;
+    -fx-typing-score-label: #ffffff;
+    -fx-typing-score: #ffffff;
     -fx-typing-shadow: dropshadow(gaussian, rgba(255,0,0,0.5), 20, 0.5, 0, 0);
     -fx-word-shadow: dropshadow(gaussian, rgba(119,255,123,0.5), 20, 0.5, 0, 0);
 }
@@ -38,7 +40,7 @@
 }
 
 #title {
-    -fx-fill: -fx-title-color;
+    -fx-fill: -fx-title;
     -fx-font-family: "VT323";
     -fx-font-size: 120;
 }
@@ -68,20 +70,34 @@
 #statsMessage {
     -fx-font-family: "VT323";
     -fx-font-size: 36;
+    -fx-border-color: red;
 }
 
 .stat-label {
-    -fx-fill: -fx-stats-label-color;
+    -fx-fill: -fx-stats-label;
 }
 
 .stat-value {
-    -fx-fill: -fx-stats-value-color;
+    -fx-fill: -fx-stats-value;
+}
+
+.typing-score-info {
+    -fx-font-family: "VT323";
+}
+
+#typingScoreLabel {
+    -fx-fill: -fx-typing-score-label;
+    -fx-font-size: 36;
+}
+
+#typingScore {
+    -fx-fill: -fx-typing-score;
+    -fx-font-size: 42;
 }
 
 #statsMessage {
-    -fx-fill: -fx-stats-message-color;
+    -fx-fill: -fx-stats-message;
     -fx-wrap-text: true;
-    -fx-border-color: red;
 }
 
 /* Styles for the practice area */
@@ -102,17 +118,17 @@
 }
 
 #totalLabel, .counter {
-    -fx-fill: -fx-total-label-color;
+    -fx-fill: -fx-total-label;
 }
 
 #correctLabel {
-    -fx-fill: -fx-correct-label-color;
+    -fx-fill: -fx-correct-label;
 }
 
 .text-area,
 .text-area .content,
 .text-area .viewport {
-    -fx-background-color: -fx-text-area-color;
+    -fx-background-color: -fx-text-area;
     -fx-background-radius: 5;
     -fx-background-insets: 0;
 }
@@ -120,17 +136,17 @@
 .text-area {
     -fx-focus-traversable: false;
     -fx-pref-width: 500;
-    -fx-border-color: -fx-text-area-border-color;
+    -fx-border-color: -fx-text-area-border;
     -fx-border-radius: 5;
     -fx-border-insets: 0;
     -fx-font-size: 24;
-    -fx-text-fill: -fx-text-area-font-color;
+    -fx-text-fill: #ffffff;
     -fx-cursor: text;
     -fx-wrap-text: true;
 }
 
 .text-area .content {
-    -fx-background-color: -fx-text-area-color;
+    -fx-background-color: -fx-text-area;
     -fx-background-radius: 5;
     -fx-background-insets: 0;
 }
@@ -172,14 +188,14 @@
     -fx-font-size: 24;
     -fx-pref-width: 120;
     -fx-pref-height: 36;
-    -fx-background-color: -fx-toggle-background-color;
+    -fx-background-color: -fx-toggle-background;
 }
 
 .toggle, .spinner {
     -fx-border-width: 3;
     -fx-border-radius: 0;
     -fx-border-insets: 0;
-    -fx-border-color: -fx-controls-border-color;
+    -fx-border-color: -fx-controls-border;
     -fx-background-radius: 0;
     -fx-background-insets: 0;
 }
@@ -219,7 +235,7 @@
     -fx-padding: 0;
     -fx-font-family: "VT323";
     -fx-font-size: 20;
-    -fx-border-color: -fx-controls-border-color;
+    -fx-border-color: -fx-controls-border;
 }
 
 .spinner .text-field {
@@ -253,7 +269,7 @@
 
 .navigation-btn {
     -fx-background-color: -fx-navigation-background;
-    -fx-text-fill: -fx-navigation-font-color;
+    -fx-text-fill: #000000;
     -fx-pref-width: 250;
     -fx-pref-height: 60;
     -fx-padding: 0;
