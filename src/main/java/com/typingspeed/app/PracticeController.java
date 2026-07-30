@@ -39,7 +39,8 @@ public class PracticeController {
     @FXML
     private Label statsMessage;
     @FXML
-    private Text correctCounter, totalCounter, accuracyValue, wpmValue, typingScore;
+    private Text correctCounter, totalCounter, accuracyLabel, accuracyValue,
+                 wpmLabel, wpmValue, typingScoreLabel, typingScore;
     @FXML
     private TextArea wordsArea, typingArea;
     @FXML
@@ -69,13 +70,7 @@ public class PracticeController {
         initializeGraphics();
     }
     private void initializeVisibilities() {
-        // Elements in the stats container (left side)
-//        targetImage.setVisible(false);
-//        accuracyLabel.setVisible(false);
-//        accuracyValue.setVisible(false);
-//        wpmLabel.setVisible(false);
-//        wpmValue.setVisible(false);
-//        statsMessage.setVisible(false);
+        setStatVisibilities(false);
         // Elements in the control box (right side)
         sentenceSpinner.setVisible(false);
         sentenceSpinner.setManaged(false);
@@ -193,16 +188,7 @@ public class PracticeController {
         // Disables typing area and onKeyTyped listener
         typingArea.setEditable(false);
         typingArea.setOnKeyTyped(null);
-        // Computes and displays stats
-        attempt.setCorrectWordCount(Integer.valueOf(correctCounter.getText()));
-        attempt.calculateAccuracy();
-        accuracyValue.setText(String.valueOf(attempt.getAccuracy()) + "%");
-        attempt.calculateWPM();
-        wpmValue.setText(String.valueOf(attempt.getWPM()));
-        attempt.calculateTypingScore();
-        typingScore.setText(String.valueOf(attempt.getTypingScore()));
-        // Displays message based on the attempt's performance
-        statsMessage.setText(attempt.getAttemptMessage());
+        setStats();
     }
     
     // This method begins the attempt upon the first keystroke in typingArea.
@@ -211,6 +197,34 @@ public class PracticeController {
             boolean sentences = sentencesToggle.isSelected();
             attempt = new AttemptManager(wordCount, sentences, 'p');
             beganTyping = true;
+    }
+    
+    // This method sets all stats after an attempt is complete.
+    private void setStats() {
+        // Computes and sets stats
+        attempt.setCorrectWordCount(Integer.valueOf(correctCounter.getText()));
+        attempt.calculateAccuracy();
+        accuracyValue.setText(String.valueOf(attempt.getAccuracy()) + "%");
+        attempt.calculateWPM();
+        wpmValue.setText(String.valueOf(attempt.getWPM()));
+        attempt.calculateTypingScore();
+        typingScore.setText(String.valueOf(attempt.getTypingScore()));
+        // Sets the stats message based on the attempt's performance
+        statsMessage.setText(attempt.getAttemptMessage());
+        setStatVisibilities(true);
+    }
+    
+    // This method enables or disables multiple UI elements' visibilities.
+    private void setStatVisibilities(boolean visible) {
+        // Elements in the stats container (left side)
+        targetImage.setVisible(visible);
+        accuracyLabel.setVisible(visible);
+        accuracyValue.setVisible(visible);
+        wpmLabel.setVisible(visible);
+        wpmValue.setVisible(visible);
+        typingScoreLabel.setVisible(visible);
+        typingScore.setVisible(visible);
+        statsMessage.setVisible(visible);
     }
     
     // This method toggles the format of the words between random words and full sentences.

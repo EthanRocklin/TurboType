@@ -15,7 +15,7 @@
     -fx-spinner-arrow-button-color: #000000;
     -fx-spinner-background-color: #f5d6af;
     -fx-stats-label-color: #ffffff;
-    -fx-stats-value-color: #ffffff;
+    -fx-stats-value-color: #77fc7b;
     -fx-stats-message-color: #ffffff;
     -fx-text-area-color: #09090a;
     -fx-text-area-font-color: #ffffff;
@@ -24,7 +24,7 @@
     -fx-toggle-background-color: #f5d6af;
     -fx-total-label-color:  #ffffff;
     -fx-typing-score-label-color: #ffffff;
-    -fx-typing-score-color: #ffffff;
+    -fx-typing-score-color: #f79e45;
 }
 
 #masterContainer {
@@ -52,8 +52,7 @@
 
 .stat-container {
     -fx-alignment: center;
-    -fx-border-color: red;
-    -fx-pref-height: 100;
+    -fx-pref-height: 70;
     -fx-pref-width: 0;
 }
 
@@ -67,7 +66,6 @@
 #statsMessage {
     -fx-font-family: "VT323";
     -fx-font-size: 36;
-    -fx-border-color: red;
 }
 
 .stat-label {
@@ -84,12 +82,14 @@
 
 #typingScoreLabel {
     -fx-fill: -fx-typing-score-label-color;
-    -fx-font-size: 36;
+    -fx-font-size: 42;
+    -fx-underline: true;
 }
 
 #typingScore {
     -fx-fill: -fx-typing-score-color;
-    -fx-font-size: 42;
+    -fx-font-size: 56;
+    -fx-fill: -fx-typing-score-color;
 }
 
 #statsMessage {
