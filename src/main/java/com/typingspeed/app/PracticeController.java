@@ -54,7 +54,7 @@ public class PracticeController {
     
     private List<String> practiceWords, typedWords;   
     private boolean beganTyping = false;
-    private AttemptManager attempt;
+    private Attempt attempt;
     
     // Initializers
     
@@ -180,7 +180,15 @@ public class PracticeController {
         return Arrays.asList(words);
     }
     
-    // This helper method is for computing linear interpolation for dynamic color assignments.
+    /**
+     * This helper method is for computing linear interpolation for dynamic color assignments.
+     * @param start : the lowest value allowed or where the intger value range starts
+     * @param end : the value recieved within the integer value range
+     * @param progress : a value 0.0 - 1.0 representing how far the "end" integer is in the 
+     *                   integer value range. 
+     * @return an integer within the value range (end - start) proportional to the progress 
+     *         in that range.
+     */
     private int lerp(int start, int end, double progress) {
         return (int) Math.round((start + (end - start) * progress));
     }
@@ -192,13 +200,14 @@ public class PracticeController {
         typingArea.setEditable(false);
         typingArea.setOnKeyTyped(null);
         setStats();
+        setStatsColors();
     }
     
     // This method begins the attempt upon the first keystroke in typingArea.
     private void startAttempt() {
             int wordCount = practiceWords.size();
             boolean sentences = sentencesToggle.isSelected();
-            attempt = new AttemptManager(wordCount, sentences, 'p');
+            attempt = new Attempt(wordCount, sentences, 'p');
             beganTyping = true;
     }
     
@@ -220,11 +229,37 @@ public class PracticeController {
     /** This method sets the colors of the stats values based on performance.
      *  - Red : Low, Yellow : Moderate, Green : High
      */
-//    private void setStatsColors() {
-//        
-//        
-//        
-//    }
+    private void setStatsColors() {
+        String style = "-fx-fill: rgb(%d,%d,%d);";
+        double accuracyProgress = attempt.getAccuracy() / 100,
+               wpmProgress = attempt.getWPM() / 100,
+               typingScoreProgress = attempt.getTypingScore() / 100;
+        int maxWPM = attempt.getMaxWPM(),
+            worstScoreR = 255,
+            worstScoreG = 110,
+            worstScoreB = 110,
+            bestScoreR = 110,
+            bestScoreG = 255,
+            bestScoreB = 110;
+        // Computes and sets the RGB values for the Accuracy stat
+        int red = lerp(worstScoreR, bestScoreR, accuracyProgress),
+            green = lerp(worstScoreG, bestScoreG, accuracyProgress),
+            blue = lerp(worstScoreB, bestScoreB, accuracyProgress);
+        String result = String.format(style, red, green, blue);
+        accuracyValue.setStyle(result);
+        // Computes and sets the RGB values for the Words Per Minute stat
+        red = lerp(worstScoreR, bestScoreR, wpmProgress);
+        green = lerp(worstScoreG, bestScoreG, wpmProgress);
+        blue = lerp(worstScoreB, bestScoreB, wpmProgress);
+        result = String.format(style, red, green, blue);
+        wpmValue.setStyle(result);
+        // Computes and sets the RGB values for the Typgin Score stat
+        red = lerp(worstScoreR, bestScoreR, typingScoreProgress);
+        green = lerp(worstScoreG, bestScoreG, typingScoreProgress);
+        blue = lerp(worstScoreB, bestScoreB, typingScoreProgress);
+        result = String.format(style, red, green, blue);
+        typingScore.setStyle(result);
+    }
     
     // This method enables or disables multiple UI elements' visibilities.
     private void setStatVisibilities(boolean visible) {

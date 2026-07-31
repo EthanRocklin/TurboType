@@ -54,7 +54,7 @@ public class TimedController {
     
     private List<String> timedWords, typedWords;   
     private boolean beganTyping = false;
-    private AttemptManager attempt;
+    private Attempt attempt;
     
     // Initializers
     
@@ -198,7 +198,7 @@ public class TimedController {
     private void startAttempt() {
             int wordCount = timedWords.size();
             boolean sentences = sentencesToggle.isSelected();
-            attempt = new AttemptManager(wordCount, sentences, 'p');
+            attempt = new Attempt(wordCount, sentences, 'p');
             beganTyping = true;
     }
     

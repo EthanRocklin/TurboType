@@ -8,10 +8,10 @@ import java.math.BigDecimal;
  * @author Ethan Rocklin
  */
 
-public class AttemptManager {
+public class Attempt {
     
     // CONSTANTS
-    private final double MAX_WPM = 100;
+    private final int MAX_WPM = 100;
     private final int ACCURACY_WEIGHT = 3;
     private final int WPM_WEIGHT = 10;
     private final String[] MESSAGES = {
@@ -44,7 +44,7 @@ public class AttemptManager {
      * @param sentences : if the format of the attempt is full setences
      * @param mode : describes the mode the user is typing in
      */
-    public AttemptManager(int wordCount, boolean sentences, char mode) {
+    public Attempt(int wordCount, boolean sentences, char mode) {
         this.wordCount = wordCount;
         this.sentences = sentences;
         this.mode = mode;
@@ -71,12 +71,15 @@ public class AttemptManager {
     public void calculateTypingScore() {
         // Accuracy (0-3) and WPM (0-10) scores, accuracy has less impact on final score
         double accuracyScore = (accuracy / 100) * ACCURACY_WEIGHT;
+        System.out.println("Accuracy Score : " + accuracyScore);
         // In case someone is fast enough to break the calculation
         if (wpm > MAX_WPM)
             wpm = 100;
-        double wpmScore = (double) (wpm / MAX_WPM) * WPM_WEIGHT;
+        double wpmScore = (double) wpm / MAX_WPM * WPM_WEIGHT;
+        System.out.println("WPM Score : " + wpmScore);
         // Converts the typing score to the range 0 - 10
         double rawScore = ((accuracyScore + wpmScore) / (ACCURACY_WEIGHT + WPM_WEIGHT)) * 10;
+        System.out.println("Raw Score : " + rawScore);
         typingScore = (int) Math.floor(rawScore);
     }
     
@@ -91,6 +94,9 @@ public class AttemptManager {
     }
     public int getWPM() {
         return wpm;
+    }
+    public int getMaxWPM() {
+        return MAX_WPM;
     }
     public int getTypingScore() {
         return typingScore;
