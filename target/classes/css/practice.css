@@ -15,7 +15,6 @@
     -fx-spinner-arrow-button-color: #000000;
     -fx-spinner-background-color: #f5d6af;
     -fx-stats-label-color: #ffffff;
-    -fx-stats-value-color: #77fc7b;
     -fx-stats-message-color: #ffffff;
     -fx-text-area-color: #09090a;
     -fx-text-area-font-color: #ffffff;
@@ -24,7 +23,6 @@
     -fx-toggle-background-color: #f5d6af;
     -fx-total-label-color:  #ffffff;
     -fx-typing-score-label-color: #ffffff;
-    -fx-typing-score-color: #f79e45;
 }
 
 #masterContainer {
@@ -72,10 +70,6 @@
     -fx-fill: -fx-stats-label-color;
 }
 
-.stat-value {
-    -fx-fill: -fx-stats-value-color;
-}
-
 .typing-score-info {
     -fx-font-family: "VT323";
 }
@@ -87,9 +81,7 @@
 }
 
 #typingScore {
-    -fx-fill: -fx-typing-score-color;
     -fx-font-size: 56;
-    -fx-fill: -fx-typing-score-color;
 }
 
 #statsMessage {

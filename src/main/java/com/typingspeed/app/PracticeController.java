@@ -231,9 +231,9 @@ public class PracticeController {
      */
     private void setStatsColors() {
         String style = "-fx-fill: rgb(%d,%d,%d);";
-        double accuracyProgress = attempt.getAccuracy() / 100,
-               wpmProgress = attempt.getWPM() / 100,
-               typingScoreProgress = attempt.getTypingScore() / 100;
+        double accuracyProgress = attempt.getAccuracy() / 100.0,
+               wpmProgress = attempt.getWPM() / 100.0,
+               typingScoreProgress = attempt.getTypingScore() / 10.0;
         int maxWPM = attempt.getMaxWPM(),
             worstScoreR = 255,
             worstScoreG = 110,
