@@ -174,12 +174,15 @@ public class PracticeController {
     /**
      * This method takes a String of words that are delimited by spaces
      * and returns them as a list, with each index being one word.
-     * @param str : A string consisting of one or more words.
-     * @return a List object
-     */
+    */
     private List<String> createWordList(String str) {
         String[] words = str.split(" ");
         return Arrays.asList(words);
+    }
+    
+    // This helper method is for computing linear interpolation for dynamic color assignments.
+    private int lerp(int start, int end, double progress) {
+        return (int) Math.round((start + (end - start) * progress));
     }
     
     // This method runs processes needed for each attempt completion.
@@ -214,6 +217,15 @@ public class PracticeController {
         setStatVisibilities(true);
     }
     
+    /** This method sets the colors of the stats values based on performance.
+     *  - Red : Low, Yellow : Moderate, Green : High
+     */
+//    private void setStatsColors() {
+//        
+//        
+//        
+//    }
+    
     // This method enables or disables multiple UI elements' visibilities.
     private void setStatVisibilities(boolean visible) {
         // Elements in the stats container (left side)
@@ -229,7 +241,7 @@ public class PracticeController {
     
     // This method toggles the format of the words between random words and full sentences.
     @FXML
-    private void togglePracticeWords() {
+    private void toggleWordsFormat() {
         String words = "";
         int count = 0;
         // If "Sentences" is selected
@@ -303,10 +315,6 @@ public class PracticeController {
        // Sets style with the new RGB values
        String result = String.format(style, typingR, typingG, typingB);
        typingArea.setStyle(result); 
-    }
-    // This helper method is for computing linear interpolation for the updateAreaShadowColor() method.
-    private int lerp(int start, int end, double progress) {
-        return (int) Math.round((start + (end - start) * progress));
     }
     
     // Getters

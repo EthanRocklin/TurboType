@@ -2,10 +2,12 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Slider?>
 <?import javafx.scene.control.Spinner?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
@@ -18,7 +20,31 @@
               <Insets top="60.0" />
           </VBox.margin>
           <children>
-          <VBox id="leftControlContainer" styleClass="control-box" HBox.hgrow="ALWAYS" />
+          <VBox id="statsBox" fx:id="statsBox" HBox.hgrow="ALWAYS">
+               <children>
+                  <ImageView id="accuracyImage" fx:id="targetImage" pickOnBounds="true" preserveRatio="true" />
+                  <HBox id="accuracyContainer" styleClass="stat-container">
+                     <children>
+                        <Text id="accuracyLabel" fx:id="accuracyLabel" styleClass="stat-label" text="Accuracy: " />
+                        <Text id="accuracyValue" fx:id="accuracyValue" styleClass="stat-value" />
+                     </children></HBox>
+                  <HBox id="wordsPerMinuteContainer" styleClass="stat-container">
+                     <children>
+                        <Text id="wpmLabel" fx:id="wpmLabel" styleClass="stat-label" text="Words Per Minute: " />
+                        <Text id="wpmValue" fx:id="wpmValue" styleClass="stat-value" />
+                     </children></HBox>
+                  <Text id="typingScoreLabel" fx:id="typingScoreLabel" styleClass="typing-score-info" text="Typing Score">
+                      <VBox.margin>
+                        <Insets top="30.0" bottom="10.0" />
+                      </VBox.margin>
+                  </Text>
+                  <Text id="typingScore" fx:id="typingScore" styleClass="typing-score-info" text="">
+                      <VBox.margin>
+                        <Insets bottom="30.0" />
+                      </VBox.margin>
+                  </Text>
+                  <Label id="statsMessage" fx:id="statsMessage" />
+               </children></VBox>
           <AnchorPane fx:id="timedPane">
             <children>
                   <VBox id="timedContainer">
@@ -59,16 +85,16 @@
                                 <Insets bottom="20" />
                             </VBox.margin>
                         </TextArea>
-                        <TextArea id="typingArea" fx:id="typingArea" onKeyTyped="#checkTypedWords" promptText="Start typing here..." styleClass="text-area" />
+                        <TextArea id="typingArea" fx:id="typingArea" onKeyTyped="#checkTypedWords" promptText="Start typing here. A timer will start at the first ketstroke." styleClass="text-area" />
                      </children>
                   </VBox>
             </children>
           </AnchorPane>
-          <VBox id="rightControlContainer" styleClass="control-box" HBox.hgrow="ALWAYS">
+          <VBox id="controlBox" fx:id="controlBox" styleClass="control-box" HBox.hgrow="ALWAYS">
                <children>
                   <HBox id="sentencesToggleContainer" styleClass="control-container">
                      <children>
-                         <ToggleButton id="sentencesToggle" fx:id="sentencesToggle" mnemonicParsing="false" onAction="#toggleTimedWords" styleClass="toggle" text="Format">
+                         <ToggleButton id="sentencesToggle" fx:id="sentencesToggle" mnemonicParsing="false" onAction="#toggleWordsFormat" styleClass="toggle" text="Format">
                             <HBox.margin>
                                 <Insets left="50" right="5" />
                             </HBox.margin>
@@ -82,7 +108,7 @@
       </HBox>
       <HBox id="navigationContainer" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
          <children>
-             <Button id="timedBtn" mnemonicParsing="false" onAction="#displayPractice" styleClass="navigation-btn" text="Practice">
+             <Button id="practiceBtn" mnemonicParsing="false" onAction="#displayPractice" styleClass="navigation-btn" text="Practice">
                 <HBox.margin>
                     <Insets right="30.0" />
                 </HBox.margin>
