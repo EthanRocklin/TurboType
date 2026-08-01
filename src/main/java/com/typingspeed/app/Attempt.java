@@ -71,15 +71,12 @@ public class Attempt {
     public void calculateTypingScore() {
         // Accuracy (0-3) and WPM (0-10) scores, accuracy has less impact on final score
         double accuracyScore = (accuracy / 100) * ACCURACY_WEIGHT;
-        System.out.println("Accuracy Score : " + accuracyScore);
         // In case someone is fast enough to break the calculation
         if (wpm > MAX_WPM)
             wpm = 100;
         double wpmScore = (double) wpm / MAX_WPM * WPM_WEIGHT;
-        System.out.println("WPM Score : " + wpmScore);
         // Converts the typing score to the range 0 - 10
         double rawScore = ((accuracyScore + wpmScore) / (ACCURACY_WEIGHT + WPM_WEIGHT)) * 10;
-        System.out.println("Raw Score : " + rawScore);
         typingScore = (int) Math.floor(rawScore);
     }
     

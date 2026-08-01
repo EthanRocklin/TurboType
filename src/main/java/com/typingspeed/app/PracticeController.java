@@ -203,6 +203,31 @@ public class PracticeController {
         setStatsColors();
     }
     
+    // This method resets required Practice Mode elements for a new attempt.
+    @FXML
+    private void resetElements() {
+        beganTyping = false;
+        setStatVisibilities(false);
+        typingArea.clear();
+        typingArea.setEditable(true);
+        typingArea.setOnKeyTyped(event -> {
+            checkTypedWords();
+        });
+        typingArea.setStyle("-fx-effect: dropshadow(gaussian, rgba(255,0,0,0.5), 20, 0.5, 0, 0);");
+        // P : Reset practice words
+        boolean sentences = sentencesToggle.isSelected();
+        int count = 0;
+        if (sentences) 
+            count = sentenceSpinner.getValue();
+        else
+            count = (int) randomSlider.getValue();
+        updatePracticeWords(count, sentences);
+        // P : Reset counters
+        totalCounter.setText(String.valueOf(practiceWords.size()));
+        correctCounter.setText("0");
+        // P : 
+    }
+    
     // This method begins the attempt upon the first keystroke in typingArea.
     private void startAttempt() {
             int wordCount = practiceWords.size();
