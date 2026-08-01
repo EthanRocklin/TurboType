@@ -106,7 +106,7 @@
                   <HBox id="resetContainer" styleClass="control-container">
                     <Button id="resetBtn" styleClass="control-btn" onAction="#resetElements" text="Reset">
                       <HBox.margin>
-                            <Insets top="10"/>
+                            <Insets left="50" top="10"/>
                       </HBox.margin>
                     </Button>
                   </HBox>

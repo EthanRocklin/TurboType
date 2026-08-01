@@ -82,8 +82,9 @@ public class PracticeController {
         randomSlider.valueProperty().addListener((obs, oldValue, newValue) -> {
             int oldWordCount = practiceWords.size(),
             newWordCount = (int) randomSlider.getValue();
-            if (oldWordCount != newWordCount)
+            if (oldWordCount != newWordCount) {
                 updatePracticeWords(newWordCount, false);
+            }
         });
     }
     private void initializeGraphics() {
@@ -147,6 +148,20 @@ public class PracticeController {
     
     // Methods
     
+    // This methohd checks if the user completed typing the attempt's words.
+    private void checkForCompletion() {
+        int totalWords = practiceWords.size(),
+            wordsTyped = typedWords.size();
+        String lastWord = practiceWords.get(totalWords - 1),
+               lastTyped = typedWords.get(wordsTyped - 1);
+        int lastWordLength = lastWord.length(),
+            lastTypedLength = lastTyped.length();
+        // The attempt is processed if the user completes the last word
+        if (totalWords == wordsTyped && lastWordLength == lastTypedLength) {
+            processAttempt();
+        }
+    }
+    
     @FXML
     private void checkTypedWords() {
         // Checks if the user has not began typing and is not typing
@@ -160,15 +175,13 @@ public class PracticeController {
         for (int i = 0; i < typedWords.size(); i++) {
             String practiceWord = practiceWords.get(i),
                    typedWord = typedWords.get(i);
-            if (practiceWord.equals(typedWord))
+            if (practiceWord.equals(typedWord)) {
                 correctCount++;
+            }
         }
         updateTypingShadowColor(correctCount);
         correctCounter.setText(String.valueOf(correctCount));
-        // Processes the attempt if the user completed typing the displayed words
-        if (typedWords.size() == practiceWords.size()) {
-            processAttempt();
-        }
+        checkForCompletion();
     }
     
     /**
@@ -217,15 +230,14 @@ public class PracticeController {
         // P : Reset practice words
         boolean sentences = sentencesToggle.isSelected();
         int count = 0;
-        if (sentences) 
+        if (sentences) {
             count = sentenceSpinner.getValue();
-        else
+        } else {
             count = (int) randomSlider.getValue();
+        }
         updatePracticeWords(count, sentences);
-        // P : Reset counters
         totalCounter.setText(String.valueOf(practiceWords.size()));
         correctCounter.setText("0");
-        // P : 
     }
     
     // This method begins the attempt upon the first keystroke in typingArea.
@@ -332,10 +344,11 @@ public class PracticeController {
      */
     private void updatePracticeWords(int count, boolean sentences) {
         String words = "";
-        if (sentences)
+        if (sentences) {
             words = SentenceBank.getSentences(count);
-        else
+        } else {
             words = WordBank.getWords(count);
+        }
         practiceWords = createWordList(words);
         wordsArea.setText(words);
         typingArea.clear();

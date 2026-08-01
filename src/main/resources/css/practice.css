@@ -257,7 +257,7 @@
 
 #resetBtn {
     -fx-pref-width: 120;
-    -fx-pref-height: 36;
+    -fx-min-height: 36;
     -fx-background-color: -fx-reset-button;
     -fx-font-family: "VT323";
     -fx-font-size: 24;

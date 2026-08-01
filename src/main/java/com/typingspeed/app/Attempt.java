@@ -1,10 +1,8 @@
 package com.typingspeed.app;
 
 import java.time.Instant;
-import java.math.BigDecimal;
 
 /**
- * 
  * @author Ethan Rocklin
  */
 
@@ -20,12 +18,12 @@ public class Attempt {
         "One step forward...\nOne step forward...\nBoom, more improvement!",
         "Keep the ball rolling!",
         "Now you're getting it.\nLook at those fingers go!",
-        "You're on your way to greatness. Keep up the good work!",
+        "You're on your way to greatness.\nKeep up the good work!",
         "Greatness called...\nIt's wondering where you're at!",
         "Look how much you've improved!\nThat's quite the spectacle!",
-        "Just a little more accurate and you'll be bumped up!",
-        "Just a little faster and you'll nail it!",
-        "WOW!\nYou're fast and accurate! Great job!"
+        "Just a little more accurate\nand you'll be bumped up!",
+        "Just a little faster\nand you'll nail it!",
+        "WOW!\nYou're fast and accurate!\nGreat job!"
     };
     
     // Fields
@@ -72,8 +70,9 @@ public class Attempt {
         // Accuracy (0-3) and WPM (0-10) scores, accuracy has less impact on final score
         double accuracyScore = (accuracy / 100) * ACCURACY_WEIGHT;
         // In case someone is fast enough to break the calculation
-        if (wpm > MAX_WPM)
+        if (wpm > MAX_WPM) {
             wpm = 100;
+        }
         double wpmScore = (double) wpm / MAX_WPM * WPM_WEIGHT;
         // Converts the typing score to the range 0 - 10
         double rawScore = ((accuracyScore + wpmScore) / (ACCURACY_WEIGHT + WPM_WEIGHT)) * 10;

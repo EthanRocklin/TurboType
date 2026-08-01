@@ -47,9 +47,9 @@ public class App extends Application {
     }
 
     /**
-     * 
-     * @param fxml
-     * @return
+     * This method loads the FXML content of any file in the fxml directory.
+     * @param fxml : the name of the fxml file
+     * @return a Parent node for containing all children under the root node.
      * @throws IOException 
      */
     private static Parent loadFXML(String fxml) throws IOException {
