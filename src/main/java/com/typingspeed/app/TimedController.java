@@ -25,9 +25,7 @@ import javafx.scene.paint.Color;
 import java.util.List;
 import java.util.Arrays;
 
-/**
- * @author Ethan Rocklin
- */
+/** @author Ethan Rocklin */
 
 public class TimedController {
     
@@ -58,7 +56,7 @@ public class TimedController {
     
     // Initializers
     
-    // This method initializes the Practice Mode page after the page elements load.
+    // This method initializes the Timed Mode page after the page elements load.
     @FXML
     public void initialize() {
         initializeWords();
@@ -82,8 +80,9 @@ public class TimedController {
         randomSlider.valueProperty().addListener((obs, oldValue, newValue) -> {
             int oldWordCount = timedWords.size(),
             newWordCount = (int) randomSlider.getValue();
-            if (oldWordCount != newWordCount)
-                updatePracticeWords(newWordCount, false);
+            if (oldWordCount != newWordCount) {
+                updateTimedWords(newWordCount, false);
+            }
         });
     }
     private void initializeGraphics() {
@@ -147,6 +146,20 @@ public class TimedController {
     
     // Methods
     
+    // This methohd checks if the user completed typing the attempt's words.
+    private void checkForCompletion() {
+        int totalWords = timedWords.size(),
+            wordsTyped = typedWords.size();
+        String lastWord = timedWords.get(totalWords - 1),
+               lastTyped = typedWords.get(wordsTyped - 1);
+        int lastWordLength = lastWord.length(),
+            lastTypedLength = lastTyped.length();
+        // The attempt is processed if the user completes the last word
+        if (totalWords == wordsTyped && lastWordLength == lastTypedLength) {
+            processAttempt();
+        }
+    }
+    
     @FXML
     private void checkTypedWords() {
         // Checks if the user has not began typing and is not typing
@@ -156,19 +169,25 @@ public class TimedController {
         String typedContent = typingArea.getText();
         String[] words = typedContent.split(" ");
         typedWords = Arrays.asList(words);
-        // Checks typed words against practice words
-        for (int i = 0; i < typedWords.size(); i++) {
-            String practiceWord = timedWords.get(i),
+        // Checks typed words against timed words; guards against spam entries
+        try {
+            for (int i = 0; i < typedWords.size(); i++) {
+            String timedWord = timedWords.get(i),
                    typedWord = typedWords.get(i);
-            if (practiceWord.equals(typedWord))
+            if (timedWord.equals(typedWord)) {
                 correctCount++;
+            }
+        }
+        } catch (Exception e) {
+            if (e instanceof ArrayIndexOutOfBoundsException) {
+                System.out.print("ERROR : Spam or improper typing detected\n");
+            } else {
+                System.out.print("ERROR : " + e.getMessage() + "\n");
+            }
         }
         updateTypingShadowColor(correctCount);
         correctCounter.setText(String.valueOf(correctCount));
-        // Processes the attempt if the user completed typing the displayed words
-        if (typedWords.size() == timedWords.size()) {
-            processAttempt();
-        }
+        checkForCompletion();
     }
     
     /**
@@ -180,7 +199,15 @@ public class TimedController {
         return Arrays.asList(words);
     }
     
-    // This helper method is for computing linear interpolation for dynamic color assignments.
+    /**
+     * This helper method is for computing linear interpolation for dynamic color assignments.
+     * @param start : the lowest value allowed or where the intger value range starts
+     * @param end : the value recieved within the integer value range
+     * @param progress : a value 0.0 - 1.0 representing how far the "end" integer is in the 
+     *                   integer value range. 
+     * @return an integer within the value range (end - start) proportional to the progress 
+     *         in that range.
+     */
     private int lerp(int start, int end, double progress) {
         return (int) Math.round((start + (end - start) * progress));
     }
@@ -192,6 +219,32 @@ public class TimedController {
         typingArea.setEditable(false);
         typingArea.setOnKeyTyped(null);
         setStats();
+        setStatsColors();
+    }
+    
+    // This method resets required Timed Mode elements for a new attempt.
+    @FXML
+    private void resetElements() {
+        beganTyping = false;
+        setStatVisibilities(false);
+        typingArea.clear();
+        typingArea.setEditable(true);
+        typingArea.setOnKeyTyped(event -> {
+            checkTypedWords();
+        });
+        typingArea.setStyle("-fx-effect: dropshadow(gaussian, rgba(255,0,0,0.5), 20, 0.5, 0, 0);");
+        // Resets practice words
+        boolean sentences = sentencesToggle.isSelected();
+        int count = 0;
+        if (sentences) {
+            count = sentenceSpinner.getValue();
+        } else {
+            count = (int) randomSlider.getValue();
+        }
+        updateTimedWords(count, sentences);
+        // Resets counters
+        totalCounter.setText(String.valueOf(timedWords.size()));
+        correctCounter.setText("0");
     }
     
     // This method begins the attempt upon the first keystroke in typingArea.
@@ -220,11 +273,37 @@ public class TimedController {
     /** This method sets the colors of the stats values based on performance.
      *  - Red : Low, Yellow : Moderate, Green : High
      */
-//    private void setStatsColors() {
-//        
-//        
-//        
-//    }
+    private void setStatsColors() {
+        String style = "-fx-fill: rgb(%d,%d,%d);";
+        double accuracyProgress = attempt.getAccuracy() / 100.0,
+               wpmProgress = attempt.getWPM() / 100.0,
+               typingScoreProgress = attempt.getTypingScore() / 10.0;
+        int maxWPM = attempt.getMaxWPM(),
+            worstScoreR = 255,
+            worstScoreG = 110,
+            worstScoreB = 110,
+            bestScoreR = 110,
+            bestScoreG = 255,
+            bestScoreB = 110;
+        // Computes and sets the RGB values for the Accuracy stat
+        int red = lerp(worstScoreR, bestScoreR, accuracyProgress),
+            green = lerp(worstScoreG, bestScoreG, accuracyProgress),
+            blue = lerp(worstScoreB, bestScoreB, accuracyProgress);
+        String result = String.format(style, red, green, blue);
+        accuracyValue.setStyle(result);
+        // Computes and sets the RGB values for the Words Per Minute stat
+        red = lerp(worstScoreR, bestScoreR, wpmProgress);
+        green = lerp(worstScoreG, bestScoreG, wpmProgress);
+        blue = lerp(worstScoreB, bestScoreB, wpmProgress);
+        result = String.format(style, red, green, blue);
+        wpmValue.setStyle(result);
+        // Computes and sets the RGB values for the Typgin Score stat
+        red = lerp(worstScoreR, bestScoreR, typingScoreProgress);
+        green = lerp(worstScoreG, bestScoreG, typingScoreProgress);
+        blue = lerp(worstScoreB, bestScoreB, typingScoreProgress);
+        result = String.format(style, red, green, blue);
+        typingScore.setStyle(result);
+    }
     
     // This method enables or disables multiple UI elements' visibilities.
     private void setStatVisibilities(boolean visible) {
@@ -239,6 +318,12 @@ public class TimedController {
         statsMessage.setVisible(visible);
     }
     
+    @FXML
+    private void setTotalWordsCounter() {
+        String count = String.valueOf(timedWords.size());
+        totalCounter.setText(count);
+    }
+    
     // This method toggles the format of the words between random words and full sentences.
     @FXML
     private void toggleWordsFormat() {
@@ -247,7 +332,7 @@ public class TimedController {
         // If "Sentences" is selected
         if (sentencesToggle.isSelected()) {
             count = 3;
-            updatePracticeWords(count, true);
+            updateTimedWords(count, true);
             randomSlider.setVisible(false);
             randomSlider.setManaged(false);
             sentenceSpinner.setVisible(true);
@@ -255,7 +340,7 @@ public class TimedController {
             sentencesToggle.setText("Sentences");
         } else {
             count = 30;
-            updatePracticeWords(count, false);
+            updateTimedWords(count, false);
             sentencesToggle.setText("Random");
             sentenceSpinner.setVisible(false);
             sentenceSpinner.setManaged(false);
@@ -270,12 +355,13 @@ public class TimedController {
      * @param count : the number of words or sentences
      * @param sentences : if the content should be full sentences
      */
-    private void updatePracticeWords(int count, boolean sentences) {
+    private void updateTimedWords(int count, boolean sentences) {
         String words = "";
-        if (sentences)
+        if (sentences) {
             words = SentenceBank.getSentences(count);
-        else
+        } else {
             words = WordBank.getWords(count);
+        }
         timedWords = createWordList(words);
         wordsArea.setText(words);
         typingArea.clear();
@@ -285,7 +371,7 @@ public class TimedController {
     
     @FXML
     private void updateSentenceCount() {
-        updatePracticeWords(sentenceSpinner.getValue(), true);
+        updateTimedWords(sentenceSpinner.getValue(), true);
     }
     
     /**
@@ -323,11 +409,7 @@ public class TimedController {
     private int getSentenceCount() {
         return sentenceSpinner.getValue();
     }
-    @FXML
-    private String getTypedWords() {
-        System.out.println(typingArea.getText());
-        return "";
-    }
+
     public int getWordCount() {
         return timedWords.size();
     }
@@ -335,13 +417,7 @@ public class TimedController {
         return Integer.valueOf(correctCounter.getText());
     }
     
-    // Setters
-    
-    @FXML
-    private void setTotalWordsCounter() {
-        String count = String.valueOf(timedWords.size());
-        totalCounter.setText(count);
-    }
+    // FXML Controller Methods
 
     @FXML
     private void displayHomepage() throws IOException {

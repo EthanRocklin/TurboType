@@ -25,9 +25,7 @@ import javafx.scene.paint.Color;
 import java.util.List;
 import java.util.Arrays;
 
-/**
- * @author Ethan Rocklin
- */
+/** @author Ethan Rocklin */
 
 public class PracticeController {
     
@@ -171,12 +169,20 @@ public class PracticeController {
         String typedContent = typingArea.getText();
         String[] words = typedContent.split(" ");
         typedWords = Arrays.asList(words);
-        // Checks typed words against practice words
-        for (int i = 0; i < typedWords.size(); i++) {
+        // Checks typed words against practice words; guards against spam entries
+        try {
+            for (int i = 0; i < typedWords.size(); i++) {
             String practiceWord = practiceWords.get(i),
                    typedWord = typedWords.get(i);
             if (practiceWord.equals(typedWord)) {
                 correctCount++;
+            }
+        }
+        } catch (Exception e) {
+            if (e instanceof ArrayIndexOutOfBoundsException) {
+                System.out.print("ERROR : Spam or improper typing detected\n");
+            } else {
+                System.out.print("ERROR : " + e.getMessage() + "\n");
             }
         }
         updateTypingShadowColor(correctCount);
@@ -227,7 +233,7 @@ public class PracticeController {
             checkTypedWords();
         });
         typingArea.setStyle("-fx-effect: dropshadow(gaussian, rgba(255,0,0,0.5), 20, 0.5, 0, 0);");
-        // P : Reset practice words
+        // Resets practice words
         boolean sentences = sentencesToggle.isSelected();
         int count = 0;
         if (sentences) {
@@ -236,6 +242,7 @@ public class PracticeController {
             count = (int) randomSlider.getValue();
         }
         updatePracticeWords(count, sentences);
+        // Resets counters
         totalCounter.setText(String.valueOf(practiceWords.size()));
         correctCounter.setText("0");
     }
@@ -309,6 +316,12 @@ public class PracticeController {
         typingScoreLabel.setVisible(visible);
         typingScore.setVisible(visible);
         statsMessage.setVisible(visible);
+    }
+    
+    @FXML
+    private void setTotalWordsCounter() {
+        String count = String.valueOf(practiceWords.size());
+        totalCounter.setText(count);
     }
     
     // This method toggles the format of the words between random words and full sentences.
@@ -396,24 +409,11 @@ public class PracticeController {
     private int getSentenceCount() {
         return sentenceSpinner.getValue();
     }
-    @FXML
-    private String getTypedWords() {
-        System.out.println(typingArea.getText());
-        return "";
-    }
     public int getWordCount() {
         return practiceWords.size();
     }
     public int getCorrectWordCount() {
         return Integer.valueOf(correctCounter.getText());
-    }
-    
-    // Setters
-    
-    @FXML
-    private void setTotalWordsCounter() {
-        String count = String.valueOf(practiceWords.size());
-        totalCounter.setText(count);
     }
  
     // FXML Controller Methods

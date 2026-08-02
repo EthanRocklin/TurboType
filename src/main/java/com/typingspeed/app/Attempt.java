@@ -2,9 +2,7 @@ package com.typingspeed.app;
 
 import java.time.Instant;
 
-/**
- * @author Ethan Rocklin
- */
+/** @author Ethan Rocklin */
 
 public class Attempt {
     

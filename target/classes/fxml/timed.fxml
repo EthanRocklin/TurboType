@@ -103,12 +103,20 @@
                         <Slider id="randomSlider" fx:id="randomSlider" styleClass="slider" />
                      </children>
                   </HBox>
-               </children></VBox>
+                  <HBox id="resetContainer" styleClass="control-container">
+                    <Button id="resetBtn" styleClass="control-btn" onAction="#resetElements" text="Reset">
+                      <HBox.margin>
+                            <Insets left="50" top="10"/>
+                      </HBox.margin>
+                    </Button>
+                  </HBox>
+               </children>
+          </VBox>
          </children>
       </HBox>
       <HBox id="navigationContainer" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
          <children>
-             <Button id="practiceBtn" mnemonicParsing="false" onAction="#displayPractice" styleClass="navigation-btn" text="Practice">
+             <Button id="timedBtn" mnemonicParsing="false" onAction="#displayPractice" styleClass="navigation-btn" text="Practice">
                 <HBox.margin>
                     <Insets right="30.0" />
                 </HBox.margin>
