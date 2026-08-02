@@ -33,7 +33,7 @@ public class PracticeController {
     @FXML
     private AnchorPane practicePane;
     @FXML
-    private ImageView targetImage;
+    private ImageView accuracyImage, wpmImage;
     @FXML
     private Label statsMessage;
     @FXML
@@ -68,7 +68,7 @@ public class PracticeController {
         initializeGraphics();
     }
     private void initializeVisibilities() {
-        setStatVisibilities(false);
+        statsBox.setVisible(false);
         // Elements in the control box (right side)
         sentenceSpinner.setVisible(false);
         sentenceSpinner.setManaged(false);
@@ -87,7 +87,9 @@ public class PracticeController {
     }
     private void initializeGraphics() {
         Image image = new Image(getClass().getResource("/images/target1.png").toExternalForm());
-        targetImage.setImage(image);
+        accuracyImage.setImage(image);
+        image = new Image(getClass().getResource("/images/runner1.png").toExternalForm());
+        wpmImage.setImage(image);
     }
     private void initializeSizeBindings() {
         // Binds proportional size for wordsArea and other elements in the same scene
@@ -226,7 +228,7 @@ public class PracticeController {
     @FXML
     private void resetElements() {
         beganTyping = false;
-        setStatVisibilities(false);
+        statsBox.setVisible(false);
         typingArea.clear();
         typingArea.setEditable(true);
         typingArea.setOnKeyTyped(event -> {
@@ -267,7 +269,7 @@ public class PracticeController {
         typingScore.setText(String.valueOf(attempt.getTypingScore()));
         // Sets the stats message based on the attempt's performance
         statsMessage.setText(attempt.getAttemptMessage());
-        setStatVisibilities(true);
+        statsBox.setVisible(true);
     }
     
     /** This method sets the colors of the stats values based on performance.
@@ -303,19 +305,6 @@ public class PracticeController {
         blue = lerp(worstScoreB, bestScoreB, typingScoreProgress);
         result = String.format(style, red, green, blue);
         typingScore.setStyle(result);
-    }
-    
-    // This method enables or disables multiple UI elements' visibilities.
-    private void setStatVisibilities(boolean visible) {
-        // Elements in the stats container (left side)
-        targetImage.setVisible(visible);
-        accuracyLabel.setVisible(visible);
-        accuracyValue.setVisible(visible);
-        wpmLabel.setVisible(visible);
-        wpmValue.setVisible(visible);
-        typingScoreLabel.setVisible(visible);
-        typingScore.setVisible(visible);
-        statsMessage.setVisible(visible);
     }
     
     @FXML

@@ -22,12 +22,18 @@
           <children>
           <VBox id="statsBox" fx:id="statsBox" HBox.hgrow="ALWAYS">
                <children>
-                  <ImageView id="accuracyImage" fx:id="targetImage" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView id="accuracyImage" fx:id="accuracyImage" styleClass="stat-image" pickOnBounds="true" preserveRatio="true" />
                   <HBox id="accuracyContainer" styleClass="stat-container">
                      <children>
                         <Text id="accuracyLabel" fx:id="accuracyLabel" styleClass="stat-label" text="Accuracy: " />
                         <Text id="accuracyValue" fx:id="accuracyValue" styleClass="stat-value" />
-                     </children></HBox>
+                     </children>
+                  </HBox>
+                  <ImageView id="wpmImage" fx:id="wpmImage" styleClass="stat-image" pickOnBounds="true" preserveRatio="true">
+                      <VBox.margin>
+                         <Insets top="30.0" />
+                     </VBox.margin>
+                  </ImageView>
                   <HBox id="wordsPerMinuteContainer" styleClass="stat-container">
                      <children>
                         <Text id="wpmLabel" fx:id="wpmLabel" styleClass="stat-label" text="Words Per Minute: " />

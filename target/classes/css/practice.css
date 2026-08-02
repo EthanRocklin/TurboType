@@ -56,9 +56,9 @@
     -fx-pref-width: 0;
 }
 
-#accuracyImage {
+.stat-image {
     -fx-fit-height: 150;
-    -fx-fit-width: 200;
+    -fx-fit-width: 150;
 }
 
 .stat-label,

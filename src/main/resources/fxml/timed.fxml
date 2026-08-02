@@ -22,17 +22,35 @@
           <children>
           <VBox id="statsBox" fx:id="statsBox" HBox.hgrow="ALWAYS">
                <children>
-                  <ImageView id="accuracyImage" fx:id="targetImage" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView id="timeImage" fx:id="timeImage" styleClass="stat-image" pickOnBounds="true" preserveRatio="true" />
+                  <HBox id="timeContainer" styleClass="stat-container">
+                     <children>
+                        <Text id="timeLabel" fx:id="timeLabel" styleClass="stat-label" text="Time: " />
+                        <Text id="timeValue" fx:id="timeValue" styleClass="stat-value" />
+                     </children>
+                  </HBox>
+                  <ImageView id="accuracyImage" fx:id="accuracyImage" styleClass="stat-image" pickOnBounds="true" preserveRatio="true">
+                      <VBox.margin>
+                            <Insets top="30.0" />
+                      </VBox.margin>
+                  </ImageView>
                   <HBox id="accuracyContainer" styleClass="stat-container">
                      <children>
                         <Text id="accuracyLabel" fx:id="accuracyLabel" styleClass="stat-label" text="Accuracy: " />
                         <Text id="accuracyValue" fx:id="accuracyValue" styleClass="stat-value" />
-                     </children></HBox>
+                     </children>
+                  </HBox>
+                  <ImageView id="wpmImage" fx:id="wpmImage" styleClass="stat-image" pickOnBounds="true" preserveRatio="true">
+                         <VBox.margin>
+                            <Insets top="30.0" />
+                        </VBox.margin>
+                  </ImageView>
                   <HBox id="wordsPerMinuteContainer" styleClass="stat-container">
                      <children>
                         <Text id="wpmLabel" fx:id="wpmLabel" styleClass="stat-label" text="Words Per Minute: " />
                         <Text id="wpmValue" fx:id="wpmValue" styleClass="stat-value" />
-                     </children></HBox>
+                     </children>
+                  </HBox>
                   <Text id="typingScoreLabel" fx:id="typingScoreLabel" styleClass="typing-score-info" text="Typing Score">
                       <VBox.margin>
                         <Insets top="30.0" bottom="10.0" />
