@@ -413,7 +413,7 @@ public class PracticeController {
      */
     @FXML
     private void displayHomepage() throws IOException {
-        App.setRoot("homepage");
+        TurboType.setRoot("homepage");
     }
     
     /**
@@ -422,7 +422,7 @@ public class PracticeController {
      */
     @FXML
     private void displayTimed() throws IOException {
-        App.setRoot("timed");
+        TurboType.setRoot("timed");
     } 
     
     /**
@@ -431,7 +431,7 @@ public class PracticeController {
      */
     @FXML
     private void displayStats() throws IOException {
-        App.setRoot("stats");
+        TurboType.setRoot("stats");
     }
     
 }

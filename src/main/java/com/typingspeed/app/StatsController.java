@@ -12,17 +12,17 @@ public class StatsController {
     
     @FXML
     private void displayHomepage() throws IOException {
-        App.setRoot("homepage");
+        TurboType.setRoot("homepage");
     }
     
     @FXML
     private void displayPractice() throws IOException {
-        App.setRoot("practice");
+        TurboType.setRoot("practice");
     } 
     
     @FXML
     private void displayTimed() throws IOException {
-        App.setRoot("timed");
+        TurboType.setRoot("timed");
     }
     
 }

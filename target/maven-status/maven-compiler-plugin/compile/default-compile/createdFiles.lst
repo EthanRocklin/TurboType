@@ -1,9 +1,11 @@
+com\typingspeed\app\TurboType.class
+com\typingspeed\app\MusicManager.class
 com\typingspeed\app\SentenceBank.class
 com\typingspeed\app\StatsController.class
-com\typingspeed\app\App.class
 com\typingspeed\app\HomepageController.class
 com\typingspeed\app\Attempt.class
 com\typingspeed\app\PracticeController.class
+MusicManager\java.class
 com\typingspeed\app\TimedController.class
 com\typingspeed\app\WordBank.class
 com\typingspeed\app\DatabaseManager.class

@@ -416,17 +416,17 @@ public class TimedController {
 
     @FXML
     private void displayHomepage() throws IOException {
-        App.setRoot("homepage");
+        TurboType.setRoot("homepage");
     }
     
     @FXML
     private void displayPractice() throws IOException {
-        App.setRoot("practice");
+        TurboType.setRoot("practice");
     } 
     
     @FXML
     private void displayStats() throws IOException {
-        App.setRoot("stats");
+        TurboType.setRoot("stats");
     }
     
 }

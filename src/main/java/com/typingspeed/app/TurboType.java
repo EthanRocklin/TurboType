@@ -12,7 +12,7 @@ import java.io.IOException;
  * Turbo Type starting point
  * @author Ethan Rocklin
  */
-public class App extends Application {
+public class TurboType extends Application {
 
     private static Scene scene;
 
@@ -27,6 +27,8 @@ public class App extends Application {
             stage.setScene(scene);
             stage.setMaximized(true);
             stage.show();
+            MusicManager music = new MusicManager("/music/techno_1.mp3");
+            music.play();
         } catch (IOException e) {
             System.out.println("ERROR : " + e.getMessage());
         }
@@ -36,7 +38,7 @@ public class App extends Application {
         try {
             Parent root = loadFXML(fxml);
             scene.getStylesheets().clear();
-            var cssUrl = App.class.getResource("/css/" + fxml + ".css");
+            var cssUrl = TurboType.class.getResource("/css/" + fxml + ".css");
             if (cssUrl != null) {
                 scene.getStylesheets().add(cssUrl.toExternalForm());
             }
@@ -53,7 +55,7 @@ public class App extends Application {
      * @throws IOException 
      */
     private static Parent loadFXML(String fxml) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("/fxml/" + fxml + ".fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(TurboType.class.getResource("/fxml/" + fxml + ".fxml"));
         return fxmlLoader.load();
     }
     
