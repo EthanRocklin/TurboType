@@ -26,9 +26,10 @@ public class Attempt {
     
     // Fields
     private double accuracy;
-    private int wpm, wordCount, correctWords, typingScore;
+    private int wpm, wordCount, correctWords, typingScore, attemptMilli;
     private long startTimeMilli, endTimeMilli;
     private boolean sentences;
+    private String attemptTime;
     private char mode;
     
     // Constructors
@@ -57,10 +58,35 @@ public class Attempt {
         accuracy = Math.round(rawAccuracy * 100) / 100.0;
     }
     
-    // Calculates and sets the Words Per Minute for the attempt.
-    public void calculateWPM() {
-        double minutes = (double) (endTimeMilli - startTimeMilli) / 60000;
-        wpm = (int) (correctWords / minutes);
+    // Calculates and sets the time it took to complete the attempt in MM:SS:MiMiMi format.
+    public void calculateTime() {
+        int totalMilli = (int) (endTimeMilli - startTimeMilli),
+            milliseconds = totalMilli % 1000,
+            seconds = totalMilli / 1000,
+            minutes = seconds / 60;
+        attemptMilli = totalMilli;
+        // Storing String versions of time units for formatting
+        String millisecondsStr = String.valueOf(milliseconds),
+               secondsStr = String.valueOf(seconds),
+               minutesStr = String.valueOf(minutes);
+        attemptMilli = totalMilli;
+        // Formatting
+        if (milliseconds < 100) {
+            millisecondsStr = "0" + millisecondsStr;
+            if (milliseconds < 10) {
+                millisecondsStr = "0" + millisecondsStr;
+            }
+        }
+        if (seconds < 10) {
+            secondsStr = "0" + secondsStr;
+        }
+        if (minutes < 10) {
+            attemptTime = "0" + minutesStr + ":" + secondsStr + ":" + millisecondsStr;
+        } else if (minutes >= 10 && minutes < 60) {
+            attemptTime = minutesStr + ":" + secondsStr + ":" + millisecondsStr;
+        } else {
+            attemptTime = "59:59:999";
+        }
     }
     
     // Calculates and sets the Typing Score for the attempt.
@@ -77,23 +103,32 @@ public class Attempt {
         typingScore = (int) Math.floor(rawScore);
     }
     
+    // Calculates and sets the Words Per Minute for the attempt.
+    public void calculateWPM() {
+        double minutes = (double) (endTimeMilli - startTimeMilli) / 60000;
+        wpm = (int) (correctWords / minutes);
+    }
+    
     // Getters
     
     // Returns the stats message based on the attempt's typing score.
-    public String getAttemptMessage() {
-        return MESSAGES[typingScore];
-    }
     public double getAccuracy() {
         return accuracy;
     }
-    public int getWPM() {
-        return wpm;
+    public String getAttemptMessage() {
+        return MESSAGES[typingScore];
+    }
+    public String getTime() {
+        return attemptTime;
     }
     public int getMaxWPM() {
         return MAX_WPM;
     }
     public int getTypingScore() {
         return typingScore;
+    }
+    public int getWPM() {
+        return wpm;
     }
     
     // Setters

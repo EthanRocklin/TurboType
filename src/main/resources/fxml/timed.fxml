@@ -117,7 +117,7 @@
                                 <Insets left="50" right="5" />
                             </HBox.margin>
                          </ToggleButton>
-                        <Spinner id="sentenceSpinner" fx:id="sentenceSpinner" onMouseReleased="#updateSentenceCount" styleClass="spinner" />
+                        <Spinner id="sentencesSpinner" fx:id="sentencesSpinner" onMouseReleased="#updateSentenceCount" styleClass="spinner" />
                         <Slider id="randomSlider" fx:id="randomSlider" styleClass="slider" />
                      </children>
                   </HBox>

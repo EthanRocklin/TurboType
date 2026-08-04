@@ -1,6 +1,5 @@
 package com.typingspeed.app;
 
-import java.io.IOException;
 import javafx.fxml.FXML;
 import javafx.event.Event;
 import javafx.scene.image.Image;
@@ -22,6 +21,7 @@ import javafx.scene.input.KeyCodeCombination;
 import javafx.scene.input.ContextMenuEvent;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.paint.Color;
+import java.io.IOException;
 import java.util.List;
 import java.util.Arrays;
 
@@ -37,8 +37,8 @@ public class TimedController {
     @FXML
     private Label statsMessage;
     @FXML
-    private Text correctCounter, totalCounter, accuracyLabel, accuracyValue,
-                 wpmLabel, wpmValue, typingScoreLabel, typingScore;
+    private Text correctCounter, totalCounter, timeValue,
+                 accuracyValue, wpmValue, typingScore;
     @FXML
     private TextArea wordsArea, typingArea;
     @FXML
@@ -46,7 +46,7 @@ public class TimedController {
     @FXML
     private Slider randomSlider;
     @FXML
-    private Spinner<Integer> sentenceSpinner;
+    private Spinner<Integer> sentencesSpinner;
     @FXML
     private VBox statsBox, controlBox;
     
@@ -70,8 +70,8 @@ public class TimedController {
     private void initializeVisibilities() {
         statsBox.setVisible(false);
         // Elements in the control box (right side)
-        sentenceSpinner.setVisible(false);
-        sentenceSpinner.setManaged(false);
+        sentencesSpinner.setVisible(false);
+        sentencesSpinner.setManaged(false);
         randomSlider.setVisible(false);
         randomSlider.setManaged(false);
     }
@@ -111,7 +111,7 @@ public class TimedController {
         wordsArea.addEventFilter(ScrollEvent.SCROLL, ScrollEvent::consume);
         typingArea.addEventFilter(ScrollEvent.SCROLL, ScrollEvent::consume);
         // Disables input in Spinner objects
-        sentenceSpinner.addEventFilter(KeyEvent.ANY, KeyEvent::consume);
+        sentencesSpinner.addEventFilter(KeyEvent.ANY, KeyEvent::consume);
         // Disables the user's ability to copy text
         timedPane.addEventFilter(ContextMenuEvent.CONTEXT_MENU_REQUESTED, Event::consume);
         wordsArea.addEventFilter(KeyEvent.KEY_PRESSED, this::blockCopyPaste);
@@ -132,7 +132,7 @@ public class TimedController {
         correctCounter.setText("0");
         // Sets Spinner values
         int min = 1, max = 6, initial = 3;
-        sentenceSpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(min, max, initial));
+        sentencesSpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(min, max, initial));
         // Sets Slider values
         min = 10;
         max = 60;
@@ -241,7 +241,7 @@ public class TimedController {
         boolean sentences = sentencesToggle.isSelected();
         int count = 0;
         if (sentences) {
-            count = sentenceSpinner.getValue();
+            count = sentencesSpinner.getValue();
         } else {
             count = (int) randomSlider.getValue();
         }
@@ -263,6 +263,8 @@ public class TimedController {
     private void setStats() {
         // Computes and sets stats
         attempt.setCorrectWordCount(Integer.valueOf(correctCounter.getText()));
+        attempt.calculateTime();
+        timeValue.setText(attempt.getTime());
         attempt.calculateAccuracy();
         accuracyValue.setText(String.valueOf(attempt.getAccuracy()) + "%");
         attempt.calculateWPM();
@@ -301,6 +303,7 @@ public class TimedController {
         blue = lerp(worstScoreB, bestScoreB, wpmProgress);
         result = String.format(style, red, green, blue);
         wpmValue.setStyle(result);
+        timeValue.setStyle(result);
         // Computes and sets the RGB values for the Typgin Score stat
         red = lerp(worstScoreR, bestScoreR, typingScoreProgress);
         green = lerp(worstScoreG, bestScoreG, typingScoreProgress);
@@ -326,15 +329,15 @@ public class TimedController {
             updateTimedWords(count, true);
             randomSlider.setVisible(false);
             randomSlider.setManaged(false);
-            sentenceSpinner.setVisible(true);
-            sentenceSpinner.setManaged(true);
+            sentencesSpinner.setVisible(true);
+            sentencesSpinner.setManaged(true);
             sentencesToggle.setText("Sentences");
         } else {
             count = 30;
             updateTimedWords(count, false);
             sentencesToggle.setText("Random");
-            sentenceSpinner.setVisible(false);
-            sentenceSpinner.setManaged(false);
+            sentencesSpinner.setVisible(false);
+            sentencesSpinner.setManaged(false);
             randomSlider.setVisible(true);
             randomSlider.setManaged(true);
         }
@@ -362,7 +365,7 @@ public class TimedController {
     
     @FXML
     private void updateSentenceCount() {
-        updateTimedWords(sentenceSpinner.getValue(), true);
+        updateTimedWords(sentencesSpinner.getValue(), true);
     }
     
     /**
@@ -398,7 +401,7 @@ public class TimedController {
     
     @FXML 
     private int getSentenceCount() {
-        return sentenceSpinner.getValue();
+        return sentencesSpinner.getValue();
     }
 
     public int getWordCount() {
