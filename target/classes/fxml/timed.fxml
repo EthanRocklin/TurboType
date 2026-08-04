@@ -103,7 +103,7 @@
                                 <Insets bottom="20" />
                             </VBox.margin>
                         </TextArea>
-                        <TextArea id="typingArea" fx:id="typingArea" onKeyTyped="#checkTypedWords" promptText="Start typing here. A timer will start at the first ketstroke." styleClass="text-area" />
+                        <TextArea id="typingArea" fx:id="typingArea" onKeyTyped="#checkTypedWords" promptText="Start typing here. A timer will start at the first ketstroke. Attempt statistics will be saved at the end of the attempt." styleClass="text-area" />
                      </children>
                   </VBox>
             </children>

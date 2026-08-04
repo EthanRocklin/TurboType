@@ -224,6 +224,7 @@ public class TimedController {
         typingArea.setOnKeyTyped(null);
         setStats();
         setStatsColors();
+        attempt.saveAttempt();
     }
     
     // This method resets required Timed Mode elements for a new attempt.

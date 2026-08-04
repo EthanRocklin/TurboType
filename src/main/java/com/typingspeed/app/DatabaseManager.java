@@ -1,5 +1,6 @@
 package com.typingspeed.app;
 
+import java.io.File;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -11,7 +12,8 @@ import java.sql.Statement;
 public class DatabaseManager {
     
     // Fields
-    final static String URL = "jdbc:sqlite:turbotype.db";
+    final static String APP_DATA_DIR = System.getProperty("user.home") + File.separator + ".turbotype";
+    final static String URL = "jdbc:sqlite:" + APP_DATA_DIR + File.separator + "user_data.db";
     
     public static void main(String[] args) {
         createDatabase();
@@ -19,56 +21,63 @@ public class DatabaseManager {
 
     // Creates the database
     public static void createDatabase() {
+        // Creates the database if it does not exist
+        File dir = new File(APP_DATA_DIR);
+        if (!dir.exists()) {
+            dir.mkdir();
+        }
         String createAttempts = """
                                 CREATE TABLE IF NOT EXISTS attempts (
-                                    attempt_id INTEGER PRIMARY KEY,
-                                    seconds REAL NOT NULL,
+                                    attempt_id INTEGER PRIMARY KEY NOT NULL,
+                                    typing_score INTEGER NOT NULL,
                                     correct_words INTEGER NOT NULL,
-                                    incorrect_words INTEGER NOT NULL
-                                )
-                                ;
+                                    total_words INTEGER NOT NULL,
+                                    accuracy REAL NOT NULL,
+                                    wpm INTEGER NOT NULL,
+                                    milliseconds INTEGER NOT NULL,
+                                    time TEXT NOT NULL,
+                                    format TEXT NOT NULL
+                                );
                                 """;
         boolean connectionFailed = true;
         try (Connection conn = DriverManager.getConnection(URL)) {
-            System.out.print("> Connection to " + URL + " established\n");
-            System.out.print("> Attempting to create the database...\n");
             connectionFailed = false;
             Statement stmt = conn.createStatement();
             // Creates tables
             stmt.execute(createAttempts);
-            System.out.print("> Database was created");
         } catch (SQLException e) {
             if (connectionFailed) {
                 System.out.print("ERROR: Failed to connect to " + URL + "\n");
             }
-            System.out.print("ERROR: Failed to create database");
+            System.out.print("ERROR: Failed to create database\n");
             e.printStackTrace();
-            System.out.print(e.getMessage());
+            System.out.print(e.getMessage() + "\n");
         }
                                 
     }
     
     // Drops the database
     public static void dropDatabase() {
-        String dropAttempts = "DROP TABLE IF EXISTS attemptsa";
+        String dropAttempts = "DROP TABLE IF EXISTS attempts";
         
         boolean connectionFailed = true;
         try (Connection conn = DriverManager.getConnection(URL)) {
-            System.out.print("> Connection to " + URL + " established\n");
-            System.out.print("> Attempting to drop the database...\n");
             connectionFailed = false;
             Statement stmt = conn.createStatement();
             // Drops tables
             stmt.execute(dropAttempts);
-            System.out.print("> Database was dropped");
         } catch (SQLException e) {
             if (connectionFailed) {
                 System.out.print("ERROR: Failed to connect to " + URL + "\n");
             }
-            System.out.print("ERROR: Failed to drop database");
+            System.out.print("ERROR: Failed to drop database\n");
             e.printStackTrace();
-            System.out.print(e.getMessage());
+            System.out.print(e.getMessage() + "\n");
         }
+    }
+    
+    public static String getURL() {
+        return URL;
     }
     
 }

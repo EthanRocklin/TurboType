@@ -1,6 +1,10 @@
 package com.typingspeed.app;
 
 import java.time.Instant;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.PreparedStatement;
 
 /** @author Ethan Rocklin */
 
@@ -26,7 +30,7 @@ public class Attempt {
     
     // Fields
     private double accuracy;
-    private int wpm, wordCount, correctWords, typingScore, attemptMilli;
+    private int wpm, wordCount, correctCount, typingScore, attemptMilli;
     private long startTimeMilli, endTimeMilli;
     private boolean sentences;
     private String attemptTime;
@@ -47,14 +51,14 @@ public class Attempt {
         this.mode = mode;
         accuracy = 0;
         wpm = 0;
-        correctWords = 0;
+        correctCount = 0;
         startTimeMilli = Instant.now().toEpochMilli();
         endTimeMilli = 0;
     }
     
     // Calculates and sets the accuracy (2 decimal places) for the attempt.
     public void calculateAccuracy() {
-        double rawAccuracy = ((double) correctWords / wordCount) * 100;
+        double rawAccuracy = ((double) correctCount / wordCount) * 100;
         accuracy = Math.round(rawAccuracy * 100) / 100.0;
     }
     
@@ -106,7 +110,46 @@ public class Attempt {
     // Calculates and sets the Words Per Minute for the attempt.
     public void calculateWPM() {
         double minutes = (double) (endTimeMilli - startTimeMilli) / 60000;
-        wpm = (int) (correctWords / minutes);
+        wpm = (int) (correctCount / minutes);
+    }
+    
+    // Saves attempt data to the database as a single row in "attempts" table.
+    public void saveAttempt() {
+        boolean connectionFailed = true;
+        String url = DatabaseManager.getURL();
+        String format = "";
+        if (sentences) {
+            format = "sentences";
+        } else {
+            format = "random";
+        }
+        String insert = """
+                      INSERT INTO attempts
+                      (typing_score, correct_words, total_words, accuracy, wpm, 
+                       milliseconds, time, format)
+                      VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+                      """;
+        try (Connection conn = DriverManager.getConnection(url)) {
+            connectionFailed = false;
+            // Inserting attempt data into insertion parameters
+            PreparedStatement pstmt = conn.prepareStatement(insert);
+            pstmt.setInt(1, typingScore);
+            pstmt.setInt(2, correctCount);
+            pstmt.setInt(3, wordCount);
+            pstmt.setDouble(4, accuracy);
+            pstmt.setInt(5, wpm);
+            pstmt.setInt(6, attemptMilli);
+            pstmt.setString(7, attemptTime);
+            pstmt.setString(8, format);
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            if (connectionFailed) {
+                System.out.print("ERROR: Failed to connect to " + url + "\n");
+            }
+            System.out.print("ERROR: Failed to save attempt\n");
+            e.printStackTrace();
+            System.out.print(e.getMessage() + "\n");
+        }
     }
     
     // Getters
@@ -134,7 +177,7 @@ public class Attempt {
     // Setters
     
     public void setCorrectWordCount(int count) {
-        correctWords = count;
+        correctCount = count;
     }
     public void setEndTimeMilli() {
         endTimeMilli = Instant.now().toEpochMilli();
