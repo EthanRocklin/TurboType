@@ -25,6 +25,7 @@ public class MenuBarController {
         MenuItem menuItem = (MenuItem) event.getSource(); 
         String option = menuItem.getText();
         music = new MusicManager(option);
+        music.play();
     }
     
     @FXML
