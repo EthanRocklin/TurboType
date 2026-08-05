@@ -31,6 +31,7 @@ public class TurboType extends Application {
             music.play();
         } catch (IOException e) {
             System.out.println("ERROR : " + e.getMessage());
+            e.printStackTrace();
         }
     }
 
@@ -64,9 +65,13 @@ public class TurboType extends Application {
      * is not standard with CSS.
      */
     private void loadFonts() {
-        Font.loadFont(getClass().getResourceAsStream("/fonts/Micro5-Regular.ttf"), 14);
-        Font.loadFont(getClass().getResourceAsStream("/fonts/NovaFlat-Regular.ttf"), 14);
         Font.loadFont(getClass().getResourceAsStream("/fonts/VT323-Regular.ttf"), 14);
+        Font.loadFont(getClass().getResourceAsStream("/fonts/Changa-Regular.ttf"), 14);
+        Font.loadFont(getClass().getResourceAsStream("/fonts/Inter_24pt-Regular.ttf"), 14);
+        Font.loadFont(getClass().getResourceAsStream("/fonts/Quantico-Regular.ttf"), 14);
+        Font.loadFont(getClass().getResourceAsStream("/fonts/RobotoCondensed-Regular.ttf"), 14);
+        Font.loadFont(getClass().getResourceAsStream("/fonts/SignikaNegative-Regular.ttf"), 14);
+        Font.loadFont(getClass().getResourceAsStream("/fonts/UbuntuCondensed-Regular.ttf"), 14);
     }
     
     private void loadSentences() {

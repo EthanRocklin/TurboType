@@ -26,7 +26,6 @@ public class MusicManager {
         }
         Media media = new Media(resourceURI.toString());
         mediaPlayer = new MediaPlayer(media);
-        
         mediaPlayer.setOnError(() -> {
            System.out.println("MediaPlayer ERROR : " + mediaPlayer.getError()); 
         });

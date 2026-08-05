@@ -1,5 +1,56 @@
+/* Basic colors for all the elements */
+.root {
+    -fx-background: #1a1a1c;
+    -fx-menu-bar-background: #111111;
+    -fx-menu-dropdown: #242424;
+    -fx-menu-hover: #ffa64d;
+    -fx-menu-hover-text: #000000;
+    -fx-menu-item-hover: #ffa64d;
+    -fx-menu-text: #ffa64d;
+    -fx-navigation-background: #e8e8e8;
+    -fx-navigation-text: #000000;
+    -fx-title: #f79e45;
+}
+
+#menuBar {
+    -fx-background-color: -fx-menu-bar-background;
+    -fx-font-size: 16;
+    -fx-font-family: "Quantico";
+}
+
+.menu:hover,
+.menu:showing {
+    -fx-background-color: -fx-menu-hover;
+}
+
+.menu:hover > .label,
+.menu:showing > .label {
+    -fx-text-fill: -fx-menu-hover-text;
+}
+
+/* In JavaFX's default stylesheet '*/
+.context-menu {
+    -fx-background-color: -fx-menu-dropdown;
+}
+
+.menu-item {
+    -fx-background-color: -fx-menu-dropdown;
+}
+
+.menu .label {
+    -fx-text-fill: -fx-menu-text;
+}
+
+.menu-item:hover {
+    -fx-background-color: -fx-menu-item-hover;
+}
+
+.menu-item:hover .label {
+    -fx-text-fill: -fx-menu-hover-text;
+}
+
 #homepageContainer {
-    -fx-background-color: #1a1a1c;
+    -fx-background-color: -fx-background;
     -fx-alignment: center;
     -fx-min-width: 100%;
     -fx-min-height: 100%;
@@ -8,7 +59,7 @@
 }
 
 .home-title {
-    -fx-fill: #f79e45;
+    -fx-fill: -fx-title;
     -fx-alignment: center;
     -fx-font-family: "VT323";
     -fx-font-size: 120;
@@ -19,8 +70,8 @@
 }
 
 .navigation-btn {
-    -fx-background-color: #e8e8e8;
-    -fx-text-fill: #000000;
+    -fx-background-color: -fx-navigation-background;
+    -fx-text-fill: -fx-navigation-text;
     -fx-text-alignment: center;
     -fx-alignment: center;
     -fx-cursor: hand;
