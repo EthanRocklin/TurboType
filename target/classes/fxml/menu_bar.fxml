@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.typingspeed.app.MenuBarController">
+    <MenuBar id="menuBar" StackPane.alignment="TOP_LEFT">
+        <menus>
+            <Menu styleClass="menu" text="Export">
+                <items>
+                    <MenuItem fx:id="txtOption" styleClass="menu-item" mnemonicParsing="false" text=".txt"/>
+                    <MenuItem fx:id="xslxOption" styleClass="menu-item" mnemonicParsing="false" text=".xslx"/>
+                    <MenuItem fx:id="docxOption" styleClass="menu-item" mnemonicParsing="false" text=".docx"/>
+                    <MenuItem fx:id="pdfOption" styleClass="menu-item" mnemonicParsing="false" text=".pdf"/>
+                </items>
+            </Menu>
+            <Menu styleClass="menu" text="Music">
+                <items>
+                    <MenuItem fx:id="classicalOption" styleClass="menu-item" onAction="#handleMusicChange" mnemonicParsing="false" text="Classical"/>
+                    <MenuItem fx:id="dubstepOption" styleClass="menu-item" onAction="#handleMusicChange" mnemonicParsing="false" text="Dubstep"/>
+                    <MenuItem fx:id="jazzOption" styleClass="menu-item" onAction="#handleMusicChange" mnemonicParsing="false" text="Jazz"/>
+                    <MenuItem fx:id="popOption" styleClass="menu-item" onAction="#handleMusicChange" mnemonicParsing="false" text="Pop"/>
+                    <MenuItem fx:id="rockOption" styleClass="menu-item" onAction="#handleMusicChange" mnemonicParsing="false" text="Rock"/>
+                    <MenuItem fx:id="technoOption" styleClass="menu-item" onAction="#handleMusicChange" mnemonicParsing="false" text="Techno"/>
+                </items>
+            </Menu>
+            <Menu styleClass="menu" text="Theme">
+                <items>
+                    <MenuItem fx:id="motherNatureOption" styleClass="menu-item" mnemonicParsing="false" text="Mother Nature"/>
+                    <MenuItem fx:id="purpleParadiseOption" styleClass="menu-item" mnemonicParsing="false" text="Purple Paradise"/>
+                    <MenuItem fx:id="tronOption" styleClass="menu-item" mnemonicParsing="false" text="Tron"/>
+                </items>
+            </Menu>
+        </menus>
+    </MenuBar>
+</AnchorPane>

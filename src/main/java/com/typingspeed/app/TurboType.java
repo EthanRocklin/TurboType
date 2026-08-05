@@ -27,7 +27,7 @@ public class TurboType extends Application {
             stage.setScene(scene);
             stage.setMaximized(true);
             stage.show();
-            MusicManager music = new MusicManager("/music/techno_1.mp3");
+            MusicManager music = new MusicManager("Techno");
             music.play();
         } catch (IOException e) {
             System.out.println("ERROR : " + e.getMessage());
