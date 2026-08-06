@@ -3,11 +3,11 @@
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.typingspeed.app.MenuBarController">
-    <MenuBar id="menuBar" StackPane.alignment="TOP_LEFT">
+<HBox id="menuBarContainer" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.typingspeed.app.MenuBarController">
+    <MenuBar id="menuBar" StackPane.alignment="TOP_LEFT" HBox.hgrow="ALWAYS">
         <menus>
             <Menu styleClass="menu" text="Export">
                 <items>
@@ -36,4 +36,4 @@
             </Menu>
         </menus>
     </MenuBar>
-</AnchorPane>
+</HBox>

@@ -23,8 +23,12 @@ public class MenuBarController {
     @FXML
     private void handleMusicChange(ActionEvent event) {
         MenuItem menuItem = (MenuItem) event.getSource(); 
-        String option = menuItem.getText();
-        music = new MusicManager(option);
+        String genre = menuItem.getText().toLowerCase();
+        if (music != null) {
+            music.readyNewSong(genre);
+        } else {
+            music = new MusicManager(genre);
+        }
         music.play();
     }
     
