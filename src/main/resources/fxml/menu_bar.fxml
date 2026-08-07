@@ -1,12 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.collections.FXCollections?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.CustomMenuItem?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.BorderPane?>
+<?import java.lang.String?>
 
-<HBox id="menuBarContainer" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.typingspeed.app.MenuBarController">
+<HBox xmlns:fx="http://javafx.com/fxml/1" id="menuBarContainer" xmlns="http://javafx.com/javafx/26" fx:controller="com.typingspeed.app.MenuBarController">
     <MenuBar id="menuBar" HBox.hgrow="ALWAYS">
         <menus>
             <Menu styleClass="menu" text="Export">
@@ -29,9 +35,36 @@
             </Menu>
             <Menu styleClass="menu" text="Theme">
                 <items>
-                    <MenuItem fx:id="motherNatureOption" styleClass="menu-item" mnemonicParsing="false" text="Mother Nature"/>
-                    <MenuItem fx:id="purpleParadiseOption" styleClass="menu-item" mnemonicParsing="false" text="Purple Paradise"/>
-                    <MenuItem fx:id="tronOption" styleClass="menu-item" mnemonicParsing="false" text="Tron"/>
+                    <MenuItem fx:id="originalOption" styleClass="menu-item" onAction="#handleThemeChange" mnemonicParsing="false" text="Original"/>
+                    <MenuItem fx:id="motherNatureOption" styleClass="menu-item" onAction="#handleThemeChange" mnemonicParsing="false" text="Mother Nature"/>
+                    <MenuItem fx:id="purpleParadiseOption" styleClass="menu-item" onAction="#handleThemeChange" mnemonicParsing="false" text="Purple Paradise"/>
+                    <CustomMenuItem fx:id="tronOption" styleClass="menu-item">
+                        <content>
+                            <HBox>
+                                <Label text="Tron">
+                                    <HBox.margin>
+                                        <Insets right="10.0" />
+                                    </HBox.margin>
+                                </Label>
+                                <ComboBox id="colorBox" fx:id="colorBox" onAction="#handleTronTheme" promptText="Pick a Color">
+                                    <items>
+                                        <FXCollections fx:factory="observableArrayList">
+                                            <String fx:value="Red" />
+                                            <String fx:value="Orange" />
+                                            <String fx:value="Yellow" />
+                                            <String fx:value="Lime" />
+                                            <String fx:value="Green" />
+                                            <String fx:value="Turquoise" />
+                                            <String fx:value="Cyan" />
+                                            <String fx:value="Purple" />
+                                            <String fx:value="Pink" />
+                                            <String fx:value="Hot Magenta" />
+                                        </FXCollections>
+                                    </items>
+                                </ComboBox>
+                            </HBox>
+                        </content>
+                    </CustomMenuItem>
                 </items>
             </Menu>
         </menus>

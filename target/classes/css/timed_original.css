@@ -1,4 +1,4 @@
-/* Basic colors for all the elements */
+/* Colors for all the elements */
 .root {
     -fx-accent: #f5d6af;
     -fx-background: #1a1a1c;
@@ -92,9 +92,9 @@
     -fx-wrap-text: true;
 }
 
-/* Styles for the Practice Mode area */
+/* Styles for the Timed Mode area */
 
-#practiceContainer {
+#timedContainer {
     -fx-alignment: center;
 }
 

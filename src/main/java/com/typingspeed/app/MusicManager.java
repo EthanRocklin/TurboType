@@ -60,7 +60,7 @@ public class MusicManager {
         return resourceURI.toString();
     }
     
-    // This method 
+    // This method gets a new song ready to be played.
     public void readyNewSong(String genre) {
         mediaPlayer.pause();
         Media media = new Media(getResourceURI(genre));

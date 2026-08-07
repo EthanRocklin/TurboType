@@ -1,0 +1,78 @@
+/* Colors for all the elements */
+.root {
+    -fx-menu-bar-background: #e8e8e8;
+    -fx-menu-colorbox-arrow: #a550ff;
+    -fx-menu-colorbox-background: #a550ff;
+    -fx-menu-dropdown: #e8e8e8;
+    -fx-menu-hover: #a550ff;
+    -fx-menu-hover-text: #ffffff;
+    -fx-menu-item-hover: #a550ff;
+    -fx-menu-text: #a550ff;
+}
+
+#menuBar {
+    -fx-background-color: -fx-menu-bar-background;
+    -fx-font-size: 16;
+    -fx-font-family: "Quantico";
+}
+
+.menu:hover,
+.menu:showing,
+#colorBox .list-cell:hover, 
+#colorBox .list-cell:showing{
+    -fx-background-color: -fx-menu-hover;
+}
+
+.menu:hover > .label,
+.menu:showing > .label,
+#colorBox .list-cell:hover,
+#colorBox .list-cell:showing {
+    -fx-text-fill: -fx-menu-hover-text;
+}
+
+/* In JavaFX's default stylesheet '*/
+.context-menu {
+    -fx-background-color: -fx-menu-dropdown;
+}
+
+.menu-item {
+    -fx-background-color: -fx-menu-dropdown;
+}
+
+.menu .label {
+    -fx-text-fill: -fx-menu-text;
+}
+
+.menu-item:hover {
+    -fx-background-color: -fx-menu-item-hover;
+}
+
+.menu-item:hover .label {
+    -fx-text-fill: -fx-menu-hover-text;
+}
+
+#colorBox,
+#colorBox .list-cell {
+    -fx-background-insets: 0;
+    -fx-border-insets: 0;
+    -fx-background-color: -fx-menu-bar-background;
+    -fx-text-fill: -fx-menu-text;
+}
+
+#colorBox .list-view {
+    -fx-background-color: -fx-menu-colorbox-background;
+    -fx-background-insets: 0;
+}
+
+#colorBox .list-view .virtual-flow,
+#colorBox .list-view .clipped-container {
+    -fx-background-color: -fx-menu-colorbox-background;
+}
+
+#colorBox .combo-box-popup {
+    -fx-background-color: transparent;
+}
+
+#colorBox .arrow {
+    -fx-background-color: -fx-menu-colorbox-arrow;
+}

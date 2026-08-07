@@ -1,0 +1,41 @@
+/* Colors for all the elements */
+.root {
+    -fx-primary: #000000;
+    -fx-secondary: #00ffff;
+}
+
+/* Styles for the page content */
+
+#homepageContainer {
+    -fx-background-color: -fx-primary;
+    -fx-alignment: center;
+    -fx-min-width: 100%;
+    -fx-min-height: 100%;
+    -fx-pref-width: 100%;
+    -fx-pref-height: 100%;
+}
+
+.home-title {
+    -fx-fill: -fx-secondary;
+    -fx-alignment: center;
+    -fx-font-family: "VT323";
+    -fx-font-size: 120;
+}
+
+#typeTitle {
+    -fx-padding: 0 0 200 0;
+}
+
+.navigation-btn {
+    -fx-background-color: -fx-primary;
+    -fx-text-fill: -fx-secondary;
+    -fx-text-alignment: center;
+    -fx-alignment: center;
+    -fx-cursor: hand;
+    -fx-pref-width: 250;
+    -fx-pref-height: 60;
+    -fx-padding: 0;
+    -fx-font-family: "VT323";
+    -fx-font-size: 50;
+    -fx-effect: dropshadow(gaussian, -fx-secondary, 20, 0.5, 0, 0);
+}

@@ -1,0 +1,72 @@
+/* Colors for all the elements */
+.root {
+    -fx-primary: #000000;
+    -fx-secondary: #00ffff;
+}
+
+#menuBar {
+    -fx-background-color: -fx-primary;
+    -fx-font-size: 16;
+    -fx-font-family: "Quantico";
+}
+
+.menu:hover,
+.menu:showing,
+#colorBox .list-cell:hover, 
+#colorBox .list-cell:showing {
+    -fx-background-color: -fx-primary;
+}
+
+.menu:hover > .label,
+.menu:showing > .label,
+#colorBox .list-cell:hover,
+#colorBox .list-cell:showing {
+    -fx-text-fill: -fx-secondary;
+}
+
+/* In JavaFX's default stylesheet '*/
+.context-menu {
+    -fx-background-color: -fx-secondary;
+}
+
+.menu-item {
+    -fx-background-color: -fx-primary;
+}
+
+.menu .label {
+    -fx-text-fill: -fx-secondary;
+}
+
+.menu-item:hover {
+    -fx-background-color: -fx-secondary;
+}
+
+.menu-item:hover .label {
+    -fx-text-fill: -fx-primary;
+}
+
+#colorBox,
+#colorBox .list-cell {
+    -fx-background-insets: 0;
+    -fx-border-insets: 0;
+    -fx-background-color: -fx-secondary;
+    -fx-text-fill: -fx-primary;
+}
+
+#colorBox .list-view {
+    -fx-background-color: -fx-primary;
+    -fx-background-insets: 0;
+}
+
+#colorBox .list-view .virtual-flow,
+#colorBox .list-view .clipped-container {
+    -fx-background-color: -fx-secondary;
+}
+
+#colorBox .combo-box-popup {
+    -fx-background-color: transparent;
+}
+
+#colorBox .arrow {
+    -fx-background-color: -fx-primary;
+}

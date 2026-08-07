@@ -15,6 +15,7 @@ import java.io.IOException;
 public class TurboType extends Application {
 
     private static Scene scene;
+    private static String fxml, theme;
 
     @Override
     public void start(Stage stage) {
@@ -22,8 +23,10 @@ public class TurboType extends Application {
             loadFonts();
             loadWords();
             loadSentences();
-            scene = new Scene(loadFXML("homepage"), 640, 480);
-            scene.getStylesheets().add(getClass().getResource("/css/homepage.css").toExternalForm());
+            fxml = "homepage";
+            scene = new Scene(loadFXML(fxml), 640, 480);
+            scene.getStylesheets().add(getClass().getResource("/css/homepage_original.css").toExternalForm());
+            scene.getStylesheets().add(getClass().getResource("/css/menu_bar_original.css").toExternalForm());
             stage.setScene(scene);
             stage.setMaximized(true);
             stage.show();
@@ -36,10 +39,16 @@ public class TurboType extends Application {
     static void setRoot(String fxml) {
         try {
             Parent root = loadFXML(fxml);
+            // Sets the fxml and theme for the app
+            TurboType.fxml = fxml;
+            TurboType.theme = "original";
             scene.getStylesheets().clear();
-            var cssUrl = TurboType.class.getResource("/css/" + fxml + ".css");
+            // Sets the styles for the FXML file
+            var cssUrl = TurboType.class.getResource("/css/" + fxml + "_" + theme + ".css");
+            var menuBarCssURL = TurboType.class.getResource("/css/menu_bar" + "_" + theme + ".css");
             if (cssUrl != null) {
                 scene.getStylesheets().add(cssUrl.toExternalForm());
+                scene.getStylesheets().add(menuBarCssURL.toExternalForm());
             }
             scene.setRoot(loadFXML(fxml));
         } catch (IOException e) {
@@ -64,20 +73,32 @@ public class TurboType extends Application {
      */
     private void loadFonts() {
         Font.loadFont(getClass().getResourceAsStream("/fonts/VT323-Regular.ttf"), 14);
-        Font.loadFont(getClass().getResourceAsStream("/fonts/Changa-Regular.ttf"), 14);
-        Font.loadFont(getClass().getResourceAsStream("/fonts/Inter_24pt-Regular.ttf"), 14);
         Font.loadFont(getClass().getResourceAsStream("/fonts/Quantico-Regular.ttf"), 14);
-        Font.loadFont(getClass().getResourceAsStream("/fonts/RobotoCondensed-Regular.ttf"), 14);
-        Font.loadFont(getClass().getResourceAsStream("/fonts/SignikaNegative-Regular.ttf"), 14);
-        Font.loadFont(getClass().getResourceAsStream("/fonts/UbuntuCondensed-Regular.ttf"), 14);
     }
     
-    private void loadSentences() {
+    private static void loadSentences() {
         SentenceBank bank = new SentenceBank();
     }
     
-    private void loadWords() {
+    private static void loadWords() {
         WordBank bank = new WordBank();
+    }
+    
+    public static void changeTheme(String newTheme) {
+        TurboType.theme = newTheme;
+        // Clears existing stylesheets and adds new stylesheets
+        scene.getStylesheets().clear();
+        var cssUrl = TurboType.class.getResource("/css/" + fxml + "_" + theme + ".css");
+        var menuBarCssURL = TurboType.class.getResource("/css/menu_bar" + "_" + theme + ".css");
+        if (cssUrl != null) {
+            scene.getStylesheets().add(cssUrl.toExternalForm());
+            scene.getStylesheets().add(menuBarCssURL.toExternalForm());
+        }
+    }
+    
+    // This method changes the secondary color(s) of eligible themes.
+    public static void changeThemeColor(String color) {
+        scene.getRoot().setStyle("-fx-secondary: " + color + ";");
     }
     
     public static void main(String[] args) {
