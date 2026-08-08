@@ -36,7 +36,8 @@ public class DatabaseManager {
                                     wpm INTEGER NOT NULL,
                                     milliseconds INTEGER NOT NULL,
                                     time TEXT NOT NULL,
-                                    format TEXT NOT NULL
+                                    format TEXT NOT NULL,
+                                    date TEXT NOT NULL
                                 );
                                 """;
         boolean connectionFailed = true;

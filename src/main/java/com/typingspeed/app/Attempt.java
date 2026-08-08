@@ -1,6 +1,8 @@
 package com.typingspeed.app;
 
 import java.time.Instant;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -116,6 +118,12 @@ public class Attempt {
     // Saves attempt data to the database as a single row in "attempts" table.
     public void saveAttempt() {
         boolean connectionFailed = true;
+        // Gets a formated String for the date of the attempt
+        Instant date = Instant.now();
+        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd").withZone(ZoneId.systemDefault());
+        String timeStamp = dateFormatter.format(date);
+        System.out.println("Time Stamp " + timeStamp);
+        // Prepares variables and INSERT statement
         String url = DatabaseManager.getURL();
         String format = "";
         if (sentences) {
@@ -126,9 +134,10 @@ public class Attempt {
         String insert = """
                       INSERT INTO attempts
                       (typing_score, correct_words, total_words, accuracy, wpm, 
-                       milliseconds, time, format)
-                      VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+                       milliseconds, time, format, date)
+                      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
                       """;
+        // Saves attempt data to the user's local database
         try (Connection conn = DriverManager.getConnection(url)) {
             connectionFailed = false;
             // Inserting attempt data into insertion parameters
@@ -141,6 +150,7 @@ public class Attempt {
             pstmt.setInt(6, attemptMilli);
             pstmt.setString(7, attemptTime);
             pstmt.setString(8, format);
+            pstmt.setString(9, timeStamp);
             pstmt.executeUpdate();
         } catch (SQLException e) {
             if (connectionFailed) {

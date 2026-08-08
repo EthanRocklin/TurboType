@@ -68,7 +68,7 @@
                                  </Text>
                                 <HBox id="totalCounterContainer" styleClass="counterContainer">
                                    <children>
-                                      <Text id="totalLabel" fx:id="totalWords" styleClass="label" text="Total Words:">
+                                      <Text id="totalLabel" fx:id="totalWords" styleClass="counter-label" text="Total Words:">
                                           <HBox.margin>
                                               <Insets right="20" />
                                           </HBox.margin>
@@ -81,7 +81,7 @@
                                 </HBox>
                                 <HBox id="correctCounterContainer" styleClass="counterContainer">
                                    <children>
-                                       <Text id="correctLabel" fx:id="correctWords" styleClass="label" text="Correct:">
+                                       <Text id="correctLabel" fx:id="correctWords" styleClass="counter-label" text="Correct:">
                                           <HBox.margin>
                                               <Insets right="20" />
                                           </HBox.margin>
@@ -97,7 +97,7 @@
                                         <Insets bottom="20" />
                                     </VBox.margin>
                                 </TextArea>
-                                <TextArea id="typingArea" fx:id="typingArea" onKeyTyped="#checkTypedWords" promptText="Start typing here. A timer will start at the first ketstroke." styleClass="text-area" />
+                                <TextArea id="typingArea" fx:id="typingArea" onKeyTyped="#checkTypedWords" promptText=">> Start typing here. A timer will start at the first ketstroke." styleClass="text-area" />
                              </children>
                           </VBox>
                     </children>

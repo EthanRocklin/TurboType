@@ -15,7 +15,7 @@ import java.io.IOException;
 public class TurboType extends Application {
 
     private static Scene scene;
-    private static String fxml, theme;
+    private static String fxml, theme, tronColor;
 
     @Override
     public void start(Stage stage) {
@@ -24,6 +24,7 @@ public class TurboType extends Application {
             loadWords();
             loadSentences();
             fxml = "homepage";
+            theme = "original";
             scene = new Scene(loadFXML(fxml), 640, 480);
             scene.getStylesheets().add(getClass().getResource("/css/homepage_original.css").toExternalForm());
             scene.getStylesheets().add(getClass().getResource("/css/menu_bar_original.css").toExternalForm());
@@ -41,7 +42,6 @@ public class TurboType extends Application {
             Parent root = loadFXML(fxml);
             // Sets the fxml and theme for the app
             TurboType.fxml = fxml;
-            TurboType.theme = "original";
             scene.getStylesheets().clear();
             // Sets the styles for the FXML file
             var cssUrl = TurboType.class.getResource("/css/" + fxml + "_" + theme + ".css");
@@ -51,11 +51,38 @@ public class TurboType extends Application {
                 scene.getStylesheets().add(menuBarCssURL.toExternalForm());
             }
             scene.setRoot(loadFXML(fxml));
+            // Maintains the Tron color of the previous page if Tron is the theme
+            if (theme.equals("tron")) {
+                changeThemeColor(tronColor);
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
-
+    
+    // This method sets the stylesheets for the scene based on the theme recieved.
+    public static void changeTheme(String newTheme) {
+        TurboType.theme = newTheme;
+        // Clears existing stylesheets and adds new stylesheets
+        scene.getStylesheets().clear();
+        var cssUrl = TurboType.class.getResource("/css/" + fxml + "_" + theme + ".css");
+        var menuBarCssURL = TurboType.class.getResource("/css/menu_bar" + "_" + theme + ".css");
+        if (cssUrl != null) {
+            scene.getStylesheets().add(cssUrl.toExternalForm());
+            scene.getStylesheets().add(menuBarCssURL.toExternalForm());
+        }
+    }
+    
+    // This method changes the secondary color(s) of eligible themes.
+    public static void changeThemeColor(String color) {
+        tronColor = color;
+        scene.getRoot().setStyle("-fx-tron: " + color + ";");
+    }
+    
+    public static void main(String[] args) {
+        launch();
+    }
+    
     /**
      * This method loads the FXML content of any file in the fxml directory.
      * @param fxml : the name of the fxml file
@@ -82,27 +109,6 @@ public class TurboType extends Application {
     
     private static void loadWords() {
         WordBank bank = new WordBank();
-    }
-    
-    public static void changeTheme(String newTheme) {
-        TurboType.theme = newTheme;
-        // Clears existing stylesheets and adds new stylesheets
-        scene.getStylesheets().clear();
-        var cssUrl = TurboType.class.getResource("/css/" + fxml + "_" + theme + ".css");
-        var menuBarCssURL = TurboType.class.getResource("/css/menu_bar" + "_" + theme + ".css");
-        if (cssUrl != null) {
-            scene.getStylesheets().add(cssUrl.toExternalForm());
-            scene.getStylesheets().add(menuBarCssURL.toExternalForm());
-        }
-    }
-    
-    // This method changes the secondary color(s) of eligible themes.
-    public static void changeThemeColor(String color) {
-        scene.getRoot().setStyle("-fx-secondary: " + color + ";");
-    }
-    
-    public static void main(String[] args) {
-        launch();
     }
 
 }

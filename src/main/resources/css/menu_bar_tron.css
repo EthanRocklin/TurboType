@@ -1,7 +1,7 @@
 /* Colors for all the elements */
 .root {
     -fx-primary: #000000;
-    -fx-secondary: #00ffff;
+    -fx-tron: #00ffff;
 }
 
 #menuBar {
@@ -21,12 +21,12 @@
 .menu:showing > .label,
 #colorBox .list-cell:hover,
 #colorBox .list-cell:showing {
-    -fx-text-fill: -fx-secondary;
+    -fx-text-fill: -fx-tron;
 }
 
 /* In JavaFX's default stylesheet '*/
 .context-menu {
-    -fx-background-color: -fx-secondary;
+    -fx-background-color: -fx-tron;
 }
 
 .menu-item {
@@ -34,11 +34,11 @@
 }
 
 .menu .label {
-    -fx-text-fill: -fx-secondary;
+    -fx-text-fill: -fx-tron;
 }
 
 .menu-item:hover {
-    -fx-background-color: -fx-secondary;
+    -fx-background-color: -fx-tron;
 }
 
 .menu-item:hover .label {
@@ -49,7 +49,7 @@
 #colorBox .list-cell {
     -fx-background-insets: 0;
     -fx-border-insets: 0;
-    -fx-background-color: -fx-secondary;
+    -fx-background-color: -fx-tron;
     -fx-text-fill: -fx-primary;
 }
 
@@ -60,7 +60,7 @@
 
 #colorBox .list-view .virtual-flow,
 #colorBox .list-view .clipped-container {
-    -fx-background-color: -fx-secondary;
+    -fx-background-color: -fx-tron;
 }
 
 #colorBox .combo-box-popup {

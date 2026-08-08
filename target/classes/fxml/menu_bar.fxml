@@ -49,6 +49,7 @@
                                 <ComboBox id="colorBox" fx:id="colorBox" onAction="#handleTronTheme" promptText="Pick a Color">
                                     <items>
                                         <FXCollections fx:factory="observableArrayList">
+                                            <String fx:value="White" />
                                             <String fx:value="Red" />
                                             <String fx:value="Orange" />
                                             <String fx:value="Yellow" />

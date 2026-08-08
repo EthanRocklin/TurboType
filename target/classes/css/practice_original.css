@@ -104,7 +104,7 @@
     -fx-pre-height: 40;
 }
 
-.label, .counter {
+.counter-label, .counter {
     -fx-font-family: "VT323";
     -fx-font-size: 60;
 }
@@ -132,7 +132,7 @@
     -fx-border-radius: 5;
     -fx-border-insets: 0;
     -fx-font-size: 24;
-    -fx-text-fill: #ffffff;
+    -fx-text-fill: -fx-text-area-text;
     -fx-cursor: text;
     -fx-wrap-text: true;
 }
@@ -236,6 +236,8 @@
 
 .spinner .text-field {
     -fx-pref-height: 30;
+    -fx-background-radius: 0;
+    -fx-background-insets: 0;
     -fx-background-color: -fx-spinner-background;
 }
 

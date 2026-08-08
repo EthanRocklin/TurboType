@@ -1,7 +1,7 @@
 /* Colors for all the elements */
 .root {
     -fx-primary: #000000;
-    -fx-secondary: #00ffff;
+    -fx-tron: #00ffff;
 }
 
 /* Styles for the page content */
@@ -16,7 +16,7 @@
 }
 
 .home-title {
-    -fx-fill: -fx-secondary;
+    -fx-fill: -fx-tron;
     -fx-alignment: center;
     -fx-font-family: "VT323";
     -fx-font-size: 120;
@@ -28,7 +28,7 @@
 
 .navigation-btn {
     -fx-background-color: -fx-primary;
-    -fx-text-fill: -fx-secondary;
+    -fx-text-fill: -fx-tron;
     -fx-text-alignment: center;
     -fx-alignment: center;
     -fx-cursor: hand;
@@ -37,5 +37,5 @@
     -fx-padding: 0;
     -fx-font-family: "VT323";
     -fx-font-size: 50;
-    -fx-effect: dropshadow(gaussian, -fx-secondary, 20, 0.5, 0, 0);
+    -fx-effect: dropshadow(gaussian, -fx-tron, 20, 0.5, 0, 0);
 }

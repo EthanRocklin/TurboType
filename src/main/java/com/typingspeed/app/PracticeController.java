@@ -234,7 +234,7 @@ public class PracticeController {
         typingArea.setOnKeyTyped(event -> {
             checkTypedWords();
         });
-        typingArea.setStyle("-fx-effect: dropshadow(gaussian, rgba(255,0,0,0.5), 20, 0.5, 0, 0);");
+        typingArea.setStyle("-fx-effect: dropshadow(gaussian, rgba(255,0,0,1), 20, 0.5, 0, 0);");
         // Resets practice words
         boolean sentences = sentencesToggle.isSelected();
         int count = 0;
@@ -370,8 +370,11 @@ public class PracticeController {
     @FXML
     private void updateTypingShadowColor(int correctCount) {
        // Style to be applied to the TextArea 
-       String style = "-fx-effect: dropshadow(gaussian, rgba(%d,%d,%d,0.5), 20, 0.5, 0, 0);";
+       String style = "-fx-effect: dropshadow(gaussian, rgba(%d,%d,%d,1), 20, 0.5, 0, 0);";
        // Variables for calculations
+       if (typingArea.getEffect() instanceof DropShadow shadow) {
+           
+       }
        int wordCount = practiceWords.size(),
            targetR = 0, targetG = 0, targetB = 0,
            startR = 255, startG = 0, startB = 0;

@@ -16,6 +16,12 @@ public class MenuBarController {
     
     private MusicManager music;
     
+    // Initializer
+    
+    public void initialize() {
+        colorBox.setVisibleRowCount(11);
+    }
+    
     // FXML Methods
     
     @FXML
@@ -48,6 +54,9 @@ public class MenuBarController {
                color = "";
         // Determines color to send
         switch (colorName) {
+            case "White":
+                color = "ffffff";
+                break;
             case "Red":
                 color = "#ff0000";
                 break;
@@ -67,7 +76,7 @@ public class MenuBarController {
                 color = "#00ff88";
                 break;
             case "Cyan":
-                color = "##00ffff";
+                color = "#00ffff";
                 break;
             case "Purple":
                 color = "#dd00ff";
