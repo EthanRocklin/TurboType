@@ -74,6 +74,8 @@ public class PracticeController {
         sentencesSpinner.setManaged(false);
         randomSlider.setVisible(false);
         randomSlider.setManaged(false);
+        randomSlider.setShowTickMarks(true);
+        randomSlider.setShowTickLabels(true);
     }
     private void initializeUIListeners() {
         // Listeners for Sliders

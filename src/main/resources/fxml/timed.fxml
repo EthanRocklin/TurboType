@@ -9,143 +9,151 @@
 <?import javafx.scene.control.ToggleButton?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<VBox id="masterContainer" alignment="TOP_CENTER" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.typingspeed.app.TimedController">
-  <children>
-      <HBox id="masterControlsContainer" fx:id="controlsContainer">
-          <VBox.margin>
-              <Insets top="60.0" />
-          </VBox.margin>
+<BorderPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/26" fx:controller="com.typingspeed.app.TimedController">
+    <top>
+        <fx:include source="menu_bar.fxml"/>
+    </top>
+    <center>    
+        <VBox id="masterContainer" alignment="TOP_CENTER">
           <children>
-          <VBox id="statsBox" fx:id="statsBox" HBox.hgrow="ALWAYS">
-               <children>
-                  <ImageView id="timeImage" fx:id="timeImage" styleClass="stat-image" pickOnBounds="true" preserveRatio="true" />
-                  <HBox id="timeContainer" styleClass="stat-container">
-                     <children>
-                        <Text id="timeLabel" fx:id="timeLabel" styleClass="stat-label" text="Time: " />
-                        <Text id="timeValue" fx:id="timeValue" styleClass="stat-value" />
-                     </children>
-                  </HBox>
-                  <ImageView id="accuracyImage" fx:id="accuracyImage" styleClass="stat-image" pickOnBounds="true" preserveRatio="true">
-                      <VBox.margin>
-                            <Insets top="30.0" />
-                      </VBox.margin>
-                  </ImageView>
-                  <HBox id="accuracyContainer" styleClass="stat-container">
-                     <children>
-                        <Text id="accuracyLabel" fx:id="accuracyLabel" styleClass="stat-label" text="Accuracy: " />
-                        <Text id="accuracyValue" fx:id="accuracyValue" styleClass="stat-value" />
-                     </children>
-                  </HBox>
-                  <ImageView id="wpmImage" fx:id="wpmImage" styleClass="stat-image" pickOnBounds="true" preserveRatio="true">
-                         <VBox.margin>
-                            <Insets top="30.0" />
-                        </VBox.margin>
-                  </ImageView>
-                  <HBox id="wordsPerMinuteContainer" styleClass="stat-container">
-                     <children>
-                        <Text id="wpmLabel" fx:id="wpmLabel" styleClass="stat-label" text="Words Per Minute: " />
-                        <Text id="wpmValue" fx:id="wpmValue" styleClass="stat-value" />
-                     </children>
-                  </HBox>
-                  <Text id="typingScoreLabel" fx:id="typingScoreLabel" styleClass="typing-score-info" text="Typing Score">
-                      <VBox.margin>
-                        <Insets top="30.0" bottom="10.0" />
-                      </VBox.margin>
-                  </Text>
-                  <Text id="typingScore" fx:id="typingScore" styleClass="typing-score-info" text="">
-                      <VBox.margin>
-                        <Insets bottom="30.0" />
-                      </VBox.margin>
-                  </Text>
-                  <Label id="statsMessage" fx:id="statsMessage" />
-               </children></VBox>
-          <AnchorPane fx:id="timedPane">
-            <children>
-                  <VBox id="timedContainer">
-                     <children>
-                         <Text id="title" text="Timed Mode">
-                             <VBox.margin>
-                                <Insets bottom="100" />
-                             </VBox.margin>
-                         </Text>
-                        <HBox id="totalCounterContainer" styleClass="counterContainer">
-                           <children>
-                              <Text id="totalLabel" fx:id="totalWords" styleClass="counter-label" text="Total Words:">
-                                  <HBox.margin>
-                                      <Insets right="20" />
-                                  </HBox.margin>
-                               </Text>
-                              <Text id="totalCounter" fx:id="totalCounter" styleClass="counter" />
-                           </children>
-                           <VBox.margin>
-                                <Insets bottom="20" />
-                           </VBox.margin>
-                        </HBox>
-                        <HBox id="correctCounterContainer" styleClass="counterContainer">
-                           <children>
-                               <Text id="correctLabel" fx:id="correctWords" styleClass="counter-label" text="Correct:">
-                                  <HBox.margin>
-                                      <Insets right="20" />
-                                  </HBox.margin>
-                               </Text>
-                              <Text id="correctCounter" fx:id="correctCounter" styleClass="counter" />
-                           </children>
-                           <VBox.margin>
-                                <Insets bottom="50" />
-                           </VBox.margin>
-                        </HBox>
-                        <TextArea id="wordsArea" fx:id="wordsArea" editable="false" styleClass="text-area">
-                            <VBox.margin>
-                                <Insets bottom="20" />
-                            </VBox.margin>
-                        </TextArea>
-                        <TextArea id="typingArea" fx:id="typingArea" onKeyTyped="#checkTypedWords" promptText=">> Start typing here. A timer will start at the first ketstroke. Statistics will be saved after the last keystroke." styleClass="text-area" />
-                     </children>
+              <HBox id="masterControlsContainer" fx:id="controlsContainer">
+                  <VBox.margin>
+                      <Insets top="60.0" />
+                  </VBox.margin>
+                  <children>
+                  <VBox id="statsBox" fx:id="statsBox" HBox.hgrow="ALWAYS">
+                       <children>
+                          <ImageView id="timeImage" fx:id="timeImage" styleClass="stat-image" pickOnBounds="true" preserveRatio="true" />
+                          <HBox id="timeContainer" styleClass="stat-container">
+                             <children>
+                                <Text id="timeLabel" fx:id="timeLabel" styleClass="stat-label" text="Time: " />
+                                <Text id="timeValue" fx:id="timeValue" styleClass="stat-value" />
+                             </children>
+                          </HBox>
+                          <ImageView id="accuracyImage" fx:id="accuracyImage" styleClass="stat-image" pickOnBounds="true" preserveRatio="true">
+                              <VBox.margin>
+                                    <Insets top="30.0" />
+                              </VBox.margin>
+                          </ImageView>
+                          <HBox id="accuracyContainer" styleClass="stat-container">
+                             <children>
+                                <Text id="accuracyLabel" fx:id="accuracyLabel" styleClass="stat-label" text="Accuracy: " />
+                                <Text id="accuracyValue" fx:id="accuracyValue" styleClass="stat-value" />
+                             </children>
+                          </HBox>
+                          <ImageView id="wpmImage" fx:id="wpmImage" styleClass="stat-image" pickOnBounds="true" preserveRatio="true">
+                                 <VBox.margin>
+                                    <Insets top="30.0" />
+                                </VBox.margin>
+                          </ImageView>
+                          <HBox id="wordsPerMinuteContainer" styleClass="stat-container">
+                             <children>
+                                <Text id="wpmLabel" fx:id="wpmLabel" styleClass="stat-label" text="Words Per Minute: " />
+                                <Text id="wpmValue" fx:id="wpmValue" styleClass="stat-value" />
+                             </children>
+                          </HBox>
+                          <Text id="typingScoreLabel" fx:id="typingScoreLabel" styleClass="typing-score-info" text="Typing Score">
+                              <VBox.margin>
+                                <Insets top="30.0" bottom="10.0" />
+                              </VBox.margin>
+                          </Text>
+                          <Text id="typingScore" fx:id="typingScore" styleClass="typing-score-info" text="">
+                              <VBox.margin>
+                                <Insets bottom="30.0" />
+                              </VBox.margin>
+                          </Text>
+                          <Label id="statsMessage" fx:id="statsMessage" />
+                       </children></VBox>
+                  <AnchorPane fx:id="timedPane">
+                    <children>
+                          <VBox id="timedContainer">
+                             <children>
+                                 <Text id="title" text="Timed Mode">
+                                     <VBox.margin>
+                                        <Insets bottom="100" />
+                                     </VBox.margin>
+                                 </Text>
+                                <HBox id="totalCounterContainer" styleClass="counterContainer">
+                                   <children>
+                                      <Text id="totalLabel" fx:id="totalWords" styleClass="counter-label" text="Total Words:">
+                                          <HBox.margin>
+                                              <Insets right="20" />
+                                          </HBox.margin>
+                                       </Text>
+                                      <Text id="totalCounter" fx:id="totalCounter" styleClass="counter" />
+                                   </children>
+                                   <VBox.margin>
+                                        <Insets bottom="20" />
+                                   </VBox.margin>
+                                </HBox>
+                                <HBox id="correctCounterContainer" styleClass="counterContainer">
+                                   <children>
+                                       <Text id="correctLabel" fx:id="correctWords" styleClass="counter-label" text="Correct:">
+                                          <HBox.margin>
+                                              <Insets right="20" />
+                                          </HBox.margin>
+                                       </Text>
+                                      <Text id="correctCounter" fx:id="correctCounter" styleClass="counter" />
+                                   </children>
+                                   <VBox.margin>
+                                        <Insets bottom="50" />
+                                   </VBox.margin>
+                                </HBox>
+                                <TextArea id="wordsArea" fx:id="wordsArea" editable="false" styleClass="text-area">
+                                    <VBox.margin>
+                                        <Insets bottom="20" />
+                                    </VBox.margin>
+                                </TextArea>
+                                <TextArea id="typingArea" fx:id="typingArea" onKeyTyped="#checkTypedWords" promptText=">> Start typing here. A timer will start at the first ketstroke. Statistics will be saved after the last keystroke." styleClass="text-area" />
+                             </children>
+                          </VBox>
+                    </children>
+                  </AnchorPane>
+                  <VBox id="controlBox" fx:id="controlBox" styleClass="control-box" HBox.hgrow="ALWAYS">
+                       <children>
+                          <HBox id="sentencesToggleContainer" styleClass="control-container">
+                             <children>
+                                 <ToggleButton id="sentencesToggle" fx:id="sentencesToggle" mnemonicParsing="false" onAction="#toggleWordsFormat" styleClass="toggle" text="Format">
+                                    <HBox.margin>
+                                        <Insets left="50" right="5" />
+                                    </HBox.margin>
+                                 </ToggleButton>
+                                <Spinner id="sentencesSpinner" fx:id="sentencesSpinner" onMouseReleased="#updateSentenceCount" styleClass="spinner" />
+                                <Slider id="randomSlider" fx:id="randomSlider" styleClass="slider" />
+                             </children>
+                          </HBox>
+                          <HBox id="resetContainer" styleClass="control-container">
+                            <Button id="resetBtn" styleClass="control-btn" onAction="#resetElements" text="Reset">
+                              <HBox.margin>
+                                    <Insets left="50" top="10"/>
+                              </HBox.margin>
+                            </Button>
+                          </HBox>
+                       </children>
                   </VBox>
-            </children>
-          </AnchorPane>
-          <VBox id="controlBox" fx:id="controlBox" styleClass="control-box" HBox.hgrow="ALWAYS">
-               <children>
-                  <HBox id="sentencesToggleContainer" styleClass="control-container">
-                     <children>
-                         <ToggleButton id="sentencesToggle" fx:id="sentencesToggle" mnemonicParsing="false" onAction="#toggleWordsFormat" styleClass="toggle" text="Format">
-                            <HBox.margin>
-                                <Insets left="50" right="5" />
-                            </HBox.margin>
-                         </ToggleButton>
-                        <Spinner id="sentencesSpinner" fx:id="sentencesSpinner" onMouseReleased="#updateSentenceCount" styleClass="spinner" />
-                        <Slider id="randomSlider" fx:id="randomSlider" styleClass="slider" />
-                     </children>
-                  </HBox>
-                  <HBox id="resetContainer" styleClass="control-container">
-                    <Button id="resetBtn" styleClass="control-btn" onAction="#resetElements" text="Reset">
-                      <HBox.margin>
-                            <Insets left="50" top="10"/>
-                      </HBox.margin>
-                    </Button>
-                  </HBox>
-               </children>
-          </VBox>
-         </children>
-      </HBox>
-      <HBox id="navigationContainer" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
-         <children>
-             <Button id="timedBtn" mnemonicParsing="false" onAction="#displayPractice" styleClass="navigation-btn" text="Practice">
-                <HBox.margin>
-                    <Insets right="30.0" />
-                </HBox.margin>
-             </Button>
-             <Button id="homeBtn" mnemonicParsing="false" onAction="#displayHomepage" styleClass="navigation-btn" text="Home">
-                 <HBox.margin>
-                    <Insets right="30.0" />
-                 </HBox.margin>
-             </Button>
-            <Button id="statsBtn" mnemonicParsing="false" onAction="#displayStats" styleClass="navigation-btn" text="Statistics" />
-         </children>
-      </HBox>
-  </children>
-</VBox>
+                 </children>
+              </HBox>
+              <HBox id="navigationContainer" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
+                 <children>
+                     <Button id="timedBtn" mnemonicParsing="false" onAction="#displayPractice" styleClass="navigation-btn" text="Practice">
+                        <HBox.margin>
+                            <Insets right="30.0" />
+                        </HBox.margin>
+                     </Button>
+                     <Button id="homeBtn" mnemonicParsing="false" onAction="#displayHomepage" styleClass="navigation-btn" text="Home">
+                         <HBox.margin>
+                            <Insets right="30.0" />
+                         </HBox.margin>
+                     </Button>
+                    <Button id="statsBtn" mnemonicParsing="false" onAction="#displayStats" styleClass="navigation-btn" text="Statistics" />
+                 </children>
+              </HBox>
+          </children>
+        </VBox>
+    </center>
+</BorderPane>

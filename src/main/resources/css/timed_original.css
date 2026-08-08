@@ -62,8 +62,7 @@
 }
 
 .stat-label,
-.stat-value,
-#statsMessage {
+.stat-value {
     -fx-font-family: "VT323";
     -fx-font-size: 36;
 }
