@@ -24,21 +24,21 @@ import javafx.scene.paint.Color;
 import java.io.IOException;
 import java.util.List;
 import java.util.Arrays;
+import java.net.URL;
 
 /** @author Ethan Rocklin */
 
-public class TimedController {
+public class AttemptController {
     
-    // Fields
     @FXML
-    private AnchorPane timedPane;
+    private AnchorPane typingPane;
     @FXML
-    private ImageView timeImage, accuracyImage, wpmImage;
+    private ImageView accuracyImage, timeImage, wpmImage;
     @FXML
     private Label statsMessage;
     @FXML
-    private Text correctCounter, totalCounter, timeValue,
-                 accuracyValue, wpmValue, typingScore;
+    private Text correctCounter, totalCounter, accuracyValue,
+                 wpmValue, timeValue, typingScore;
     @FXML
     private TextArea wordsArea, typingArea;
     @FXML
@@ -50,15 +50,20 @@ public class TimedController {
     @FXML
     private VBox statsBox, controlBox;
     
-    private List<String> timedWords, typedWords;   
-    private boolean beganTyping = false;
+    private List<String> attemptWords, typedWords;   
+    private boolean beganTyping = false,
+                    isTimed;
     private Attempt attempt;
     
     // Initializers
     
-    // This method initializes the Timed Mode page after the page elements load.
+    // This method initializes the Practice/Timed Mode page after the page elements load.
     @FXML
     public void initialize() {
+        // P : Set "isTimed" variable first before initializing.
+        
+        
+        
         initializeWords();
         initializeUIRestrictions();
         initializeSizeBindings();
@@ -80,10 +85,10 @@ public class TimedController {
     private void initializeUIListeners() {
         // Listeners for Sliders
         randomSlider.valueProperty().addListener((obs, oldValue, newValue) -> {
-            int oldWordCount = timedWords.size(),
+            int oldWordCount = attemptWords.size(),
             newWordCount = (int) randomSlider.getValue();
             if (oldWordCount != newWordCount) {
-                updateTimedWords(newWordCount, false);
+                updateAttemptWords(newWordCount, false);
             }
         });
     }
@@ -92,8 +97,10 @@ public class TimedController {
         accuracyImage.setImage(image);
         image = new Image(getClass().getResource("/images/runner1.png").toExternalForm());
         wpmImage.setImage(image);
-        image = new Image(getClass().getResource("/images/hour_glass1.png").toExternalForm());
-        timeImage.setImage(image);
+        if (isTimed) {
+            image = new Image(getClass().getResource("/images/hour_glass1.png").toExternalForm());
+            timeImage.setImage(image);
+        }
     }
     private void initializeSizeBindings() {
         // Binds proportional size for wordsArea and other elements in the same scene
@@ -115,7 +122,7 @@ public class TimedController {
         // Disables input in Spinner objects
         sentencesSpinner.addEventFilter(KeyEvent.ANY, KeyEvent::consume);
         // Disables the user's ability to copy text
-        timedPane.addEventFilter(ContextMenuEvent.CONTEXT_MENU_REQUESTED, Event::consume);
+        typingPane.addEventFilter(ContextMenuEvent.CONTEXT_MENU_REQUESTED, Event::consume);
         wordsArea.addEventFilter(KeyEvent.KEY_PRESSED, this::blockCopyPaste);
         typingArea.addEventFilter(KeyEvent.KEY_PRESSED, this::blockCopyPaste);
     }
@@ -130,7 +137,7 @@ public class TimedController {
     }
     private void initializeUIValues() {
         // Sets counters
-        totalCounter.setText(String.valueOf(timedWords.size()));
+        totalCounter.setText(String.valueOf(attemptWords.size()));
         correctCounter.setText("0");
         // Sets Spinner values
         int min = 1, max = 6, initial = 3;
@@ -147,16 +154,16 @@ public class TimedController {
     private void initializeWords() {
         String words = WordBank.getWords(30);
         wordsArea.setText(words);
-        timedWords = createWordList(words);
+        attemptWords = createWordList(words);
     }
     
     // Methods
     
     // This methohd checks if the user completed typing the attempt's words.
     private void checkForCompletion() {
-        int totalWords = timedWords.size(),
+        int totalWords = attemptWords.size(),
             wordsTyped = typedWords.size();
-        String lastWord = timedWords.get(totalWords - 1),
+        String lastWord = attemptWords.get(totalWords - 1),
                lastTyped = typedWords.get(wordsTyped - 1);
         int lastWordLength = lastWord.length(),
             lastTypedLength = lastTyped.length();
@@ -175,12 +182,12 @@ public class TimedController {
         String typedContent = typingArea.getText();
         String[] words = typedContent.split(" ");
         typedWords = Arrays.asList(words);
-        // Checks typed words against timed words; guards against spam entries
+        // Checks typed words against practice words; guards against spam entries
         try {
             for (int i = 0; i < typedWords.size(); i++) {
-            String timedWord = timedWords.get(i),
+            String practiceWord = attemptWords.get(i),
                    typedWord = typedWords.get(i);
-            if (timedWord.equals(typedWord)) {
+            if (practiceWord.equals(typedWord)) {
                 correctCount++;
             }
         }
@@ -226,10 +233,12 @@ public class TimedController {
         typingArea.setOnKeyTyped(null);
         setStats();
         setStatsColors();
-        attempt.saveAttempt();
+        if (isTimed) {
+            attempt.saveAttempt();
+        }
     }
     
-    // This method resets required Timed Mode elements for a new attempt.
+    // This method resets required Practice/Timed Mode elements for a new attempt.
     @FXML
     private void resetElements() {
         beganTyping = false;
@@ -239,7 +248,7 @@ public class TimedController {
         typingArea.setOnKeyTyped(event -> {
             checkTypedWords();
         });
-        typingArea.setStyle("-fx-effect: dropshadow(gaussian, rgba(255,0,0), 20, 0.5, 0, 0);");
+        typingArea.setStyle("-fx-effect: dropshadow(gaussian, rgba(255,0,0,1), 20, 0.5, 0, 0);");
         // Resets practice words
         boolean sentences = sentencesToggle.isSelected();
         int count = 0;
@@ -248,17 +257,17 @@ public class TimedController {
         } else {
             count = (int) randomSlider.getValue();
         }
-        updateTimedWords(count, sentences);
+        updateAttemptWords(count, sentences);
         // Resets counters
-        totalCounter.setText(String.valueOf(timedWords.size()));
+        totalCounter.setText(String.valueOf(attemptWords.size()));
         correctCounter.setText("0");
     }
     
     // This method begins the attempt upon the first keystroke in typingArea.
     private void startAttempt() {
-            int wordCount = timedWords.size();
+            int wordCount = attemptWords.size();
             boolean sentences = sentencesToggle.isSelected();
-            attempt = new Attempt(wordCount, sentences, 'p');
+            attempt = new Attempt(wordCount, sentences, isTimed);
             beganTyping = true;
     }
     
@@ -266,8 +275,10 @@ public class TimedController {
     private void setStats() {
         // Computes and sets stats
         attempt.setCorrectWordCount(Integer.valueOf(correctCounter.getText()));
-        attempt.calculateTime();
-        timeValue.setText(attempt.getTime());
+        if (isTimed) {
+            attempt.calculateTime();
+            timeValue.setText(attempt.getTime());
+        }
         attempt.calculateAccuracy();
         accuracyValue.setText(String.valueOf(attempt.getAccuracy()) + "%");
         attempt.calculateWPM();
@@ -306,8 +317,10 @@ public class TimedController {
         blue = lerp(worstScoreB, bestScoreB, wpmProgress);
         result = String.format(style, red, green, blue);
         wpmValue.setStyle(result);
-        timeValue.setStyle(result);
-        // Computes and sets the RGB values for the Typgin Score stat
+        if (isTimed) {
+            timeValue.setStyle(result);
+        }
+        // Computes and sets the RGB values for the Typing Score stat
         red = lerp(worstScoreR, bestScoreR, typingScoreProgress);
         green = lerp(worstScoreG, bestScoreG, typingScoreProgress);
         blue = lerp(worstScoreB, bestScoreB, typingScoreProgress);
@@ -317,7 +330,7 @@ public class TimedController {
     
     @FXML
     private void setTotalWordsCounter() {
-        String count = String.valueOf(timedWords.size());
+        String count = String.valueOf(attemptWords.size());
         totalCounter.setText(count);
     }
     
@@ -329,7 +342,7 @@ public class TimedController {
         // If "Sentences" is selected
         if (sentencesToggle.isSelected()) {
             count = 3;
-            updateTimedWords(count, true);
+            updateAttemptWords(count, true);
             randomSlider.setVisible(false);
             randomSlider.setManaged(false);
             sentencesSpinner.setVisible(true);
@@ -337,7 +350,7 @@ public class TimedController {
             sentencesToggle.setText("Sentences");
         } else {
             count = 30;
-            updateTimedWords(count, false);
+            updateAttemptWords(count, false);
             sentencesToggle.setText("Random");
             sentencesSpinner.setVisible(false);
             sentencesSpinner.setManaged(false);
@@ -347,19 +360,19 @@ public class TimedController {
     }
     
     /**
-     * This method changes the practice words to random words or sentences, and
+     * This method changes the attempt's words to random words or sentences, and
      * allows the count of words or sentences to be set.
      * @param count : the number of words or sentences
      * @param sentences : if the content should be full sentences
      */
-    private void updateTimedWords(int count, boolean sentences) {
+    private void updateAttemptWords(int count, boolean sentences) {
         String words = "";
         if (sentences) {
             words = SentenceBank.getSentences(count);
         } else {
             words = WordBank.getWords(count);
         }
-        timedWords = createWordList(words);
+        attemptWords = createWordList(words);
         wordsArea.setText(words);
         typingArea.clear();
         beganTyping = false;
@@ -368,7 +381,7 @@ public class TimedController {
     
     @FXML
     private void updateSentenceCount() {
-        updateTimedWords(sentencesSpinner.getValue(), true);
+        updateAttemptWords(sentencesSpinner.getValue(), true);
     }
     
     /**
@@ -380,7 +393,7 @@ public class TimedController {
        // Style to be applied to the TextArea 
        String style = "-fx-effect: dropshadow(gaussian, rgba(%d,%d,%d), 20, 0.5, 0, 0);";
        // Variables for calculations
-       int wordCount = timedWords.size(),
+       int wordCount = attemptWords.size(),
            targetR = 0, targetG = 0, targetB = 0,
            startR = 255, startG = 0, startB = 0;
        // Gets the targeted RGB values
@@ -400,15 +413,12 @@ public class TimedController {
        typingArea.setStyle(result); 
     }
     
-    // Getters
-    
     @FXML 
     private int getSentenceCount() {
         return sentencesSpinner.getValue();
     }
-
     public int getWordCount() {
-        return timedWords.size();
+        return attemptWords.size();
     }
     public int getCorrectWordCount() {
         return Integer.valueOf(correctCounter.getText());
@@ -420,15 +430,17 @@ public class TimedController {
     private void displayHomepage() throws IOException {
         TurboType.setRoot("homepage");
     }
-    
     @FXML
     private void displayPractice() throws IOException {
         TurboType.setRoot("practice");
     } 
-    
     @FXML
     private void displayStats() throws IOException {
         TurboType.setRoot("stats");
+    }
+    @FXML
+    private void displayTimed() throws IOException {
+        TurboType.setRoot("timed");
     }
     
 }

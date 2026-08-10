@@ -34,9 +34,8 @@ public class Attempt {
     private double accuracy;
     private int wpm, wordCount, correctCount, typingScore, attemptMilli;
     private long startTimeMilli, endTimeMilli;
-    private boolean sentences;
+    private boolean sentences, isTimed;
     private String attemptTime;
-    private char mode;
     
     // Constructors
     
@@ -47,10 +46,10 @@ public class Attempt {
      * @param sentences : if the format of the attempt is full setences
      * @param mode : describes the mode the user is typing in
      */
-    public Attempt(int wordCount, boolean sentences, char mode) {
+    public Attempt(int wordCount, boolean sentences, boolean isTimed) {
         this.wordCount = wordCount;
         this.sentences = sentences;
-        this.mode = mode;
+        this.isTimed = isTimed;
         accuracy = 0;
         wpm = 0;
         correctCount = 0;
@@ -176,6 +175,9 @@ public class Attempt {
     }
     public int getMaxWPM() {
         return MAX_WPM;
+    }
+    public boolean getIsTimed() {
+        return isTimed;
     }
     public int getTypingScore() {
         return typingScore;

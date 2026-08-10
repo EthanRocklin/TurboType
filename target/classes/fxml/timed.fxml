@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/26" fx:controller="com.typingspeed.app.TimedController">
+<BorderPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/26" fx:controller="com.typingspeed.app.AttemptController">
     <top>
         <fx:include source="menu_bar.fxml"/>
     </top>
@@ -69,7 +69,7 @@
                           </Text>
                           <Label id="statsMessage" fx:id="statsMessage" />
                        </children></VBox>
-                  <AnchorPane fx:id="timedPane">
+                  <AnchorPane fx:id="typingPane">
                     <children>
                           <VBox id="timedContainer">
                              <children>

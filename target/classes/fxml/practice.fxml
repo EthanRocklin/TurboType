@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.typingspeed.app.PracticeController">
+<BorderPane xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.typingspeed.app.AttemptController">
     <top>
         <fx:include source="menu_bar.fxml" />
     </top>
@@ -57,7 +57,7 @@
                           </Text>
                           <Label id="statsMessage" fx:id="statsMessage" />
                        </children></VBox>
-                  <AnchorPane fx:id="practicePane">
+                  <AnchorPane fx:id="typingPane">
                     <children>
                           <VBox id="practiceContainer">
                              <children>
