@@ -22,7 +22,7 @@ public class Attempt {
         "One step forward...\nOne step forward...\nBoom, more improvement!",
         "Keep the ball rolling!",
         "Now you're getting it.\nLook at those fingers go!",
-        "You're on your way to greatness.\nKeep up the good work!",
+        "You're on the way to greatness.\nKeep up the good work!",
         "Greatness called...\nIt's wondering where you're at!",
         "Look how much you've improved!\nThat's quite the spectacle!",
         "Just a little more accurate\nand you'll be bumped up!",

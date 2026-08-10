@@ -135,11 +135,11 @@
 }
 
 #wordsArea {
-    -fx-effect: dropshadow(gaussian, -fx-tron, 20, 0.5, 0, 0);
+    -fx-effect: dropshadow(gaussian, -fx-tron, 15, 0.5, 0, 0);
 }
 
 #typingArea {
-    -fx-effect: dropshadow(gaussian, -fx-tron, 20, 0.5, 0, 0);
+    -fx-effect: dropshadow(gaussian, -fx-tron, 15, 0.5, 0, 0);
     -fx-prompt-text-fill: -fx-tron;
 
 }
@@ -264,7 +264,7 @@
     -fx-pref-height: 60;
     -fx-padding: 0;
     -fx-font-size: 50;
-    -fx-effect: dropshadow(gaussian, -fx-tron, 20, 0.5, 0, 0);
+    -fx-effect: dropshadow(gaussian, -fx-tron, 15, 0.5, 0, 0);
     -fx-padding: 0;
     -fx-cursor: hand;
     -fx-font-family: "VT323";

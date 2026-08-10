@@ -6,6 +6,7 @@
     -fx-correct-label: #77fc7b;
     -fx-navigation-background: #e8e8e8;
     -fx-navigation-text: #000000;
+    -fx-navigation-shadow: #a550ff;
     -fx-reset-button: #ff9191;
     -fx-reset-button-text: #000000;
     -fx-slider-axis: #c58fff;
@@ -154,11 +155,11 @@
 }
 
 #wordsArea {
-    -fx-effect: dropshadow(gaussian, rgba(119,255,123,0.5), 20, 0.5, 0, 0);
+    -fx-effect: dropshadow(gaussian, rgb(119,255,123), 15, 0.5, 0, 0);
 }
 
 #typingArea {
-    -fx-effect: dropshadow(gaussian, rgba(255,0,0,0.5), 20, 0.5, 0, 0);
+    -fx-effect: dropshadow(gaussian, rgb(255,0,0), 15, 0.5, 0, 0);
 
 }
 
@@ -283,7 +284,7 @@
     -fx-pref-height: 60;
     -fx-padding: 0;
     -fx-font-size: 50;
-    -fx-effect: dropshadow(gaussian, rgba(165,80,255,0.5), 20, 0.5, 0, 0);
+    -fx-effect: dropshadow(gaussian, -fx-navigation-shadow, 15, 0.5, 0, 0);
     -fx-padding: 0;
     -fx-cursor: hand;
     -fx-font-family: "VT323";

@@ -1,3 +1,7 @@
+.root {
+    -fx-navigation-shadow: #a550ff;
+}
+
 #masterContainer {
     -fx-background-color: #1a1a1c;
     -fx-min-width: 100%;
@@ -32,6 +36,6 @@
     -fx-padding: 0;
     -fx-font-family: "VT323";
     -fx-font-size: 50;
-    -fx-effect: dropshadow(gaussian, rgba(255,0,0,0.5), 20, 0.5, 0, 0);
+    -fx-effect: dropshadow(gaussian, -fx-navigation-shadow, 15, 0.5, 0, 0);
     -fx-cursor: hand;
 }

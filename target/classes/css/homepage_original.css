@@ -3,6 +3,7 @@
     -fx-background: #1a1a1c;
     -fx-navigation-background: #e8e8e8;
     -fx-navigation-text: #000000;
+    -fx-navigation-shadow: #a550ff;
     -fx-title: #f79e45;
 }
 
@@ -39,5 +40,5 @@
     -fx-padding: 0;
     -fx-font-family: "VT323";
     -fx-font-size: 50;
-    -fx-effect: dropshadow(gaussian, rgba(165,80,255,0.5), 20, 0.5, 0, 0);
+    -fx-effect: dropshadow(gaussian, -fx-navigation-shadow, 15, 0.5, 0, 0);
 }
