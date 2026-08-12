@@ -1,13 +1,13 @@
 /* Colors for all the elements */
 .root {
     -fx-menu-bar-background: #382a1b;
-    -fx-menu-colorbox-arrow: #f8bdff;
+    -fx-menu-colorbox-arrow: #ffe978;
     -fx-menu-colorbox-background: #57422c;
     -fx-menu-dropdown: #382a1b;
-    -fx-menu-hover: #f8bdff;
+    -fx-menu-hover: #ffe978;
     -fx-menu-hover-text: #382a1b;
-    -fx-menu-item-hover: #f8bdff;
-    -fx-menu-text: #f8bdff;
+    -fx-menu-item-hover: #ffe978;
+    -fx-menu-text: #ffe978;
 }
 
 #menuBar {

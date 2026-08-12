@@ -3,6 +3,7 @@
     -fx-primary: #000000;
     -fx-tron: #00ffff;
     -fx-dark-gray: #141414;
+    -fx-gray: #404040;
 }
 
 #masterContainer {
@@ -168,6 +169,24 @@
     -fx-text-alignment: center;
 }
 
+.toggle:pressed {
+    -fx-scale-x: 0.98;
+    -fx-scale-y: 0.98;
+}
+
+.toggle:pressed,
+.spinner .increment-arrow-button:pressed,
+.spinner .decrement-arrow-button:pressed,
+#resetBtn:pressed {
+    -fx-background-color: -fx-tron;
+    -fx-text-fill: -fx-primary;
+}
+
+.spinner .increment-arrow-button:pressed .increment-arrow,
+.spinner .decrement-arrow-button:pressed .decrement-arrow {
+    -fx-background-color: -fx-primary;
+}
+
 .toggle, .spinner, .control-btn {
     -fx-border-width: 3;
     -fx-border-radius: 0;
@@ -190,6 +209,10 @@
 
 .slider .thumb {
     -fx-background-color: -fx-dark-gray;
+}
+
+.slider .thumb:pressed {
+    -fx-background-color: -fx-gray;
 }
 
 .slider .track {
@@ -269,4 +292,11 @@
     -fx-cursor: hand;
     -fx-font-family: "VT323";
     -fx-text-alignment: center;
+}
+
+.navigation-btn:pressed {
+    -fx-background-color: -fx-tron;
+    -fx-text-fill: -fx-primary;
+    -fx-scale-x: 0.98;
+    -fx-scale-y: 0.98;
 }

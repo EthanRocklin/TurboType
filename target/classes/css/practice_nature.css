@@ -6,18 +6,22 @@
     -fx-controls-border: #382a1b;
     -fx-correct-label: #ffe978;
     -fx-navigation-background: #ffe978;
+    -fx-navigation-background-pressed: #f5a6ff;
     -fx-navigation-text: #3d2f27;
     -fx-navigation-shadow: #f8bdff;
     -fx-prompt-text: #f8bdff;
     -fx-reset-button: #f8bdff;
+    -fx-reset-button-pressed: #f499ff;
     -fx-reset-button-text: #382a1b;
-    -fx-slider-axis: #f8bdff;
-    -fx-slider-ticks: #f8bdff;
-    -fx-slider-minor-ticks: #f8bdff;
-    -fx-slider-track: #f8bdff;
+    -fx-slider-axis: #fff2b0;
+    -fx-slider-ticks: #fff2b0;
+    -fx-slider-minor-ticks: #fff2b0;
+    -fx-slider-track: #fff2b0;
     -fx-slider-thumb: #382a1b;
-    -fx-spinner-arrows: #f8bdff;
+    -fx-slider-thumb-pressed: #f6a6ff;
+    -fx-spinner-arrows: #fff2b0;
     -fx-spinner-arrow-button: #382a1b;
+    -fx-spinner-arrow-button-pressed: #61492f;
     -fx-spinner-background: #fff2b0;
     -fx-stats-label: #f5a6ff;
     -fx-stats-message: #f5a6ff;
@@ -27,6 +31,7 @@
     -fx-text-area-shadow: #fff199;
     -fx-title: #f8bdff;
     -fx-toggle-background: #fff2b0;
+    -fx-toggle-background-pressed: #e8d887;
     -fx-total-label:  #ffe978;
     -fx-typing-score-label: #f5a6ff;
 }
@@ -195,6 +200,12 @@
     -fx-text-alignment: center;
 }
 
+.toggle:pressed {
+    -fx-background-color: -fx-toggle-background-pressed;
+    -fx-scale-x: 0.98;
+    -fx-scale-y: 0.98;
+}
+
 .toggle, .spinner, .control-btn {
     -fx-border-width: 3;
     -fx-border-radius: 0;
@@ -220,6 +231,10 @@
 
 .slider .thumb {
     -fx-background-color: -fx-slider-thumb;
+}
+
+.slider .thumb:pressed {
+    -fx-background-color: -fx-slider-thumb-pressed;
 }
 
 .slider .axis {
@@ -258,6 +273,11 @@
     -fx-background-radius: 0;
 }
 
+.spinner .increment-arrow-button:pressed,
+.spinner .decrement-arrow-button:pressed {
+    -fx-background-color: -fx-spinner-arrow-button-pressed;
+}
+
 .spinner .increment-arrow,
 .spinner .decrement-arrow {
     -fx-scale-x: 0.7;
@@ -275,6 +295,12 @@
     -fx-text-alignment: center;
     -fx-text-fill: -fx-reset-button-text;
     -fx-cursor: hand;
+}
+
+#resetBtn:pressed {
+    -fx-background-color: -fx-reset-button-pressed;
+    -fx-scale-x: 0.98;
+    -fx-scale-y: 0.98;
 }
 
 /* Styles for the navigation area */
@@ -297,4 +323,10 @@
     -fx-cursor: hand;
     -fx-font-family: "VT323";
     -fx-text-alignment: center;
+}
+
+.navigation-btn:pressed {
+    -fx-background-color: -fx-navigation-background-pressed;
+    -fx-scale-x: 0.98;
+    -fx-scale-y: 0.98;
 }

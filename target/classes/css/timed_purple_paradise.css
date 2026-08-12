@@ -9,13 +9,15 @@
     -fx-navigation-shadow: #a550ff;
     -fx-navigation-text: #000000;
     -fx-prompt-text: #474747;
-    -fx-reset-button: #a550ff;
+    -fx-reset-button: #b36bff;
+    -fx-reset-button-pressed: #9938ff;
     -fx-reset-button-text: #000000;
     -fx-slider-axis: #000000;
     -fx-slider-ticks: #000000;
     -fx-slider-minor-ticks: #000015;
     -fx-slider-track: #a550ff;
     -fx-slider-thumb: #000000;
+    -fx-slider-thumb-pressed: #5700b3;
     -fx-spinner-arrows: #a550ff;
     -fx-spinner-arrow-button: #e8e8e8;
     -fx-spinner-background: #e8e8e8;
@@ -27,6 +29,7 @@
     -fx-text-area-shadow: #a550ff;
     -fx-title: #a550ff;
     -fx-toggle-background: #e8e8e8;
+    -fx-toggle-background-pressed: #d3b7eb;
     -fx-total-label: #a550ff;
     -fx-typing-score-label: #a550ff;
 }
@@ -196,6 +199,12 @@
     -fx-text-alignment: center;
 }
 
+.toggle:pressed {
+    -fx-background-color: -fx-toggle-background-pressed;
+    -fx-scale-x: 0.98;
+    -fx-scale-y: 0.98;
+}
+
 .toggle, .spinner, .control-btn {
     -fx-border-width: 2;
     -fx-border-radius: 0;
@@ -221,6 +230,10 @@
 
 .slider .thumb {
     -fx-background-color: -fx-slider-thumb;
+}
+
+.slider .thumb:pressed {
+    -fx-background-color: -fx-slider-thumb-pressed;
 }
 
 .slider .axis {
@@ -259,6 +272,16 @@
     -fx-background-radius: 0;
 }
 
+.spinner .increment-arrow-button:pressed,
+.spinner .decrement-arrow-button:pressed {
+    -fx-background-color: -fx-spinner-arrows;
+}
+
+.spinner .increment-arrow-button:pressed .increment-arrow,
+.spinner .decrement-arrow-button:pressed .decrement-arrow {
+    -fx-background-color: -fx-controls-border;
+}
+
 .spinner .increment-arrow,
 .spinner .decrement-arrow {
     -fx-scale-x: 0.7;
@@ -276,6 +299,12 @@
     -fx-text-alignment: center;
     -fx-text-fill: -fx-reset-button-text;
     -fx-cursor: hand;
+}
+
+#resetBtn:pressed {
+    -fx-background-color: -fx-reset-button-pressed;
+    -fx-scale-x: 0.98;
+    -fx-scale-y: 0.98;
 }
 
 /* Styles for the navigation area */
@@ -298,4 +327,11 @@
     -fx-cursor: hand;
     -fx-font-family: "VT323";
     -fx-text-alignment: center;
+}
+
+.navigation-btn:pressed {
+    -fx-background-color: -fx-navigation-shadow;
+    -fx-text-fill: #f5f5f5;
+    -fx-scale-x: 0.98;
+    -fx-scale-y: 0.98;
 }

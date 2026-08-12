@@ -390,7 +390,7 @@ public class AttemptController {
     @FXML
     private void updateTypingShadowColor(int correctCount) {
        // Style to be applied to the TextArea 
-       String style = "-fx-effect: dropshadow(gaussian, rgba(%d,%d,%d), 20, 0.5, 0, 0);";
+       String style = "-fx-effect: dropshadow(gaussian, rgba(%d,%d,%d), 15, 0.5, 0, 0);";
        // Variables for calculations
        int wordCount = attemptWords.size(),
            targetR = 0, targetG = 0, targetB = 0,
