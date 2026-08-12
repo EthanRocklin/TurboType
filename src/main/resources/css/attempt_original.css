@@ -1,13 +1,40 @@
 /* Colors for all the elements */
 .root {
-    -fx-primary: #000000;
-    -fx-tron: #00ffff;
-    -fx-dark-gray: #141414;
-    -fx-gray: #404040;
+    -fx-accent: #f5d6af;
+    -fx-background: #1a1a1c;
+    -fx-controls-border: #000000;
+    -fx-correct-label: #77fc7b;
+    -fx-navigation-background: #e8e8e8;
+    -fx-navigation-background-pressed: #c9c9c9;
+    -fx-navigation-text: #000000;
+    -fx-navigation-shadow: #a550ff;
+    -fx-reset-button: #ff9191;
+    -fx-reset-button-pressed: #ff7575;
+    -fx-reset-button-text: #000000;
+    -fx-slider-axis: #c58fff;
+    -fx-slider-ticks: #c58fff;
+    -fx-slider-minor-ticks: #e4c9ff;
+    -fx-slider-track: #f5d6af;
+    -fx-slider-thumb: #844cc2;
+    -fx-slider-thumb-pressed: #b878ff;
+    -fx-spinner-arrows: #f5d6af;
+    -fx-spinner-arrow-button: #000000;
+    -fx-spinner-arrow-button-pressed: #303030;
+    -fx-spinner-background: #f5d6af;
+    -fx-stats-label: #ffffff;
+    -fx-stats-message: #ffffff;
+    -fx-text-area: #09090a;
+    -fx-text-area-text: #ffffff;
+    -fx-text-area-border: #09090a;
+    -fx-title: #f79e45;
+    -fx-toggle-background: #f5d6af;
+    -fx-toggle-background-pressed: #d9be9c;
+    -fx-total-label:  #ffffff;
+    -fx-typing-score-label: #ffffff;
 }
 
 #masterContainer {
-    -fx-background-color: -fx-primary;
+    -fx-background-color: -fx-background;
 }
 
 #masterControlContainer {
@@ -16,7 +43,7 @@
 }
 
 #title {
-    -fx-fill: -fx-tron;
+    -fx-fill: -fx-title;
     -fx-font-family: "VT323";
     -fx-font-size: 120;
 }
@@ -41,16 +68,14 @@
 }
 
 .stat-label,
-.stat-value {
-    -fx-font-family: "VT323";
-    -fx-font-size: 36;
-    -fx-fill: -fx-tron;
-}
-
+.stat-value,
 #statsMessage {
     -fx-font-family: "VT323";
     -fx-font-size: 36;
-    -fx-text-fill: -fx-tron;
+}
+
+.stat-label {
+    -fx-fill: -fx-stats-label;
 }
 
 .typing-score-info {
@@ -58,7 +83,7 @@
 }
 
 #typingScoreLabel {
-    -fx-fill: -fx-tron;
+    -fx-fill: -fx-typing-score-label;
     -fx-font-size: 42;
     -fx-underline: true;
 }
@@ -68,14 +93,14 @@
 }
 
 #statsMessage {
-    -fx-fill: -fx-tron;
+    -fx-fill: -fx-stats-message;
     -fx-text-alignment: center;
     -fx-wrap-text: true;
 }
 
 /* Styles for the Practice Mode area */
 
-#practiceContainer {
+#attemptContainer {
     -fx-alignment: center;
 }
 
@@ -91,17 +116,17 @@
 }
 
 #totalLabel, .counter {
-    -fx-fill: -fx-tron;
+    -fx-fill: -fx-total-label;
 }
 
 #correctLabel {
-    -fx-fill: -fx-tron;
+    -fx-fill: -fx-correct-label;
 }
 
 .text-area,
 .text-area .content,
 .text-area .viewport {
-    -fx-background-color: -fx-dark-gray;
+    -fx-background-color: -fx-text-area;
     -fx-background-radius: 5;
     -fx-background-insets: 0;
 }
@@ -109,17 +134,17 @@
 .text-area {
     -fx-focus-traversable: false;
     -fx-pref-width: 500;
-    -fx-border-color: -fx-primary;
+    -fx-border-color: -fx-text-area-border;
     -fx-border-radius: 5;
     -fx-border-insets: 0;
     -fx-font-size: 24;
-    -fx-text-fill: -fx-tron;
+    -fx-text-fill: -fx-text-area-text;
     -fx-cursor: text;
     -fx-wrap-text: true;
 }
 
 .text-area .content {
-    -fx-background-color: -fx-dark-gray;
+    -fx-background-color: -fx-text-area;
     -fx-background-radius: 5;
     -fx-background-insets: 0;
 }
@@ -136,12 +161,11 @@
 }
 
 #wordsArea {
-    -fx-effect: dropshadow(gaussian, -fx-tron, 15, 0.5, 0, 0);
+    -fx-effect: dropshadow(gaussian, #77ff7b, 15, 0.5, 0, 0);
 }
 
 #typingArea {
-    -fx-effect: dropshadow(gaussian, -fx-tron, 15, 0.5, 0, 0);
-    -fx-prompt-text-fill: -fx-tron;
+    -fx-effect: dropshadow(gaussian, #ff0000, 15, 0.5, 0, 0);
 
 }
 
@@ -163,38 +187,25 @@
     -fx-pref-width: 120;
     -fx-pref-height: 36;
     -fx-padding: 0;
-    -fx-background-color: -fx-primary;
+    -fx-background-color: -fx-toggle-background;
     -fx-cursor: hand;
     -fx-font-family: "VT323";
     -fx-text-alignment: center;
 }
 
 .toggle:pressed {
+    -fx-background-color: -fx-toggle-background-pressed;
     -fx-scale-x: 0.98;
     -fx-scale-y: 0.98;
-}
-
-.toggle:pressed,
-.spinner .increment-arrow-button:pressed,
-.spinner .decrement-arrow-button:pressed,
-#resetBtn:pressed {
-    -fx-background-color: -fx-tron;
-    -fx-text-fill: -fx-primary;
-}
-
-.spinner .increment-arrow-button:pressed .increment-arrow,
-.spinner .decrement-arrow-button:pressed .decrement-arrow {
-    -fx-background-color: -fx-primary;
 }
 
 .toggle, .spinner, .control-btn {
     -fx-border-width: 3;
     -fx-border-radius: 0;
     -fx-border-insets: 0;
-    -fx-border-color: -fx-tron;
+    -fx-border-color: -fx-controls-border;
     -fx-background-radius: 0;
     -fx-background-insets: 0;
-    -fx-text-fill: -fx-tron;
 }
 
 #randomSlider {
@@ -207,25 +218,28 @@
     -fx-pref-width: 200;
 }
 
+.slider .track {
+    -fx-background-color: -fx-slider-track;
+}
+
 .slider .thumb {
-    -fx-background-color: -fx-dark-gray;
+    -fx-background-color: -fx-slider-thumb;
 }
 
 .slider .thumb:pressed {
-    -fx-background-color: -fx-gray;
+    -fx-background-color: -fx-slider-thumb-pressed;
 }
 
-.slider .track {
-    -fx-background-color: -fx-tron;
+.slider .axis {
+    -fx-tick-label-fill: -fx-slider-axis;
 }
 
-.slider > .axis {
-    -fx-tick-label-fill: -fx-tron;
+.slider .axis-tick-mark {
+    -fx-stroke: -fx-slider-ticks;
 }
 
-.slider > .axis > .axis-tick-mark,
-.slider > .axis > .axis-minor-tick-mark {
-    -fx-stroke: -fx-tron;
+.slider .axis-minor-tick-mark {
+    -fx-stroke: -fx-slider-minor-ticks;
 }
 
 .spinner {
@@ -233,15 +247,15 @@
     -fx-padding: 0;
     -fx-font-family: "VT323";
     -fx-font-size: 24;
-    -fx-border-color: -fx-tron;
+    -fx-border-color: -fx-controls-border;
+    -fx-background-color: -fx-spinner-background;
 }
 
 .spinner .text-field {
     -fx-pref-height: 30;
     -fx-background-radius: 0;
     -fx-background-insets: 0;
-    -fx-text-fill: -fx-tron;
-    -fx-background-color: -fx-primary;
+    -fx-background-color: -fx-spinner-background;
 }
 
 .spinner .increment-arrow-button,
@@ -249,27 +263,38 @@
     -fx-padding: 0 5 0 5;
     -fx-pref-height: 18;
     -fx-cursor: hand;
-    -fx-background-color: -fx-primary;
+    -fx-background-color: -fx-spinner-arrow-button;
     -fx-background-radius: 0;
+}
+
+.spinner .increment-arrow-button:pressed,
+.spinner .decrement-arrow-button:pressed {
+    -fx-background-color: -fx-spinner-arrow-button-pressed;
 }
 
 .spinner .increment-arrow,
 .spinner .decrement-arrow {
     -fx-scale-x: 0.7;
     -fx-scale-y: 0.7;
-    -fx-background-color: -fx-tron;
+    -fx-background-color: -fx-spinner-arrows;
 }
 
 #resetBtn {
     -fx-pref-width: 120;
     -fx-min-height: 36;
-    -fx-background-color: -fx-primary;
+    -fx-background-color: -fx-reset-button;
     -fx-font-family: "VT323";
     -fx-font-size: 24;
     -fx-padding: 0;
     -fx-text-alignment: center;
-    -fx-text-fill: -fx-tron;
+    -fx-text-fill: -fx-reset-button-text;
     -fx-cursor: hand;
+}
+
+#resetBtn:pressed {
+    -fx-background-color: -fx-reset-button-pressed;
+    -fx-scale-x: 0.98;
+    -fx-scale-y: 0.98;
 }
 
 /* Styles for the navigation area */
@@ -281,13 +306,13 @@
 }
 
 .navigation-btn {
-    -fx-background-color: -fx-primary;
-    -fx-text-fill: -fx-tron;
+    -fx-background-color: -fx-navigation-background;
+    -fx-text-fill: -fx-navigation-text;
     -fx-pref-width: 250;
     -fx-pref-height: 60;
     -fx-padding: 0;
     -fx-font-size: 50;
-    -fx-effect: dropshadow(gaussian, -fx-tron, 15, 0.5, 0, 0);
+    -fx-effect: dropshadow(gaussian, -fx-navigation-shadow, 15, 0.5, 0, 0);
     -fx-padding: 0;
     -fx-cursor: hand;
     -fx-font-family: "VT323";
@@ -295,8 +320,7 @@
 }
 
 .navigation-btn:pressed {
-    -fx-background-color: -fx-tron;
-    -fx-text-fill: -fx-primary;
+    -fx-background-color: -fx-navigation-background-pressed;
     -fx-scale-x: 0.98;
     -fx-scale-y: 0.98;
 }

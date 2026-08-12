@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.scene.text.Font;
 import java.io.IOException;
+import java.net.URL;
 
 /**
  * Turbo Type starting point
@@ -15,7 +16,7 @@ import java.io.IOException;
 public class TurboType extends Application {
 
     private static Scene scene;
-    private static String fxml, theme, tronColor;
+    private static String currentFXML, currentTheme, tronColor;
 
     @Override
     public void start(Stage stage) {
@@ -23,9 +24,9 @@ public class TurboType extends Application {
             loadFonts();
             loadWords();
             loadSentences();
-            fxml = "homepage";
-            theme = "original";
-            scene = new Scene(loadFXML(fxml), 640, 480);
+            currentFXML = "homepage";
+            currentTheme = "original";
+            scene = new Scene(loadFXML(currentFXML), 640, 480);
             scene.getStylesheets().add(getClass().getResource("/css/homepage_original.css").toExternalForm());
             scene.getStylesheets().add(getClass().getResource("/css/menu_bar_original.css").toExternalForm());
             stage.setScene(scene);
@@ -41,18 +42,25 @@ public class TurboType extends Application {
         try {
             Parent root = loadFXML(fxml);
             // Sets the fxml and theme for the app
-            TurboType.fxml = fxml;
+            currentFXML = fxml;
             scene.getStylesheets().clear();
             // Sets the styles for the FXML file
-            var cssUrl = TurboType.class.getResource("/css/" + fxml + "_" + theme + ".css");
-            var menuBarCssURL = TurboType.class.getResource("/css/menu_bar" + "_" + theme + ".css");
+            URL cssUrl = null;
+            // The Practice and Timed FXML files have the same style structure "attempt_<theme>.css"
+            System.out.println("FXML : " + currentFXML);
+            if (currentFXML.equals("practice") || currentFXML.equals("timed")) {
+                cssUrl = TurboType.class.getResource("/css/attempt_" + currentTheme + ".css");
+            } else {
+                cssUrl = TurboType.class.getResource("/css/" + currentFXML + "_" + currentTheme + ".css");
+            }
+            URL menuBarCssURL = TurboType.class.getResource("/css/menu_bar" + "_" + currentTheme + ".css");
             if (cssUrl != null) {
                 scene.getStylesheets().add(cssUrl.toExternalForm());
                 scene.getStylesheets().add(menuBarCssURL.toExternalForm());
             }
             scene.setRoot(loadFXML(fxml));
             // Maintains the Tron color of the previous page if Tron is the theme
-            if (theme.equals("tron")) {
+            if (currentTheme.equals("tron")) {
                 changeThemeColor(tronColor);
             }
         } catch (IOException e) {
@@ -62,11 +70,17 @@ public class TurboType extends Application {
     
     // This method sets the stylesheets for the scene based on the theme recieved.
     public static void changeTheme(String newTheme) {
-        TurboType.theme = newTheme;
+        currentTheme = newTheme;
         // Clears existing stylesheets and adds new stylesheets
         scene.getStylesheets().clear();
-        var cssUrl = TurboType.class.getResource("/css/" + fxml + "_" + theme + ".css");
-        var menuBarCssURL = TurboType.class.getResource("/css/menu_bar" + "_" + theme + ".css");
+        URL cssUrl = null;
+        // The Practice and Timed FXML files have the same style structure "attempt_<theme>.css"
+        if (currentFXML.equals("practice") || currentFXML.equals("timed")) {
+            cssUrl = TurboType.class.getResource("/css/attempt_" + currentTheme + ".css");
+        } else {
+            cssUrl = TurboType.class.getResource("/css/" + currentFXML + "_" + currentTheme + ".css");
+        }
+        URL menuBarCssURL = TurboType.class.getResource("/css/menu_bar" + "_" + currentTheme + ".css");
         if (cssUrl != null) {
             scene.getStylesheets().add(cssUrl.toExternalForm());
             scene.getStylesheets().add(menuBarCssURL.toExternalForm());

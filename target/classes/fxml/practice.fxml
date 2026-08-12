@@ -59,7 +59,7 @@
                        </children></VBox>
                   <AnchorPane fx:id="typingPane">
                     <children>
-                          <VBox id="practiceContainer">
+                          <VBox id="attemptContainer">
                              <children>
                                  <Text fx:id="title" id="title" text="Practice Mode">
                                      <VBox.margin>

@@ -1,39 +1,37 @@
 /* Colors for all the elements */
 .root {
-    -fx-accent: #f5a6ff;
-    -fx-background: #31663f;
-    -fx-counter-value: #f5a6ff;
-    -fx-controls-border: #382a1b;
-    -fx-correct-label: #ffe978;
-    -fx-navigation-background: #ffe978;
-    -fx-navigation-background-pressed: #f5a6ff;
-    -fx-navigation-text: #3d2f27;
-    -fx-navigation-shadow: #f8bdff;
-    -fx-prompt-text: #f8bdff;
-    -fx-reset-button: #f8bdff;
-    -fx-reset-button-pressed: #f499ff;
-    -fx-reset-button-text: #382a1b;
-    -fx-slider-axis: #fff2b0;
-    -fx-slider-ticks: #fff2b0;
-    -fx-slider-minor-ticks: #fff2b0;
-    -fx-slider-track: #fff2b0;
-    -fx-slider-thumb: #382a1b;
-    -fx-slider-thumb-pressed: #f6a6ff;
-    -fx-spinner-arrows: #fff2b0;
-    -fx-spinner-arrow-button: #382a1b;
-    -fx-spinner-arrow-button-pressed: #61492f;
-    -fx-spinner-background: #fff2b0;
-    -fx-stats-label: #f5a6ff;
-    -fx-stats-message: #f5a6ff;
-    -fx-text-area: #423321;
-    -fx-text-area-text: #fffddb;
-    -fx-text-area-border: #f8bdff;
-    -fx-text-area-shadow: #fff199;
-    -fx-title: #f8bdff;
-    -fx-toggle-background: #fff2b0;
-    -fx-toggle-background-pressed: #e8d887;
-    -fx-total-label:  #ffe978;
-    -fx-typing-score-label: #f5a6ff;
+    -fx-accent: #a550ff;
+    -fx-background: #f5f5f5;
+    -fx-counter-value: #000000;
+    -fx-controls-border: #000000;
+    -fx-correct-label: #a550ff;
+    -fx-navigation-background: #e8e8e8;
+    -fx-navigation-shadow: #a550ff;
+    -fx-navigation-text: #000000;
+    -fx-prompt-text: #474747;
+    -fx-reset-button: #b36bff;
+    -fx-reset-button-pressed: #9938ff;
+    -fx-reset-button-text: #000000;
+    -fx-slider-axis: #000000;
+    -fx-slider-ticks: #000000;
+    -fx-slider-minor-ticks: #000015;
+    -fx-slider-track: #a550ff;
+    -fx-slider-thumb: #000000;
+    -fx-slider-thumb-pressed: #5700b3;
+    -fx-spinner-arrows: #a550ff;
+    -fx-spinner-arrow-button: #e8e8e8;
+    -fx-spinner-background: #e8e8e8;
+    -fx-stats-label: #000000;
+    -fx-stats-message: #a550ff;
+    -fx-text-area: #e8e8e8;
+    -fx-text-area-text: #000000;
+    -fx-text-area-border: #a550ff;
+    -fx-text-area-shadow: #a550ff;
+    -fx-title: #a550ff;
+    -fx-toggle-background: #e8e8e8;
+    -fx-toggle-background-pressed: #d3b7eb;
+    -fx-total-label: #a550ff;
+    -fx-typing-score-label: #a550ff;
 }
 
 #masterContainer {
@@ -96,14 +94,14 @@
 }
 
 #statsMessage {
-    -fx-text-fill: -fx-stats-message;
+    -fx-fill: -fx-stats-message;
     -fx-text-alignment: center;
     -fx-wrap-text: true;
 }
 
 /* Styles for the Practice Mode area */
 
-#practiceContainer {
+#attemptContainer {
     -fx-alignment: center;
 }
 
@@ -174,6 +172,7 @@
 #typingArea {
     -fx-effect: dropshadow(gaussian, -fx-text-area-shadow, 15, 0.5, 0, 0);
     -fx-prompt-text-fill: -fx-prompt-text;
+
 }
 
 /* Styles for the control box and controls */
@@ -207,7 +206,7 @@
 }
 
 .toggle, .spinner, .control-btn {
-    -fx-border-width: 3;
+    -fx-border-width: 2;
     -fx-border-radius: 0;
     -fx-border-insets: 0;
     -fx-border-color: -fx-controls-border;
@@ -275,7 +274,12 @@
 
 .spinner .increment-arrow-button:pressed,
 .spinner .decrement-arrow-button:pressed {
-    -fx-background-color: -fx-spinner-arrow-button-pressed;
+    -fx-background-color: -fx-spinner-arrows;
+}
+
+.spinner .increment-arrow-button:pressed .increment-arrow,
+.spinner .decrement-arrow-button:pressed .decrement-arrow {
+    -fx-background-color: -fx-controls-border;
 }
 
 .spinner .increment-arrow,
@@ -313,7 +317,7 @@
 
 .navigation-btn {
     -fx-background-color: -fx-navigation-background;
-    -fx-text-fill: -fx-navigation-text;
+    -fx-text-fill: #000000;
     -fx-pref-width: 250;
     -fx-pref-height: 60;
     -fx-padding: 0;
@@ -326,7 +330,8 @@
 }
 
 .navigation-btn:pressed {
-    -fx-background-color: -fx-navigation-background-pressed;
+    -fx-background-color: -fx-navigation-shadow;
+    -fx-text-fill: #f5f5f5;
     -fx-scale-x: 0.98;
     -fx-scale-y: 0.98;
 }
