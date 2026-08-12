@@ -1,0 +1,44 @@
+/* Colors for all the elements */
+.root {
+    -fx-background: #31663f;
+    -fx-navigation-background: #ffe978;
+    -fx-navigation-text: #3d2f27;
+    -fx-navigation-shadow: #f5a6ff;
+    -fx-title: #f8bdff;
+}
+
+/* Styles for the page content */
+
+#homepageContainer {
+    -fx-background-color: -fx-background;
+    -fx-alignment: center;
+    -fx-min-width: 100%;
+    -fx-min-height: 100%;
+    -fx-pref-width: 100%;
+    -fx-pref-height: 100%;
+}
+
+.home-title {
+    -fx-fill: -fx-title;
+    -fx-alignment: center;
+    -fx-font-family: "VT323";
+    -fx-font-size: 120;
+}
+
+#typeTitle {
+    -fx-padding: 0 0 200 0;
+}
+
+.navigation-btn {
+    -fx-background-color: -fx-navigation-background;
+    -fx-text-fill: -fx-navigation-text;
+    -fx-text-alignment: center;
+    -fx-alignment: center;
+    -fx-cursor: hand;
+    -fx-pref-width: 250;
+    -fx-pref-height: 60;
+    -fx-padding: 0;
+    -fx-font-family: "VT323";
+    -fx-font-size: 50;
+    -fx-effect: dropshadow(gaussian, -fx-navigation-shadow, 15, 0.5, 0, 0);
+}

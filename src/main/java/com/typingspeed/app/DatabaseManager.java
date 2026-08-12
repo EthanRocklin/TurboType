@@ -6,9 +6,8 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-/**
- * @author Ethan Rocklin
- */
+/** @author Ethan Rocklin */
+
 public class DatabaseManager {
     
     // Fields

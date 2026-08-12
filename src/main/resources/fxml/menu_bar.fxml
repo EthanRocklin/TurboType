@@ -36,7 +36,7 @@
             <Menu styleClass="menu" text="Theme">
                 <items>
                     <MenuItem fx:id="originalOption" styleClass="menu-item" onAction="#handleThemeChange" mnemonicParsing="false" text="Original"/>
-                    <MenuItem fx:id="motherNatureOption" styleClass="menu-item" onAction="#handleThemeChange" mnemonicParsing="false" text="Mother Nature"/>
+                    <MenuItem fx:id="motherNatureOption" styleClass="menu-item" onAction="#handleThemeChange" mnemonicParsing="false" text="Nature"/>
                     <MenuItem fx:id="purpleParadiseOption" styleClass="menu-item" onAction="#handleThemeChange" mnemonicParsing="false" text="Purple Paradise"/>
                     <CustomMenuItem fx:id="tronOption" styleClass="menu-item">
                         <content>

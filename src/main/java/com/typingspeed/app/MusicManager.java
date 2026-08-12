@@ -17,11 +17,16 @@ public class MusicManager {
     private MediaPlayer mediaPlayer;
     
     public MusicManager(String genre) {
-        Media media = new Media(getResourceURI(genre));
-        mediaPlayer = new MediaPlayer(media);
-        mediaPlayer.setOnError(() -> {
-           System.out.println("MediaPlayer ERROR : " + mediaPlayer.getError()); 
+        try {
+            Media media = new Media(getResourceURI(genre));
+            mediaPlayer = new MediaPlayer(media);
+            mediaPlayer.setOnError(() -> {
+                System.out.println("MediaPlayer ERROR : " + mediaPlayer.getError()); 
         });
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            e.printStackTrace();
+        }
     }
     
     /**
@@ -62,15 +67,22 @@ public class MusicManager {
     
     // This method gets a new song ready to be played.
     public void readyNewSong(String genre) {
-        mediaPlayer.pause();
-        Media media = new Media(getResourceURI(genre));
-        mediaPlayer = new MediaPlayer(media);
+        try {
+            mediaPlayer.pause();
+            Media media = new Media(getResourceURI(genre));
+            mediaPlayer = new MediaPlayer(media);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            e.printStackTrace();
+        }
     }
     
     public void play() {
         mediaPlayer.play();
     }
-    
+    public void pause() {
+        mediaPlayer.pause();
+    }
     private void dispose() {
         mediaPlayer.dispose();
     }
