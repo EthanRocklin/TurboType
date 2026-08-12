@@ -61,7 +61,7 @@
                     <children>
                           <VBox id="practiceContainer">
                              <children>
-                                 <Text id="title" text="Practice Mode">
+                                 <Text fx:id="title" id="title" text="Practice Mode">
                                      <VBox.margin>
                                         <Insets bottom="100" />
                                      </VBox.margin>

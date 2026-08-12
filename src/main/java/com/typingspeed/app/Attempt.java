@@ -121,7 +121,6 @@ public class Attempt {
         Instant date = Instant.now();
         DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd").withZone(ZoneId.systemDefault());
         String timeStamp = dateFormatter.format(date);
-        System.out.println("Time Stamp " + timeStamp);
         // Prepares variables and INSERT statement
         String url = DatabaseManager.getURL();
         String format = "";

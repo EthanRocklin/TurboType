@@ -37,7 +37,7 @@ public class AttemptController {
     @FXML
     private Label statsMessage;
     @FXML
-    private Text correctCounter, totalCounter, accuracyValue,
+    private Text title, correctCounter, totalCounter, accuracyValue,
                  wpmValue, timeValue, typingScore;
     @FXML
     private TextArea wordsArea, typingArea;
@@ -52,7 +52,7 @@ public class AttemptController {
     
     private List<String> attemptWords, typedWords;   
     private boolean beganTyping = false,
-                    isTimed;
+                    isTimed = false;
     private Attempt attempt;
     
     // Initializers
@@ -60,10 +60,9 @@ public class AttemptController {
     // This method initializes the Practice/Timed Mode page after the page elements load.
     @FXML
     public void initialize() {
-        // P : Set "isTimed" variable first before initializing.
-        
-        
-        
+        if (title.getText().contains("Timed")) {
+            isTimed = true;
+        }
         initializeWords();
         initializeUIRestrictions();
         initializeSizeBindings();
