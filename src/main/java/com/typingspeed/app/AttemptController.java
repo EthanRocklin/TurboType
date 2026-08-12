@@ -247,7 +247,7 @@ public class AttemptController {
         typingArea.setOnKeyTyped(event -> {
             checkTypedWords();
         });
-        typingArea.setStyle("-fx-effect: dropshadow(gaussian, rgba(255,0,0,1), 20, 0.5, 0, 0);");
+        typingArea.setStyle("-fx-effect: dropshadow(gaussian, rgba(255,0,0,1), 15, 0.5, 0, 0);");
         // Resets practice words
         boolean sentences = sentencesToggle.isSelected();
         int count = 0;

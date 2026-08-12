@@ -5,15 +5,18 @@
     -fx-controls-border: #000000;
     -fx-correct-label: #77fc7b;
     -fx-navigation-background: #e8e8e8;
+    -fx-navigation-background-pressed: #c9c9c9;
     -fx-navigation-text: #000000;
     -fx-navigation-shadow: #a550ff;
     -fx-reset-button: #ff9191;
+    -fx-reset-button-pressed: #ff7575;
     -fx-reset-button-text: #000000;
     -fx-slider-axis: #c58fff;
     -fx-slider-ticks: #c58fff;
     -fx-slider-minor-ticks: #e4c9ff;
     -fx-slider-track: #f5d6af;
     -fx-slider-thumb: #844cc2;
+    -fx-slider-thumb-pressed: #b878ff;
     -fx-spinner-arrows: #f5d6af;
     -fx-spinner-arrow-button: #000000;
     -fx-spinner-background: #f5d6af;
@@ -24,6 +27,7 @@
     -fx-text-area-border: #09090a;
     -fx-title: #f79e45;
     -fx-toggle-background: #f5d6af;
+    -fx-toggle-background-pressed: #d9be9c;
     -fx-total-label:  #ffffff;
     -fx-typing-score-label: #ffffff;
 }
@@ -187,6 +191,12 @@
     -fx-text-alignment: center;
 }
 
+.toggle:pressed {
+    -fx-background-color: -fx-toggle-background-pressed;
+    -fx-scale-x: 0.95;
+    -fx-scale-y: 0.95;
+}
+
 .toggle, .spinner, .control-btn {
     -fx-border-width: 3;
     -fx-border-radius: 0;
@@ -212,6 +222,10 @@
 
 .slider .thumb {
     -fx-background-color: -fx-slider-thumb;
+}
+
+.slider .thumb:pressed {
+    -fx-background-color: -fx-slider-thumb-pressed;
 }
 
 .slider .axis {
@@ -250,6 +264,12 @@
     -fx-background-radius: 0;
 }
 
+.spinner .increment-arrow-button:pressed,
+.spinner .decrement-arrow-button:pressed {
+    -fx-scale-x: 0.95;
+    -fx-scale-y: 0.95;
+}
+
 .spinner .increment-arrow,
 .spinner .decrement-arrow {
     -fx-scale-x: 0.7;
@@ -267,6 +287,12 @@
     -fx-text-alignment: center;
     -fx-text-fill: -fx-reset-button-text;
     -fx-cursor: hand;
+}
+
+#resetBtn:pressed {
+    -fx-background-color: -fx-reset-button-pressed;
+    -fx-scale-x: 0.95;
+    -fx-scale-y: 0.95;
 }
 
 /* Styles for the navigation area */
@@ -289,4 +315,10 @@
     -fx-cursor: hand;
     -fx-font-family: "VT323";
     -fx-text-alignment: center;
+}
+
+.navigation-btn:pressed {
+    -fx-background-color: -fx-navigation-background-pressed;
+    -fx-scale-x: 0.95;
+    -fx-scale-y: 0.95;
 }
