@@ -7,6 +7,8 @@
     -fx-menu-hover: #ffa64d;
     -fx-menu-hover-text: #000000;
     -fx-menu-item-hover: #ffa64d;
+    -fx-menu-pressed: #ffbd7a;
+    -fx-menu-pressed: #ffbd7a;
     -fx-menu-text: #ffa64d;
 }
 
@@ -30,6 +32,10 @@
     -fx-text-fill: -fx-menu-hover-text;
 }
 
+.menu:pressed {
+    -fx-background-color: -fx-menu-pressed;
+}
+
 /* In JavaFX's default stylesheet '*/
 .context-menu {
     -fx-background-color: -fx-menu-dropdown;
@@ -38,6 +44,10 @@
 .menu-item {
     -fx-background-color: -fx-menu-dropdown;
 }
+.menu-item:pressed {
+    -fx-background-color: -fx-menu-item-pressed;
+}
+
 
 .menu .label {
     -fx-text-fill: -fx-menu-text;

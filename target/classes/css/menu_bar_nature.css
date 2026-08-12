@@ -7,6 +7,7 @@
     -fx-menu-hover: #ffe978;
     -fx-menu-hover-text: #382a1b;
     -fx-menu-item-hover: #ffe978;
+    -fx-menu-pressed: #fff3b3;
     -fx-menu-text: #ffe978;
 }
 
@@ -28,6 +29,10 @@
 #colorBox .list-cell:hover,
 #colorBox .list-cell:showing {
     -fx-text-fill: -fx-menu-hover-text;
+}
+
+.menu:pressed {
+    -fx-background-color: -fx-menu-pressed;
 }
 
 /* In JavaFX's default stylesheet '*/
