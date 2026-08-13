@@ -16,6 +16,7 @@ import java.net.URL;
 public class TurboType extends Application {
 
     private static Scene scene;
+    protected static Settings settings;
     private static String currentFXML, currentTheme, tronColor;
 
     @Override
@@ -27,8 +28,7 @@ public class TurboType extends Application {
             currentFXML = "homepage";
             currentTheme = "original";
             scene = new Scene(loadFXML(currentFXML), 640, 480);
-            scene.getStylesheets().add(getClass().getResource("/css/homepage_original.css").toExternalForm());
-            scene.getStylesheets().add(getClass().getResource("/css/menu_bar_original.css").toExternalForm());
+            loadSettings();
             stage.setScene(scene);
             stage.setMaximized(true);
             stage.show();
@@ -118,6 +118,25 @@ public class TurboType extends Application {
     
     private static void loadSentences() {
         SentenceBank bank = new SentenceBank();
+    }
+    
+    // This method loads and applies all settings the user had in their last session.
+    private static void loadSettings() {
+        try {
+            settings = Settings.load();
+            // Loads and applies the last theme
+            String theme = settings.getTheme();
+            changeTheme(theme);
+            if (theme.equals("tron")) {
+                changeThemeColor(settings.getTronColor());
+            }
+            // Loads and applies the last genre played
+            MusicManager music = new MusicManager(settings.getGenre());
+            music.play();
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+            e.printStackTrace();
+        }
     }
     
     private static void loadWords() {

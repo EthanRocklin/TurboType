@@ -46,6 +46,13 @@ public class MenuBarController {
         MenuItem menuItem = (MenuItem) event.getSource();
         String theme = menuItem.getText().toLowerCase().replaceAll(" ", "_");
         TurboType.changeTheme(theme);
+        try {
+            TurboType.settings.setTheme(theme);
+            TurboType.settings.save();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            e.printStackTrace();
+        }
     }
     
     @FXML
@@ -55,7 +62,7 @@ public class MenuBarController {
         // Determines color to send
         switch (colorName) {
             case "White":
-                color = "ffffff";
+                color = "#ffffff";
                 break;
             case "Red":
                 color = "#ff0000";
@@ -90,5 +97,14 @@ public class MenuBarController {
         }
         TurboType.changeTheme("tron");
         TurboType.changeThemeColor(color);
+        // Saves the color's name to the user's settings
+        try {
+            TurboType.settings.setTheme("tron");
+            TurboType.settings.setTronColor(colorName);
+            TurboType.settings.save();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            e.printStackTrace();
+        }
     }
 }

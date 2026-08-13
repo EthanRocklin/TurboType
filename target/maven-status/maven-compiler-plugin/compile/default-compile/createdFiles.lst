@@ -1,6 +1,7 @@
 com\typingspeed\app\SentenceBank.class
 com\typingspeed\app\StatsController.class
 com\typingspeed\app\MenuBarController.class
+com\typingspeed\app\Settings.class
 com\typingspeed\app\AttemptController.class
 com\typingspeed\app\TurboType.class
 com\typingspeed\app\MusicManager.class

@@ -20,6 +20,9 @@ public class MusicManager {
         try {
             Media media = new Media(getResourceURI(genre));
             mediaPlayer = new MediaPlayer(media);
+            // Saves the genre to the user's settings
+            TurboType.settings.setGenre(genre);
+            TurboType.settings.save();
             mediaPlayer.setOnError(() -> {
                 System.out.println("MediaPlayer ERROR : " + mediaPlayer.getError()); 
         });
