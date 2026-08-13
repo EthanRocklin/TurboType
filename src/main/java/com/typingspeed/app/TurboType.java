@@ -47,7 +47,6 @@ public class TurboType extends Application {
             // Sets the styles for the FXML file
             URL cssUrl = null;
             // The Practice and Timed FXML files have the same style structure "attempt_<theme>.css"
-            System.out.println("FXML : " + currentFXML);
             if (currentFXML.equals("practice") || currentFXML.equals("timed")) {
                 cssUrl = TurboType.class.getResource("/css/attempt_" + currentTheme + ".css");
             } else {

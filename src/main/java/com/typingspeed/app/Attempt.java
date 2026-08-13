@@ -67,8 +67,9 @@ public class Attempt {
     public void calculateTime() {
         int totalMilli = (int) (endTimeMilli - startTimeMilli),
             milliseconds = totalMilli % 1000,
-            seconds = totalMilli / 1000,
-            minutes = seconds / 60;
+            rawSeconds = totalMilli / 1000,
+            seconds = rawSeconds % 60,
+            minutes = rawSeconds / 60;
         attemptMilli = totalMilli;
         // Storing String versions of time units for formatting
         String millisecondsStr = String.valueOf(milliseconds),

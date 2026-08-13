@@ -139,11 +139,11 @@ public class AttemptController {
         totalCounter.setText(String.valueOf(attemptWords.size()));
         correctCounter.setText("0");
         // Sets Spinner values
-        int min = 1, max = 6, initial = 3;
+        int min = 1, max = 5, initial = 3;
         sentencesSpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(min, max, initial));
         // Sets Slider values
         min = 10;
-        max = 60;
+        max = 50;
         initial = 30;
         randomSlider.setMin(min);
         randomSlider.setMax(max);
@@ -175,10 +175,11 @@ public class AttemptController {
     @FXML
     private void checkTypedWords() {
         // Checks if the user has not began typing and is not typing
-        if (!beganTyping) startAttempt(); 
-       
+        if (!beganTyping) {
+            startAttempt();
+        } 
         int correctCount = 0;
-        String typedContent = typingArea.getText();
+        String typedContent = typingArea.getText().replaceAll("\\s+", " ").strip();
         String[] words = typedContent.split(" ");
         typedWords = Arrays.asList(words);
         // Checks typed words against practice words; guards against spam entries
@@ -340,7 +341,7 @@ public class AttemptController {
         int count = 0;
         // If "Sentences" is selected
         if (sentencesToggle.isSelected()) {
-            count = 3;
+            count = sentencesSpinner.getValue();
             updateAttemptWords(count, true);
             randomSlider.setVisible(false);
             randomSlider.setManaged(false);
@@ -348,7 +349,7 @@ public class AttemptController {
             sentencesSpinner.setManaged(true);
             sentencesToggle.setText("Sentences");
         } else {
-            count = 30;
+            count = (int) randomSlider.getValue();
             updateAttemptWords(count, false);
             sentencesToggle.setText("Random");
             sentencesSpinner.setVisible(false);
