@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.event.ActionEvent;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.MenuItem;
+import javafx.scene.media.MediaPlayer;
 
 
 /** @author Ethan Rocklin */
@@ -13,8 +14,6 @@ public class MenuBarController {
     // Fields
     @FXML
     private ComboBox<String> colorBox;
-    
-    private MusicManager music;
     
     // Initializer
     
@@ -32,13 +31,16 @@ public class MenuBarController {
     @FXML
     private void handleMusicChange(ActionEvent event) {
         MenuItem menuItem = (MenuItem) event.getSource(); 
-        String genre = menuItem.getText().toLowerCase();
-        if (music != null) {
-            music.readyNewSong(genre);
-        } else {
-            music = new MusicManager(genre);
+        String newGenre = menuItem.getText().toLowerCase();
+        MusicManager.readyNewSong(newGenre);
+        try {
+            TurboType.settings.setGenre(newGenre);
+            TurboType.settings.save();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            e.printStackTrace();
         }
-        music.play();
+        MusicManager.play();
     }
     
     @FXML
@@ -100,7 +102,7 @@ public class MenuBarController {
         // Saves the color's name to the user's settings
         try {
             TurboType.settings.setTheme("tron");
-            TurboType.settings.setTronColor(colorName);
+            TurboType.settings.setTronColor(color);
             TurboType.settings.save();
         } catch (Exception e) {
             System.out.println(e.getMessage());

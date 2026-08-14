@@ -14,17 +14,21 @@ import javafx.scene.media.MediaPlayer;
 
 public class MusicManager {
     
-    private MediaPlayer mediaPlayer;
+    private static MediaPlayer musicPlayer;
+    private static String genre;
     
-    public MusicManager(String genre) {
+    // Utility class; it should not be instantiated beyond the first time in TurboType.java
+    private MusicManager() {}
+    
+    // This method initializes the MediaPlayer with a song from the user's last genre listen to.
+    public static void initializePlayer(String initialGenre) {
+        genre = initialGenre;
         try {
             Media media = new Media(getResourceURI(genre));
-            mediaPlayer = new MediaPlayer(media);
+            musicPlayer = new MediaPlayer(media);
             // Saves the genre to the user's settings
-            TurboType.settings.setGenre(genre);
-            TurboType.settings.save();
-            mediaPlayer.setOnError(() -> {
-                System.out.println("MediaPlayer ERROR : " + mediaPlayer.getError()); 
+            musicPlayer.setOnError(() -> {
+                System.out.println("MediaPlayer ERROR : " + musicPlayer.getError()); 
         });
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -36,7 +40,7 @@ public class MusicManager {
      * This method gets the resource URI of a random song within the MusicManager's genre.
      * @return a String representing the resource's URI 
      */
-    private String getResourceURI(String genre) {
+    private static String getResourceURI(String genre) {
         Random rand = new Random();
         // Gets the URL for the music's directory
         URL dirURL = MusicManager.class.getResource("/music/" + genre);
@@ -68,26 +72,38 @@ public class MusicManager {
         return resourceURI.toString();
     }
     
-    // This method gets a new song ready to be played.
-    public void readyNewSong(String genre) {
+    // This method switches the music to a new genre
+    public static void readyNewSong(String newGenre) {
+        genre = newGenre;
+        if (musicPlayer != null) {
+            musicPlayer.stop();
+            musicPlayer.dispose();
+        }
         try {
-            mediaPlayer.pause();
             Media media = new Media(getResourceURI(genre));
-            mediaPlayer = new MediaPlayer(media);
+            musicPlayer = new MediaPlayer(media);
         } catch (Exception e) {
             System.out.println(e.getMessage());
             e.printStackTrace();
         }
     }
     
-    public void play() {
-        mediaPlayer.play();
+    public static MediaPlayer getMusicPlayer() {
+        return musicPlayer;
     }
-    public void pause() {
-        mediaPlayer.pause();
+    
+    public static void setGenre(String newGenre) {
+        genre = newGenre;
     }
-    private void dispose() {
-        mediaPlayer.dispose();
+    
+    public static void play() {
+        musicPlayer.play();
+    }
+    public static void pause() {
+        musicPlayer.pause();
+    }
+    private static void dispose() {
+        musicPlayer.dispose();
     }
     
 }

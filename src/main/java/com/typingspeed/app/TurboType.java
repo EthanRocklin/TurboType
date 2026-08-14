@@ -131,8 +131,8 @@ public class TurboType extends Application {
                 changeThemeColor(settings.getTronColor());
             }
             // Loads and applies the last genre played
-            MusicManager music = new MusicManager(settings.getGenre());
-            music.play();
+            MusicManager.initializePlayer(settings.getGenre());
+            MusicManager.play();
         } catch (IOException e) {
             System.out.println(e.getMessage());
             e.printStackTrace();
