@@ -10,7 +10,7 @@ import java.io.IOException;
 import java.net.URL;
 
 /**
- * Turbo Type starting point
+ * Turbo Type launch point
  * @author Ethan Rocklin
  */
 public class TurboType extends Application {
@@ -52,10 +52,12 @@ public class TurboType extends Application {
             } else {
                 cssUrl = TurboType.class.getResource("/css/" + currentFXML + "_" + currentTheme + ".css");
             }
-            URL menuBarCssURL = TurboType.class.getResource("/css/menu_bar" + "_" + currentTheme + ".css");
+            URL menuBarCssURL = TurboType.class.getResource("/css/menu_bar_" + currentTheme + ".css");
+            URL musicPanelCssURL = TurboType.class.getResource("/css/music_panel_" + currentTheme + ".css");
             if (cssUrl != null) {
                 scene.getStylesheets().add(cssUrl.toExternalForm());
                 scene.getStylesheets().add(menuBarCssURL.toExternalForm());
+                scene.getStylesheets().add(musicPanelCssURL.toExternalForm());
             }
             scene.setRoot(loadFXML(fxml));
             // Maintains the Tron color of the previous page if Tron is the theme
@@ -80,9 +82,11 @@ public class TurboType extends Application {
             cssUrl = TurboType.class.getResource("/css/" + currentFXML + "_" + currentTheme + ".css");
         }
         URL menuBarCssURL = TurboType.class.getResource("/css/menu_bar" + "_" + currentTheme + ".css");
+        URL musicPanelCssURL = TurboType.class.getResource("/css/music_panel_" + currentTheme + ".css");
         if (cssUrl != null) {
             scene.getStylesheets().add(cssUrl.toExternalForm());
             scene.getStylesheets().add(menuBarCssURL.toExternalForm());
+            scene.getStylesheets().add(musicPanelCssURL.toExternalForm());
         }
     }
     

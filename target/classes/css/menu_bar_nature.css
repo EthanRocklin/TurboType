@@ -11,6 +11,10 @@
     -fx-menu-text: #ffe978;
 }
 
+#menuBarContainer {
+    -fx-background-color: -fx-menu-bar-background;
+}
+
 #menuBar {
     -fx-background-color: -fx-menu-bar-background;
     -fx-font-size: 16;

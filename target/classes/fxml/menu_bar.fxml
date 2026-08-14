@@ -12,8 +12,8 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import java.lang.String?>
 
-<HBox xmlns:fx="http://javafx.com/fxml/1" id="menuBarContainer" xmlns="http://javafx.com/javafx/26" fx:controller="com.typingspeed.app.MenuBarController">
-    <MenuBar id="menuBar" HBox.hgrow="ALWAYS">
+<HBox id="menuBarContainer" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/26" fx:controller="com.typingspeed.app.MenuBarController" HBox.hgrow="ALWAYS">
+    <MenuBar id="menuBar">
         <menus>
             <Menu styleClass="menu" text="Export">
                 <items>
@@ -70,4 +70,5 @@
             </Menu>
         </menus>
     </MenuBar>
+    <fx:include source="music_panel.fxml" />
 </HBox>

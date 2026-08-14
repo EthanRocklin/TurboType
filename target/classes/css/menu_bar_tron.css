@@ -4,6 +4,10 @@
     -fx-tron: #00ffff;
 }
 
+#menuBarContainer {
+    -fx-background-color: -fx-primary;
+}
+
 #menuBar {
     -fx-background-color: -fx-primary;
     -fx-font-size: 16;

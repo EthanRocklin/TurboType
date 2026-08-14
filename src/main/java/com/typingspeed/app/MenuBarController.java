@@ -15,13 +15,11 @@ public class MenuBarController {
     @FXML
     private ComboBox<String> colorBox;
     
-    // Initializer
-    
     public void initialize() {
         colorBox.setVisibleRowCount(11);
     }
     
-    // FXML Methods
+    // Handler Methods
     
     @FXML
     private void handleExport(ActionEvent event) {
@@ -34,6 +32,7 @@ public class MenuBarController {
         String newGenre = menuItem.getText().toLowerCase();
         MusicManager.readyNewSong(newGenre);
         try {
+            // Saves the genre to the user's settings
             TurboType.settings.setGenre(newGenre);
             TurboType.settings.save();
         } catch (Exception e) {

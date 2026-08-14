@@ -12,10 +12,14 @@
     -fx-menu-text: #ffa64d;
 }
 
-#menuBar {
+#menuBarContainer {
     -fx-background-color: -fx-menu-bar-background;
+}
+
+#menuBar {
     -fx-font-size: 16;
     -fx-font-family: "Quantico";
+    -fx-background-color: -fx-menu-bar-background;
 }
 
 .menu:hover,
