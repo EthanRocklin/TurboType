@@ -130,7 +130,7 @@
     -fx-fill: -fx-icon;
 }
 
-#currentSong {
+#currentTrackText {
     -fx-fill: -fx-song-text;
     -fx-font-size: 14;
     -fx-font-family: "Quantico-Regular";

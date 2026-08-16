@@ -1,5 +1,6 @@
 package com.typingspeed.app;
 
+import java.io.BufferedReader;
 import java.net.URL;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -9,13 +10,16 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import java.io.IOException;
 import java.io.File;
+import java.io.InputStreamReader;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /** @author Ethan Rocklin */
 
 public class MusicManager {
     
     private static MediaPlayer musicPlayer;
-    private static String currentGenre;
+    private static String currentGenre, currentTrackText;
     private static String[] tracks;
     private static int trackIndex;
     
@@ -30,6 +34,7 @@ public class MusicManager {
         try {
             Media media = new Media(getResourceURI(tracks[0]));
             musicPlayer = new MediaPlayer(media);
+            updateCurrentTrackText();
         } catch (Exception e) {
             System.out.println(e.getMessage());
             e.printStackTrace();
@@ -97,6 +102,7 @@ public class MusicManager {
             String firstTrack = currentGenre + "1.mp3";
             Media media = new Media(getResourceURI(firstTrack));
             musicPlayer = new MediaPlayer(media);
+            updateCurrentTrackText();
         } catch (Exception e) {
             System.out.println(e.getMessage());
             e.printStackTrace();
@@ -129,12 +135,31 @@ public class MusicManager {
             }
             Media media = new Media(getResourceURI(tracks[trackIndex]));
             musicPlayer = new MediaPlayer(media);
+            updateCurrentTrackText();
         } catch (Exception e) {
             System.out.println(e.getMessage());
             e.printStackTrace();
         }
     }
     
+    public static void updateCurrentTrackText() {
+        // Gets the name and artist of the current song
+        String path = "/music/credits/" + currentGenre + "_credits.txt";
+        try (BufferedReader reader = new BufferedReader(
+                new InputStreamReader(MusicManager.class.getResourceAsStream(path)))) {
+            List<String> credits = reader.lines().collect(Collectors.toList());
+            currentTrackText = credits.get(trackIndex);
+        } catch (IOException e) {
+            System.out.println("ERROR : Credits file not found.");
+            e.printStackTrace();
+        }
+    }
+    
+    // Getters
+    
+    public static String getCurrentTrackText() {
+        return currentTrackText;
+    }
     public static String getGenre() {
         return currentGenre;
     }
@@ -145,9 +170,13 @@ public class MusicManager {
         return trackIndex;
     }
     
+    // Setters
+    
     public static void setGenre(String newGenre) {
         currentGenre = newGenre;
     }
+    
+    // State Setters
     
     public static void play() {
         musicPlayer.play();

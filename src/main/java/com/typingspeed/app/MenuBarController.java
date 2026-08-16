@@ -7,11 +7,6 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.shape.SVGPath;
 import javafx.scene.text.Text;
-import java.util.List;
-import java.util.stream.Collectors;
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.io.IOException;
 
 /** @author Ethan Rocklin */
 
@@ -23,10 +18,11 @@ public class MenuBarController {
     @FXML
     private SVGPath pauseBtnIcon;
     @FXML
-    private Text currentSong;
+    private Text currentTrackText;
     
     public void initialize() {
         colorBox.setVisibleRowCount(11);
+        currentTrackText.setText(MusicManager.getCurrentTrackText());
     }
     
     // FXML Handler Methods for Menu Tabs
@@ -42,7 +38,8 @@ public class MenuBarController {
         String newGenre = menuItem.getText().toLowerCase();
         try {
             MusicManager.readyNewGenre(newGenre);
-            setCurrentTrackText();
+            MusicManager.updateCurrentTrackText();
+            currentTrackText.setText(MusicManager.getCurrentTrackText());
             // Saves the genre to the user's settings
             TurboType.settings.setGenre(newGenre);
             TurboType.settings.save();
@@ -125,7 +122,7 @@ public class MenuBarController {
     @FXML
     private void handlePreviousTrack() {
         MusicManager.readyNewTrack(false);
-        setCurrentTrackText();
+        currentTrackText.setText(MusicManager.getCurrentTrackText());
         MusicManager.play();
     }
     
@@ -145,26 +142,8 @@ public class MenuBarController {
     @FXML
     private void handleNextTrack() {
         MusicManager.readyNewTrack(true);
-        setCurrentTrackText();
+        currentTrackText.setText(MusicManager.getCurrentTrackText());
         MusicManager.play();
     }
-    
-    // Other Methods
-    
-    // SEE ABOUT PLACING THIS METHOD AS A getter in MusicManager.java
-    
-    private void setCurrentTrackText() {
-        String genre = MusicManager.getGenre();
-        int trackIndex = MusicManager.getTrackIndex();
-        // Gets the name and artist of the current song
-        String path = "/music/credits/" + genre + "_credits.txt";
-        try (BufferedReader reader = new BufferedReader(
-                new InputStreamReader(getClass().getResourceAsStream(path)))) {
-            List<String> credits = reader.lines().collect(Collectors.toList());
-            currentSong.setText(credits.get(trackIndex));
-        } catch (IOException e) {
-            System.out.println("ERROR : Credits file not found.");
-            e.printStackTrace();
-        }
-    }
+
 }

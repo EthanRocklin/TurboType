@@ -92,10 +92,6 @@ public class TurboType extends Application {
         scene.getRoot().setStyle("-fx-tron: " + color + ";");
     }
     
-    public static void main(String[] args) {
-        launch();
-    }
-    
     /**
      * This method loads the FXML content of any file in the fxml directory.
      * @param fxml : the name of the fxml file
@@ -141,6 +137,10 @@ public class TurboType extends Application {
     
     private static void loadWords() {
         WordBank bank = new WordBank();
+    }
+    
+    public static void main(String[] args) {
+        launch();
     }
 
 }

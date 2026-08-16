@@ -103,7 +103,7 @@
                     <Insets right="15" />
                 </HBox.margin>
             </Button>
-            <Text id="currentSong" fx:id="currentSong" text="--current song--" />
+            <Text id="currentTrackText" fx:id="currentTrackText" />
         </HBox>
     </VBox>
 </HBox>
