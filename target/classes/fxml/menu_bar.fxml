@@ -7,9 +7,13 @@
 <?import javafx.scene.control.CustomMenuItem?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Button?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.shape.SVGPath?>
+<?import javafx.scene.text.Text?>
 <?import java.lang.String?>
 
 <HBox id="menuBarContainer" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/26" fx:controller="com.typingspeed.app.MenuBarController" HBox.hgrow="ALWAYS">
@@ -25,12 +29,12 @@
             </Menu>
             <Menu styleClass="menu" text="Music">
                 <items>
-                    <MenuItem fx:id="classicalOption" styleClass="menu-item" onAction="#handleMusicChange" mnemonicParsing="false" text="Classical"/>
-                    <MenuItem fx:id="dubstepOption" styleClass="menu-item" onAction="#handleMusicChange" mnemonicParsing="false" text="Dubstep"/>
-                    <MenuItem fx:id="jazzOption" styleClass="menu-item" onAction="#handleMusicChange" mnemonicParsing="false" text="Jazz"/>
-                    <MenuItem fx:id="popOption" styleClass="menu-item" onAction="#handleMusicChange" mnemonicParsing="false" text="Pop"/>
-                    <MenuItem fx:id="rockOption" styleClass="menu-item" onAction="#handleMusicChange" mnemonicParsing="false" text="Rock"/>
-                    <MenuItem fx:id="technoOption" styleClass="menu-item" onAction="#handleMusicChange" mnemonicParsing="false" text="Techno"/>
+                    <MenuItem fx:id="classicalOption" styleClass="menu-item" onAction="#handleGenreChange" mnemonicParsing="false" text="Classical"/>
+                    <MenuItem fx:id="dubstepOption" styleClass="menu-item" onAction="#handleGenreChange" mnemonicParsing="false" text="Dubstep"/>
+                    <MenuItem fx:id="jazzOption" styleClass="menu-item" onAction="#handleGenreChange" mnemonicParsing="false" text="Jazz"/>
+                    <MenuItem fx:id="popOption" styleClass="menu-item" onAction="#handleGenreChange" mnemonicParsing="false" text="Pop"/>
+                    <MenuItem fx:id="rockOption" styleClass="menu-item" onAction="#handleGenreChange" mnemonicParsing="false" text="Rock"/>
+                    <MenuItem fx:id="technoOption" styleClass="menu-item" onAction="#handleGenreChange" mnemonicParsing="false" text="Techno"/>
                 </items>
             </Menu>
             <Menu styleClass="menu" text="Theme">
@@ -70,5 +74,36 @@
             </Menu>
         </menus>
     </MenuBar>
-    <fx:include source="music_panel.fxml" />
+    <VBox id="musicPanel">
+        <HBox.margin>
+            <Insets left="20" />
+        </HBox.margin>
+        <HBox id="controlsContainer">
+            <Button id="backBtn" fx:id="backBtn" styleClass="music-btn" onAction="#handlePreviousTrack">
+                <graphic>
+                    <SVGPath id="backBtnIcon" styleClass="btn-icon" content="M6 6h2v12H6zm3.5 6l8.5 6V6z" />
+                </graphic>
+                <HBox.margin>
+                    <Insets right="5" />
+                </HBox.margin>
+            </Button>
+            <Button id="pauseBtn" fx:id="pauseBtn" styleClass="music-btn" onMouseClicked="#handlePausePlay">
+                <graphic>
+                    <SVGPath id="pauseBtnIcon" fx:id="pauseBtnIcon" styleClass="btn-icon" content="M6 19h4V5H6v14zm8-14v14h4V5h-4z" />
+                </graphic>
+                <HBox.margin>
+                    <Insets right="5" />
+                </HBox.margin>
+            </Button>
+            <Button id="forwardBtn" fx:id="forwardBtn" styleClass="music-btn" onAction="#handleNextTrack">
+                <graphic>
+                    <SVGPath id="forwardBtnIcon" styleClass="btn-icon" content="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z" />
+                </graphic>
+                <HBox.margin>
+                    <Insets right="15" />
+                </HBox.margin>
+            </Button>
+            <Text id="currentSong" fx:id="currentSong" text="--current song--" />
+        </HBox>
+    </VBox>
 </HBox>

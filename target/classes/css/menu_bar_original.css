@@ -1,5 +1,8 @@
 /* Colors for all the elements */
 .root {
+    -fx-icon: #ffa64d;
+    -fx-icon-background: #111111;
+    -fx-icon-background-pressed: #ffbd7a;
     -fx-menu-bar-background: #111111;
     -fx-menu-colorbox-arrow: #ffa64d;
     -fx-menu-colorbox-background: #333333;
@@ -10,6 +13,8 @@
     -fx-menu-pressed: #ffbd7a;
     -fx-menu-pressed: #ffbd7a;
     -fx-menu-text: #ffa64d;
+    -fx-panel-background: #111111;
+    -fx-song-text: #ffb163;
 }
 
 #menuBarContainer {
@@ -21,6 +26,8 @@
     -fx-font-family: "Quantico";
     -fx-background-color: -fx-menu-bar-background;
 }
+
+/* Styles for the Menu Tabs */
 
 .menu:hover,
 .menu:showing,
@@ -89,4 +96,44 @@
 
 #colorBox .arrow {
     -fx-background-color: -fx-menu-colorbox-arrow;
+}
+
+/* Styles for the Music Panel */
+
+
+#musicPanel {
+    -fx-background-color: -fx-panel-background;
+    -fx-alignment: CENTER_LEFT;
+}
+
+.music-btn {
+    -fx-background-color: -fx-icon-background;
+}
+
+.music-btn:hover {
+    -fx-background-color: -fx-icon;
+    -fx-cursor: hand;
+}
+
+.music-btn:hover .btn-icon,
+.music-btn:pressed .btn-icon {
+    -fx-fill: -fx-icon-background;
+}
+
+.music-btn:pressed {
+    -fx-background-color: -fx-icon-background-pressed;
+    -fx-scale-x: 0.95;
+    -fx-scale-y: 0.95;
+}
+
+.btn-icon {
+    -fx-fill: -fx-icon;
+}
+
+#currentSong {
+    -fx-fill: -fx-song-text;
+    -fx-font-size: 14;
+    -fx-font-family: "Quantico-Regular";
+    -fx-border-color: red;
+    -fx-alignment: CENTER_LEFT;
 }
