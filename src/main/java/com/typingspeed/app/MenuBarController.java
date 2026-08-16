@@ -30,7 +30,7 @@ public class MenuBarController {
     private void handleMusicChange(ActionEvent event) {
         MenuItem menuItem = (MenuItem) event.getSource(); 
         String newGenre = menuItem.getText().toLowerCase();
-        MusicManager.readyNewSong(newGenre);
+        MusicManager.readyNewGenre(newGenre);
         try {
             // Saves the genre to the user's settings
             TurboType.settings.setGenre(newGenre);

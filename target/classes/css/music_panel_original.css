@@ -21,7 +21,8 @@
     -fx-cursor: hand;
 }
 
-.music-btn:hover .btn-icon {
+.music-btn:hover .btn-icon,
+.music-btn:pressed .btn-icon {
     -fx-fill: -fx-icon-background;
 }
 
