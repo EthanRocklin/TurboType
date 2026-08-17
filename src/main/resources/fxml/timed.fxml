@@ -140,17 +140,17 @@
               </HBox>
               <HBox id="navigationContainer" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
                  <children>
-                     <Button id="timedBtn" mnemonicParsing="false" onAction="#displayPractice" styleClass="navigation-btn" text="Practice">
+                     <Button id="timedBtn" mnemonicParsing="false" onAction="#displayPractice" styleClass="navigation-btn" pickOnBounds="false" text="Practice">
                         <HBox.margin>
                             <Insets right="30.0" />
                         </HBox.margin>
                      </Button>
-                     <Button id="homeBtn" mnemonicParsing="false" onAction="#displayHomepage" styleClass="navigation-btn" text="Home">
+                     <Button id="homeBtn" mnemonicParsing="false" onAction="#displayHomepage" styleClass="navigation-btn" pickOnBounds="false" text="Home">
                          <HBox.margin>
                             <Insets right="30.0" />
                          </HBox.margin>
                      </Button>
-                    <Button id="statsBtn" mnemonicParsing="false" onAction="#displayStats" styleClass="navigation-btn" text="Statistics" />
+                    <Button id="statsBtn" mnemonicParsing="false" onAction="#displayStats" styleClass="navigation-btn" pickOnBounds="false" text="Statistics" />
                  </children>
               </HBox>
           </children>

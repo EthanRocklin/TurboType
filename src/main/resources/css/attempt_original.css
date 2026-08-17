@@ -5,7 +5,7 @@
     -fx-controls-border: #000000;
     -fx-correct-label: #77fc7b;
     -fx-navigation-background: #e8e8e8;
-    -fx-navigation-background-pressed: #c9c9c9;
+    -fx-navigation-background-hover: #c9c9c9;
     -fx-navigation-text: #000000;
     -fx-navigation-shadow: #a550ff;
     -fx-reset-button: #ff9191;
@@ -319,8 +319,13 @@
     -fx-text-alignment: center;
 }
 
+.navigation-btn:hover,
 .navigation-btn:pressed {
-    -fx-background-color: -fx-navigation-background-pressed;
+    -fx-background-color: -fx-navigation-background-hover;
+    -fx-text-fill: -fx-navigation-text;
+}
+
+.navigation-btn:pressed {
     -fx-scale-x: 0.98;
     -fx-scale-y: 0.98;
 }

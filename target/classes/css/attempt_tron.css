@@ -294,9 +294,13 @@
     -fx-text-alignment: center;
 }
 
+.navigation-btn:hover,
 .navigation-btn:pressed {
     -fx-background-color: -fx-tron;
     -fx-text-fill: -fx-primary;
+}
+
+.navigation-btn:pressed {
     -fx-scale-x: 0.98;
     -fx-scale-y: 0.98;
 }

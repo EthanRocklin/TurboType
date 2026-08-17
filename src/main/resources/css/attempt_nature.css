@@ -6,7 +6,7 @@
     -fx-controls-border: #382a1b;
     -fx-correct-label: #ffe978;
     -fx-navigation-background: #ffe978;
-    -fx-navigation-background-pressed: #f5a6ff;
+    -fx-navigation-background-hover: #f5a6ff;
     -fx-navigation-text: #3d2f27;
     -fx-navigation-shadow: #f8bdff;
     -fx-prompt-text: #f8bdff;
@@ -325,8 +325,13 @@
     -fx-text-alignment: center;
 }
 
+.navigation-btn:hover,
 .navigation-btn:pressed {
-    -fx-background-color: -fx-navigation-background-pressed;
+    -fx-background-color: -fx-navigation-background-hover;
+    -fx-text-fill: -fx-navigation-text;
+}
+
+.navigation-btn:pressed {
     -fx-scale-x: 0.98;
     -fx-scale-y: 0.98;
 }

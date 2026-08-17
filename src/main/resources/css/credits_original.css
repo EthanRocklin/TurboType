@@ -2,7 +2,7 @@
 .root {
     -fx-background: #1a1a1c;
     -fx-navigation-background: #e8e8e8;
-    -fx-navigation-background-pressed: #c9c9c9;
+    -fx-navigation-background-hover: #c9c9c9;
     -fx-navigation-text: #000000;
     -fx-navigation-shadow: #a550ff;
     -fx-header: #bc7dff;
@@ -65,8 +65,13 @@
     -fx-effect: dropshadow(gaussian, -fx-navigation-shadow, 15, 0.5, 0, 0);
 }
 
+.navigation-btn:hover,
 .navigation-btn:pressed {
-    -fx-background-color: -fx-navigation-background-pressed;
+    -fx-background-color: -fx-navigation-background-hover;
+    -fx-text-fill: -fx-navigation-text;
+}
+
+.navigation-btn:pressed {
     -fx-scale-x: 0.98;
     -fx-scale-y: 0.98;
 }

@@ -27,16 +27,12 @@
 }
 
 .menu:hover,
-.menu:showing,
-#colorBox .list-cell:hover, 
-#colorBox .list-cell:showing{
+.menu:showing {
     -fx-background-color: -fx-menu-hover;
 }
 
 .menu:hover > .label,
-.menu:showing > .label,
-#colorBox .list-cell:hover,
-#colorBox .list-cell:showing {
+.menu:showing > .label {
     -fx-text-fill: -fx-menu-hover-text;
 }
 
@@ -62,6 +58,12 @@
 }
 
 .menu-item:hover .label {
+    -fx-text-fill: -fx-menu-hover-text;
+}
+
+#colorBox .list-cell:hover, 
+#colorBox .list-cell:showing {
+    -fx-background-color: -fx-menu-hover;
     -fx-text-fill: -fx-menu-hover-text;
 }
 
@@ -95,6 +97,10 @@
 
 #musicPanel {
     -fx-background-color: -fx-panel-background;
+    -fx-alignment: CENTER_LEFT;
+}
+
+#controlsContainer {
     -fx-alignment: CENTER_LEFT;
 }
 

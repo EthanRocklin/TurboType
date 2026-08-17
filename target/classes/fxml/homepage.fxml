@@ -24,22 +24,22 @@
                       <Insets bottom="100" />
                 </VBox.margin>
               </Text>
-              <Button id="practiceBtn" mnemonicParsing="false" onAction="#displayPractice" styleClass="navigation-btn" text="Practice">
+              <Button id="practiceBtn" mnemonicParsing="false" onAction="#displayPractice" styleClass="navigation-btn" pickOnBounds="false" text="Practice">
                   <VBox.margin>
                       <Insets bottom="30.0" />
                   </VBox.margin>
               </Button>
-              <Button id="timedBtn" mnemonicParsing="false" onAction="#displayTimed" styleClass="navigation-btn" text="Timed">
+              <Button id="timedBtn" mnemonicParsing="false" onAction="#displayTimed" styleClass="navigation-btn" pickOnBounds="false" text="Timed">
                   <VBox.margin>
                       <Insets bottom="30.0" />
                   </VBox.margin>
               </Button>
-              <Button id="statsBtn" mnemonicParsing="false" onAction="#displayStats" styleClass="navigation-btn" text="Statistics">
+              <Button id="statsBtn" mnemonicParsing="false" onAction="#displayStats" styleClass="navigation-btn" pickOnBounds="false" text="Statistics">
                   <VBox.margin>
                       <Insets bottom="30.0" />
                   </VBox.margin>
               </Button>
-              <Button id="creditsBtn" mnemonicParsing="false" onAction="#displayCredits" styleClass="navigation-btn" text="Credits" />
+              <Button id="creditsBtn" mnemonicParsing="false" onAction="#displayCredits" styleClass="navigation-btn" pickOnBounds="false" text="Credits" />
           </children>
         </VBox>
     </center>

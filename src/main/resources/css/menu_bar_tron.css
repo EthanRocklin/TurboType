@@ -15,16 +15,12 @@
 }
 
 .menu:hover,
-.menu:showing,
-#colorBox .list-cell:hover, 
-#colorBox .list-cell:showing {
+.menu:showing {
     -fx-background-color: -fx-tron;
 }
 
 .menu:hover > .label,
-.menu:showing > .label,
-#colorBox .list-cell:hover,
-#colorBox .list-cell:showing {
+.menu:showing > .label {
     -fx-text-fill: -fx-primary;
 }
 
@@ -47,6 +43,12 @@
 
 .menu-item:hover .label {
     -fx-text-fill: -fx-primary;
+}
+
+#colorBox .list-cell:hover, 
+#colorBox .list-cell:showing {
+    -fx-background-color: -fx-primary;
+    -fx-text-fill: -fx-tron;
 }
 
 #colorBox,

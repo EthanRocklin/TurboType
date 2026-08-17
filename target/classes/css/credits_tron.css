@@ -59,9 +59,13 @@
     -fx-effect: dropshadow(gaussian, -fx-tron, 15, 0.5, 0, 0);
 }
 
+.navigation-btn:hover,
 .navigation-btn:pressed {
     -fx-background-color: -fx-tron;
     -fx-text-fill: -fx-primary;
+}
+
+.navigation-btn:pressed {
     -fx-scale-x: 0.98;
     -fx-scale-y: 0.98;
 }

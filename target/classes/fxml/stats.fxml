@@ -9,28 +9,28 @@
 
 <VBox id="masterContainer" style="-fx-alignment: center;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.typingspeed.app.StatsController">
   <children>
-    <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="640.0" VBox.vgrow="ALWAYS">
+    <AnchorPane VBox.vgrow="ALWAYS">
       <children>
-            <VBox id="statsContainer" prefHeight="300.0" prefWidth="640.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <VBox id="statsContainer" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
-                  <Text id="title" strokeType="OUTSIDE" strokeWidth="0.0" text="Statistics" />
+                  <Text id="title" text="Statistics" />
                </children>
             </VBox>
       </children>
     </AnchorPane>
-      <HBox id="navContainer" prefHeight="100.0" prefWidth="200.0">
+      <HBox id="navContainer">
          <children>
-             <Button id="practiceBtn" mnemonicParsing="false" onAction="#displayPractice" styleClass="navigation-btn" text="Practice">
+             <Button id="practiceBtn" mnemonicParsing="false" onAction="#displayPractice" styleClass="navigation-btn" pickOnBounds="false" text="Practice">
                  <HBox.margin>
                     <Insets right="30.0" />
                 </HBox.margin>
              </Button>
-             <Button id="homeBtn" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#displayHomepage" styleClass="navigation-btn" text="Home">
+             <Button id="homeBtn" mnemonicParsing="false" onAction="#displayHomepage" styleClass="navigation-btn" pickOnBounds="false" text="Home">
                  <HBox.margin>
                     <Insets right="30.0" />
-                </HBox.margin>
+                 </HBox.margin>
              </Button>
-            <Button id="timedBtn" mnemonicParsing="false" onAction="#displayTimed" styleClass="navigation-btn" text="Timed" />
+            <Button id="timedBtn" mnemonicParsing="false" onAction="#displayTimed" styleClass="navigation-btn" pickOnBounds="false" text="Timed" />
          </children>
       </HBox>
   </children>
