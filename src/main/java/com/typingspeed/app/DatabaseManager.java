@@ -10,7 +10,6 @@ import java.sql.Statement;
 
 public class DatabaseManager {
     
-    // Fields
     final static String APP_DATA_DIR = System.getProperty("user.home") + File.separator + ".turbotype";
     final static String URL = "jdbc:sqlite:" + APP_DATA_DIR + File.separator + "user_data.db";
     

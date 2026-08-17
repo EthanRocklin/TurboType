@@ -8,6 +8,7 @@ import javafx.scene.media.MediaPlayer;
 import javafx.scene.shape.SVGPath;
 import javafx.scene.text.Text;
 
+
 /** @author Ethan Rocklin */
 
 public class MenuBarController {
@@ -22,7 +23,7 @@ public class MenuBarController {
     
     public void initialize() {
         colorBox.setVisibleRowCount(11);
-        currentTrackText.setText(MusicManager.getCurrentTrackText());
+        currentTrackText.setText(MusicManager.getCurrentTrack());
     }
     
     // FXML Handler Methods for Menu Tabs
@@ -38,8 +39,8 @@ public class MenuBarController {
         String newGenre = menuItem.getText().toLowerCase();
         try {
             MusicManager.readyNewGenre(newGenre);
-            MusicManager.updateCurrentTrackText();
-            currentTrackText.setText(MusicManager.getCurrentTrackText());
+            MusicManager.updateCurrentTrack();
+            currentTrackText.setText(MusicManager.getCurrentTrack());
             // Saves the genre to the user's settings
             TurboType.settings.setGenre(newGenre);
             TurboType.settings.save();
@@ -122,7 +123,7 @@ public class MenuBarController {
     @FXML
     private void handlePreviousTrack() {
         MusicManager.readyNewTrack(false);
-        currentTrackText.setText(MusicManager.getCurrentTrackText());
+        currentTrackText.setText(MusicManager.getCurrentTrack());
         MusicManager.play();
     }
     
@@ -142,7 +143,7 @@ public class MenuBarController {
     @FXML
     private void handleNextTrack() {
         MusicManager.readyNewTrack(true);
-        currentTrackText.setText(MusicManager.getCurrentTrackText());
+        currentTrackText.setText(MusicManager.getCurrentTrack());
         MusicManager.play();
     }
 

@@ -34,7 +34,12 @@
                       <Insets bottom="30.0" />
                   </VBox.margin>
               </Button>
-              <Button id="statsBtn" mnemonicParsing="false" onAction="#displayStats" styleClass="navigation-btn" text="Statistics" />
+              <Button id="statsBtn" mnemonicParsing="false" onAction="#displayStats" styleClass="navigation-btn" text="Statistics">
+                  <VBox.margin>
+                      <Insets bottom="30.0" />
+                  </VBox.margin>
+              </Button>
+              <Button id="creditsBtn" mnemonicParsing="false" onAction="#displayCredits" styleClass="navigation-btn" text="Credits" />
           </children>
         </VBox>
     </center>

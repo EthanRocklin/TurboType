@@ -29,7 +29,6 @@
 .navigation-btn {
     -fx-background-color: -fx-primary;
     -fx-text-fill: -fx-tron;
-    -fx-text-alignment: center;
     -fx-alignment: center;
     -fx-cursor: hand;
     -fx-pref-width: 250;

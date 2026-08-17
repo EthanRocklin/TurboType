@@ -12,7 +12,6 @@ import java.sql.PreparedStatement;
 
 public class Attempt {
     
-    // CONSTANTS
     private final int MAX_WPM = 100;
     private final int ACCURACY_WEIGHT = 3;
     private final int WPM_WEIGHT = 10;
@@ -30,7 +29,6 @@ public class Attempt {
         "WOW!\nYou're fast and accurate!\nGreat job!"
     };
     
-    // Fields
     private double accuracy;
     private int wpm, wordCount, correctCount, typingScore, attemptMilli;
     private long startTimeMilli, endTimeMilli;
@@ -65,11 +63,11 @@ public class Attempt {
     
     // Calculates and sets the time it took to complete the attempt in MM:SS:MiMiMi format.
     public void calculateTime() {
-        int totalMilli = (int) (endTimeMilli - startTimeMilli),
-            milliseconds = totalMilli % 1000,
-            rawSeconds = totalMilli / 1000,
-            seconds = rawSeconds % 60,
-            minutes = rawSeconds / 60;
+        int totalMilli = (int) (endTimeMilli - startTimeMilli);
+        int milliseconds = totalMilli % 1000;
+        int rawSeconds = totalMilli / 1000;
+        int seconds = rawSeconds % 60;
+        int minutes = rawSeconds / 60;
         attemptMilli = totalMilli;
         // Storing String versions of time units for formatting
         String millisecondsStr = String.valueOf(milliseconds),

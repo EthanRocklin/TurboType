@@ -14,12 +14,10 @@ public class StatsController {
     private void displayHomepage() throws IOException {
         TurboType.setRoot("homepage");
     }
-    
     @FXML
     private void displayPractice() throws IOException {
         TurboType.setRoot("practice");
     } 
-    
     @FXML
     private void displayTimed() throws IOException {
         TurboType.setRoot("timed");

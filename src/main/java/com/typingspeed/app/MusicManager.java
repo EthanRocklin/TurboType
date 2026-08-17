@@ -1,6 +1,5 @@
 package com.typingspeed.app;
 
-import java.io.BufferedReader;
 import java.net.URL;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -9,6 +8,7 @@ import java.lang.RuntimeException;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import java.io.IOException;
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.InputStreamReader;
 import java.util.List;
@@ -34,7 +34,7 @@ public class MusicManager {
         try {
             Media media = new Media(getResourceURI(tracks[0]));
             musicPlayer = new MediaPlayer(media);
-            updateCurrentTrackText();
+            updateCurrentTrack();
         } catch (Exception e) {
             System.out.println(e.getMessage());
             e.printStackTrace();
@@ -102,7 +102,7 @@ public class MusicManager {
             String firstTrack = currentGenre + "1.mp3";
             Media media = new Media(getResourceURI(firstTrack));
             musicPlayer = new MediaPlayer(media);
-            updateCurrentTrackText();
+            updateCurrentTrack();
         } catch (Exception e) {
             System.out.println(e.getMessage());
             e.printStackTrace();
@@ -135,14 +135,15 @@ public class MusicManager {
             }
             Media media = new Media(getResourceURI(tracks[trackIndex]));
             musicPlayer = new MediaPlayer(media);
-            updateCurrentTrackText();
+            updateCurrentTrack();
         } catch (Exception e) {
             System.out.println(e.getMessage());
             e.printStackTrace();
         }
     }
     
-    public static void updateCurrentTrackText() {
+    // This method updates the information of the current track for UI display
+    public static void updateCurrentTrack() {
         // Gets the name and artist of the current song
         String path = "/music/credits/" + currentGenre + "_credits.txt";
         try (BufferedReader reader = new BufferedReader(
@@ -157,7 +158,7 @@ public class MusicManager {
     
     // Getters
     
-    public static String getCurrentTrackText() {
+    public static String getCurrentTrack() {
         return currentTrackText;
     }
     public static String getGenre() {

@@ -84,8 +84,8 @@ public class AttemptController {
     private void initializeUIListeners() {
         // Listeners for Sliders
         randomSlider.valueProperty().addListener((obs, oldValue, newValue) -> {
-            int oldWordCount = attemptWords.size(),
-            newWordCount = (int) randomSlider.getValue();
+            int oldWordCount = attemptWords.size();
+            int newWordCount = (int) randomSlider.getValue();
             if (oldWordCount != newWordCount) {
                 updateAttemptWords(newWordCount, false);
             }
@@ -139,7 +139,9 @@ public class AttemptController {
         totalCounter.setText(String.valueOf(attemptWords.size()));
         correctCounter.setText("0");
         // Sets Spinner values
-        int min = 1, max = 5, initial = 3;
+        int min = 1;
+        int max = 5;
+        int initial = 3;
         sentencesSpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(min, max, initial));
         // Sets Slider values
         min = 10;
@@ -160,12 +162,12 @@ public class AttemptController {
     
     // This methohd checks if the user completed typing the attempt's words.
     private void checkForCompletion() {
-        int totalWords = attemptWords.size(),
-            wordsTyped = typedWords.size();
-        String lastWord = attemptWords.get(totalWords - 1),
-               lastTyped = typedWords.get(wordsTyped - 1);
-        int lastWordLength = lastWord.length(),
-            lastTypedLength = lastTyped.length();
+        int totalWords = attemptWords.size();
+        int wordsTyped = typedWords.size();
+        String lastWord = attemptWords.get(totalWords - 1);
+        String lastTyped = typedWords.get(wordsTyped - 1);
+        int lastWordLength = lastWord.length();
+        int lastTypedLength = lastTyped.length();
         // The attempt is processed if the user completes the last word
         if (totalWords == wordsTyped && lastWordLength == lastTypedLength) {
             processAttempt();
@@ -185,8 +187,8 @@ public class AttemptController {
         // Checks typed words against practice words; guards against spam entries
         try {
             for (int i = 0; i < typedWords.size(); i++) {
-            String practiceWord = attemptWords.get(i),
-                   typedWord = typedWords.get(i);
+            String practiceWord = attemptWords.get(i);
+            String typedWord = typedWords.get(i);
             if (practiceWord.equals(typedWord)) {
                 correctCount++;
             }
@@ -298,17 +300,17 @@ public class AttemptController {
         double accuracyProgress = attempt.getAccuracy() / 100.0,
                wpmProgress = attempt.getWPM() / 100.0,
                typingScoreProgress = attempt.getTypingScore() / 10.0;
-        int maxWPM = attempt.getMaxWPM(),
-            worstScoreR = 255,
-            worstScoreG = 110,
-            worstScoreB = 110,
-            bestScoreR = 110,
-            bestScoreG = 255,
-            bestScoreB = 110;
+        int maxWPM = attempt.getMaxWPM();
+        int worstScoreR = 255;
+        int worstScoreG = 110;
+        int worstScoreB = 110;
+        int bestScoreR = 110;
+        int bestScoreG = 255;
+        int bestScoreB = 110;
         // Computes and sets the RGB values for the Accuracy stat
-        int red = lerp(worstScoreR, bestScoreR, accuracyProgress),
-            green = lerp(worstScoreG, bestScoreG, accuracyProgress),
-            blue = lerp(worstScoreB, bestScoreB, accuracyProgress);
+        int red = lerp(worstScoreR, bestScoreR, accuracyProgress);
+        int green = lerp(worstScoreG, bestScoreG, accuracyProgress);
+        int blue = lerp(worstScoreB, bestScoreB, accuracyProgress);
         String result = String.format(style, red, green, blue);
         accuracyValue.setStyle(result);
         // Computes and sets the RGB values for the Words Per Minute stat
@@ -393,9 +395,13 @@ public class AttemptController {
        // Style to be applied to the TextArea 
        String style = "-fx-effect: dropshadow(gaussian, rgba(%d,%d,%d), 15, 0.5, 0, 0);";
        // Variables for calculations
-       int wordCount = attemptWords.size(),
-           targetR = 0, targetG = 0, targetB = 0,
-           startR = 255, startG = 0, startB = 0;
+       int wordCount = attemptWords.size();
+       int targetR = 0;
+       int targetG = 0;
+       int targetB = 0;
+       int startR = 255;
+       int startG = 0;
+       int startB = 0;
        // Gets the targeted RGB values
        if (wordsArea.getEffect() instanceof DropShadow shadow) {
            Color color = shadow.getColor();

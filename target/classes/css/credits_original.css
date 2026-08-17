@@ -1,0 +1,72 @@
+.root {
+    -fx-background: #1a1a1c;
+    -fx-navigation-background: #e8e8e8;
+    -fx-navigation-background-pressed: #c9c9c9;
+    -fx-navigation-text: #000000;
+    -fx-navigation-shadow: #a550ff;
+    -fx-header: #f79e45;
+    -fx-credits: #ffb061;
+}
+
+
+/* Styles for the page content */
+
+#masterCreditsContainer {
+    -fx-alignment: TOP_CENTER;
+}
+
+.credits-container {
+    -fx-alignment: TOP_CENTER;
+}
+
+.credits-header {
+    -fx-font-family: "VT323";
+    -fx-font-size: 48;
+    -fx-fill: -fx-header;
+    -fx-alignment: center;
+    -fx-underline: true; 
+}
+
+#pixabayAttribution {
+    -fx-font-family: "VT323";
+    -fx-font-size: 36;
+    -fx-fill: -fx-header;
+}
+
+.genre-header {
+    -fx-font-family: "VT323";
+    -fx-font-size: 36;
+    -fx-fill: -fx-header;
+    -fx-underline: true; 
+}
+
+.genre-credits {
+    -fx-font-family: "Quantico-Regular";
+    -fx-font-size: 20;
+    -fx-fill: -fx-credits;
+    -fx-text-alignment: center;
+}
+
+#navigationContainer {
+    -fx-alignment: center;
+    -fx-border-color: red;
+}
+
+.navigation-btn {
+    -fx-background-color: -fx-navigation-background;
+    -fx-text-fill: -fx-navigation-text;
+    -fx-alignment: center;
+    -fx-cursor: hand;
+    -fx-pref-width: 150;
+    -fx-pref-height: 40;
+    -fx-padding: 0;
+    -fx-font-family: "VT323";
+    -fx-font-size: 30;
+    -fx-effect: dropshadow(gaussian, -fx-navigation-shadow, 15, 0.5, 0, 0);
+}
+
+.navigation-btn:pressed {
+    -fx-background-color: -fx-navigation-background-pressed;
+    -fx-scale-x: 0.98;
+    -fx-scale-y: 0.98;
+}

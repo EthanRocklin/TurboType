@@ -10,7 +10,6 @@ import java.nio.file.Files;
 /** @author Ethan Rocklin */
 public class Settings {
 
-    // Fields
     private String theme, genre, tronColor;
     private static final ObjectMapper MAPPER = new ObjectMapper();
     private static final ObjectWriter WRITER = MAPPER.writerWithDefaultPrettyPrinter();

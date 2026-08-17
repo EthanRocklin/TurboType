@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Text?>
+<?import java.net.URL?>
+
+<BorderPane xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.typingspeed.app.CreditsController">
+    <top>
+        <fx:include source="menu_bar.fxml" />
+    </top>
+    <center>
+        <VBox id="masterCreditsContainer">
+            <Text id="musicHeader" styleClass="credits-header" text="Music">
+                <VBox.margin>
+                    <Insets top="20" />
+                </VBox.margin>
+            </Text>
+            <Text id="pixabayAttribution" text="Sourced by Pixabay Artists">
+                <VBox.margin>
+                    <Insets top="20" />
+                </VBox.margin>
+            </Text>
+            <VBox VBox.vgrow="ALWAYS">
+                <VBox.margin>
+                    <Insets top="20" />
+                </VBox.margin>
+                <HBox id="creditsContainer" fx:id="creditsContainer">
+                    <HBox.margin>
+                        <Insets top="20" />
+                    </HBox.margin>
+                    <VBox id="leftContainer" fx:id="leftContainer" styleClass="credits-container" HBox.hgrow="ALWAYS">
+                        <Text styleClass="genre-header" text="Classical">
+                            <VBox.margin>
+                                <Insets bottom="20" />
+                            </VBox.margin>
+                        </Text>
+                        <Text id="classicalCredits" fx:id="classicalCredits" styleClass="genre-credits">
+                            <VBox.margin>
+                                <Insets bottom="40" />
+                            </VBox.margin>
+                        </Text>
+                        <Text styleClass="genre-header" text="Dubstep">
+                            <VBox.margin>
+                                <Insets bottom="20" />
+                            </VBox.margin>
+                        </Text>
+                        <Text id="dubstepCredits" fx:id="dubstepCredits" styleClass="genre-credits">
+                            <VBox.margin>
+                                <Insets bottom="40" />
+                            </VBox.margin>
+                        </Text>
+                        <Text styleClass="genre-header" text="Jazz">
+                            <VBox.margin>
+                                <Insets bottom="20" />
+                            </VBox.margin>
+                        </Text>
+                        <Text id="jazzCredits" fx:id="jazzCredits" styleClass="genre-credits" />
+                    </VBox>
+                    <VBox id="rightContainer" fx:id="rightContainer" styleClass="credits-container" HBox.hgrow="ALWAYS">
+                        <Text styleClass="genre-header" text="Pop">
+                            <VBox.margin>
+                                <Insets bottom="20" />
+                            </VBox.margin>
+                        </Text>
+                        <Text id="popCredits" fx:id="popCredits" styleClass="genre-credits">
+                            <VBox.margin>
+                                <Insets bottom="40" />
+                            </VBox.margin>
+                        </Text>
+                        <Text styleClass="genre-header" text="Rock">
+                            <VBox.margin>
+                                <Insets bottom="20" />
+                            </VBox.margin>
+                        </Text>
+                        <Text id="rockCredits" fx:id="rockCredits" styleClass="genre-credits">
+                            <VBox.margin>
+                                <Insets bottom="40" />
+                            </VBox.margin>
+                        </Text>
+                        <Text styleClass="genre-header" text="Techno">
+                            <VBox.margin>
+                                <Insets bottom="20" />
+                            </VBox.margin>
+                        </Text>
+                        <Text id="technoCredits" fx:id="technoCredits" styleClass="genre-credits" />
+                    </VBox>
+                </HBox>
+            </VBox>
+            <HBox id="navigationContainer" HBox.hgrow="ALWAYS">
+                <children>
+                    <Button id="homeBtn" mnemonicParsing="false" onAction="#displayHomepage" styleClass="navigation-btn" text="Home">
+                        <HBox.margin>
+                            <Insets right="30.0" />
+                        </HBox.margin>
+                    </Button>
+                    <Button id="timedBtn" mnemonicParsing="false" onAction="#displayPractice" styleClass="navigation-btn" text="Practice">
+                        <HBox.margin>
+                            <Insets right="30.0" />
+                        </HBox.margin>
+                    </Button>
+                    <Button id="homeBtn" mnemonicParsing="false" onAction="#displayTimed" styleClass="navigation-btn" text="Timed">
+                        <HBox.margin>
+                            <Insets right="30.0" />
+                        </HBox.margin>
+                    </Button>
+                    <Button id="statsBtn" mnemonicParsing="false" onAction="#displayStats" styleClass="navigation-btn" text="Statistics" />
+                </children>
+                <HBox.margin>
+                    <Insets bottom="20" />
+                </HBox.margin>
+            </HBox>
+        </VBox>
+    </center>
+</BorderPane>
