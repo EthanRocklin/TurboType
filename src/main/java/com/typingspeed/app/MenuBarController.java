@@ -24,6 +24,8 @@ public class MenuBarController {
     public void initialize() {
         colorBox.setVisibleRowCount(11);
         currentTrackText.setText(MusicManager.getCurrentTrack());
+        // Gives controller access to Music Manager for consistent currentTrack updates
+        MusicManager.setMenuBarController(this);
     }
     
     // FXML Handler Methods for Menu Tabs
@@ -66,45 +68,24 @@ public class MenuBarController {
     }
     
     @FXML
-    private void handleTronTheme(ActionEvent event) {
-        String colorName = colorBox.getValue(),
-               color = "";
-        // Determines color to send
-        switch (colorName) {
-            case "White":
-                color = "#ffffff";
-                break;
-            case "Red":
-                color = "#ff0000";
-                break;
-            case "Orange":
-                color = "#ff9900";
-                break;
-            case "Yellow":
-                color = "#ffff00";
-                break;
-            case "Lime":
-                color = "#aaff00";
-                break;
-            case "Green":
-                color = "#0fff00";
-                break;
-            case "Turquoise":
-                color = "#00ff88";
-                break;
-            case "Cyan":
-                color = "#00ffff";
-                break;
-            case "Purple":
-                color = "#dd00ff";
-                break;
-            case "Pink":
-                color = "#ff00bb";
-                break;
-            case "Hot Magenta":
-                color = "#ff0088";
-                break;
-        }
+    private void handleTronTheme() {
+        String color = switch (colorBox.getValue()) {
+            case "White" -> "#ffffff";
+            case "Red" -> "#ff0000";
+            case "Orange" -> "#ff9900";
+            case "Yellow" -> "#ffff00";
+            case "Lime" -> "#aaff00";
+            case "Green" -> "#0fff00";
+            case "Turquoise" -> "#00ff88";
+            case "Cyan" -> "#00ffff";
+            case "Purple" -> "#dd00ff";
+            case "Pink" -> "#ff00bb";
+            case "Hot Magenta" -> "#ff0088";
+            default -> {
+                System.out.println("ERROR : Could not retrieve selected color");
+                yield "#00ffff";
+            }
+        };
         TurboType.changeTheme("tron");
         TurboType.changeThemeColor(color);
         // Saves the color's name to the user's settings
@@ -145,6 +126,10 @@ public class MenuBarController {
         MusicManager.readyNewTrack(true);
         currentTrackText.setText(MusicManager.getCurrentTrack());
         MusicManager.play();
+    }
+    
+    public void setCurrentTrackText(String currentTrack) {
+        currentTrackText.setText(currentTrack);
     }
 
 }

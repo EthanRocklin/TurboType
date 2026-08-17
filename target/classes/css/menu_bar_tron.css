@@ -18,14 +18,14 @@
 .menu:showing,
 #colorBox .list-cell:hover, 
 #colorBox .list-cell:showing {
-    -fx-background-color: -fx-primary;
+    -fx-background-color: -fx-tron;
 }
 
 .menu:hover > .label,
 .menu:showing > .label,
 #colorBox .list-cell:hover,
 #colorBox .list-cell:showing {
-    -fx-text-fill: -fx-tron;
+    -fx-text-fill: -fx-primary;
 }
 
 /* In JavaFX's default stylesheet '*/

@@ -18,6 +18,7 @@ import java.util.stream.Collectors;
 
 public class MusicManager {
     
+    private static MenuBarController menuBarController;
     private static MediaPlayer musicPlayer;
     private static String currentGenre, currentTrackText;
     private static String[] tracks;
@@ -34,7 +35,9 @@ public class MusicManager {
         try {
             Media media = new Media(getResourceURI(tracks[0]));
             musicPlayer = new MediaPlayer(media);
+            setMusicPlayerListeners();
             updateCurrentTrack();
+            menuBarController.setCurrentTrackText(currentTrackText);
         } catch (Exception e) {
             System.out.println(e.getMessage());
             e.printStackTrace();
@@ -135,6 +138,7 @@ public class MusicManager {
             }
             Media media = new Media(getResourceURI(tracks[trackIndex]));
             musicPlayer = new MediaPlayer(media);
+            setMusicPlayerListeners();
             updateCurrentTrack();
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -175,6 +179,18 @@ public class MusicManager {
     
     public static void setGenre(String newGenre) {
         currentGenre = newGenre;
+    }
+    public static void setMenuBarController(MenuBarController controller) {
+        menuBarController = controller;
+    }
+    private static void setMusicPlayerListeners() {
+        // If the track ends
+        musicPlayer.setOnEndOfMedia(() -> {
+           readyNewTrack(true); 
+           updateCurrentTrack();
+           menuBarController.setCurrentTrackText(currentTrackText);
+           musicPlayer.play();
+        });
     }
     
     // State Setters
