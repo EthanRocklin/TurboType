@@ -1,18 +1,18 @@
+/* Colors for all the elements */
 .root {
     -fx-background: #1a1a1c;
     -fx-navigation-background: #e8e8e8;
     -fx-navigation-background-pressed: #c9c9c9;
     -fx-navigation-text: #000000;
     -fx-navigation-shadow: #a550ff;
-    -fx-header: #f79e45;
+    -fx-header: #bc7dff;
     -fx-credits: #ffb061;
+    -fx-pixabay: #f79e45;
 }
-
-
-/* Styles for the page content */
 
 #masterCreditsContainer {
     -fx-alignment: TOP_CENTER;
+    -fx-background-color: -fx-background;
 }
 
 .credits-container {
@@ -30,7 +30,7 @@
 #pixabayAttribution {
     -fx-font-family: "VT323";
     -fx-font-size: 36;
-    -fx-fill: -fx-header;
+    -fx-fill: -fx-pixabay;
 }
 
 .genre-header {
@@ -49,7 +49,7 @@
 
 #navigationContainer {
     -fx-alignment: center;
-    -fx-border-color: red;
+    -fx-pref-height: 100;
 }
 
 .navigation-btn {

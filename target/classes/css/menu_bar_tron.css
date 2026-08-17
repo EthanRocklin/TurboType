@@ -74,3 +74,41 @@
 #colorBox .arrow {
     -fx-background-color: -fx-primary;
 }
+
+/* Styles for the Music Panel */
+
+#musicPanel {
+    -fx-background-color: -fx-primary;
+    -fx-alignment: CENTER_LEFT;
+}
+
+.music-btn {
+    -fx-background-color: -fx-primary;
+}
+
+.music-btn:hover {
+    -fx-background-color: -fx-tron;
+    -fx-cursor: hand;
+}
+
+.music-btn:hover .btn-icon,
+.music-btn:pressed .btn-icon {
+    -fx-fill: -fx-primary;
+}
+
+.music-btn:pressed {
+    -fx-background-color: -fx-tron;
+    -fx-scale-x: 0.95;
+    -fx-scale-y: 0.95;
+}
+
+.btn-icon {
+    -fx-fill: -fx-tron;
+}
+
+#currentTrackText {
+    -fx-fill: -fx-tron;
+    -fx-font-size: 14;
+    -fx-font-family: "Quantico-Regular";
+    -fx-font-weight: bold;
+}

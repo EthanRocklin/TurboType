@@ -1,5 +1,8 @@
 /* Colors for all the elements */
 .root {
+    -fx-icon: #a550ff;
+    -fx-icon-background: #e8e8e8;
+    -fx-icon-background-pressed: #b570ff;
     -fx-menu-bar-background: #e8e8e8;
     -fx-menu-colorbox-arrow: #a550ff;
     -fx-menu-colorbox-background: #a550ff;
@@ -9,6 +12,8 @@
     -fx-menu-item-hover: #a550ff;
     -fx-menu-pressed: #b570ff;
     -fx-menu-text: #a550ff;
+    -fx-panel-background: #e8e8e8;
+    -fx-song-text: #a550ff;
 }
 
 #menuBarContainer {
@@ -84,4 +89,42 @@
 
 #colorBox .arrow {
     -fx-background-color: -fx-menu-colorbox-arrow;
+}
+
+/* Styles for the Music Panel */
+
+#musicPanel {
+    -fx-background-color: -fx-panel-background;
+    -fx-alignment: CENTER_LEFT;
+}
+
+.music-btn {
+    -fx-background-color: -fx-icon-background;
+}
+
+.music-btn:hover {
+    -fx-background-color: -fx-icon;
+    -fx-cursor: hand;
+}
+
+.music-btn:hover .btn-icon,
+.music-btn:pressed .btn-icon {
+    -fx-fill: -fx-icon-background;
+}
+
+.music-btn:pressed {
+    -fx-background-color: -fx-icon-background-pressed;
+    -fx-scale-x: 0.95;
+    -fx-scale-y: 0.95;
+}
+
+.btn-icon {
+    -fx-fill: -fx-icon;
+}
+
+#currentTrackText {
+    -fx-fill: -fx-song-text;
+    -fx-font-size: 14;
+    -fx-font-family: "Quantico-Regular";
+    -fx-font-weight: bold;
 }

@@ -10,7 +10,6 @@ import java.io.InputStreamReader;
 import java.util.List;
 import java.util.stream.Collectors;
 
-
 /** @author Ethan Rocklin */
 
 public class CreditsController {

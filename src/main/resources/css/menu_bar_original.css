@@ -11,7 +11,6 @@
     -fx-menu-hover-text: #000000;
     -fx-menu-item-hover: #ffa64d;
     -fx-menu-pressed: #ffbd7a;
-    -fx-menu-pressed: #ffbd7a;
     -fx-menu-text: #ffa64d;
     -fx-panel-background: #111111;
     -fx-song-text: #ffb163;
@@ -100,7 +99,6 @@
 
 /* Styles for the Music Panel */
 
-
 #musicPanel {
     -fx-background-color: -fx-panel-background;
     -fx-alignment: CENTER_LEFT;
@@ -134,6 +132,5 @@
     -fx-fill: -fx-song-text;
     -fx-font-size: 14;
     -fx-font-family: "Quantico-Regular";
-    -fx-border-color: red;
-    -fx-alignment: CENTER_LEFT;
+    -fx-font-weight: bold;
 }
