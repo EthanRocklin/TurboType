@@ -7,26 +7,14 @@ import java.io.InputStreamReader;
 import java.io.IOException;
 import java.util.Random;
 
-/**
- * 
- * @author Ethan Rocklin
- */
+/** @author Ethan Rocklin */
 
 public class SentenceBank {
 
-    private static List<String> bank;
-    private static int bankSize;
+    private static final List<String> BANK = loadSentences();
+    private static final int BANK_SIZE = BANK.size();
     
-    public SentenceBank() {
-        // Loads sentences into the "bank" field.
-        try (BufferedReader reader = new BufferedReader(
-                new InputStreamReader(getClass().getResourceAsStream("/words/sentences.txt")))) {
-            bank = reader.lines().collect(Collectors.toList());
-            bankSize = bank.size();
-        } catch (IOException e) {
-            System.out.println("ERROR : " + e.getMessage());
-        }
-    }
+    private SentenceBank() {}
     
     /**
      * This method generates and returns a list of sentences
@@ -39,9 +27,22 @@ public class SentenceBank {
         Random rand = new Random();
         // Populates the List with random words from the "bank" field.
         for (int i = 0; i < count; i++) {
-            words.append(bank.get(rand.nextInt(bankSize)) + " ");
+            words.append(BANK.get(rand.nextInt(BANK_SIZE)) + " ");
         }
         return words.toString();
+    }
+    
+    // This method loads the sentences into memory upon class instantiation
+    private static List<String> loadSentences() {
+        List<String> sentences = null;
+        // Loads sentences into the "bank" field.
+        try (BufferedReader reader = new BufferedReader(
+                new InputStreamReader(SentenceBank.class.getResourceAsStream("/words/sentences.txt")))) {
+            sentences = reader.lines().collect(Collectors.toList());
+        } catch (IOException e) {
+            System.out.println("ERROR : " + e.getMessage());
+        }
+        return sentences;
     }
     
 }

@@ -308,10 +308,10 @@
 .navigation-btn {
     -fx-background-color: -fx-navigation-background;
     -fx-text-fill: -fx-navigation-text;
-    -fx-pref-width: 250;
-    -fx-pref-height: 60;
+    -fx-pref-width: 150;
+    -fx-pref-height: 40;
     -fx-padding: 0;
-    -fx-font-size: 50;
+    -fx-font-size: 30;
     -fx-effect: dropshadow(gaussian, -fx-navigation-shadow, 15, 0.5, 0, 0);
     -fx-padding: 0;
     -fx-cursor: hand;

@@ -2,6 +2,8 @@ package com.typingspeed.app;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -22,9 +24,12 @@ public class TurboType extends Application {
     @Override
     public void start(Stage stage) {
         try {
-            loadFonts();
-            loadWords();
-            loadSentences();
+            // Loads the app's icon
+            Image icon = new Image(TurboType.class.getResourceAsStream("/images/app_icon.png"));
+            stage.getIcons().add(icon);
+            // Loads any fonts not available with JavaFX CSS
+            Font.loadFont(TurboType.class.getResourceAsStream("/fonts/VT323-Regular.ttf"), 14);
+            Font.loadFont(TurboType.class.getResourceAsStream("/fonts/Quantico-Regular.ttf"), 14);
             currentFXML = "homepage";
             currentTheme = "original";
             scene = new Scene(loadFXML(currentFXML), 640, 480);
@@ -102,20 +107,7 @@ public class TurboType extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(TurboType.class.getResource("/fxml/" + fxml + ".fxml"));
         return fxmlLoader.load();
     }
-    
-    /**
-     * This method loads any special fonts used by the application that
-     * is not standard with CSS.
-     */
-    private void loadFonts() {
-        Font.loadFont(getClass().getResourceAsStream("/fonts/VT323-Regular.ttf"), 14);
-        Font.loadFont(getClass().getResourceAsStream("/fonts/Quantico-Regular.ttf"), 14);
-    }
-    
-    private static void loadSentences() {
-        SentenceBank bank = new SentenceBank();
-    }
-    
+
     // This method loads and applies all settings the user had in their last session.
     private static void loadSettings() {
         try {
@@ -133,10 +125,6 @@ public class TurboType extends Application {
             System.out.println(e.getMessage());
             e.printStackTrace();
         }
-    }
-    
-    private static void loadWords() {
-        WordBank bank = new WordBank();
     }
     
     public static void main(String[] args) {

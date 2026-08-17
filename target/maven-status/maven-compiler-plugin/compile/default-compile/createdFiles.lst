@@ -9,6 +9,5 @@ com\typingspeed\app\CreditsController.class
 com\typingspeed\app\ExportManager.class
 com\typingspeed\app\HomepageController.class
 com\typingspeed\app\Attempt.class
-MusicManager\java.class
 com\typingspeed\app\WordBank.class
 com\typingspeed\app\DatabaseManager.class

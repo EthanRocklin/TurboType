@@ -7,26 +7,14 @@ import java.io.InputStreamReader;
 import java.io.IOException;
 import java.util.Random;
 
-/**
- * 
- * @author Ethan Rocklin
- */
+/** @author Ethan Rocklin */
 
 public class WordBank {
 
-    private static List<String> bank;
-    private static int bankSize;
+    private static final List<String> BANK = loadWords();
+    private static final int BANK_SIZE = BANK.size();
     
-    public WordBank() {
-        // Loads words into the "bank" field.
-        try (BufferedReader reader = new BufferedReader(
-                new InputStreamReader(getClass().getResourceAsStream("/words/atomic_words.txt")))) {
-            bank = reader.lines().collect(Collectors.toList());
-            bankSize = bank.size();
-        } catch (IOException e) {
-            System.out.println("ERROR : " + e.getMessage());
-        }
-    }
+    public WordBank() {}
     
     /**
      * This method generates and returns a list of words
@@ -39,9 +27,22 @@ public class WordBank {
         Random rand = new Random();
         // Populates the List with random words from the "bank" field.
         for (int i = 0; i < count; i++) {
-            words.append(bank.get(rand.nextInt(bankSize)) + " ");
+            words.append(BANK.get(rand.nextInt(BANK_SIZE)) + " ");
         }
         return words.toString();
+    }
+    
+    // This method loads the words into memory upon class instantiation
+    private static List<String> loadWords() {
+        List<String> words = null;
+        // Loads words into the "bank" field.
+        try (BufferedReader reader = new BufferedReader(
+                new InputStreamReader(WordBank.class.getResourceAsStream("/words/atomic_words.txt")))) {
+            words = reader.lines().collect(Collectors.toList());
+        } catch (IOException e) {
+            System.out.println("ERROR : " + e.getMessage());
+        }
+        return words;
     }
     
 }
