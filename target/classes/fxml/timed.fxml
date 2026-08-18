@@ -118,7 +118,7 @@
                        <children>
                           <HBox id="sentencesToggleContainer" styleClass="control-container">
                              <children>
-                                 <ToggleButton id="sentencesToggle" fx:id="sentencesToggle" mnemonicParsing="false" onAction="#toggleWordsFormat" styleClass="toggle" text="Format">
+                                 <ToggleButton id="sentencesToggle" fx:id="sentencesToggle" onAction="#toggleWordsFormat" styleClass="toggle" text="Format">
                                     <HBox.margin>
                                         <Insets left="50" right="5" />
                                     </HBox.margin>

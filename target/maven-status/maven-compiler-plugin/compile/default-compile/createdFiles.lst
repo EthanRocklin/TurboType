@@ -4,6 +4,7 @@ com\typingspeed\app\MenuBarController.class
 com\typingspeed\app\Settings.class
 com\typingspeed\app\AttemptController.class
 com\typingspeed\app\TurboType.class
+com\typingspeed\app\ExportController.class
 com\typingspeed\app\MusicManager.class
 com\typingspeed\app\CreditsController.class
 com\typingspeed\app\ExportManager.class

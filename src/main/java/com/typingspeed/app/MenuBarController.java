@@ -1,19 +1,25 @@
 package com.typingspeed.app;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.event.ActionEvent;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.Dialog;
+import javafx.scene.control.DialogPane;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.shape.SVGPath;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
+import java.io.IOException;
+import java.util.List;
+import javafx.stage.Modality;
 
 
 /** @author Ethan Rocklin */
 
 public class MenuBarController {
 
-    // Fields
     @FXML
     private ComboBox<String> colorBox;
     @FXML
@@ -32,7 +38,26 @@ public class MenuBarController {
     
     @FXML
     private void handleExport(ActionEvent event) {
-        
+        System.out.println("handleExport() executing");
+        MenuItem menuItem = (MenuItem) event.getSource();
+        String fileType = menuItem.getText();
+        displayExportDialog("/fxml/export_" + fileType + ".fxml");
+    }
+    
+    private void displayExportDialog(String resourcePath) {
+        try {
+            Stage currentStage = (Stage) colorBox.getScene().getWindow();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(resourcePath));
+            DialogPane pane = loader.load();
+            Dialog<List<String>> dialog = new Dialog<>();
+            dialog.setDialogPane(pane);
+            dialog.initOwner(currentStage);
+            dialog.initModality(Modality.WINDOW_MODAL);
+            dialog.showAndWait();
+        } catch (IOException e) {
+            System.out.println("ERROR : Dialog window failed to display");
+            e.printStackTrace();
+        }
     }
     
     @FXML

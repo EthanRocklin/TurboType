@@ -20,17 +20,17 @@
     </AnchorPane>
       <HBox id="navContainer">
          <children>
-             <Button id="practiceBtn" mnemonicParsing="false" onAction="#displayPractice" styleClass="navigation-btn" pickOnBounds="false" text="Practice">
+             <Button id="practiceBtn" onAction="#displayPractice" styleClass="navigation-btn" pickOnBounds="false" text="Practice">
                  <HBox.margin>
                     <Insets right="30.0" />
                 </HBox.margin>
              </Button>
-             <Button id="homeBtn" mnemonicParsing="false" onAction="#displayHomepage" styleClass="navigation-btn" pickOnBounds="false" text="Home">
+             <Button id="homeBtn" onAction="#displayHomepage" styleClass="navigation-btn" pickOnBounds="false" text="Home">
                  <HBox.margin>
                     <Insets right="30.0" />
                  </HBox.margin>
              </Button>
-            <Button id="timedBtn" mnemonicParsing="false" onAction="#displayTimed" styleClass="navigation-btn" pickOnBounds="false" text="Timed" />
+            <Button id="timedBtn" onAction="#displayTimed" styleClass="navigation-btn" pickOnBounds="false" text="Timed" />
          </children>
       </HBox>
   </children>

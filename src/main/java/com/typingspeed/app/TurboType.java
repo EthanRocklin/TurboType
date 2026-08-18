@@ -3,7 +3,6 @@ package com.typingspeed.app;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -104,8 +103,8 @@ public class TurboType extends Application {
      * @throws IOException 
      */
     private static Parent loadFXML(String fxml) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(TurboType.class.getResource("/fxml/" + fxml + ".fxml"));
-        return fxmlLoader.load();
+        FXMLLoader loader = new FXMLLoader(TurboType.class.getResource("/fxml/" + fxml + ".fxml"));
+        return loader.load();
     }
 
     // This method loads and applies all settings the user had in their last session.

@@ -21,27 +21,27 @@
         <menus>
             <Menu styleClass="menu" text="Export">
                 <items>
-                    <MenuItem fx:id="txtOption" styleClass="menu-item" mnemonicParsing="false" text=".txt"/>
-                    <MenuItem fx:id="xslxOption" styleClass="menu-item" mnemonicParsing="false" text=".xslx"/>
-                    <MenuItem fx:id="docxOption" styleClass="menu-item" mnemonicParsing="false" text=".docx"/>
-                    <MenuItem fx:id="pdfOption" styleClass="menu-item" mnemonicParsing="false" text=".pdf"/>
+                    <MenuItem fx:id="docxOption" styleClass="menu-item" onAction="#handleExport" text=".docx"/>
+                    <MenuItem fx:id="pdfOption" styleClass="menu-item" onAction="#handleExport" text=".pdf"/>
+                    <MenuItem fx:id="txtOption" styleClass="menu-item" onAction="#handleExport" text=".txt"/>
+                    <MenuItem fx:id="xslxOption" styleClass="menu-item" onAction="#handleExport" text=".xslx"/>
                 </items>
             </Menu>
             <Menu styleClass="menu" text="Music">
                 <items>
-                    <MenuItem fx:id="classicalOption" styleClass="menu-item" onAction="#handleGenreChange" mnemonicParsing="false" text="Classical"/>
-                    <MenuItem fx:id="dubstepOption" styleClass="menu-item" onAction="#handleGenreChange" mnemonicParsing="false" text="Dubstep"/>
-                    <MenuItem fx:id="jazzOption" styleClass="menu-item" onAction="#handleGenreChange" mnemonicParsing="false" text="Jazz"/>
-                    <MenuItem fx:id="popOption" styleClass="menu-item" onAction="#handleGenreChange" mnemonicParsing="false" text="Pop"/>
-                    <MenuItem fx:id="rockOption" styleClass="menu-item" onAction="#handleGenreChange" mnemonicParsing="false" text="Rock"/>
-                    <MenuItem fx:id="technoOption" styleClass="menu-item" onAction="#handleGenreChange" mnemonicParsing="false" text="Techno"/>
+                    <MenuItem fx:id="classicalOption" styleClass="menu-item" onAction="#handleGenreChange" text="Classical"/>
+                    <MenuItem fx:id="dubstepOption" styleClass="menu-item" onAction="#handleGenreChange" text="Dubstep"/>
+                    <MenuItem fx:id="jazzOption" styleClass="menu-item" onAction="#handleGenreChange" text="Jazz"/>
+                    <MenuItem fx:id="popOption" styleClass="menu-item" onAction="#handleGenreChange" text="Pop"/>
+                    <MenuItem fx:id="rockOption" styleClass="menu-item" onAction="#handleGenreChange" text="Rock"/>
+                    <MenuItem fx:id="technoOption" styleClass="menu-item" onAction="#handleGenreChange" text="Techno"/>
                 </items>
             </Menu>
             <Menu styleClass="menu" text="Theme">
                 <items>
-                    <MenuItem fx:id="originalOption" styleClass="menu-item" onAction="#handleThemeChange" mnemonicParsing="false" text="Original"/>
-                    <MenuItem fx:id="motherNatureOption" styleClass="menu-item" onAction="#handleThemeChange" mnemonicParsing="false" text="Nature"/>
-                    <MenuItem fx:id="purpleParadiseOption" styleClass="menu-item" onAction="#handleThemeChange" mnemonicParsing="false" text="Purple Paradise"/>
+                    <MenuItem fx:id="originalOption" styleClass="menu-item" onAction="#handleThemeChange" text="Original"/>
+                    <MenuItem fx:id="motherNatureOption" styleClass="menu-item" onAction="#handleThemeChange" text="Nature"/>
+                    <MenuItem fx:id="purpleParadiseOption" styleClass="menu-item" onAction="#handleThemeChange" text="Purple Paradise"/>
                     <CustomMenuItem fx:id="tronOption" styleClass="menu-item">
                         <content>
                             <HBox>
