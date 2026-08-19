@@ -1,7 +1,21 @@
 /* Colors for all the elements */
 .root {
     -fx-background: #1a1a1c;
-    -fx-title: #f79e45;
+    -fx-browse-background: #292929;
+    -fx-browse-border: #000000;
+    -fx-browse-hover-background: #f79e45;
+    -fx-browse-hover-text: #000000;
+    -fx-browse-pressed: #ffbd7a;
+    -fx-browse-text: #f79e45;
+    -fx-cancel-button: #ff4d4d;
+    -fx-checkbox: #d980ff;
+    -fx-checkbox-hover: #e4a3ff;
+    -fx-export-button: #d980ff;
+    -fx-options-header: #a550ff;
+    -fx-options-text: #f79e45;
+    -fx-selected-path: #292929;
+    -fx-selected-path-prompt: #808080;
+    -fx-selected-path-text: #f79e45;
 }
 
 #dialogPane {
@@ -18,4 +32,85 @@
 
 #selectedPath {
     -fx-pref-height: 30;
+}
+
+.info-header {
+    -fx-fill: -fx-options-header;
+    -fx-font-family: "VT323";
+    -fx-font-size: 24;
+}
+
+.info-option {
+    -fx-text-fill: -fx-options-text;
+    -fx-font-family: "Quantico";
+    -fx-font-size: 14;
+}
+
+.info-option .box {
+    -fx-background-color: -fx-checkbox;
+}
+
+.info-option .box:hover {
+    -fx-background-color: -fx-checkbox-hover;
+}
+
+#browseBtn {
+    -fx-background-color: -fx-browse-background;
+    -fx-background-insets: 0;
+    -fx-background-radius: 5;
+    -fx-border-insets: 0;
+    -fx-border-radius: 5;
+    -fx-border-color: -fx-browse-border;
+    -fx-font-family: "VT323";
+    -fx-font-size: 24;
+    -fx-text-fill: -fx-browse-text;
+    -fx-padding: 5 10 5 10;
+    -fx-cursor: hand;
+}
+
+#browseBtn:hover {
+    -fx-background-color: -fx-browse-hover-background;
+    -fx-text-fill: -fx-browse-hover-text;
+}
+
+#browseBtn:pressed {
+    -fx-background-color: -fx-browse-pressed;
+    -fx-text-fill: -fx-browse-hover-text;
+    -fx-scale-x: 0.98;
+    -fx-scale-y: 0.98;
+}
+
+#selectedPath,
+#selectedPath .content,
+#selectedPath .viewport {
+    -fx-background-color: -fx-selected-path;
+    -fx-background-radius: 5;
+    -fx-background-insets: 0;
+}
+
+#selectedPath {
+    -fx-prompt-text-fill: -fx-selected-path-prompt;
+    -fx-text-fill: -fx-selected-path-text;
+    -fx-font-family: "Quantico";
+    -fx-font-size: 14;
+    -fx-pref-width: 400;
+}
+
+.dialog-pane .button {
+    -fx-background-insets: 0;
+    -fx-background-radius: 5;
+    -fx-border-insets: 0;
+    -fx-border-radius: 5;
+    -fx-padding: 5 10 5 10;
+    -fx-font-family: "VT323";
+    -fx-font-size: 24;
+    -fx-cursor: hand;
+}
+
+.dialog-pane .button:default {
+    -fx-background-color: -fx-export-button;
+}
+
+.dialog-pane .button:cancel {
+    -fx-background-color: -fx-cancel-button;
 }

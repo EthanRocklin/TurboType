@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ButtonType?>
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.DialogPane?>
-<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
@@ -14,26 +15,82 @@
         <VBox>
             <HBox id="infoContainer">
                 <VBox id="optionalInfo" styleClass="info-container">
-                    <Text styleClass="infoHeader" text="Optional Info" />
-                    <CheckBox fx:id="selectAllBox" styleClass="info-option" text="SELECT ALL" />
-                    <CheckBox fx:id="accuracyBox" styleClass="info-option" text="Accuracy" />
-                    <CheckBox fx:id="dateBox" styleClass="info-option" text="Date" />
-                    <CheckBox fx:id="timeElapsedBox" styleClass="info-option" text="Time Elapsed" />
-                    <CheckBox fx:id="wordCountsBox" styleClass="info-option" text="Word Counts" />
-                    <CheckBox fx:id="wpmBox" styleClass="info-option" text="Words per Minute" />
-                    <CheckBox fx:id="averageAccuracyBox" styleClass="info-option" text="Average Accuracy" />
-                    <CheckBox fx:id="averageTypingScoreBox" styleClass="info-option" text="Average Typing Score" />
-                    <CheckBox fx:id="averageWPMBox" styleClass="info-option" text="Accuracy WPM" />
+                    <Text styleClass="info-header" text="Optional Info">
+                        <VBox.margin>
+                            <Insets bottom="10" />
+                        </VBox.margin>
+                    </Text>
+                    <CheckBox fx:id="selectAllBox" styleClass="info-option" text="SELECT ALL">
+                        <VBox.margin>
+                            <Insets bottom="5" />
+                        </VBox.margin>
+                    </CheckBox>
+                    <CheckBox fx:id="accuracyBox" styleClass="info-option" text="Accuracy">
+                        <VBox.margin>
+                            <Insets bottom="5" left="10" />
+                        </VBox.margin>
+                    </CheckBox>
+                    <CheckBox fx:id="dateBox" styleClass="info-option" text="Date">
+                        <VBox.margin>
+                            <Insets bottom="5" left="10" />
+                        </VBox.margin>
+                    </CheckBox>
+                    <CheckBox fx:id="timeElapsedBox" styleClass="info-option" text="Time Elapsed">
+                        <VBox.margin>
+                            <Insets bottom="5" left="10" />
+                        </VBox.margin>
+                    </CheckBox>
+                    <CheckBox fx:id="wordCountsBox" styleClass="info-option" text="Word Counts">
+                        <VBox.margin>
+                            <Insets bottom="5" left="10" />
+                        </VBox.margin>
+                    </CheckBox>
+                    <CheckBox fx:id="wpmBox" styleClass="info-option" text="Words per Minute">
+                        <VBox.margin>
+                            <Insets bottom="5" left="10" />
+                        </VBox.margin>
+                    </CheckBox>
+                    <CheckBox fx:id="averageAccuracyBox" styleClass="info-option" text="Average Accuracy">
+                        <VBox.margin>
+                            <Insets bottom="5" left="10" />
+                        </VBox.margin>
+                    </CheckBox>
+                    <CheckBox fx:id="averageTypingScoreBox" styleClass="info-option" text="Average Typing Score">
+                        <VBox.margin>
+                            <Insets bottom="5" left="10" />
+                        </VBox.margin>
+                    </CheckBox>
+                    <CheckBox fx:id="averageWPMBox" styleClass="info-option" text="Accuracy WPM">
+                        <VBox.margin>
+                            <Insets bottom="30" left="10" />
+                        </VBox.margin>
+                    </CheckBox>
                 </VBox>
                 <VBox id="defaultInfo" styleClass="info-container">
-                    <Text styleClass="infoHeader" text="Default Info" />
-                    <CheckBox styleClass="info-option" selected="true" disable="true" text="Attempt Number" />
-                    <CheckBox styleClass="info-option" selected="true" disable="true" text="Typing Score" />
+                    <Text styleClass="info-header" text="Default Info">
+                        <VBox.margin>
+                            <Insets bottom="10" left="30" />
+                        </VBox.margin>
+                    </Text>
+                    <CheckBox styleClass="info-option" selected="true" disable="true" text="Attempt Number">
+                        <VBox.margin>
+                            <Insets bottom="5" left="30" />
+                        </VBox.margin>
+                    </CheckBox>
+                    <CheckBox styleClass="info-option" selected="true" disable="true" text="Typing Score">
+                        <VBox.margin>
+                            <Insets bottom="5" left="30" />
+                        </VBox.margin>
+                    </CheckBox>
                 </VBox>
             </HBox>
             <HBox id="pathSelectionContainer">
                 <Button id="browseBtn" fx:id="browseBtn" text="Browse" />
-                <TextArea id="selectedPath" fx:id="selectedPath" promptText="Select or Enter a location"/>
+                <TextField id="selectedPath" fx:id="selectedPath" promptText="Select or Enter a location">
+                    <HBox.margin>
+                        <Insets left="5" />
+                    </HBox.margin>
+                </TextField>
             </HBox>
         </VBox>
     </content>
