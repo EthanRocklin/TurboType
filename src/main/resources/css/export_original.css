@@ -1,0 +1,21 @@
+/* Colors for all the elements */
+.root {
+    -fx-background: #1a1a1c;
+    -fx-title: #f79e45;
+}
+
+#dialogPane {
+    -fx-background-color: -fx-background;
+}
+
+#pathSelectionContainer {
+    -fx-pref-height: 30;
+}
+
+#browseBtn {
+    -fx-pref-height: 30;
+}
+
+#selectedPath {
+    -fx-pref-height: 30;
+}

@@ -7,13 +7,16 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.Dialog;
 import javafx.scene.control.DialogPane;
+import javafx.scene.control.MenuBar;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.shape.SVGPath;
 import javafx.scene.text.Text;
+import javafx.scene.Scene;
 import javafx.stage.Stage;
-import java.io.IOException;
-import java.util.List;
 import javafx.stage.Modality;
+import java.io.IOException;
+import java.net.URL;
+import java.util.List;
 
 
 /** @author Ethan Rocklin */
@@ -22,6 +25,8 @@ public class MenuBarController {
 
     @FXML
     private ComboBox<String> colorBox;
+    @FXML
+    private MenuBar menuBar;
     @FXML
     private SVGPath pauseBtnIcon;
     @FXML
@@ -38,20 +43,30 @@ public class MenuBarController {
     
     @FXML
     private void handleExport(ActionEvent event) {
-        System.out.println("handleExport() executing");
         MenuItem menuItem = (MenuItem) event.getSource();
-        String fileType = menuItem.getText();
-        displayExportDialog("/fxml/export_" + fileType + ".fxml");
+        String fileType = menuItem.getText().replace(".", "");
+        String resourcePath = "/fxml/export_" + fileType + ".fxml";
+        displayExportDialog(resourcePath, fileType);
     }
     
-    private void displayExportDialog(String resourcePath) {
+    // This method helps handleExport() create and display Export dialog windows
+    private void displayExportDialog(String resourcePath, String fileType) {
         try {
-            Stage currentStage = (Stage) colorBox.getScene().getWindow();
+            Scene scene = menuBar.getScene();
+            Stage currentStage = (Stage) scene.getWindow();
             FXMLLoader loader = new FXMLLoader(getClass().getResource(resourcePath));
             DialogPane pane = loader.load();
+            // Sets CSS for the window
+            URL cssUrl = MenuBarController.class.getResource("/css/export_" + Settings.getTheme() + ".css");
+            if (cssUrl != null) {
+                scene.getStylesheets().add(cssUrl.toExternalForm());
+            }
+            // Links Dialog window to parent stage
             Dialog<List<String>> dialog = new Dialog<>();
             dialog.setDialogPane(pane);
             dialog.initOwner(currentStage);
+            dialog.setTitle("." + fileType + " Export");
+            dialog.setResizable(true);
             dialog.initModality(Modality.WINDOW_MODAL);
             dialog.showAndWait();
         } catch (IOException e) {

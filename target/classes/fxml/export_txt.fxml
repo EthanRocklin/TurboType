@@ -9,31 +9,33 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<DialogPane xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.typingspeed.app.ExportController">
+<DialogPane id="dialogPane" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.typingspeed.app.ExportController">
     <content>
-        <HBox id="infoContainer">
-            <VBox id="optionalInfo" styleClass="info-container">
-                <Text styleClass="infoHeader" text="Optional Info" />
-                <CheckBox fx:id="selectAllBox" styleClass="info-option" text="SELECT ALL" />
-                <CheckBox fx:id="accuracyBox" styleClass="info-option" text="Accuracy" />
-                <CheckBox fx:id="dateBox" styleClass="info-option" text="Date" />
-                <CheckBox fx:id="timeElapsedBox" styleClass="info-option" text="Time Elapsed" />
-                <CheckBox fx:id="wordCountsBox" styleClass="info-option" text="Word Counts" />
-                <CheckBox fx:id="wpmBox" styleClass="info-option" text="Words per Minute" />
-                <CheckBox fx:id="averageAccuracyBox" styleClass="info-option" text="Average Accuracy" />
-                <CheckBox fx:id="averageTypingScoreBox" styleClass="info-option" text="Average Typing Score" />
-                <CheckBox fx:id="averageWPMBox" styleClass="info-option" text="Accuracy WPM" />
-            </VBox>
-            <VBox id="defaultInfo" styleClass="info-container">
-                <Text styleClass="infoHeader" text="Default Info" />
-                <CheckBox styleClass="info-option" selected="true" disable="true" text="Attempt Number" />
-                <CheckBox styleClass="info-option" selected="true" disable="true" text="Typing Score" />
-            </VBox>
-        </HBox>
-        <HBox id="pathSelectionContainer">
-            <Button id="browseBtn" fx:id="browseBtn" text="Browse" />
-            <TextArea id="selectedPath" fx:id="selectedPath" promptText="Select or Enter a location"/>
-        </HBox>
+        <VBox>
+            <HBox id="infoContainer">
+                <VBox id="optionalInfo" styleClass="info-container">
+                    <Text styleClass="infoHeader" text="Optional Info" />
+                    <CheckBox fx:id="selectAllBox" styleClass="info-option" text="SELECT ALL" />
+                    <CheckBox fx:id="accuracyBox" styleClass="info-option" text="Accuracy" />
+                    <CheckBox fx:id="dateBox" styleClass="info-option" text="Date" />
+                    <CheckBox fx:id="timeElapsedBox" styleClass="info-option" text="Time Elapsed" />
+                    <CheckBox fx:id="wordCountsBox" styleClass="info-option" text="Word Counts" />
+                    <CheckBox fx:id="wpmBox" styleClass="info-option" text="Words per Minute" />
+                    <CheckBox fx:id="averageAccuracyBox" styleClass="info-option" text="Average Accuracy" />
+                    <CheckBox fx:id="averageTypingScoreBox" styleClass="info-option" text="Average Typing Score" />
+                    <CheckBox fx:id="averageWPMBox" styleClass="info-option" text="Accuracy WPM" />
+                </VBox>
+                <VBox id="defaultInfo" styleClass="info-container">
+                    <Text styleClass="infoHeader" text="Default Info" />
+                    <CheckBox styleClass="info-option" selected="true" disable="true" text="Attempt Number" />
+                    <CheckBox styleClass="info-option" selected="true" disable="true" text="Typing Score" />
+                </VBox>
+            </HBox>
+            <HBox id="pathSelectionContainer">
+                <Button id="browseBtn" fx:id="browseBtn" text="Browse" />
+                <TextArea id="selectedPath" fx:id="selectedPath" promptText="Select or Enter a location"/>
+            </HBox>
+        </VBox>
     </content>
     <buttonTypes>
         <ButtonType fx:constant="OK" />

@@ -50,13 +50,13 @@ public class TurboType extends Application {
             scene.getStylesheets().clear();
             // Sets the styles for the FXML file
             URL cssUrl = null;
+            URL menuBarCssURL = TurboType.class.getResource("/css/menu_bar_" + currentTheme + ".css");
             // The Practice and Timed FXML files have the same style structure "attempt_<theme>.css"
             if (currentFXML.equals("practice") || currentFXML.equals("timed")) {
                 cssUrl = TurboType.class.getResource("/css/attempt_" + currentTheme + ".css");
             } else {
                 cssUrl = TurboType.class.getResource("/css/" + currentFXML + "_" + currentTheme + ".css");
             }
-            URL menuBarCssURL = TurboType.class.getResource("/css/menu_bar_" + currentTheme + ".css");
             if (cssUrl != null) {
                 scene.getStylesheets().add(cssUrl.toExternalForm());
                 scene.getStylesheets().add(menuBarCssURL.toExternalForm());
@@ -77,13 +77,13 @@ public class TurboType extends Application {
         // Clears existing stylesheets and adds new stylesheets
         scene.getStylesheets().clear();
         URL cssUrl = null;
+        URL menuBarCssURL = TurboType.class.getResource("/css/menu_bar" + "_" + currentTheme + ".css");
         // The Practice and Timed FXML files have the same style structure "attempt_<theme>.css"
         if (currentFXML.equals("practice") || currentFXML.equals("timed")) {
             cssUrl = TurboType.class.getResource("/css/attempt_" + currentTheme + ".css");
         } else {
             cssUrl = TurboType.class.getResource("/css/" + currentFXML + "_" + currentTheme + ".css");
         }
-        URL menuBarCssURL = TurboType.class.getResource("/css/menu_bar" + "_" + currentTheme + ".css");
         if (cssUrl != null) {
             scene.getStylesheets().add(cssUrl.toExternalForm());
             scene.getStylesheets().add(menuBarCssURL.toExternalForm());
