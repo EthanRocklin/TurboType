@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<DialogPane id="dialogPane" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.typingspeed.app.ExportController">
+<DialogPane id="dialogPane" fx:id="dialogPane" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.typingspeed.app.ExportController">
     <content>
         <VBox>
             <HBox id="infoContainer">
@@ -85,8 +85,8 @@
                 </VBox>
             </HBox>
             <HBox id="pathSelectionContainer">
-                <Button id="browseBtn" fx:id="browseBtn" text="Browse" />
-                <TextField id="selectedPath" fx:id="selectedPath" promptText="Select or Enter a location">
+                <Button id="browseBtn" fx:id="browseBtn" onAction="#selectDirectory" text="Browse" />
+                <TextField id="selectedDirectory" fx:id="selectedDirectory" promptText="Select or Enter a directory">
                     <HBox.margin>
                         <Insets left="5" />
                     </HBox.margin>

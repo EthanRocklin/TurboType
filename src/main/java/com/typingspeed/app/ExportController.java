@@ -1,10 +1,20 @@
 package com.typingspeed.app;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.DialogPane;
+import javafx.scene.control.TextField;
+import javafx.stage.DirectoryChooser;
+import javafx.stage.Stage;
+import java.io.File;
 
 /** @author Ethan Rocklin */
 
 public class ExportController {
+    
+    @FXML
+    private static DialogPane dialogPane;
+    @FXML
+    private static TextField selectedDirectory;
     
     // FXML Handler Methods
     
@@ -20,7 +30,7 @@ public class ExportController {
     
     @FXML
     private void handleTxt() {
-        System.out.println("Txt export handler connected");
+        
     }
     
     @FXML
@@ -30,7 +40,18 @@ public class ExportController {
     
     // Other Methods
     
-    private void export() {
+    @FXML
+    private void selectDirectory() {
+        DirectoryChooser chooser = new DirectoryChooser();
+        chooser.setTitle("Select Export Folder");
+        chooser.setInitialDirectory(new File(System.getProperty("user.home")));
+        // Links chooser dialog window to the parent stage
+        //Stage stage = (Stage) dialogPane.getScene().getWindow();
+        File directory = chooser.showDialog(null);
+        selectedDirectory.setText(directory.getAbsolutePath());
+    }
+    
+    private void exportDocx() {
         
     }
     
