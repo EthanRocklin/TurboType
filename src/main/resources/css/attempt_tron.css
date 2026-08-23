@@ -113,6 +113,8 @@
     -fx-border-radius: 5;
     -fx-border-insets: 0;
     -fx-font-size: 24;
+    -fx-highlight-fill: -fx-tron;
+    -fx-highlight-text-fill: -fx-primary;
     -fx-text-fill: -fx-tron;
     -fx-cursor: text;
     -fx-wrap-text: true;

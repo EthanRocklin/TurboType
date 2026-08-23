@@ -20,7 +20,7 @@
                             <Insets bottom="10" />
                         </VBox.margin>
                     </Text>
-                    <CheckBox fx:id="selectAllBox" styleClass="info-option" text="SELECT ALL">
+                    <CheckBox fx:id="selectAllBox" styleClass="info-option" onAction="#selectAll" text="SELECT ALL">
                         <VBox.margin>
                             <Insets bottom="5" />
                         </VBox.margin>

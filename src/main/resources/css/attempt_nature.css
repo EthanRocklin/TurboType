@@ -145,6 +145,8 @@
     -fx-border-radius: 5;
     -fx-border-insets: 0;
     -fx-font-size: 24;
+    -fx-highlight-fill: -fx-text-area-text;
+    -fx-highlight-text-fill: -fx-text-area;
     -fx-text-fill: -fx-text-area-text;
     -fx-cursor: text;
     -fx-wrap-text: true;

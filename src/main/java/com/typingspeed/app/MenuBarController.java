@@ -65,8 +65,8 @@ public class MenuBarController {
             Dialog<List<String>> dialog = new Dialog<>();
             dialog.setDialogPane(pane);
             dialog.initOwner(currentStage);
+            // Sets configurations
             dialog.setTitle("." + fileType + " Export");
-            dialog.setResizable(true);
             dialog.initModality(Modality.WINDOW_MODAL);
             dialog.showAndWait();
         } catch (IOException e) {
