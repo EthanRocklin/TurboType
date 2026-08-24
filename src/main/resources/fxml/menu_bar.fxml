@@ -21,6 +21,7 @@
         <menus>
             <Menu styleClass="menu" text="Export">
                 <items>
+                    <MenuItem fx:id="csvOption" styleClass="menu-item" onAction="#handleExport" text=".csv"/>
                     <MenuItem fx:id="docxOption" styleClass="menu-item" onAction="#handleExport" text=".docx"/>
                     <MenuItem fx:id="pdfOption" styleClass="menu-item" onAction="#handleExport" text=".pdf"/>
                     <MenuItem fx:id="txtOption" styleClass="menu-item" onAction="#handleExport" text=".txt"/>

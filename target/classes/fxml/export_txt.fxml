@@ -35,6 +35,11 @@
                             <Insets bottom="5" left="10" />
                         </VBox.margin>
                     </CheckBox>
+                    <CheckBox fx:id="formatBox" styleClass="info-option" text="Format">
+                        <VBox.margin>
+                            <Insets bottom="5" left="10" />
+                        </VBox.margin>
+                    </CheckBox>
                     <CheckBox fx:id="timeElapsedBox" styleClass="info-option" text="Time Elapsed">
                         <VBox.margin>
                             <Insets bottom="5" left="10" />
@@ -86,7 +91,7 @@
             </HBox>
             <HBox id="pathSelectionContainer">
                 <Button id="browseBtn" fx:id="browseBtn" onAction="#selectDirectory" text="Browse" />
-                <TextField id="selectedDirectory" fx:id="selectedDirectory" promptText="Select or Enter a directory">
+                <TextField id="selectedDirectory" fx:id="selectedDirectory" editable="false" promptText="Select a directory">
                     <HBox.margin>
                         <Insets left="5" />
                     </HBox.margin>

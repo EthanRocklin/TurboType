@@ -2,13 +2,14 @@ package com.typingspeed.app;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.DialogPane;
 import javafx.scene.control.TextField;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
 import java.io.File;
-import javafx.scene.control.ButtonType;
+import java.nio.file.Path;
 
 /** @author Ethan Rocklin */
 
@@ -26,6 +27,8 @@ public class TxtExportController {
     private CheckBox averageWPMBox;
     @FXML
     private CheckBox dateBox;
+    @FXML
+    private CheckBox formatBox;
     @FXML
     private CheckBox selectAllBox;
     @FXML
@@ -55,6 +58,7 @@ public class TxtExportController {
             averageTypingScoreBox.isSelected(),
             averageWPMBox.isSelected(),
             dateBox.isSelected(),
+            formatBox.isSelected(),
             timeElapsedBox.isSelected(),
             wordCountsBox.isSelected(),
             wpmBox.isSelected(),
@@ -67,6 +71,7 @@ public class TxtExportController {
         if (selectAllBox.isSelected()) {
             accuracyBox.setSelected(true);
             dateBox.setSelected(true);
+            formatBox.setSelected(true);
             timeElapsedBox.setSelected(true);
             wordCountsBox.setSelected(true);
             wpmBox.setSelected(true);
@@ -76,6 +81,7 @@ public class TxtExportController {
         } else {
             accuracyBox.setSelected(false);
             dateBox.setSelected(false);
+            formatBox.setSelected(false);
             timeElapsedBox.setSelected(false);
             wordCountsBox.setSelected(false);
             wpmBox.setSelected(false);

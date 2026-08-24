@@ -1,0 +1,158 @@
+/* Colors for all the elements */
+.root {
+    -fx-background: #31663f;
+    -fx-browse: #3d2f27;
+    -fx-browse-hover: #ffe978;
+    -fx-browse-hover-text: #3d2f27;
+    -fx-browse-pressed: #ffe561;
+    -fx-browse-text: #ffe978;
+    -fx-button-border: #000000;
+    -fx-cancel-button: #f8bdff;
+    -fx-cancel-button-hover: #faccff;
+    -fx-cancel-button-pressed: #f5a3ff;
+    -fx-checkbox: #f8bdff;
+    -fx-checkbox-hover: #f5a3ff;
+    -fx-checkmark: #3d2f27;
+    -fx-export-button: #ffe978;
+    -fx-export-button-hover: #fff0a1;
+    -fx-export-button-pressed: #ffe561;
+    -fx-options-header: #f8bdff;
+    -fx-options-text: #ffe978;
+    -fx-selected-path: #3d2f27;
+    -fx-selected-path-prompt: #ffe978;
+    -fx-selected-path-text: #ffe978;
+}
+
+#dialogPane {
+    -fx-background-color: -fx-background;
+}
+
+#pathSelectionContainer {
+    -fx-pref-height: 30;
+}
+
+#browseBtn {
+    -fx-pref-height: 30;
+}
+
+#selectedPath {
+    -fx-pref-height: 30;
+}
+
+.info-header {
+    -fx-fill: -fx-options-header;
+    -fx-font-family: "VT323";
+    -fx-font-size: 24;
+}
+
+.info-option {
+    -fx-text-fill: -fx-options-text;
+    -fx-font-family: "Quantico";
+    -fx-font-size: 14;
+}
+
+.info-option .box {
+    -fx-background-color: -fx-checkbox;
+}
+
+.info-option .box:hover {
+    -fx-background-color: -fx-checkbox-hover;
+}
+
+.info-option:selected .box .mark {
+    -fx-background-color: -fx-checkmark;
+}
+
+#pathSelectionContainer {
+    -fx-pref-height: 35;
+}
+
+#browseBtn {
+    -fx-background-color: -fx-browse;
+    -fx-background-insets: 0;
+    -fx-background-radius: 5;
+    -fx-border-insets: 0;
+    -fx-border-radius: 5;
+    -fx-border-color: -fx-button-border;
+    -fx-font-family: "VT323";
+    -fx-font-size: 24;
+    -fx-text-fill: -fx-browse-text;
+    -fx-padding: 5 10 5 10;
+    -fx-pref-height: 35;
+    -fx-cursor: hand;
+}
+
+#browseBtn:hover {
+    -fx-background-color: -fx-browse-hover;
+    -fx-text-fill: -fx-browse-hover-text;
+}
+
+#browseBtn:pressed {
+    -fx-background-color: -fx-browse-pressed;
+    -fx-text-fill: -fx-browse-hover-text;
+    -fx-scale-x: 0.97;
+    -fx-scale-y: 0.97;
+}
+
+#selectedDirectory,
+#selectedPath .content,
+#selectedPath .viewport {
+    -fx-background-color: -fx-selected-path;
+    -fx-background-radius: 5;
+    -fx-background-insets: 0;
+}
+
+#selectedDirectory {
+    -fx-border-radius: 5;
+    -fx-border-color: -fx-button-border;
+    -fx-prompt-text-fill: -fx-selected-path-prompt;
+    -fx-text-alignment: center;
+    -fx-text-fill: -fx-selected-path-text;
+    -fx-highlight-fill: -fx-selected-path-text;
+    -fx-highlight-text-fill: -fx-selected-path;
+    -fx-font-family: "Quantico";
+    -fx-font-size: 14;
+    -fx-pref-width: 600;
+    -fx-pref-height: 35;
+}
+
+.dialog-pane .button {
+    -fx-background-insets: 0;
+    -fx-background-radius: 5;
+    -fx-border-insets: 0;
+    -fx-border-radius: 5;
+    -fx-border-size: 1;
+    -fx-border-color: -fx-button-border;
+    -fx-padding: 5 10 5 10;
+    -fx-font-family: "VT323";
+    -fx-font-size: 24;
+    -fx-cursor: hand;
+}
+
+.dialog-pane .button:default {
+    -fx-background-color: -fx-export-button;
+}
+
+.dialog-pane .button:default:hover {
+    -fx-background-color: -fx-export-button-hover;
+}
+
+.dialog-pane .button:default:pressed {
+    -fx-background-color: -fx-export-button-pressed;
+    -fx-scale-x: 0.97;
+    -fx-scale-y: 0.97;
+}
+
+.dialog-pane .button:cancel {
+    -fx-background-color: -fx-cancel-button;
+}
+
+.dialog-pane .button:cancel:hover {
+    -fx-background-color: -fx-cancel-button-hover;
+}
+
+.dialog-pane .button:cancel:pressed {
+    -fx-background-color: -fx-cancel-button-pressed;
+    -fx-scale-x: 0.97;
+    -fx-scale-y: 0.97;
+}

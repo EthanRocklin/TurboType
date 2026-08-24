@@ -1,12 +1,12 @@
 /* Colors for all the elements */
 .root {
     -fx-background: #1a1a1c;
-    -fx-browse-background: #292929;
-    -fx-browse-border: #000000;
-    -fx-browse-hover-background: #f79e45;
+    -fx-browse: #292929;
+    -fx-browse-hover: #f79e45;
     -fx-browse-hover-text: #000000;
     -fx-browse-pressed: #ffbd7a;
     -fx-browse-text: #f79e45;
+    -fx-button-border: #000000;
     -fx-cancel-button: #ff4a4a;
     -fx-cancel-button-hover: #ff6161;
     -fx-cancel-button-pressed: #ff2929;
@@ -63,12 +63,12 @@
 }
 
 #browseBtn {
-    -fx-background-color: -fx-browse-background;
+    -fx-background-color: -fx-browse;
     -fx-background-insets: 0;
     -fx-background-radius: 5;
     -fx-border-insets: 0;
     -fx-border-radius: 5;
-    -fx-border-color: -fx-browse-border;
+    -fx-border-color: -fx-button-border;
     -fx-font-family: "VT323";
     -fx-font-size: 24;
     -fx-text-fill: -fx-browse-text;
@@ -78,7 +78,7 @@
 }
 
 #browseBtn:hover {
-    -fx-background-color: -fx-browse-hover-background;
+    -fx-background-color: -fx-browse-hover;
     -fx-text-fill: -fx-browse-hover-text;
 }
 
@@ -99,7 +99,7 @@
 
 #selectedDirectory {
     -fx-border-radius: 5;
-    -fx-border-color: -fx-browse-border;
+    -fx-border-color: -fx-button-border;
     -fx-prompt-text-fill: -fx-selected-path-prompt;
     -fx-text-alignment: center;
     -fx-text-fill: -fx-selected-path-text;
@@ -116,6 +116,8 @@
     -fx-background-radius: 5;
     -fx-border-insets: 0;
     -fx-border-radius: 5;
+    -fx-border-size: 1;
+    -fx-border-color: -fx-button-border;
     -fx-padding: 5 10 5 10;
     -fx-font-family: "VT323";
     -fx-font-size: 24;
