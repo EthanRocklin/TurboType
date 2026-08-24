@@ -1,49 +1,66 @@
 package com.typingspeed.app;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.DialogPane;
 import javafx.scene.control.TextField;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
 import java.io.File;
+import javafx.scene.control.ButtonType;
 
 /** @author Ethan Rocklin */
 
-public class ExportController {
+public class TxtExportController {
     
     @FXML
-    private CheckBox selectAllBox, accuracyBox, dateBox, timeElapsedBox,
-                     wordCountsBox, wpmBox, averageAccuracyBox, 
-                     averageTypingScoreBox, averageWPMBox;
+    private Button exportButton;
+    @FXML
+    private CheckBox accuracyBox;
+    @FXML
+    private CheckBox averageAccuracyBox;
+    @FXML
+    private CheckBox averageTypingScoreBox;
+    @FXML
+    private CheckBox averageWPMBox;
+    @FXML
+    private CheckBox dateBox;
+    @FXML
+    private CheckBox selectAllBox;
+    @FXML
+    private CheckBox timeElapsedBox;
+    @FXML
+    private CheckBox wordCountsBox;
+    @FXML
+    private CheckBox wpmBox;
     @FXML
     private DialogPane dialogPane;
     @FXML
     private TextField selectedDirectory;
     
-    // FXML Handler Methods
-    
     @FXML
-    private void handleDocx() {
-        System.out.println("Docx export handler connected");
+    public void initialize() {
+        Button exportButton = (Button) dialogPane.lookupButton(ButtonType.OK);
+        if (exportButton != null) {
+            exportButton.setOnAction(event -> initiateExporter());
+        }
     }
     
     @FXML
-    private void handlePdf() {
-        System.out.println("Pdf export handler connected");
+    private void initiateExporter() {
+        new TxtExporter(
+            accuracyBox.isSelected(),
+            averageAccuracyBox.isSelected(),
+            averageTypingScoreBox.isSelected(),
+            averageWPMBox.isSelected(),
+            dateBox.isSelected(),
+            timeElapsedBox.isSelected(),
+            wordCountsBox.isSelected(),
+            wpmBox.isSelected(),
+            selectedDirectory.getText()
+        );
     }
-    
-    @FXML
-    private void handleTxt() {
-        
-    }
-    
-    @FXML
-    private void handleXlsx() {
-        System.out.println("Xlsx export handler connected");
-    }
-    
-    // Other Methods
     
     @FXML
     private void selectAll() {

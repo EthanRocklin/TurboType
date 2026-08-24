@@ -33,14 +33,31 @@ public class AttemptController {
     @FXML
     private AnchorPane typingPane;
     @FXML
-    private ImageView accuracyImage, timeImage, wpmImage;
+    private ImageView accuracyImage;
+    @FXML
+    private ImageView timeImage;
+    @FXML
+    private ImageView wpmImage;
     @FXML
     private Label statsMessage;
     @FXML
-    private Text title, correctCounter, totalCounter, accuracyValue,
-                 wpmValue, timeValue, typingScore;
+    private Text title;
     @FXML
-    private TextArea wordsArea, typingArea;
+    private Text accuracyValue;
+    @FXML
+    private Text correctCounter;
+    @FXML
+    private Text timeValue;
+    @FXML
+    private Text totalCounter;
+    @FXML
+    private Text typingScore;
+    @FXML
+    private Text wpmValue;
+    @FXML
+    private TextArea wordsArea;
+    @FXML
+    private TextArea typingArea;
     @FXML
     private ToggleButton sentencesToggle;
     @FXML
@@ -48,11 +65,14 @@ public class AttemptController {
     @FXML
     private Spinner<Integer> sentencesSpinner;
     @FXML
-    private VBox statsBox, controlBox;
+    private VBox statsBox;
+    @FXML
+    private VBox controlBox;
     
-    private List<String> attemptWords, typedWords;   
-    private boolean beganTyping = false,
-                    isTimed = false;
+    private List<String> attemptWords;
+    private List<String> typedWords;   
+    private boolean beganTyping = false;
+    private boolean isTimed = false;
     private Attempt attempt;
     
     // Initializers

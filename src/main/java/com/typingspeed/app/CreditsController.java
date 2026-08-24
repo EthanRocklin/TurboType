@@ -16,12 +16,23 @@ public class CreditsController {
     
     // Fields
     @FXML
-    private Text classicalCredits, dubstepCredits, jazzCredits,
-                     popCredits, rockCredits, technoCredits;
-    @FXML
-    private VBox leftContainer, rightContainer;
-    @FXML
     private HBox creditsContainer;
+    @FXML
+    private Text classicalCredits;
+    @FXML
+    private Text dubstepCredits;
+    @FXML
+    private Text jazzCredits;
+    @FXML
+    private Text popCredits;
+    @FXML
+    private Text rockCredits;
+    @FXML
+    private Text technoCredits;
+    @FXML
+    private VBox leftContainer;
+    @FXML
+    private VBox rightContainer;
     
     @FXML
     public void initialize() {

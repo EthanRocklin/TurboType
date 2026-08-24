@@ -57,7 +57,7 @@ public class MenuBarController {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(resourcePath));
             DialogPane pane = loader.load();
             // Sets CSS for the window
-            URL cssUrl = MenuBarController.class.getResource("/css/export_" + Settings.getTheme() + ".css");
+            URL cssUrl = MenuBarController.class.getResource("/css/export_" + Settings.getThemeStatic() + ".css");
             if (cssUrl != null) {
                 scene.getStylesheets().add(cssUrl.toExternalForm());
             }

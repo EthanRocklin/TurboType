@@ -18,7 +18,9 @@ public class TurboType extends Application {
 
     private static Scene scene;
     protected static Settings settings;
-    private static String currentFXML, currentTheme, tronColor;
+    private static String currentFXML;
+    private static String currentTheme;
+    private static String tronColor;
 
     @Override
     public void start(Stage stage) {

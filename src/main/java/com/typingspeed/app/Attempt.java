@@ -29,10 +29,16 @@ public class Attempt {
         "WOW!\nYou're fast and accurate!\nGreat job!"
     };
     
+    private boolean sentences;
+    private boolean isTimed;
     private double accuracy;
-    private int wpm, wordCount, correctCount, typingScore, attemptMilli;
-    private long startTimeMilli, endTimeMilli;
-    private boolean sentences, isTimed;
+    private int wpm;
+    private int wordCount;
+    private int correctCount;
+    private int typingScore;
+    private int attemptMilli;
+    private long startTimeMilli;
+    private long endTimeMilli;
     private String attemptTime;
     
     // Constructors

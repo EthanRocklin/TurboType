@@ -7,9 +7,12 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
-import java.nio.file.AtomicMoveNotSupportedException;
 
-/** @author Ethan Rocklin */
+/** @author Ethan Rocklin 
+ *  This class relies on the Jackson library for data serialization
+ *  and deserialization.
+ */
+
 public class Settings {
 
     private static String theme = "original";
@@ -41,13 +44,17 @@ public class Settings {
         WRITER.writeValue(new File(URL), this);
     }
     
-    public static String getGenre() {
+    public String getGenre() {
         return genre;
     }
-    public static String getTheme() {
+    public String getTheme() {
         return theme;
     }
-    public static String getTronColor() {
+    // Static getter for other classes to call
+    public static String getThemeStatic() {
+        return theme;
+    }
+    public String getTronColor() {
         return tronColor;
     }
     

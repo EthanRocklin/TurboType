@@ -18,11 +18,12 @@ import java.util.stream.Collectors;
 
 public class MusicManager {
     
+    private static int trackIndex;
     private static MenuBarController menuBarController;
     private static MediaPlayer musicPlayer;
-    private static String currentGenre, currentTrackText;
+    private static String currentGenre;
+    private static String currentTrackText;
     private static String[] tracks;
-    private static int trackIndex;
     
     // Utility class; it should not be instantiated beyond the first time in TurboType.java
     private MusicManager() {}
