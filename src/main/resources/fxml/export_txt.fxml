@@ -50,7 +50,7 @@
                             <Insets bottom="5" left="10" />
                         </VBox.margin>
                     </CheckBox>
-                    <CheckBox fx:id="wpmBox" styleClass="info-option" text="Words per Minute">
+                    <CheckBox fx:id="wpmBox" styleClass="info-option" text="Words Per Minute">
                         <VBox.margin>
                             <Insets bottom="5" left="10" />
                         </VBox.margin>
@@ -65,7 +65,7 @@
                             <Insets bottom="5" left="10" />
                         </VBox.margin>
                     </CheckBox>
-                    <CheckBox fx:id="averageWPMBox" styleClass="info-option" text="Accuracy WPM">
+                    <CheckBox fx:id="averageWPMBox" styleClass="info-option" text="Average WPM">
                         <VBox.margin>
                             <Insets bottom="30" left="10" />
                         </VBox.margin>

@@ -28,7 +28,6 @@ public class Attempt {
         "Just a little faster\nand you'll nail it!",
         "WOW!\nYou're fast and accurate!\nGreat job!"
     };
-    
     private boolean sentences;
     private boolean isTimed;
     private double accuracy;
@@ -40,8 +39,6 @@ public class Attempt {
     private long startTimeMilli;
     private long endTimeMilli;
     private String attemptTime;
-    
-    // Constructors
     
     /**
      * This constructor is used to start and manager a new attempt upon the

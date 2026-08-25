@@ -131,6 +131,7 @@ public class TxtExporter {
         if (dateSelected) {
             str.append("\tDate");
         }
+        str.append("\n");
         try {
             writer.write(str.toString());
         } catch (IOException e) {
@@ -146,7 +147,27 @@ public class TxtExporter {
     
     // This method handles the writing of the averages to the exported file.
     private void writeAverages(BufferedWriter writer) {
-        
+        StringBuilder str = new StringBuilder("Averages\n");
+        str.append("--------\n");
+        double average = 0.0;
+        if (averageAccuracySelected) {
+            average = DatabaseManager.getAverageAccuracy();
+            str.append("Accuracy : " + average + "\n");
+        }
+        if (averageWPMSelected) {
+            average = DatabaseManager.getAverageWPM();
+            str.append("Words Per Minute : " + average + "\n");
+        }
+        if (averageTypingScoreSelected) {
+            average = DatabaseManager.getAverageTypingScore();
+            str.append("Typing Score : " + average + "\n");
+        }
+        try {
+            writer.write(str.toString());
+        } catch (IOException e) {
+            System.out.println("ERROR : Could not write averages to " + path);
+            e.printStackTrace();
+        }
     }
     
 }
