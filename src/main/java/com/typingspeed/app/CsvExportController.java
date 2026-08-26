@@ -20,6 +20,8 @@ public class CsvExportController {
     @FXML
     private Button exportButton;
     @FXML
+    private ButtonType okButton;
+    @FXML
     private CheckBox accuracyBox;
     @FXML
     private CheckBox averageAccuracyBox;
@@ -48,6 +50,24 @@ public class CsvExportController {
     
     @FXML
     public void initialize() {
+        initiatizeCheckboxes();
+        initializeButtons();
+    }
+    
+    // This method handles any intializing tasks for the dialog's buttons.
+    private void initializeButtons() {
+        // Changes the text of the default OK button
+        Button okButtonNode = (Button) dialogPane.lookupButton(ButtonType.OK);
+        okButtonNode.setText("Export");
+        // Sets listener to the OK button (labeled "Export") of the dialog window
+        Button exportButton = (Button) dialogPane.lookupButton(ButtonType.OK);
+        if (exportButton != null) {
+            exportButton.setOnAction(event -> initiateExporter());
+        }
+    }
+    
+    // This method handles any initializing tasks for the checkboxes.
+    private void initiatizeCheckboxes() {
         // Makes an iterateable list with the UI's checkboxes
         checkboxes = new ArrayList<CheckBox>(Arrays.asList(
             accuracyBox,
@@ -65,16 +85,11 @@ public class CsvExportController {
         for (CheckBox box : checkboxes) {
             box.setFocusTraversable(false);
         }
-        // Sets listener to the OK button (labeled "Export") of the dialog window
-        Button exportButton = (Button) dialogPane.lookupButton(ButtonType.OK);
-        if (exportButton != null) {
-            exportButton.setOnAction(event -> initiateExporter());
-        }
     }
     
     @FXML
     private void initiateExporter() {
-        new CsvExporter(
+        new TxtExporter(
             accuracyBox.isSelected(),
             averageAccuracyBox.isSelected(),
             averageTypingScoreBox.isSelected(),

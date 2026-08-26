@@ -223,19 +223,19 @@ public class CsvExporter {
                 average = DatabaseManager.getAverageAccuracy();
                 writer.write("Accuracy,");
                 writer.write(String.valueOf(average));
-                writer.write(System.lineSeparator());
+                writer.newLine();
             }
             if (averageWPMSelected) {
                 average = DatabaseManager.getAverageWPM();
                 writer.write("Words Per Minute,");
                 writer.write(String.valueOf(average));
-                writer.write(System.lineSeparator());
+                writer.newLine();
             }
             if (averageTypingScoreSelected) {
                 average = DatabaseManager.getAverageTypingScore();
                 writer.write("Typing Score,");
                 writer.write(String.valueOf(average));
-                writer.write(System.lineSeparator());
+                writer.newLine();
             }
         } catch (IOException e) {
             logger.log(Level.WARNING, "Could not write averages to " + path.toString(), e);

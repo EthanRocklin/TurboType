@@ -136,12 +136,12 @@ public class TxtExporter {
         DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-ss HH:mm:ss").withZone(ZoneId.systemDefault());
         String date = dateFormatter.format(now);
         str.append("Generated on ")
-           .append(date)
-           .append(System.lineSeparator())
-           .append(System.lineSeparator());
+           .append(date);
         // Writes the built String to the file
         try {
             writer.write(str.toString());
+            writer.newLine();
+            writer.newLine();
         } catch (IOException e) {
             logger.log(Level.WARNING, "Could not write header to " + path.toString(), e);
         }
@@ -240,7 +240,7 @@ public class TxtExporter {
                 str.append(System.lineSeparator());
                 writer.write(str.toString());
             }
-            writer.write(System.lineSeparator());
+            writer.newLine();
         } catch (IOException e) {
             logger.log(Level.WARNING, "Could not write columns to " + path.toString(), e);
         } catch (SQLException e) {
