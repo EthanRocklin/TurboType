@@ -128,7 +128,7 @@ public class TxtExporter {
         return date + "_" + time;
     }
     
-    // This method handles the writing of the header content to the exported file.
+    // This method handles the writing of the header content to the file.
     private void writeHeader(BufferedWriter writer) {
         StringBuilder str = new StringBuilder("TurboType Data Report\n");
         str.append("--------------------------------\n");
@@ -147,7 +147,7 @@ public class TxtExporter {
         }
     }
 
-    // This method handles the writing of the columns to the exported file.
+    // This method handles the writing of the columns to the file.
     private void writeColumns(BufferedWriter writer) {
         List<String> columnNames = new ArrayList<>();
         StringBuilder str = new StringBuilder();
@@ -187,7 +187,6 @@ public class TxtExporter {
         int hyphenCount = columnCount * COLUMN_WIDTH;
         for (int i = 1; i <= hyphenCount; i++) {
             str.append("-");
-            
         }
         str.append(System.lineSeparator());
         // Writes the built String to the file
@@ -198,7 +197,7 @@ public class TxtExporter {
         }
     }
     
-    // This method handles the writing of the all rows of attempt data to the exported file.
+    // This method handles the writing of the all rows of attempt data to the file.
     private void writeAttemptData(BufferedWriter writer) {
         StringBuilder query = new StringBuilder("SELECT ");
         // Adds all targeted attributes to the query
@@ -219,7 +218,6 @@ public class TxtExporter {
             if (!rs.next()) {
                 return;
             }
-            
             String formatTemplate = "%-" + COLUMN_WIDTH + "s";
             StringBuilder str = new StringBuilder();
             // Appends the first attempt's data
@@ -250,7 +248,7 @@ public class TxtExporter {
         }
     }
     
-    // This method handles the writing of the averages to the exported file.
+    // This method handles the writing of the averages to the file.
     private void writeAverages(BufferedWriter writer) {
         StringBuilder str = new StringBuilder("Averages\n");
         str.append("--------\n");
