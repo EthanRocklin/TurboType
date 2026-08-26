@@ -17,11 +17,15 @@ import javafx.stage.Modality;
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 /** @author Ethan Rocklin */
 
 public class MenuBarController {
+    
+    private static final Logger logger = Logger.getLogger(TxtExporter.class.getName());
 
     @FXML
     private ComboBox<String> colorBox;
@@ -70,8 +74,7 @@ public class MenuBarController {
             dialog.initModality(Modality.WINDOW_MODAL);
             dialog.showAndWait();
         } catch (IOException e) {
-            System.out.println("ERROR : Dialog window failed to display");
-            e.printStackTrace();
+            logger.log(Level.WARNING, "Export dialog window failed to display." , e);
         }
     }
     
@@ -86,9 +89,8 @@ public class MenuBarController {
             // Saves the genre to the user's settings
             TurboType.settings.setGenre(newGenre);
             TurboType.settings.save();
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-            e.printStackTrace();
+        } catch (IOException e) {
+            logger.log(Level.WARNING, "Failed to change genre." , e);
         }
         MusicManager.play();
     }
@@ -101,9 +103,8 @@ public class MenuBarController {
         try {
             TurboType.settings.setTheme(theme);
             TurboType.settings.save();
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-            e.printStackTrace();
+        } catch (IOException e) {
+            logger.log(Level.WARNING, "Failed to change theme." , e);
         }
     }
     
@@ -133,9 +134,8 @@ public class MenuBarController {
             TurboType.settings.setTheme("tron");
             TurboType.settings.setTronColor(color);
             TurboType.settings.save();
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-            e.printStackTrace();
+        } catch (IOException e) {
+            logger.log(Level.WARNING, "Failed to change Tron theme." , e);
         }
     }
     

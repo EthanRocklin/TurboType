@@ -7,10 +7,14 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.PreparedStatement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /** @author Ethan Rocklin */
 
 public class Attempt {
+    
+    private static final Logger logger = Logger.getLogger(TxtExporter.class.getName());
     
     private final int MAX_WPM = 100;
     private final int ACCURACY_WEIGHT = 3;
@@ -28,15 +32,15 @@ public class Attempt {
         "Just a little faster\nand you'll nail it!",
         "WOW!\nYou're fast and accurate!\nGreat job!"
     };
-    private boolean sentences;
-    private boolean isTimed;
+    private final boolean sentences;
+    private final boolean isTimed;
     private double accuracy;
     private int wpm;
-    private int wordCount;
+    private final int wordCount;
     private int correctCount;
     private int typingScore;
     private int attemptMilli;
-    private long startTimeMilli;
+    private final long startTimeMilli;
     private long endTimeMilli;
     private String attemptTime;
     
@@ -45,7 +49,7 @@ public class Attempt {
      * first keystroke.
      * @param wordCount : the number of words to be typed
      * @param sentences : if the format of the attempt is full setences
-     * @param mode : describes the mode the user is typing in
+     * @param isTimed : if the attempt is timed
      */
     public Attempt(int wordCount, boolean sentences, boolean isTimed) {
         this.wordCount = wordCount;
@@ -156,9 +160,7 @@ public class Attempt {
             if (connectionFailed) {
                 System.out.print("ERROR: Failed to connect to " + url + "\n");
             }
-            System.out.print("ERROR: Failed to save attempt\n");
-            e.printStackTrace();
-            System.out.print(e.getMessage() + "\n");
+            logger.log(Level.WARNING, "ERROR: Failed to save attempt" , e);
         }
     }
     

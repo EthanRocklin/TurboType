@@ -12,11 +12,15 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.InputStreamReader;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 /** @author Ethan Rocklin */
 
 public class MusicManager {
+    
+    private static final Logger logger = Logger.getLogger(TxtExporter.class.getName());
     
     private static int trackIndex;
     private static MenuBarController menuBarController;
@@ -40,8 +44,7 @@ public class MusicManager {
             updateCurrentTrack();
             menuBarController.setCurrentTrackText(currentTrackText);
         } catch (Exception e) {
-            System.out.println(e.getMessage());
-            e.printStackTrace();
+            logger.log(Level.WARNING, "Could not initialize music player.", e);
         }
     }
     
@@ -54,8 +57,7 @@ public class MusicManager {
             File dir = getGenreDirectory(currentGenre);
             tracks = dir.list();            
         } catch (IOException e) {
-            System.out.println("RESOURCE ERROR : Could not get genre's directory");
-            e.printStackTrace();
+            logger.log(Level.WARNING, "Could not get genre's directory", e);
         }
     }
     
@@ -108,8 +110,7 @@ public class MusicManager {
             musicPlayer = new MediaPlayer(media);
             updateCurrentTrack();
         } catch (Exception e) {
-            System.out.println(e.getMessage());
-            e.printStackTrace();
+            logger.log(Level.WARNING, "Could not prepare music for the new genre.", e);
         }
     }
     
@@ -142,8 +143,7 @@ public class MusicManager {
             setMusicPlayerListeners();
             updateCurrentTrack();
         } catch (Exception e) {
-            System.out.println(e.getMessage());
-            e.printStackTrace();
+            logger.log(Level.WARNING, "Could not prepare the new track for play.", e);
         }
     }
     
@@ -156,8 +156,7 @@ public class MusicManager {
             List<String> credits = reader.lines().collect(Collectors.toList());
             currentTrackText = credits.get(trackIndex);
         } catch (IOException e) {
-            System.out.println("ERROR : Credits file not found.");
-            e.printStackTrace();
+            logger.log(Level.WARNING, "Could not retrieve artist attribution.", e);
         }
     }
     

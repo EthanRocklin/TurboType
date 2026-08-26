@@ -24,7 +24,6 @@ import javafx.scene.paint.Color;
 import java.io.IOException;
 import java.util.List;
 import java.util.Arrays;
-import java.net.URL;
 
 /** @author Ethan Rocklin */
 
@@ -296,7 +295,7 @@ public class AttemptController {
     // This method sets all stats after an attempt is complete.
     private void setStats() {
         // Computes and sets stats
-        attempt.setCorrectWordCount(Integer.valueOf(correctCounter.getText()));
+        attempt.setCorrectWordCount(Integer.parseInt(correctCounter.getText()));
         if (isTimed) {
             attempt.calculateTime();
             timeValue.setText(attempt.getTime());
@@ -317,9 +316,9 @@ public class AttemptController {
      */
     private void setStatsColors() {
         String style = "-fx-fill: rgb(%d,%d,%d);";
-        double accuracyProgress = attempt.getAccuracy() / 100.0,
-               wpmProgress = attempt.getWPM() / 100.0,
-               typingScoreProgress = attempt.getTypingScore() / 10.0;
+        double accuracyProgress = attempt.getAccuracy() / 100.0;
+        double wpmProgress = attempt.getWPM() / 100.0;
+        double typingScoreProgress = attempt.getTypingScore() / 10.0;
         int maxWPM = attempt.getMaxWPM();
         int worstScoreR = 255;
         int worstScoreG = 110;
@@ -359,7 +358,6 @@ public class AttemptController {
     // This method toggles the format of the words between random words and full sentences.
     @FXML
     private void toggleWordsFormat() {
-        String words = "";
         int count = 0;
         // If "Sentences" is selected
         if (sentencesToggle.isSelected()) {
@@ -447,7 +445,7 @@ public class AttemptController {
         return attemptWords.size();
     }
     public int getCorrectWordCount() {
-        return Integer.valueOf(correctCounter.getText());
+        return Integer.parseInt(correctCounter.getText());
     }
     
     // FXML Controller Methods

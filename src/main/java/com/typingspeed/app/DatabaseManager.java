@@ -6,10 +6,14 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /** @author Ethan Rocklin */
 
 public class DatabaseManager {
+    
+    private static final Logger logger = Logger.getLogger(TxtExporter.class.getName());
     
     final static String APP_DATA_DIR = System.getProperty("user.home") + File.separator + ".turbotype";
     final static String URL = "jdbc:sqlite:" + APP_DATA_DIR + File.separator + "user_data.db";
@@ -46,13 +50,10 @@ public class DatabaseManager {
             stmt.execute(createAttempts);
         } catch (SQLException e) {
             if (connectionFailed) {
-                System.out.print("ERROR: Failed to connect to " + URL + "\n");
+                logger.log(Level.WARNING, "Failed to connect to " + URL , e);
             }
-            System.out.print("ERROR: Failed to create database\n");
-            e.printStackTrace();
-            System.out.print(e.getMessage() + "\n");
+            logger.log(Level.WARNING, "Failed to create datebase." , e);
         }
-                                
     }
     
     // Drops the database
@@ -66,11 +67,9 @@ public class DatabaseManager {
             stmt.execute(dropAttempts);
         } catch (SQLException e) {
             if (connectionFailed) {
-                System.out.print("ERROR: Failed to connect to " + URL + "\n");
+                logger.log(Level.WARNING, "Failed to connect to " + URL , e);
             }
-            System.out.print("ERROR: Failed to drop database\n");
-            e.printStackTrace();
-            System.out.print(e.getMessage() + "\n");
+            logger.log(Level.WARNING, "Failed to drop datebase." , e);
         }
     }
     
@@ -91,8 +90,7 @@ public class DatabaseManager {
                 accuracySum = rs.getDouble("accuracy_sum");
             }
         } catch (SQLException e) {
-            System.out.print("ERROR: Failed to retrieve data from " + URL + "\n");
-            e.printStackTrace();
+            logger.log(Level.WARNING, "ERROR: Failed to retrieve average accuracy from " + URL , e);
         }
         // Rounds accuracy to the 
         return Math.round((accuracySum / attemptCount) * 100) / 100.0;
@@ -115,8 +113,7 @@ public class DatabaseManager {
                 typingScoreSum = (double) rs.getInt("typing_score_sum");
             }
         } catch (SQLException e) {
-            System.out.print("ERROR: Failed to retrieve data from " + URL + "\n");
-            e.printStackTrace();   
+            logger.log(Level.WARNING, "ERROR: Failed to retrieve average typing score from " + URL , e);
         }
         return Math.round((typingScoreSum / attemptCount) * 100) / 100.0;
     }
@@ -138,8 +135,7 @@ public class DatabaseManager {
                 wpmSum = (double) rs.getInt("wpm_sum");
             }
         } catch (SQLException e) {
-            System.out.print("ERROR: Failed to retrieve data from " + URL + "\n");
-            e.printStackTrace();   
+            logger.log(Level.WARNING, "ERROR: Failed to retrieve average words per minute from " + URL , e);
         }
         return Math.round((wpmSum / attemptCount) * 100) / 100.0;
     }
@@ -159,8 +155,7 @@ public class DatabaseManager {
                 }
             }
         } catch (SQLException e) {
-            System.out.print("ERROR: Failed to retrieve data from " + URL + "\n");
-            e.printStackTrace();
+            logger.log(Level.WARNING, "ERROR: Failed to retrieve max attempt ID from " + URL , e);
         }
         return maxAttemptID;
     }

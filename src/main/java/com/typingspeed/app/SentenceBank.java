@@ -6,10 +6,14 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.IOException;
 import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /** @author Ethan Rocklin */
 
 public class SentenceBank {
+    
+    private static final Logger logger = Logger.getLogger(SentenceBank.class.getName());
 
     private static final List<String> BANK = loadSentences();
     private static final int BANK_SIZE = BANK.size();
@@ -27,7 +31,8 @@ public class SentenceBank {
         Random rand = new Random();
         // Populates the List with random words from the "bank" field.
         for (int i = 0; i < count; i++) {
-            words.append(BANK.get(rand.nextInt(BANK_SIZE)) + " ");
+            words.append(BANK.get(rand.nextInt(BANK_SIZE)))
+                 .append(" ");
         }
         return words.toString();
     }
@@ -40,7 +45,7 @@ public class SentenceBank {
                 new InputStreamReader(SentenceBank.class.getResourceAsStream("/words/sentences.txt")))) {
             sentences = reader.lines().collect(Collectors.toList());
         } catch (IOException e) {
-            System.out.println("ERROR : " + e.getMessage());
+            logger.log(Level.SEVERE, "ERROR : Could not start TurboType application. ", e);
         }
         return sentences;
     }

@@ -9,22 +9,26 @@ import java.nio.file.StandardOpenOption;
 import java.time.Instant;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /** @author Ethan Rocklin */
 
 public class TxtExporter {
     
-    private boolean accuracySelected;
-    private boolean averageAccuracySelected;
-    private boolean averageTypingScoreSelected;
-    private boolean averageWPMSelected;
-    private boolean dateSelected;
-    private boolean formatSelected;
-    private boolean timeElapsedSelected;
-    private boolean wordCountsSelected;
-    private boolean wpmSelected;
-    private Instant now;
-    private Path path;
+    private static final Logger logger = Logger.getLogger(TxtExporter.class.getName());
+    
+    private final boolean accuracySelected;
+    private final boolean averageAccuracySelected;
+    private final boolean averageTypingScoreSelected;
+    private final boolean averageWPMSelected;
+    private final boolean dateSelected;
+    private final boolean formatSelected;
+    private final boolean timeElapsedSelected;
+    private final boolean wordCountsSelected;
+    private final boolean wpmSelected;
+    private final Instant now;
+    private final Path path;
     
     public TxtExporter(
             boolean accuracySelected,
@@ -50,9 +54,7 @@ public class TxtExporter {
         now = Instant.now();
         // Creates path for file to export to
         String pathStr = parentDirectory + File.separator + "typing_data_" + getTimeStamp() + ".txt";
-        System.out.println(pathStr);
-        Path path = Path.of(pathStr);
-        this.path = path;
+        this.path = Path.of(pathStr);
         export();
     }
     
@@ -61,8 +63,7 @@ public class TxtExporter {
         try {
             Files.createFile(path);
         } catch (IOException e) {
-            System.out.println("ERROR : File could not be created at path " + path.toString());
-            e.printStackTrace();
+            logger.log(Level.WARNING, "File could not be created at path " + path.toString(), e);
         }
         // Creates a buffer to write to the file multiple times
         try (BufferedWriter writer = Files.newBufferedWriter(
@@ -74,8 +75,7 @@ public class TxtExporter {
             writeAttemptData(writer);
             writeAverages(writer);
         } catch (IOException e) {
-            System.out.println("ERROR : Could not establish buffer for file writing");
-            e.printStackTrace();
+            logger.log(Level.WARNING, "ERROR : Could not establish buffer for writing to " + path.toString(), e);
         }
     }
     
@@ -97,15 +97,17 @@ public class TxtExporter {
         // Adds the date and time the report was generated
         DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-ss HH:mm:ss").withZone(ZoneId.systemDefault());
         String date = dateFormatter.format(now);
-        str.append("Generated on " + date + "\n\n");
+        str.append("Generated on ")
+           .append(date)
+           .append(System.lineSeparator())
+           .append(System.lineSeparator());
         try {
             writer.write(str.toString());
         } catch (IOException e) {
-            System.out.println("ERROR : Could not write header to " + path);
-            e.printStackTrace();
+            logger.log(Level.WARNING, "ERROR : Could not write header to " + path.toString(), e);
         }
     }
-    
+
     // INCOMPLETE
     // This method handles the writing of the columns to the exported file.
     private void writeColumns(BufferedWriter writer) {
@@ -131,12 +133,11 @@ public class TxtExporter {
         if (dateSelected) {
             str.append("\tDate");
         }
-        str.append("\n");
+        str.append(System.lineSeparator());
         try {
             writer.write(str.toString());
         } catch (IOException e) {
-            System.out.println("ERROR : Could not write columns to " + path);
-            e.printStackTrace();
+            logger.log(Level.WARNING, "ERROR : Could not write columns to " + path.toString(), e);
         }
     }
     
@@ -152,21 +153,26 @@ public class TxtExporter {
         double average = 0.0;
         if (averageAccuracySelected) {
             average = DatabaseManager.getAverageAccuracy();
-            str.append("Accuracy : " + average + "\n");
+            str.append("Accuracy : ")
+               .append(average)
+               .append(System.lineSeparator());
         }
         if (averageWPMSelected) {
             average = DatabaseManager.getAverageWPM();
-            str.append("Words Per Minute : " + average + "\n");
+            str.append("Words Per Minute : ")
+               .append(average)
+               .append(System.lineSeparator());
         }
         if (averageTypingScoreSelected) {
             average = DatabaseManager.getAverageTypingScore();
-            str.append("Typing Score : " + average + "\n");
+            str.append("Typing Score : ")
+               .append(average)
+               .append(System.lineSeparator());
         }
         try {
             writer.write(str.toString());
         } catch (IOException e) {
-            System.out.println("ERROR : Could not write averages to " + path);
-            e.printStackTrace();
+            logger.log(Level.WARNING, "ERROR : Could not write averages to " + path.toString(), e);
         }
     }
     

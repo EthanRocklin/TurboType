@@ -27,7 +27,8 @@ public class WordBank {
         Random rand = new Random();
         // Populates the List with random words from the "bank" field.
         for (int i = 0; i < count; i++) {
-            words.append(BANK.get(rand.nextInt(BANK_SIZE)) + " ");
+            words.append(BANK.get(rand.nextInt(BANK_SIZE)))
+                 .append(" ");
         }
         return words.toString();
     }
