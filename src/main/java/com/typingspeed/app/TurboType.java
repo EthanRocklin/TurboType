@@ -8,6 +8,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.scene.text.Font;
 import java.io.IOException;
+import java.io.File;
 import java.net.URL;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -23,21 +24,24 @@ public class TurboType extends Application {
     private static Parent root;
     private static Scene scene;
     protected static Settings settings;
-    private static String currentFXML;
-    private static String currentTheme;
+    private static String currentFXML = "homepage";
+    private static String currentTheme = "original";
     private static String tronColor;
 
     @Override
     public void start(Stage stage) {
         try {
+            // Checks if there is no database for the user to save attempt data to
+            if (!checkForDatabase()) {
+                DatabaseManager.createDatabase();
+            }
             // Loads the app's icon
             Image icon = new Image(TurboType.class.getResourceAsStream("/images/app_icon.png"));
             stage.getIcons().add(icon);
             // Loads any fonts not available with JavaFX CSS
             Font.loadFont(TurboType.class.getResourceAsStream("/fonts/VT323-Regular.ttf"), 14);
             Font.loadFont(TurboType.class.getResourceAsStream("/fonts/Quantico-Regular.ttf"), 14);
-            currentFXML = "homepage";
-            currentTheme = "original";
+            // Default size included
             scene = new Scene(loadFXML(currentFXML), 640, 480);
             loadSettings();
             stage.setScene(scene);
@@ -100,6 +104,13 @@ public class TurboType extends Application {
     public static void changeThemeColor(String color) {
         tronColor = color;
         scene.getRoot().setStyle("-fx-tron: " + color + ";");
+    }
+    
+    // This method checks if the local database for the user's attempt data exists.
+    private boolean checkForDatabase() {
+        String dir = DatabaseManager.getAppDataDirectory() + File.separator + "user_data.db";
+        File database = new File(dir);
+        return database.exists();
     }
     
     /**

@@ -1,14 +1,22 @@
 package com.typingspeed.app;
 
+import static com.typingspeed.app.DatabaseManager.URL;
 import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardOpenOption;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.time.Instant;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -28,6 +36,8 @@ public class TxtExporter {
     private final boolean wordCountsSelected;
     private final boolean wpmSelected;
     private final Instant now;
+    private final int COLUMN_WIDTH = 12;
+    private List<String> dbAttributes;
     private final Path path;
     
     public TxtExporter(
@@ -51,7 +61,8 @@ public class TxtExporter {
         this.timeElapsedSelected = timeElapsedSelected;
         this.wordCountsSelected = wordCountsSelected;
         this.wpmSelected = wpmSelected;
-        now = Instant.now();
+        this.now = Instant.now();
+        this.dbAttributes = getAttributes();
         // Creates path for file to export to
         String pathStr = parentDirectory + File.separator + "typing_data_" + getTimeStamp() + ".txt";
         this.path = Path.of(pathStr);
@@ -75,8 +86,36 @@ public class TxtExporter {
             writeAttemptData(writer);
             writeAverages(writer);
         } catch (IOException e) {
-            logger.log(Level.WARNING, "ERROR : Could not establish buffer for writing to " + path.toString(), e);
+            logger.log(Level.WARNING, "Could not establish buffer for writing to " + path.toString(), e);
         }
+    }
+    
+    // This method creates and returns a list of desired database attributes.
+    private List<String> getAttributes() {
+        List<String> attributes = new ArrayList<>();
+        attributes.add("attempt_id");
+        attributes.add("typing_score");
+        // Determines which attributes to include
+        if (wordCountsSelected) {
+            attributes.add("total_words");
+            attributes.add("correct_words");
+        }
+        if (accuracySelected) {
+            attributes.add("accuracy");
+        }
+        if (wpmSelected) {
+            attributes.add("wpm");
+        }
+        if (timeElapsedSelected) {
+            attributes.add("time");
+        }
+        if (formatSelected) {
+            attributes.add("format");
+        }
+        if (dateSelected) {
+            attributes.add("date");
+        }
+        return attributes;
     }
     
     // This method gets and returns a String indicating the date and time of the export.
@@ -93,7 +132,7 @@ public class TxtExporter {
     // This method handles the writing of the header content to the exported file.
     private void writeHeader(BufferedWriter writer) {
         StringBuilder str = new StringBuilder("TurboType Data Report\n");
-        str.append("---------------------\n");
+        str.append("--------------------------------\n");
         // Adds the date and time the report was generated
         DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-ss HH:mm:ss").withZone(ZoneId.systemDefault());
         String date = dateFormatter.format(now);
@@ -101,49 +140,115 @@ public class TxtExporter {
            .append(date)
            .append(System.lineSeparator())
            .append(System.lineSeparator());
+        // Writes the built String to the file
         try {
             writer.write(str.toString());
         } catch (IOException e) {
-            logger.log(Level.WARNING, "ERROR : Could not write header to " + path.toString(), e);
+            logger.log(Level.WARNING, "Could not write header to " + path.toString(), e);
         }
     }
 
-    // INCOMPLETE
     // This method handles the writing of the columns to the exported file.
     private void writeColumns(BufferedWriter writer) {
+        List<String> columnNames = new ArrayList<>();
         StringBuilder str = new StringBuilder();
-        str.append("Attempt #\t");
-        str.append("Typing Score");
+        columnNames.add("Attempt");
+        columnNames.add("Score");
+        // Determines what columns to include
         if (wordCountsSelected) {
-            str.append("\tWords");
-            str.append("\tCorrect");
+            columnNames.add("Words");
+            columnNames.add("Correct");
         }
         if (accuracySelected) {
-            str.append("\tAccuracy");
+            columnNames.add("Accuracy");
         }
         if (wpmSelected) {
-            str.append("\tWPM");
+            columnNames.add("WPM");
         }
         if (timeElapsedSelected) {
-            str.append("\tTime");
+            columnNames.add("Time");
         }
         if (formatSelected) {
-            str.append("\tFormat");
+            columnNames.add("Format");
         }
         if (dateSelected) {
-            str.append("\tDate");
+            columnNames.add("Date");
+        }
+        // Builds the columns header with dynamic spacing
+        String column = "";
+        String template = "%-" + COLUMN_WIDTH + "s";
+        int columnCount = columnNames.size();
+        for (int i = 0; i < columnCount; i++) {
+            column = String.format(template, columnNames.get(i));
+            str.append(column);
         }
         str.append(System.lineSeparator());
+        // Builds line under the columns header with dynamic spacing
+        String lastColumn = columnNames.getLast();
+        int hyphenCount = columnCount * COLUMN_WIDTH;
+        for (int i = 1; i <= hyphenCount; i++) {
+            str.append("-");
+            
+        }
+        str.append(System.lineSeparator());
+        // Writes the built String to the file
         try {
             writer.write(str.toString());
         } catch (IOException e) {
-            logger.log(Level.WARNING, "ERROR : Could not write columns to " + path.toString(), e);
+            logger.log(Level.WARNING, "Could not write columns to " + path.toString(), e);
         }
     }
     
     // This method handles the writing of the all rows of attempt data to the exported file.
     private void writeAttemptData(BufferedWriter writer) {
-        
+        StringBuilder query = new StringBuilder("SELECT ");
+        // Adds all targeted attributes to the query
+        for (int i = 0; i < dbAttributes.size() - 1; i++) {
+            query.append(dbAttributes.get(i))
+                 .append(",");
+        }
+        query.append(dbAttributes.getLast())
+             .append(" from attempts");
+        // Retrieves attempt data from the database
+        ResultSet rs = null;
+        String url = DatabaseManager.getURL();
+        // Builds and writes attempt data (one line per attempt)
+        try (Connection conn = DriverManager.getConnection(url)) {
+            Statement stmt = conn.createStatement();
+            rs = stmt.executeQuery(query.toString());
+            // Checks if there is no attempt data
+            if (!rs.next()) {
+                return;
+            }
+            
+            String formatTemplate = "%-" + COLUMN_WIDTH + "s";
+            StringBuilder str = new StringBuilder();
+            // Appends the first attempt's data
+            for (String attribute : dbAttributes) {
+                // All data is represented as a String for .txt export
+                String datum = rs.getString(attribute);
+                String formatted = String.format(formatTemplate, datum);
+                str.append(formatted);
+            }
+            str.append(System.lineSeparator());
+            writer.write(str.toString());
+            // Builds and writes if their is more data
+            while (rs.next()) {
+                str = new StringBuilder();
+                for (String attribute : dbAttributes) {
+                    String datum = rs.getString(attribute);
+                    String formatted = String.format(formatTemplate, datum);
+                    str.append(formatted);
+                }
+                str.append(System.lineSeparator());
+                writer.write(str.toString());
+            }
+            writer.write(System.lineSeparator());
+        } catch (IOException e) {
+            logger.log(Level.WARNING, "Could not write columns to " + path.toString(), e);
+        } catch (SQLException e) {
+            logger.log(Level.WARNING, "Failed to parse data from " + url, e);
+        }
     }
     
     // This method handles the writing of the averages to the exported file.
@@ -151,6 +256,7 @@ public class TxtExporter {
         StringBuilder str = new StringBuilder("Averages\n");
         str.append("--------\n");
         double average = 0.0;
+        // Determines which averages to include
         if (averageAccuracySelected) {
             average = DatabaseManager.getAverageAccuracy();
             str.append("Accuracy : ")
@@ -169,10 +275,11 @@ public class TxtExporter {
                .append(average)
                .append(System.lineSeparator());
         }
+        // Writes the built String to the file
         try {
             writer.write(str.toString());
         } catch (IOException e) {
-            logger.log(Level.WARNING, "ERROR : Could not write averages to " + path.toString(), e);
+            logger.log(Level.WARNING, "Could not write averages to " + path.toString(), e);
         }
     }
     

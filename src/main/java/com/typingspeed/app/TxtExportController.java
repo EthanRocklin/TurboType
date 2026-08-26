@@ -9,7 +9,6 @@ import javafx.scene.control.TextField;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
 import java.io.File;
-import java.nio.file.Path;
 
 /** @author Ethan Rocklin */
 

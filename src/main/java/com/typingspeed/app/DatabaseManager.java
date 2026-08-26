@@ -50,26 +50,9 @@ public class DatabaseManager {
             stmt.execute(createAttempts);
         } catch (SQLException e) {
             if (connectionFailed) {
-                logger.log(Level.WARNING, "Failed to connect to " + URL , e);
+                logger.log(Level.WARNING, "Failed to connect to " + URL, e);
             }
-            logger.log(Level.WARNING, "Failed to create datebase." , e);
-        }
-    }
-    
-    // Drops the database
-    private static void dropDatabase() {
-        String dropAttempts = "DROP TABLE IF EXISTS attempts";
-        boolean connectionFailed = true;
-        try (Connection conn = DriverManager.getConnection(URL)) {
-            connectionFailed = false;
-            Statement stmt = conn.createStatement();
-            // Drops tables
-            stmt.execute(dropAttempts);
-        } catch (SQLException e) {
-            if (connectionFailed) {
-                logger.log(Level.WARNING, "Failed to connect to " + URL , e);
-            }
-            logger.log(Level.WARNING, "Failed to drop datebase." , e);
+            logger.log(Level.WARNING, "Failed to create datebase.", e);
         }
     }
     
@@ -83,6 +66,7 @@ public class DatabaseManager {
         // Gets the sum of the "accuracy" attribute
         double accuracySum = 0;
         String query = "SELECT SUM(accuracy) AS accuracy_sum FROM attempts";
+        // Executes the query
         try (Connection conn = DriverManager.getConnection(URL)) {
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery(query);
@@ -90,9 +74,9 @@ public class DatabaseManager {
                 accuracySum = rs.getDouble("accuracy_sum");
             }
         } catch (SQLException e) {
-            logger.log(Level.WARNING, "ERROR: Failed to retrieve average accuracy from " + URL , e);
+            logger.log(Level.WARNING, "ERROR: Failed to retrieve average accuracy from " + URL, e);
         }
-        // Rounds accuracy to the 
+        // Rounds accuracy to the nearest hundredth
         return Math.round((accuracySum / attemptCount) * 100) / 100.0;
     }
     
@@ -106,6 +90,7 @@ public class DatabaseManager {
         // Gets the sum of the "typing_score" attribute
         double typingScoreSum = 0.0;
         String query = "SELECT SUM(typing_score) AS typing_score_sum FROM attempts";
+        // Executes the query
         try (Connection conn = DriverManager.getConnection(URL)) {
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery(query);
@@ -113,8 +98,9 @@ public class DatabaseManager {
                 typingScoreSum = (double) rs.getInt("typing_score_sum");
             }
         } catch (SQLException e) {
-            logger.log(Level.WARNING, "ERROR: Failed to retrieve average typing score from " + URL , e);
+            logger.log(Level.WARNING, "ERROR: Failed to retrieve average typing score from " + URL, e);
         }
+        // Rounds typing score to the nearest hundredth
         return Math.round((typingScoreSum / attemptCount) * 100) / 100.0;
     }
     
@@ -128,6 +114,7 @@ public class DatabaseManager {
         // Gets the sum of the "wpm" attribute
         double wpmSum = 0.0;
         String query = "SELECT SUM(wpm) AS wpm_sum FROM attempts";
+        // Executes the query
         try (Connection conn = DriverManager.getConnection(URL)) {
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery(query);
@@ -135,8 +122,9 @@ public class DatabaseManager {
                 wpmSum = (double) rs.getInt("wpm_sum");
             }
         } catch (SQLException e) {
-            logger.log(Level.WARNING, "ERROR: Failed to retrieve average words per minute from " + URL , e);
+            logger.log(Level.WARNING, "ERROR: Failed to retrieve average words per minute from " + URL, e);
         }
+        // Rounds WPM to the nearest hundredth
         return Math.round((wpmSum / attemptCount) * 100) / 100.0;
     }
     
@@ -144,6 +132,7 @@ public class DatabaseManager {
     private static int getMaxAttemptID() {
         int maxAttemptID = 0;
         String queryMaxAttemptID = "SELECT MAX(attempt_id) AS max_id FROM attempts";
+        // Executes the query
         try (Connection conn = DriverManager.getConnection(URL)) {
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery(queryMaxAttemptID);
@@ -155,11 +144,14 @@ public class DatabaseManager {
                 }
             }
         } catch (SQLException e) {
-            logger.log(Level.WARNING, "ERROR: Failed to retrieve max attempt ID from " + URL , e);
+            logger.log(Level.WARNING, "ERROR: Failed to retrieve max attempt ID from " + URL, e);
         }
         return maxAttemptID;
     }
     
+    public static String getAppDataDirectory() {
+        return APP_DATA_DIR;
+    }
     public static String getURL() {
         return URL;
     }

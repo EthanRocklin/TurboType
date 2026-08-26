@@ -13,6 +13,7 @@ com\typingspeed\app\XslxExportController.class
 com\typingspeed\app\TxtExportController.class
 com\typingspeed\app\MenuBarController.class
 com\typingspeed\app\AttemptController.class
+com\typingspeed\app\DatabaseDropper.class
 com\typingspeed\app\TurboType.class
 com\typingspeed\app\CreditsController.class
 com\typingspeed\app\DocxExporter.class
