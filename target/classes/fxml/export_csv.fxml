@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonType?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.DialogPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+
+<DialogPane id="dialogPane" fx:id="dialogPane" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.typingspeed.app.CsvExportController">
+    <content>
+        <VBox>
+            <HBox id="infoContainer">
+                <VBox id="optionalInfo" styleClass="info-container">
+                    <Text styleClass="info-header" text="Optional Info">
+                        <VBox.margin>
+                            <Insets bottom="10" />
+                        </VBox.margin>
+                    </Text>
+                    <CheckBox fx:id="selectAllBox" styleClass="info-option" onAction="#selectAll" text="SELECT ALL">
+                        <VBox.margin>
+                            <Insets bottom="5" />
+                        </VBox.margin>
+                    </CheckBox>
+                    <CheckBox fx:id="accuracyBox" styleClass="info-option" text="Accuracy">
+                        <VBox.margin>
+                            <Insets bottom="5" left="10" />
+                        </VBox.margin>
+                    </CheckBox>
+                    <CheckBox fx:id="dateBox" styleClass="info-option" text="Date">
+                        <VBox.margin>
+                            <Insets bottom="5" left="10" />
+                        </VBox.margin>
+                    </CheckBox>
+                    <CheckBox fx:id="formatBox" styleClass="info-option" text="Format">
+                        <VBox.margin>
+                            <Insets bottom="5" left="10" />
+                        </VBox.margin>
+                    </CheckBox>
+                    <CheckBox fx:id="timeElapsedBox" styleClass="info-option" text="Time Elapsed">
+                        <VBox.margin>
+                            <Insets bottom="5" left="10" />
+                        </VBox.margin>
+                    </CheckBox>
+                    <CheckBox fx:id="wordCountsBox" styleClass="info-option" text="Word Counts">
+                        <VBox.margin>
+                            <Insets bottom="5" left="10" />
+                        </VBox.margin>
+                    </CheckBox>
+                    <CheckBox fx:id="wpmBox" styleClass="info-option" text="Words Per Minute">
+                        <VBox.margin>
+                            <Insets bottom="5" left="10" />
+                        </VBox.margin>
+                    </CheckBox>
+                    <CheckBox fx:id="averageAccuracyBox" styleClass="info-option" text="Average Accuracy">
+                        <VBox.margin>
+                            <Insets bottom="5" left="10" />
+                        </VBox.margin>
+                    </CheckBox>
+                    <CheckBox fx:id="averageTypingScoreBox" styleClass="info-option" text="Average Typing Score">
+                        <VBox.margin>
+                            <Insets bottom="5" left="10" />
+                        </VBox.margin>
+                    </CheckBox>
+                    <CheckBox fx:id="averageWPMBox" styleClass="info-option" text="Average WPM">
+                        <VBox.margin>
+                            <Insets bottom="30" left="10" />
+                        </VBox.margin>
+                    </CheckBox>
+                </VBox>
+                <VBox id="defaultInfo" styleClass="info-container">
+                    <Text styleClass="info-header" text="Default Info">
+                        <VBox.margin>
+                            <Insets bottom="10" left="30" />
+                        </VBox.margin>
+                    </Text>
+                    <CheckBox styleClass="info-option" selected="true" disable="true" text="Attempt Number">
+                        <VBox.margin>
+                            <Insets bottom="5" left="30" />
+                        </VBox.margin>
+                    </CheckBox>
+                    <CheckBox styleClass="info-option" selected="true" disable="true" text="Typing Score">
+                        <VBox.margin>
+                            <Insets bottom="5" left="30" />
+                        </VBox.margin>
+                    </CheckBox>
+                </VBox>
+            </HBox>
+            <HBox id="pathSelectionContainer">
+                <Button id="browseBtn" fx:id="browseBtn" onAction="#selectDirectory" text="Browse" />
+                <TextField id="selectedDirectory" fx:id="selectedDirectory" editable="false" promptText="Select a directory">
+                    <HBox.margin>
+                        <Insets left="5" />
+                    </HBox.margin>
+                </TextField>
+            </HBox>
+        </VBox>
+    </content>
+    <buttonTypes>
+        <ButtonType fx:constant="OK" />
+        <ButtonType fx:constant="CANCEL" />
+    </buttonTypes>
+</DialogPane>

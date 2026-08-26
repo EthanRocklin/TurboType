@@ -20,6 +20,9 @@
     -fx-selected-path: #292929;
     -fx-selected-path-prompt: #808080;
     -fx-selected-path-text: #f79e45;
+    /* Targeting JavaFX Modena defaults */
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
 }
 
 #dialogPane {
@@ -52,6 +55,7 @@
 
 .info-option .box {
     -fx-background-color: -fx-checkbox;
+    -fx-mark-highlight-color: transparent;
 }
 
 .info-option .box:hover {

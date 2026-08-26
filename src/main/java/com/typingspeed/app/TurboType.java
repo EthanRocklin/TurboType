@@ -21,7 +21,6 @@ public class TurboType extends Application {
     
     private static final Logger logger = Logger.getLogger(TurboType.class.getName());
 
-    private static Parent root;
     private static Scene scene;
     protected static Settings settings;
     private static String currentFXML = "homepage";
@@ -48,13 +47,12 @@ public class TurboType extends Application {
             stage.setMaximized(true);
             stage.show();
         } catch (IOException e) {
-            logger.log(Level.SEVERE, "ERROR : Could not start TurboType application. ", e);
+            logger.log(Level.SEVERE, "Could not start TurboType application. ", e);
         }
     }
 
     static void setRoot(String fxml) {
         try {
-            root = loadFXML(fxml);
             // Sets the fxml and theme for the app
             currentFXML = fxml;
             scene.getStylesheets().clear();
@@ -77,7 +75,7 @@ public class TurboType extends Application {
                 changeThemeColor(tronColor);
             }
         } catch (IOException e) {
-            logger.log(Level.SEVERE, "ERROR : Could not set FXML root. ", e);
+            logger.log(Level.SEVERE, "Could not set FXML root. ", e);
         }
     }
     
@@ -138,7 +136,7 @@ public class TurboType extends Application {
             MusicManager.initializePlayer(settings.getGenre());
             MusicManager.play();
         } catch (IOException e) {
-            logger.log(Level.WARNING, "ERROR : Could not load settings. ", e);
+            logger.log(Level.WARNING, "Could not load settings. ", e);
         }
     }
     

@@ -25,7 +25,7 @@ import java.util.logging.Logger;
 
 public class MenuBarController {
     
-    private static final Logger logger = Logger.getLogger(TxtExporter.class.getName());
+    private static final Logger logger = Logger.getLogger(MenuBarController.class.getName());
 
     @FXML
     private ComboBox<String> colorBox;
@@ -49,7 +49,8 @@ public class MenuBarController {
     private void handleExport(ActionEvent event) {
         MenuItem menuItem = (MenuItem) event.getSource();
         String fileType = menuItem.getText().replace(".", "");
-        String resourcePath = "/fxml/export_" + fileType + ".fxml";
+        String resourcePath = "";
+        resourcePath = "/fxml/export_" + fileType + ".fxml";
         displayExportDialog(resourcePath, fileType);
     }
     

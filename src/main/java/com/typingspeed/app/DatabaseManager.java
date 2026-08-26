@@ -13,7 +13,7 @@ import java.util.logging.Logger;
 
 public class DatabaseManager {
     
-    private static final Logger logger = Logger.getLogger(TxtExporter.class.getName());
+    private static final Logger logger = Logger.getLogger(DatabaseManager.class.getName());
     
     final static String APP_DATA_DIR = System.getProperty("user.home") + File.separator + ".turbotype";
     final static String URL = "jdbc:sqlite:" + APP_DATA_DIR + File.separator + "user_data.db";
@@ -21,7 +21,6 @@ public class DatabaseManager {
     // Utility class
     private DatabaseManager() {}
 
-    // Creates the database
     public static void createDatabase() {
         // Creates the database if it does not exist
         File dir = new File(APP_DATA_DIR);
@@ -74,7 +73,7 @@ public class DatabaseManager {
                 accuracySum = rs.getDouble("accuracy_sum");
             }
         } catch (SQLException e) {
-            logger.log(Level.WARNING, "ERROR: Failed to retrieve average accuracy from " + URL, e);
+            logger.log(Level.WARNING, "Failed to retrieve average accuracy from " + URL, e);
         }
         // Rounds accuracy to the nearest hundredth
         return Math.round((accuracySum / attemptCount) * 100) / 100.0;
@@ -98,7 +97,7 @@ public class DatabaseManager {
                 typingScoreSum = (double) rs.getInt("typing_score_sum");
             }
         } catch (SQLException e) {
-            logger.log(Level.WARNING, "ERROR: Failed to retrieve average typing score from " + URL, e);
+            logger.log(Level.WARNING, "Failed to retrieve average typing score from " + URL, e);
         }
         // Rounds typing score to the nearest hundredth
         return Math.round((typingScoreSum / attemptCount) * 100) / 100.0;
@@ -122,7 +121,7 @@ public class DatabaseManager {
                 wpmSum = (double) rs.getInt("wpm_sum");
             }
         } catch (SQLException e) {
-            logger.log(Level.WARNING, "ERROR: Failed to retrieve average words per minute from " + URL, e);
+            logger.log(Level.WARNING, "Failed to retrieve average words per minute from " + URL, e);
         }
         // Rounds WPM to the nearest hundredth
         return Math.round((wpmSum / attemptCount) * 100) / 100.0;
@@ -144,7 +143,7 @@ public class DatabaseManager {
                 }
             }
         } catch (SQLException e) {
-            logger.log(Level.WARNING, "ERROR: Failed to retrieve max attempt ID from " + URL, e);
+            logger.log(Level.WARNING, "Failed to retrieve max attempt ID from " + URL, e);
         }
         return maxAttemptID;
     }

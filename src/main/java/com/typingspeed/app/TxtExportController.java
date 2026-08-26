@@ -9,6 +9,9 @@ import javafx.scene.control.TextField;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
 import java.io.File;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 /** @author Ethan Rocklin */
 
@@ -41,8 +44,28 @@ public class TxtExportController {
     @FXML
     private TextField selectedDirectory;
     
+    private List<CheckBox> checkboxes;
+    
     @FXML
     public void initialize() {
+        // Makes an iterateable list with the UI's checkboxes
+        checkboxes = new ArrayList<CheckBox>(Arrays.asList(
+            accuracyBox,
+            averageAccuracyBox,
+            averageTypingScoreBox,
+            averageWPMBox,
+            dateBox,
+            formatBox,
+            selectAllBox,
+            timeElapsedBox,
+            wordCountsBox,
+            wpmBox
+        ));
+        // Applies target styles to checkboxes
+        for (CheckBox box : checkboxes) {
+            box.setFocusTraversable(false);
+        }
+        // Sets listener to the OK button (labeled "Export") of the dialog window
         Button exportButton = (Button) dialogPane.lookupButton(ButtonType.OK);
         if (exportButton != null) {
             exportButton.setOnAction(event -> initiateExporter());
@@ -68,25 +91,13 @@ public class TxtExportController {
     @FXML
     private void selectAll() {
         if (selectAllBox.isSelected()) {
-            accuracyBox.setSelected(true);
-            dateBox.setSelected(true);
-            formatBox.setSelected(true);
-            timeElapsedBox.setSelected(true);
-            wordCountsBox.setSelected(true);
-            wpmBox.setSelected(true);
-            averageAccuracyBox.setSelected(true);
-            averageTypingScoreBox.setSelected(true);
-            averageWPMBox.setSelected(true);
+            for (CheckBox box : checkboxes) {
+                box.setSelected(true);
+            }
         } else {
-            accuracyBox.setSelected(false);
-            dateBox.setSelected(false);
-            formatBox.setSelected(false);
-            timeElapsedBox.setSelected(false);
-            wordCountsBox.setSelected(false);
-            wpmBox.setSelected(false);
-            averageAccuracyBox.setSelected(false);
-            averageTypingScoreBox.setSelected(false);
-            averageWPMBox.setSelected(false);
+            for (CheckBox box : checkboxes) {
+                box.setSelected(false);
+            }
         }
     }
     

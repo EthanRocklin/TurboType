@@ -20,7 +20,7 @@ import java.util.stream.Collectors;
 
 public class MusicManager {
     
-    private static final Logger logger = Logger.getLogger(TxtExporter.class.getName());
+    private static final Logger logger = Logger.getLogger(MusicManager.class.getName());
     
     private static int trackIndex;
     private static MenuBarController menuBarController;

@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
 
 public class CreditsController {
     
-    private static final Logger logger = Logger.getLogger(TxtExporter.class.getName());
+    private static final Logger logger = Logger.getLogger(CreditsController.class.getName());
     
     @FXML
     private HBox creditsContainer;

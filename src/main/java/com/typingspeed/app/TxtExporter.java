@@ -1,6 +1,5 @@
 package com.typingspeed.app;
 
-import static com.typingspeed.app.DatabaseManager.URL;
 import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.File;

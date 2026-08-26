@@ -14,7 +14,7 @@ import java.util.logging.Logger;
 
 public class Attempt {
     
-    private static final Logger logger = Logger.getLogger(TxtExporter.class.getName());
+    private static final Logger logger = Logger.getLogger(Attempt.class.getName());
     
     private final int MAX_WPM = 100;
     private final int ACCURACY_WEIGHT = 3;
@@ -158,9 +158,9 @@ public class Attempt {
             pstmt.executeUpdate();
         } catch (SQLException e) {
             if (connectionFailed) {
-                System.out.print("ERROR: Failed to connect to " + url + "\n");
+                System.out.print("Failed to connect to " + url + "\n");
             }
-            logger.log(Level.WARNING, "ERROR: Failed to save attempt" , e);
+            logger.log(Level.WARNING, "Failed to save attempt" , e);
         }
     }
     

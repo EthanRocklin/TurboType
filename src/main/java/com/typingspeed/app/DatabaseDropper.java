@@ -12,7 +12,7 @@ import java.util.logging.Logger;
 
 public class DatabaseDropper {
     
-    private static final Logger logger = Logger.getLogger(TxtExporter.class.getName());
+    private static final Logger logger = Logger.getLogger(DatabaseDropper.class.getName());
     
     final static String APP_DATA_DIR = System.getProperty("user.home") + File.separator + ".turbotype";
     final static String URL = "jdbc:sqlite:" + APP_DATA_DIR + File.separator + "user_data.db";
@@ -31,7 +31,7 @@ public class DatabaseDropper {
             Statement stmt = conn.createStatement();
             // Drops tables
             stmt.execute(dropAttempts);
-            logger.log(Level.INFO, "Successfully dropped database at " + URL);
+            logger.log(Level.INFO, "Successfully dropped database at {0}", URL);
         } catch (SQLException e) {
             if (connectionFailed) {
                 logger.log(Level.WARNING, "Failed to connect to " + URL, e);

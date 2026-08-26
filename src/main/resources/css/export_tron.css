@@ -37,6 +37,7 @@
 
 .info-option .box {
     -fx-background-color: -fx-tron;
+    -fx-mark-highlight-color: transparent;
 }
 
 .info-option .box:hover {

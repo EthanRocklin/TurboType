@@ -45,7 +45,7 @@ public class SentenceBank {
                 new InputStreamReader(SentenceBank.class.getResourceAsStream("/words/sentences.txt")))) {
             sentences = reader.lines().collect(Collectors.toList());
         } catch (IOException e) {
-            logger.log(Level.SEVERE, "ERROR : Could not start TurboType application. ", e);
+            logger.log(Level.SEVERE, "Failed to load sentences into memory.", e);
         }
         return sentences;
     }

@@ -1,15 +1,20 @@
 package com.typingspeed.app;
 
+import static com.typingspeed.app.DatabaseDropper.URL;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.IOException;
 import java.util.Random;
+import java.util.logging.Level; 
+import java.util.logging.Logger; 
 
 /** @author Ethan Rocklin */
 
 public class WordBank {
+    
+    private static final Logger logger = Logger.getLogger(WordBank.class.getName());
 
     private static final List<String> BANK = loadWords();
     private static final int BANK_SIZE = BANK.size();
@@ -41,7 +46,7 @@ public class WordBank {
                 new InputStreamReader(WordBank.class.getResourceAsStream("/words/atomic_words.txt")))) {
             words = reader.lines().collect(Collectors.toList());
         } catch (IOException e) {
-            System.out.println("ERROR : " + e.getMessage());
+            logger.log(Level.WARNING, "Failed to load words into memory.", e);
         }
         return words;
     }
