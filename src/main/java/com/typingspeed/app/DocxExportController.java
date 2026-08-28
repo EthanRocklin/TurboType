@@ -56,14 +56,9 @@ public class DocxExportController {
     
     // This method handles any intializing tasks for the dialog's buttons.
     private void initializeButtons() {
-        // Changes the text of the default OK button
-        Button okButtonNode = (Button) dialogPane.lookupButton(ButtonType.OK);
-        okButtonNode.setText("Export");
-        // Sets listener to the OK button (labeled "Export") of the dialog window
         Button exportButton = (Button) dialogPane.lookupButton(ButtonType.OK);
-        if (exportButton != null) {
-            exportButton.setOnAction(event -> initiateExporter());
-        }
+        exportButton.setText("Export");
+        exportButton.setOnAction(event -> initiateExporter());
     }
     
     // This method handles any initializing tasks for the checkboxes.

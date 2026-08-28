@@ -15,7 +15,7 @@
     -fx-pref-height: 30;
 }
 
-#browseBtn {
+#browseButton {
     -fx-pref-height: 30;
 }
 
@@ -52,7 +52,7 @@
     -fx-pref-height: 35;
 }
 
-#browseBtn {
+#browseButton {
     -fx-background-color: -fx-primary;
     -fx-background-insets: 0;
     -fx-background-radius: 5;
@@ -67,12 +67,12 @@
     -fx-cursor: hand;
 }
 
-#browseBtn:hover {
+#browseButton:hover {
     -fx-background-color: -fx-tron;
     -fx-text-fill: -fx-primary;
 }
 
-#browseBtn:pressed {
+#browseButton:pressed {
     -fx-background-color: -fx-tron;
     -fx-text-fill: -fx-primary;
     -fx-scale-x: 0.97;

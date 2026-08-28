@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+
+<HBox id="pathSelectionContainer" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.typingspeed.app.BrowseController">
+    <Button id="browseButton" fx:id="browseButton" text="Browse" />
+    <TextField id="selectedDirectory" fx:id="selectedDirectoryField" editable="false" HBox.hgrow="ALWAYS" promptText="Select a directory">
+        <HBox.margin>
+            <Insets left="5" />
+        </HBox.margin>
+    </TextField>
+</HBox>
