@@ -6,11 +6,6 @@ import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardOpenOption;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.ResultSet;
-import java.sql.Statement;
 import java.time.Instant;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
@@ -27,16 +22,11 @@ public class CsvExporter {
     
     private final DataExportOptions dataOptions;
     private final Instant now;
-    private List<String> dbAttributes;
     private final Path path;
     
-    public CsvExporter(
-            DataExportOptions dataOptions,
-            String parentDirectory
-    ) {
+    public CsvExporter(DataExportOptions dataOptions, String parentDirectory) {
         this.dataOptions = dataOptions;
         this.now = Instant.now();
-        this.dbAttributes = getAttributes();
         // Creates path for file to export to
         String pathStr = parentDirectory + File.separator + "typing_data_" + getTimeStamp() + ".csv";
         this.path = Path.of(pathStr);
@@ -138,55 +128,16 @@ public class CsvExporter {
     
     // This method handles the writing of the all rows of attempt data to the file.
     private void writeAttemptData(BufferedWriter writer) {
-        StringBuilder query = new StringBuilder("SELECT ");
-        // Adds all targeted attributes to the query
-        for (int i = 0; i < dbAttributes.size() - 1; i++) {
-            query.append(dbAttributes.get(i))
-                 .append(",");
-        }
-        query.append(dbAttributes.getLast())
-             .append(" from attempts");
-        // Retrieves attempt data from the database
-        ResultSet rs = null;
-        String url = DatabaseManager.getURL();
-        // Builds and writes attempt data (one line per attempt)
-        try (Connection conn = DriverManager.getConnection(url)) {
-            Statement stmt = conn.createStatement();
-            rs = stmt.executeQuery(query.toString());
-            // Checks if there is no attempt data
-            if (!rs.next()) {
-                return;
-            }
-            StringBuilder str = new StringBuilder();
-            // Appends the first attempt's data
-            String datum = "";
-            for (int i = 0; i < dbAttributes.size() - 1; i++) {
-                // All data is represented as a String for .csv export
-                datum = rs.getString(dbAttributes.get(i));
-                str.append(datum)
-                   .append(",");
-            }
-            datum = rs.getString(dbAttributes.getLast());
-            str.append(dbAttributes.getLast())
-               .append(System.lineSeparator());
-            writer.write(str.toString());
-            // Builds and writes if their is more data
-            while (rs.next()) {
-                str = new StringBuilder();
-                for (int i = 0; i < dbAttributes.size() - 1; i++) {
-                    datum = rs.getString(dbAttributes.get(i));
-                    str.append(datum)
-                       .append(",");
-                }
-                String lastDatum = dbAttributes.getLast();
-                str.append(rs.getString(lastDatum))
-                   .append(System.lineSeparator());
-                writer.write(str.toString());
-            }
-        } catch (IOException e) {
-            logger.log(Level.WARNING, "Could not write columns to " + path.toString(), e);
-        } catch (SQLException e) {
-            logger.log(Level.WARNING, "Failed to parse data from " + url, e);
+        String query = DatabaseManager.getSelectAttemptDataQuery(dataOptions);
+        List<AttemptRecord> attempts = DatabaseManager.selectAttemptData(query);
+        if (attempts != null) {
+            try {
+                
+                
+                writer.newLine();
+            } catch (IOException e) {
+                logger.log(Level.WARNING, "Could not write columns to " + path.toString(), e);
+            } 
         }
     }
     

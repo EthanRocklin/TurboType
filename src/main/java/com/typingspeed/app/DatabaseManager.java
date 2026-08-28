@@ -5,8 +5,14 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.Map;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -147,6 +153,128 @@ public class DatabaseManager {
             logger.log(Level.WARNING, "Failed to retrieve max attempt ID from " + URL, e);
         }
         return maxAttemptID;
+    }
+            
+    // This method performs a SELECT query on the "attempts" table in the database.
+    public static List<AttemptRecord> selectAttemptData(String query) {
+        List<AttemptRecord> attempts = new ArrayList<>();
+        try (Connection conn = DriverManager.getConnection(URL)) {
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+            
+            // Checks if there is no attempt data
+            if (!rs.next()) {
+                return null;
+            }
+            // Builds list of attempt records
+            ResultSetMetaData metaData = rs.getMetaData();
+            Map<String, Boolean> cols = getColBooleans(metaData);
+            System.out.println("columns map = " + cols.toString());
+            do {
+               // Creates an AttemptRecord for each row in the ResultSet
+               attempts.add(getAttemptRecord(cols, rs));
+            } while (rs.next());
+            
+        } catch (SQLException e) {
+            logger.log(Level.WARNING, "Failed to parse data from " + URL, e);
+        }
+        return attempts;
+    }
+    
+    // This method returns an AttemptRecord object for the current row of a ResultSet.
+    private static AttemptRecord getAttemptRecord(Map<String, Boolean> colBooleans, ResultSet rs) {
+        AttemptRecord record = null;
+        try {
+            // Assigns AttemptRecord values depending on what data the user selected
+            System.out.println("correct_words = " + colBooleans.get("correct_words"));
+            Integer correctCount = colBooleans.get("correct_words") ? rs.getInt("correct_words") : null;
+            Integer totalCount = colBooleans.get("total_words") ? rs.getInt("total_words") : null;
+            Double accuracy = colBooleans.get("accuracy") ? rs.getDouble("accuracy") : null;
+            Integer wpm = colBooleans.get("wpm") ? rs.getInt("wpm") : null;
+            String time = colBooleans.get("time") ? rs.getString("time") : null;
+            String format = colBooleans.get("format") ? rs.getString("format") : null;
+            String date = colBooleans.get("date") ? rs.getString("date") : null;
+            record = new AttemptRecord(
+                    rs.getInt("attempt_id"),
+                    rs.getInt("typing_score"),
+                    correctCount,
+                    totalCount,
+                    accuracy,
+                    wpm,
+                    rs.getInt("milliseconds"),
+                    time,
+                    format,
+                    date
+            );
+        } catch (SQLException e) {
+            logger.log(Level.WARNING, "Failed to parse data from " + URL, e);
+        }
+        return record;
+    }
+    
+    // This method returns a boolean map for what columns exists in the user's selected data options.
+    private static Map<String, Boolean> getColBooleans(ResultSetMetaData metaData) {
+        Map<String, Boolean> colBooleans = new HashMap<>();
+        try {
+            Set<String> allColNames = getAllAttemptColNames();
+            // Gets the select columns' names
+            int colCount = metaData.getColumnCount();
+            Set<String> colNames = new HashSet<>();
+            for (int i = 1; i <= colCount; i++) {
+                colNames.add(metaData.getColumnName(i));
+            }
+            // Adds column names to Map
+            for (String name : allColNames) {
+                colBooleans.put(name, (Boolean) colNames.contains(name));
+            }
+            System.out.println("columnBooleans : " + colBooleans);
+        } catch (SQLException e) {
+            logger.log(Level.WARNING, "Failed to parse data from " + URL, e);
+        }
+        return colBooleans;
+    }
+    
+    // This method returns all column names for the "attempts" table in the database.
+    private static Set<String> getAllAttemptColNames() {
+        Set<String> colNames = new HashSet<>();
+        try (Connection conn = DriverManager.getConnection(URL)) {
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT * from attempts LIMIT 0");
+            ResultSetMetaData metaData = rs.getMetaData();
+            // Gets all columns names
+            int colCount = metaData.getColumnCount();
+            for (int i = 1; i <= colCount; i++) {
+                colNames.add(metaData.getColumnName(i));
+            }
+        } catch (SQLException e) {
+            logger.log(Level.WARNING, "Failed to parse data from " + URL, e);
+        }
+        return colNames;
+    }
+    
+    // This method returns a String representing the SELECT query for the user's data selection.
+    public static String getSelectAttemptDataQuery(DataExportOptions dataOptions) {
+        StringBuilder query = new StringBuilder("SELECT attempt_id, typing_score");
+        if (dataOptions.wordCounts()) {
+            query.append(", correct_words, total_words");
+        }
+        if (dataOptions.accuracy()) {
+            query.append(", accuracy ");
+        }
+        if (dataOptions.wpm()) {
+            query.append(", wpm ");
+        }
+        if (dataOptions.timeElapsed()) {
+            query.append(", time ");
+        }
+        if (dataOptions.format()) {
+            query.append(", format ");
+        }
+        if (dataOptions.date()) {
+            query.append(", date ");
+        }
+        query.append("from attempts");
+        return query.toString();
     }
     
     public static String getAppDataDirectory() {
