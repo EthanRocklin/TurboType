@@ -183,12 +183,14 @@ public class CsvExporter {
             }
             StringBuilder str = new StringBuilder();
             // Appends the first attempt's data
+            String datum = "";
             for (int i = 0; i < dbAttributes.size() - 1; i++) {
                 // All data is represented as a String for .csv export
-                String datum = rs.getString(dbAttributes.get(i));
+                datum = rs.getString(dbAttributes.get(i));
                 str.append(datum)
                    .append(",");
             }
+            datum = rs.getString(dbAttributes.getLast());
             str.append(dbAttributes.getLast())
                .append(System.lineSeparator());
             writer.write(str.toString());
@@ -196,7 +198,7 @@ public class CsvExporter {
             while (rs.next()) {
                 str = new StringBuilder();
                 for (int i = 0; i < dbAttributes.size() - 1; i++) {
-                    String datum = rs.getString(dbAttributes.get(i));
+                    datum = rs.getString(dbAttributes.get(i));
                     str.append(datum)
                        .append(",");
                 }

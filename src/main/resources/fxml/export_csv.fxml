@@ -14,7 +14,27 @@
     <content>
         <VBox>
             <HBox id="infoContainer">
+                <VBox id="defaultInfo" styleClass="info-container">
+                    <Text styleClass="info-header" text="Default Info">
+                        <VBox.margin>
+                            <Insets bottom="10" left="10" />
+                        </VBox.margin>
+                    </Text>
+                    <CheckBox styleClass="info-option" selected="true" disable="true" text="Attempt Number">
+                        <VBox.margin>
+                            <Insets bottom="5" left="10" />
+                        </VBox.margin>
+                    </CheckBox>
+                    <CheckBox styleClass="info-option" selected="true" disable="true" text="Typing Score">
+                        <VBox.margin>
+                            <Insets bottom="5" left="10" />
+                        </VBox.margin>
+                    </CheckBox>
+                </VBox>
                 <VBox id="optionalInfo" styleClass="info-container">
+                    <HBox.margin>
+                        <Insets left="30" />
+                    </HBox.margin>
                     <Text styleClass="info-header" text="Optional Info">
                         <VBox.margin>
                             <Insets bottom="10" />
@@ -71,27 +91,10 @@
                         </VBox.margin>
                     </CheckBox>
                 </VBox>
-                <VBox id="defaultInfo" styleClass="info-container">
-                    <Text styleClass="info-header" text="Default Info">
-                        <VBox.margin>
-                            <Insets bottom="10" left="30" />
-                        </VBox.margin>
-                    </Text>
-                    <CheckBox styleClass="info-option" selected="true" disable="true" text="Attempt Number">
-                        <VBox.margin>
-                            <Insets bottom="5" left="30" />
-                        </VBox.margin>
-                    </CheckBox>
-                    <CheckBox styleClass="info-option" selected="true" disable="true" text="Typing Score">
-                        <VBox.margin>
-                            <Insets bottom="5" left="30" />
-                        </VBox.margin>
-                    </CheckBox>
-                </VBox>
             </HBox>
             <HBox id="pathSelectionContainer">
                 <Button id="browseBtn" fx:id="browseBtn" onAction="#selectDirectory" text="Browse" />
-                <TextField id="selectedDirectory" fx:id="selectedDirectory" editable="false" promptText="Select a directory">
+                <TextField id="selectedDirectory" fx:id="selectedDirectory" editable="false" HBox.hgrow="ALWAYS" promptText="Select a directory">
                     <HBox.margin>
                         <Insets left="5" />
                     </HBox.margin>

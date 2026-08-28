@@ -16,7 +16,27 @@
     <content>
         <VBox>
             <HBox id="infoContainer">
+                <VBox id="defaultInfo" styleClass="info-container">
+                    <Text styleClass="info-header" text="Default Info">
+                        <VBox.margin>
+                            <Insets bottom="10" left="10" />
+                        </VBox.margin>
+                    </Text>
+                    <CheckBox styleClass="info-option" selected="true" disable="true" text="Attempt Number">
+                        <VBox.margin>
+                            <Insets bottom="5" left="10" />
+                        </VBox.margin>
+                    </CheckBox>
+                    <CheckBox styleClass="info-option" selected="true" disable="true" text="Typing Score">
+                        <VBox.margin>
+                            <Insets bottom="5" left="10" />
+                        </VBox.margin>
+                    </CheckBox>
+                </VBox>
                 <VBox id="optionalInfo" styleClass="info-container">
+                    <HBox.margin>
+                        <Insets left="30" />
+                    </HBox.margin>
                     <Text styleClass="info-header" text="Optional Info">
                         <VBox.margin>
                             <Insets bottom="10" />
@@ -73,23 +93,6 @@
                         </VBox.margin>
                     </CheckBox>
                 </VBox>
-                <VBox id="defaultInfo" styleClass="info-container">
-                    <Text styleClass="info-header" text="Default Info">
-                        <VBox.margin>
-                            <Insets bottom="10" left="30" />
-                        </VBox.margin>
-                    </Text>
-                    <CheckBox styleClass="info-option" selected="true" disable="true" text="Attempt Number">
-                        <VBox.margin>
-                            <Insets bottom="5" left="30" />
-                        </VBox.margin>
-                    </CheckBox>
-                    <CheckBox styleClass="info-option" selected="true" disable="true" text="Typing Score">
-                        <VBox.margin>
-                            <Insets bottom="5" left="30" />
-                        </VBox.margin>
-                    </CheckBox>
-                </VBox>
                 <VBox id="statisticalModels" styleClass="info-container">
                     <Text styleClass="info-header" text="Statistical Models">
                         <VBox.margin>
@@ -98,13 +101,9 @@
                     </Text>
                     <HBox styleClass="model-option-ontainer">
                         <VBox.margin>
-                                <Insets bottom="5" left="10" />
+                                <Insets bottom="5" left="30" />
                         </VBox.margin>
-                        <CheckBox styleClass="info-option" text="Bar Graph">
-                            <VBox.margin>
-                                <Insets bottom="5" left="10" />
-                            </VBox.margin>
-                        </CheckBox>
+                        <CheckBox styleClass="info-option" text="Bar Graph" />
                         <ComboBox styleClass="model-data-box" promptText="Select Data">
                             <items>
                                 <FXCollections fx:id="barGraphSelections" fx:factory="observableArrayList">
@@ -116,17 +115,16 @@
                                     <CheckBox fx:id="barWPMTotalWordsBox" text="Average WPM - Total Words" />
                                 </FXCollections>
                             </items>
+                            <HBox.margin>
+                                <Insets right="30" />
+                            </HBox.margin>
                         </ComboBox>
                     </HBox>
                     <HBox styleClass="model-option-ontainer">
                         <VBox.margin>
-                                <Insets bottom="5" left="10" />
+                                <Insets bottom="5" left="30" />
                         </VBox.margin>
-                        <CheckBox styleClass="info-option" text="Histogram">
-                            <VBox.margin>
-                                <Insets bottom="5" left="10" />
-                            </VBox.margin>
-                        </CheckBox>
+                        <CheckBox styleClass="info-option" text="Histogram" />
                         <ComboBox styleClass="model-data-box" promptText="Select Data">
                             <items>
                                 <FXCollections fx:id="Selections" fx:factory="observableArrayList">
@@ -136,17 +134,16 @@
                                     <CheckBox fx:id="WPMBox" text="Words Per Minute" />
                                 </FXCollections>
                             </items>
+                            <HBox.margin>
+                                <Insets right="30" />
+                            </HBox.margin>
                         </ComboBox>
                     </HBox>
                     <HBox styleClass="model-option-ontainer">
                         <VBox.margin>
-                                <Insets bottom="5" left="10" />
+                                <Insets bottom="5" left="30" />
                         </VBox.margin>
-                        <CheckBox styleClass="info-option" text="Line Graph">
-                            <VBox.margin>
-                                <Insets bottom="5" left="10" />
-                            </VBox.margin>
-                        </CheckBox>
+                        <CheckBox styleClass="info-option" text="Line Graph" />
                         <ComboBox styleClass="model-data-box" promptText="Select Data">
                             <items>
                                 <FXCollections fx:id="lineSelections" fx:factory="observableArrayList">
@@ -156,17 +153,16 @@
                                     <CheckBox fx:id="lineWPMBox" text="Words Per Minute" />
                                 </FXCollections>
                             </items>
+                            <HBox.margin>
+                                <Insets right="30" />
+                            </HBox.margin>
                         </ComboBox>
                     </HBox>
                     <HBox styleClass="model-option-ontainer">
                         <VBox.margin>
-                                <Insets bottom="5" left="10" />
+                                <Insets bottom="5" left="30" />
                         </VBox.margin>
-                        <CheckBox styleClass="info-option" text="Scatter Plot">
-                            <VBox.margin>
-                                <Insets bottom="5" left="10" />
-                            </VBox.margin>
-                        </CheckBox>
+                        <CheckBox styleClass="info-option" text="Scatter Plot" />
                         <ComboBox styleClass="model-data-box" promptText="Select Data">
                             <items>
                                 <FXCollections fx:id="scatterSelections" fx:factory="observableArrayList">
@@ -175,13 +171,16 @@
                                     <CheckBox fx:id="scatterGraphScoreBox" text="WPM - Total Words" />
                                 </FXCollections>
                             </items>
+                            <HBox.margin>
+                                <Insets right="30" />
+                            </HBox.margin>
                         </ComboBox>
                     </HBox>
                 </VBox>
             </HBox>
             <HBox id="pathSelectionContainer">
                 <Button id="browseBtn" fx:id="browseBtn" onAction="#selectDirectory" text="Browse" />
-                <TextField id="selectedDirectory" fx:id="selectedDirectory" editable="false" promptText="Select a directory">
+                <TextField id="selectedDirectory" fx:id="selectedDirectory" editable="false" HBox.hgrow="ALWAYS" promptText="Select a directory">
                     <HBox.margin>
                         <Insets left="5" />
                     </HBox.margin>

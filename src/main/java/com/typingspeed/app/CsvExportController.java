@@ -89,7 +89,7 @@ public class CsvExportController {
     
     @FXML
     private void initiateExporter() {
-        new TxtExporter(
+        new CsvExporter(
             accuracyBox.isSelected(),
             averageAccuracyBox.isSelected(),
             averageTypingScoreBox.isSelected(),
