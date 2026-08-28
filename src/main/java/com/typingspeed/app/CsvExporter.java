@@ -25,40 +25,16 @@ public class CsvExporter {
     
     private static final Logger logger = Logger.getLogger(CsvExporter.class.getName());
     
-    private final boolean accuracySelected;
-    private final boolean averageAccuracySelected;
-    private final boolean averageTypingScoreSelected;
-    private final boolean averageWPMSelected;
-    private final boolean dateSelected;
-    private final boolean formatSelected;
-    private final boolean timeElapsedSelected;
-    private final boolean wordCountsSelected;
-    private final boolean wpmSelected;
+    private final DataExportOptions dataOptions;
     private final Instant now;
     private List<String> dbAttributes;
     private final Path path;
     
     public CsvExporter(
-            boolean accuracySelected,
-            boolean averageAccuracySelected,
-            boolean averageTypingScoreSelected,
-            boolean averageWPMSelected,
-            boolean dateSelected,
-            boolean formatSelected,
-            boolean timeElapsedSelected,
-            boolean wordCountsSelected,
-            boolean wpmSelected,
+            DataExportOptions dataOptions,
             String parentDirectory
     ) {
-        this.accuracySelected = accuracySelected;
-        this.averageAccuracySelected = averageAccuracySelected;
-        this.averageTypingScoreSelected = averageTypingScoreSelected;
-        this.averageWPMSelected = averageWPMSelected;
-        this.dateSelected = dateSelected;
-        this.formatSelected = formatSelected;
-        this.timeElapsedSelected = timeElapsedSelected;
-        this.wordCountsSelected = wordCountsSelected;
-        this.wpmSelected = wpmSelected;
+        this.dataOptions = dataOptions;
         this.now = Instant.now();
         this.dbAttributes = getAttributes();
         // Creates path for file to export to
@@ -93,23 +69,23 @@ public class CsvExporter {
         attributes.add("attempt_id");
         attributes.add("typing_score");
         // Determines which attributes to include
-        if (wordCountsSelected) {
+        if (dataOptions.wordCounts()) {
             attributes.add("total_words");
             attributes.add("correct_words");
         }
-        if (accuracySelected) {
+        if (dataOptions.accuracy()) {
             attributes.add("accuracy");
         }
-        if (wpmSelected) {
+        if (dataOptions.wpm()) {
             attributes.add("wpm");
         }
-        if (timeElapsedSelected) {
+        if (dataOptions.timeElapsed()) {
             attributes.add("time");
         }
-        if (formatSelected) {
+        if (dataOptions.format()) {
             attributes.add("format");
         }
-        if (dateSelected) {
+        if (dataOptions.date()) {
             attributes.add("date");
         }
         return attributes;
@@ -132,23 +108,23 @@ public class CsvExporter {
         str.append("Attempt");
         str.append(",Score");
         // Determines what columns to include
-        if (wordCountsSelected) {
+        if (dataOptions.wordCounts()) {
             str.append(",Words");
             str.append(",Correct");
         }
-        if (accuracySelected) {
+        if (dataOptions.accuracy()) {
             str.append(",Accuracy");
         }
-        if (wpmSelected) {
+        if (dataOptions.wpm()) {
             str.append(",WPM");
         }
-        if (timeElapsedSelected) {
+        if (dataOptions.timeElapsed()) {
             str.append(",Time");
         }
-        if (formatSelected) {
+        if (dataOptions.format()) {
             str.append(",Format");
         }
-        if (dateSelected) {
+        if (dataOptions.date()) {
             str.append(",Date");
         }
         str.append(System.lineSeparator());
@@ -221,19 +197,19 @@ public class CsvExporter {
             writer.write("Averages");
             writer.write(System.lineSeparator());
             // Determines which averages to include
-            if (averageAccuracySelected) {
+            if (dataOptions.averageAccuracy()) {
                 average = DatabaseManager.getAverageAccuracy();
                 writer.write("Accuracy,");
                 writer.write(String.valueOf(average));
                 writer.newLine();
             }
-            if (averageWPMSelected) {
+            if (dataOptions.averageWpm()) {
                 average = DatabaseManager.getAverageWPM();
                 writer.write("Words Per Minute,");
                 writer.write(String.valueOf(average));
                 writer.newLine();
             }
-            if (averageTypingScoreSelected) {
+            if (dataOptions.averageTypingScore()) {
                 average = DatabaseManager.getAverageTypingScore();
                 writer.write("Typing Score,");
                 writer.write(String.valueOf(average));

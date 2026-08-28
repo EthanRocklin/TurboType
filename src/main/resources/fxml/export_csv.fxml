@@ -7,13 +7,16 @@
 <?import javafx.scene.control.DialogPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
 <DialogPane xmlns:fx="http://javafx.com/fxml/1" id="dialogPane" fx:id="dialogPane" xmlns="http://javafx.com/javafx/26" fx:controller="com.typingspeed.app.CsvExportController">
     <content>
         <VBox>
-            <fx:include source="export_data_select.fxml" fx:id="dataSelection" />
+            <HBox id="infoContainer">
+                <fx:include source="export_data_select.fxml" fx:id="dataSelection" />
+            </HBox>
             <fx:include source="export_browse.fxml" fx:id="browser" />
         </VBox>
     </content>

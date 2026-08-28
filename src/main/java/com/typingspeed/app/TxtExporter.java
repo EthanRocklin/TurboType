@@ -40,26 +40,18 @@ public class TxtExporter {
     private final Path path;
     
     public TxtExporter(
-            boolean accuracySelected,
-            boolean averageAccuracySelected,
-            boolean averageTypingScoreSelected,
-            boolean averageWPMSelected,
-            boolean dateSelected,
-            boolean formatSelected,
-            boolean timeElapsedSelected,
-            boolean wordCountsSelected,
-            boolean wpmSelected,
+            DataExportOptions dataOptions,
             String parentDirectory
     ) {
-        this.accuracySelected = accuracySelected;
-        this.averageAccuracySelected = averageAccuracySelected;
-        this.averageTypingScoreSelected = averageTypingScoreSelected;
-        this.averageWPMSelected = averageWPMSelected;
-        this.dateSelected = dateSelected;
-        this.formatSelected = formatSelected;
-        this.timeElapsedSelected = timeElapsedSelected;
-        this.wordCountsSelected = wordCountsSelected;
-        this.wpmSelected = wpmSelected;
+        this.accuracySelected = dataOptions.accuracy();
+        this.averageAccuracySelected = dataOptions.averageAccuracy();
+        this.averageTypingScoreSelected = dataOptions.averageTypingScore();
+        this.averageWPMSelected = dataOptions.averageWpm();
+        this.dateSelected = dataOptions.date();
+        this.formatSelected = dataOptions.format();
+        this.timeElapsedSelected = dataOptions.timeElapsed();
+        this.wordCountsSelected = dataOptions.wordCounts();
+        this.wpmSelected = dataOptions.wpm();
         this.now = Instant.now();
         this.dbAttributes = getAttributes();
         // Creates path for file to export to

@@ -53,7 +53,7 @@ public class DataSelectionController {
             wordCountsBox,
             wpmBox
         ));
-        // Applies target styles to checkboxes
+        // Gets rid of focus visual when clicked
         for (CheckBox box : checkboxes) {
             box.setFocusTraversable(false);
         }
@@ -72,32 +72,19 @@ public class DataSelectionController {
         }
     }
     
-    public CheckBox getAccuracyBox() {
-        return accuracyBox;
-    }
-    public CheckBox getAverageAccuracyBox() {
-        return averageAccuracyBox;
-    }
-    public CheckBox getAverageTypingScoreBox() {
-        return averageTypingScoreBox;
-    }
-    public CheckBox getAverageWpmBox() {
-        return averageWpmBox;
-    }
-    public CheckBox getDateBox() {
-        return dateBox;
-    }
-    public CheckBox getFormatBox() {
-        return formatBox;
-    }
-    public CheckBox getTimeElapsedBox() {
-        return timeElapsedBox;
-    }
-    public CheckBox getWordCountsBox() {
-        return wordCountsBox;
-    }
-    public CheckBox getWpmBox() {
-        return wpmBox;
+    // This method constructs and returns a record of the states of the data checkboxes.
+    public DataExportOptions getDataOptions() {
+        return new DataExportOptions(
+            accuracyBox.isSelected(),
+            averageAccuracyBox.isSelected(),
+            averageTypingScoreBox.isSelected(),
+            averageWpmBox.isSelected(),
+            dateBox.isSelected(),
+            formatBox.isSelected(),
+            timeElapsedBox.isSelected(),
+            wordCountsBox.isSelected(),
+            wpmBox.isSelected()
+        );
     }
     
 }

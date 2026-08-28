@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.collections.FXCollections?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ButtonType?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+
+<HBox xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.typingspeed.app.StyleSelectionController">
+    <VBox id="stylingInfo" styleClass="info-container">
+        <Text styleClass="info-header" text="Styling">
+            <VBox.margin>
+                <Insets bottom="10" left="30"/>
+            </VBox.margin>
+        </Text>
+        <CheckBox fx:id="selectAllBox" styleClass="info-option" onAction="#selectAll" text="SELECT ALL">
+            <VBox.margin>
+                <Insets bottom="5" left="30" />
+            </VBox.margin>
+        </CheckBox>
+        <CheckBox fx:id="boldLabelsBox" styleClass="info-option" text="Bold Labels">
+            <VBox.margin>
+                <Insets bottom="5" left="40" />
+            </VBox.margin>
+        </CheckBox>
+        <CheckBox fx:id="coloredCellsBox" styleClass="info-option" text="Colored Cells">
+            <VBox.margin>
+                <Insets bottom="5" left="40" />
+            </VBox.margin>
+        </CheckBox>
+        <HBox styleClass="style-option-ontainer">
+            <VBox.margin>
+                    <Insets bottom="5" left="40" />
+            </VBox.margin>
+            <CheckBox fx:id="dataAlignmentBox" styleClass="info-option" text="Data Alignment" />
+            <ComboBox styleClass="alignment-direction-box" promptText="Select Direction">
+                <items>
+                    <FXCollections fx:id="dataAlignmentSelections" fx:factory="observableArrayList">
+                        <CheckBox fx:id="dataCenterAlignBox" text="center" />
+                        <CheckBox fx:id="dataLeftAlignBox" text="left" />
+                        <CheckBox fx:id="dataRightAlignBox" text="right" />
+                    </FXCollections>
+                </items>
+                <HBox.margin>
+                    <Insets right="30" />
+                </HBox.margin>
+            </ComboBox>
+        </HBox>
+        <HBox styleClass="style-option-ontainer">
+            <VBox.margin>
+                    <Insets bottom="5" left="40" />
+            </VBox.margin>
+            <CheckBox fx:id="labelAlignmentBox" styleClass="info-option" text="Label Alignment" />
+            <ComboBox styleClass="alignment-direction-box" promptText="Select Direction">
+                <items>
+                    <FXCollections fx:id="labelAlignmentSelections" fx:factory="observableArrayList">
+                        <CheckBox fx:id="labelCenterAlignBox" text="center" />
+                        <CheckBox fx:id="labelLeftAlignBox" text="left" />
+                        <CheckBox fx:id="labelRightAlignBox" text="right" />
+                    </FXCollections>
+                </items>
+                <HBox.margin>
+                    <Insets right="30" />
+                </HBox.margin>
+            </ComboBox>
+        </HBox>
+    </VBox>
+</HBox>
+

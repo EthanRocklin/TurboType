@@ -3,7 +3,9 @@ com\typingspeed\app\StatsController.class
 com\typingspeed\app\TxtExporter.class
 BrowseController\java.class
 com\typingspeed\app\PdfExporter.class
+com\typingspeed\app\ModelSelectionController.class
 com\typingspeed\app\Settings.class
+com\typingspeed\app\StyleExportOptions.class
 com\typingspeed\app\PdfExportController.class
 com\typingspeed\app\MusicManager.class
 com\typingspeed\app\XslxExporter.class
@@ -14,12 +16,15 @@ com\typingspeed\app\DataSelectionController.class
 com\typingspeed\app\XslxExportController.class
 com\typingspeed\app\TxtExportController.class
 com\typingspeed\app\MenuBarController.class
+com\typingspeed\app\StyleSelectionController.class
 com\typingspeed\app\AttemptController.class
 com\typingspeed\app\DatabaseDropper.class
 com\typingspeed\app\TurboType.class
 com\typingspeed\app\CreditsController.class
+com\typingspeed\app\DataExportOptions.class
 com\typingspeed\app\DocxExporter.class
 com\typingspeed\app\HomepageController.class
+com\typingspeed\app\ModelExportOptions.class
 com\typingspeed\app\CsvExportController.class
 com\typingspeed\app\BrowseController.class
 com\typingspeed\app\DatabaseManager.class

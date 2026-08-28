@@ -13,7 +13,9 @@
 <DialogPane id="dialogPane" fx:id="dialogPane" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.typingspeed.app.TxtExportController">
     <content>
         <VBox>
-            <fx:include source="export_data_select.fxml" fx:id="dataSelection" />
+            <HBox id="infoContainer">
+                <fx:include source="export_data_select.fxml" fx:id="dataSelection" />
+            </HBox>
             <fx:include source="export_browse.fxml" fx:id="browser" />
         </VBox>
     </content>

@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.collections.FXCollections?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+
+<HBox xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.typingspeed.app.ModelSelectionController">
+    <VBox id="statisticalModels" styleClass="info-container">
+        <Text styleClass="info-header" text="Statistical Models">
+            <VBox.margin>
+                <Insets bottom="10" left="30" />
+            </VBox.margin>
+        </Text>
+        <HBox styleClass="model-option-ontainer">
+            <VBox.margin>
+                <Insets bottom="5" left="30" />
+            </VBox.margin>
+            <CheckBox styleClass="info-option" text="Bar Graph" />
+            <ComboBox styleClass="model-data-box" promptText="Select Data">
+                <items>
+                    <FXCollections fx:id="barSelections" fx:factory="observableArrayList">
+                        <CheckBox id="barAccuracyFormat" fx:id="barAccuracyFormatBox" text="Average Accuracy - Format" />
+                        <CheckBox id="barAccuracyFormat" fx:id="barAccuracyTotalWordsBox" text="Average Accuracy - Total Words" />
+                        <CheckBox id="barScoreFormat" fx:id="barScoreFormatBox" text="Average Typing Score - Format" />
+                        <CheckBox id="barScoreTotalWords" fx:id="barScoreTotalWordsBox" text="Average Typing Score - Total Words" />
+                        <CheckBox id="barWpmFormat" fx:id="barWpmFormatBox" text="Average WPM - Format" />
+                        <CheckBox id="barWpmTotalWords" fx:id="barWpmTotalWordsBox" text="Average WPM - Total Words" />
+                    </FXCollections>
+                </items>
+                <HBox.margin>
+                    <Insets right="30" />
+                </HBox.margin>
+            </ComboBox>
+        </HBox>
+        <HBox styleClass="model-option-ontainer">
+            <VBox.margin>
+                <Insets bottom="5" left="30" />
+            </VBox.margin>
+            <CheckBox styleClass="info-option" text="Histogram" />
+            <ComboBox styleClass="model-data-box" promptText="Select Data">
+                <items>
+                    <FXCollections fx:id="histoSelections" fx:factory="observableArrayList">
+                        <CheckBox id="histoAccuracy" fx:id="histoAccuracyBox" text="Accuracy" />
+                        <CheckBox id="histoCorrectWords" fx:id="histoCorrectWordsBox" text="Corect Words Ratio" />
+                        <CheckBox id="histoScore" fx:id="histoScoreBox" text="Typing Score" />
+                        <CheckBox id="histoWpm" fx:id="histoWpmBox" text="Words Per Minute" />
+                    </FXCollections>
+                </items>
+                <HBox.margin>
+                    <Insets right="30" />
+                </HBox.margin>
+            </ComboBox>
+        </HBox>
+        <HBox styleClass="model-option-ontainer">
+            <VBox.margin>
+                <Insets bottom="5" left="30" />
+            </VBox.margin>
+            <CheckBox styleClass="info-option" text="Line Graph" />
+            <ComboBox styleClass="model-data-box" promptText="Select Data">
+                <items>
+                    <FXCollections fx:id="lineSelections" fx:factory="observableArrayList">
+                        <CheckBox id="lineAccuracy" fx:id="lineAccuracyBox" text="Accuracy" />
+                        <CheckBox id="lineCorrectWords" fx:id="lineCorrectWordsBox" text="Corect Words Ratio" />
+                        <CheckBox id="lineScore" fx:id="lineScoreBox" text="Typing Score" />
+                        <CheckBox id="lineWpm" fx:id="lineWpmBox" text="Words Per Minute" />
+                    </FXCollections>
+                </items>
+                <HBox.margin>
+                    <Insets right="30" />
+                </HBox.margin>
+            </ComboBox>
+        </HBox>
+        <HBox styleClass="model-option-ontainer">
+            <VBox.margin>
+                <Insets bottom="5" left="30" />
+            </VBox.margin>
+            <CheckBox styleClass="info-option" text="Scatter Plot" />
+            <ComboBox styleClass="model-data-box" promptText="Select Data">
+                <items>
+                    <FXCollections fx:id="scatterSelections" fx:factory="observableArrayList">
+                        <CheckBox id="scatterGraphAccuracy" fx:id="scatterGraphAccuracyBox" text="Accuracy - Total Words" />
+                        <CheckBox id="scatterGraphCorrectWords" fx:id="scatterGraphCorrectWordsBox" text="Accuracy - WPM" />
+                        <CheckBox id="scatterGraphScore" fx:id="scatterGraphScoreBox" text="WPM - Total Words" />
+                    </FXCollections>
+                </items>
+                <HBox.margin>
+                    <Insets right="30" />
+                </HBox.margin>
+            </ComboBox>
+        </HBox>
+    </VBox>
+</HBox>
+

@@ -32,15 +32,7 @@ public class CsvExportController {
     @FXML
     private void initiateExporter() {
         new CsvExporter(
-            dataSelectionController.getAccuracyBox().isSelected(),
-            dataSelectionController.getAverageAccuracyBox().isSelected(),
-            dataSelectionController.getAverageTypingScoreBox().isSelected(),
-            dataSelectionController.getAverageWpmBox().isSelected(),
-            dataSelectionController.getDateBox().isSelected(),
-            dataSelectionController.getFormatBox().isSelected(),
-            dataSelectionController.getTimeElapsedBox().isSelected(),
-            dataSelectionController.getWordCountsBox().isSelected(),
-            dataSelectionController.getWpmBox().isSelected(),
+            dataSelectionController.getDataOptions(),
             browserController.getSelectedDirectory()
         );
     }
