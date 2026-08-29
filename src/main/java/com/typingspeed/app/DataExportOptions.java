@@ -10,6 +10,7 @@ public record DataExportOptions(
     boolean averageWpm,
     boolean date,
     boolean format,
+    boolean milliseconds,
     boolean timeElapsed,
     boolean wordCounts,
     boolean wpm

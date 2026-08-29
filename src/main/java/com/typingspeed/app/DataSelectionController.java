@@ -23,6 +23,8 @@ public class DataSelectionController {
     @FXML
     private CheckBox formatBox;
     @FXML
+    private CheckBox millisecondsBox;
+    @FXML
     private CheckBox selectAllBox;
     @FXML
     private CheckBox timeElapsedBox;
@@ -48,6 +50,7 @@ public class DataSelectionController {
             averageWpmBox,
             dateBox,
             formatBox,
+            millisecondsBox,
             selectAllBox,
             timeElapsedBox,
             wordCountsBox,
@@ -81,6 +84,7 @@ public class DataSelectionController {
             averageWpmBox.isSelected(),
             dateBox.isSelected(),
             formatBox.isSelected(),
+            millisecondsBox.isSelected(),
             timeElapsedBox.isSelected(),
             wordCountsBox.isSelected(),
             wpmBox.isSelected()

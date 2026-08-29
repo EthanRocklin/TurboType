@@ -56,6 +56,11 @@
                 <Insets bottom="5" left="10" />
             </VBox.margin>
         </CheckBox>
+        <CheckBox fx:id="millisecondsBox" styleClass="info-option" text="Milliseconds">
+            <VBox.margin>
+                <Insets bottom="5" left="10" />
+            </VBox.margin>
+        </CheckBox>
         <CheckBox fx:id="timeElapsedBox" styleClass="info-option" text="Time Elapsed">
             <VBox.margin>
                 <Insets bottom="5" left="10" />

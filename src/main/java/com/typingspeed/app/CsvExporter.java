@@ -53,34 +53,6 @@ public class CsvExporter {
         }
     }
     
-    // This method creates and returns a list of desired database attributes.
-    private List<String> getAttributes() {
-        List<String> attributes = new ArrayList<>();
-        attributes.add("attempt_id");
-        attributes.add("typing_score");
-        // Determines which attributes to include
-        if (dataOptions.wordCounts()) {
-            attributes.add("total_words");
-            attributes.add("correct_words");
-        }
-        if (dataOptions.accuracy()) {
-            attributes.add("accuracy");
-        }
-        if (dataOptions.wpm()) {
-            attributes.add("wpm");
-        }
-        if (dataOptions.timeElapsed()) {
-            attributes.add("time");
-        }
-        if (dataOptions.format()) {
-            attributes.add("format");
-        }
-        if (dataOptions.date()) {
-            attributes.add("date");
-        }
-        return attributes;
-    }
-    
     // This method gets and returns a String indicating the date and time of the export.
     private String getTimeStamp() {
         // Gets the clock time of the export
@@ -94,6 +66,15 @@ public class CsvExporter {
     
     // This method handles the writing of the columns to the file.
     private void writeColumns(BufferedWriter writer) {
+        try {
+            writer.write(getColumnHeaders());
+        } catch (IOException e) {
+            logger.log(Level.WARNING, "Could not write columns to " + path.toString(), e);
+        }
+    }
+    
+    // This method builds and returns the column headers as a String.
+    private String getColumnHeaders() {
         StringBuilder str = new StringBuilder();
         str.append("Attempt");
         str.append(",Score");
@@ -108,6 +89,9 @@ public class CsvExporter {
         if (dataOptions.wpm()) {
             str.append(",WPM");
         }
+        if (dataOptions.milliseconds()) {
+            str.append(",Milliseconds");
+        }
         if (dataOptions.timeElapsed()) {
             str.append(",Time");
         }
@@ -118,12 +102,7 @@ public class CsvExporter {
             str.append(",Date");
         }
         str.append(System.lineSeparator());
-        // Writes the built String to the file
-        try {
-            writer.write(str.toString());
-        } catch (IOException e) {
-            logger.log(Level.WARNING, "Could not write columns to " + path.toString(), e);
-        }
+        return str.toString();
     }
     
     // This method handles the writing of the all rows of attempt data to the file.
@@ -132,13 +111,57 @@ public class CsvExporter {
         List<AttemptRecord> attempts = DatabaseManager.selectAttemptData(query);
         if (attempts != null) {
             try {
-                
-                
-                writer.newLine();
+                // Builds and writes each attempt's data
+                for (AttemptRecord record : attempts) {
+                    String line = getDataLine(record); 
+                    writer.write(line);
+                }
             } catch (IOException e) {
                 logger.log(Level.WARNING, "Could not write columns to " + path.toString(), e);
             } 
         }
+    }
+    
+    // This method constructs and returns an attempt's data as a String.
+    private String getDataLine(AttemptRecord record) {
+        StringBuilder line = new StringBuilder();
+        line.append(record.attemptId())
+            .append(",")
+            .append(record.typingScore());
+        if (record.correctCount() != null) {
+            line.append(",")
+                .append(record.correctCount());
+        }
+        if (record.totalCount() != null) {
+            line.append(",")
+                .append(record.totalCount());
+        }
+        if (record.accuracy() != null) {
+            line.append(",")
+                .append(record.accuracy());
+        }
+        if (record.wpm() != null) {
+            line.append(",")
+                .append(record.wpm());
+        }
+        if (record.milliseconds() != null) {
+            line.append(",")
+                .append(record.milliseconds());
+        }
+        if (record.time() != null) {
+            line.append(",")
+                .append(record.time());
+        }
+        if (record.format() != null) {
+            line.append(",")
+                .append(record.format());
+        }
+        if (record.date() != null) {
+            line.append(",")
+                .append(record.date());
+        }
+        line.append(System.lineSeparator());
+        return line.toString();
     }
     
     // This method handles the writing of the averages to the file.

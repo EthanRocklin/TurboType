@@ -157,19 +157,18 @@ public class DatabaseManager {
             
     // This method performs a SELECT query on the "attempts" table in the database.
     public static List<AttemptRecord> selectAttemptData(String query) {
-        List<AttemptRecord> attempts = new ArrayList<>();
+        List<AttemptRecord> attempts = null;
         try (Connection conn = DriverManager.getConnection(URL)) {
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery(query);
-            
             // Checks if there is no attempt data
             if (!rs.next()) {
                 return null;
             }
             // Builds list of attempt records
+            attempts = new ArrayList<AttemptRecord>();
             ResultSetMetaData metaData = rs.getMetaData();
             Map<String, Boolean> cols = getColBooleans(metaData);
-            System.out.println("columns map = " + cols.toString());
             do {
                // Creates an AttemptRecord for each row in the ResultSet
                attempts.add(getAttemptRecord(cols, rs));
@@ -186,11 +185,11 @@ public class DatabaseManager {
         AttemptRecord record = null;
         try {
             // Assigns AttemptRecord values depending on what data the user selected
-            System.out.println("correct_words = " + colBooleans.get("correct_words"));
             Integer correctCount = colBooleans.get("correct_words") ? rs.getInt("correct_words") : null;
             Integer totalCount = colBooleans.get("total_words") ? rs.getInt("total_words") : null;
             Double accuracy = colBooleans.get("accuracy") ? rs.getDouble("accuracy") : null;
             Integer wpm = colBooleans.get("wpm") ? rs.getInt("wpm") : null;
+            Integer milliseconds = colBooleans.get("milliseconds") ? rs.getInt("milliseconds") : null;
             String time = colBooleans.get("time") ? rs.getString("time") : null;
             String format = colBooleans.get("format") ? rs.getString("format") : null;
             String date = colBooleans.get("date") ? rs.getString("date") : null;
@@ -201,7 +200,7 @@ public class DatabaseManager {
                     totalCount,
                     accuracy,
                     wpm,
-                    rs.getInt("milliseconds"),
+                    milliseconds,
                     time,
                     format,
                     date
@@ -227,7 +226,6 @@ public class DatabaseManager {
             for (String name : allColNames) {
                 colBooleans.put(name, (Boolean) colNames.contains(name));
             }
-            System.out.println("columnBooleans : " + colBooleans);
         } catch (SQLException e) {
             logger.log(Level.WARNING, "Failed to parse data from " + URL, e);
         }
@@ -264,6 +262,7 @@ public class DatabaseManager {
         if (dataOptions.wpm()) {
             query.append(", wpm ");
         }
+        query.append(", milliseconds");
         if (dataOptions.timeElapsed()) {
             query.append(", time ");
         }
