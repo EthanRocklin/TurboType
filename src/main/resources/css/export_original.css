@@ -25,7 +25,7 @@
     -fx-faint-focus-color: transparent;
 }
 
-#dialogPane {
+.dialog-pane {
     -fx-background-color: -fx-background;
 }
 

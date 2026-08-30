@@ -49,8 +49,7 @@ public class MenuBarController {
     private void handleExport(ActionEvent event) {
         MenuItem menuItem = (MenuItem) event.getSource();
         String fileType = menuItem.getText().replace(".", "");
-        String resourcePath = "";
-        resourcePath = "/fxml/export_" + fileType + ".fxml";
+        String resourcePath = "/fxml/export_" + fileType + ".fxml";
         displayExportDialog(resourcePath, fileType);
     }
     

@@ -103,11 +103,10 @@ public class TxtExporter {
     // This method builds and returns the column names as a String.
     private String getColumnNames(List<String> columnNames) {
         StringBuilder str = new StringBuilder();
-        String column = "";
         String template = "%-" + COLUMN_WIDTH + "s";
         int columnCount = columnNames.size();
         for (int i = 0; i < columnCount; i++) {
-            column = String.format(template, columnNames.get(i));
+            String column = String.format(template, columnNames.get(i));
             str.append(column);
         }
         str.append(System.lineSeparator());
@@ -161,10 +160,8 @@ public class TxtExporter {
         String query = DatabaseManager.getSelectAttemptDataQuery(dataOptions);
         List<AttemptRecord> attempts = DatabaseManager.selectAttemptData(query);
         if (attempts != null) {
+            // Builds and writes each attempt's data
             try {
-                String formatTemplate = "%-" + COLUMN_WIDTH + "s";
-                StringBuilder str = new StringBuilder();
-                // Builds and writes each attempt's data
                 for (AttemptRecord record : attempts) {
                     String line = getDataLine(record); 
                     writer.write(line);
@@ -224,24 +221,20 @@ public class TxtExporter {
     private void writeAverages(BufferedWriter writer) {
         StringBuilder str = new StringBuilder("Averages\n");
         str.append("--------\n");
-        double average = 0.0;
         // Determines which averages to include
         if (dataOptions.averageAccuracy()) {
-            average = DatabaseManager.getAverageAccuracy();
             str.append("Accuracy : ")
-               .append(average)
+               .append(DatabaseManager.getAverageAccuracy())
                .append(System.lineSeparator());
         }
         if (dataOptions.averageWpm()) {
-            average = DatabaseManager.getAverageWPM();
             str.append("Words Per Minute : ")
-               .append(average)
+               .append(DatabaseManager.getAverageWPM())
                .append(System.lineSeparator());
         }
         if (dataOptions.averageTypingScore()) {
-            average = DatabaseManager.getAverageTypingScore();
             str.append("Typing Score : ")
-               .append(average)
+               .append(DatabaseManager.getAverageTypingScore())
                .append(System.lineSeparator());
         }
         // Writes the built String to the file

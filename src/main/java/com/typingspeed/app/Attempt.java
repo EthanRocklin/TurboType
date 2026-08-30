@@ -129,12 +129,7 @@ public class Attempt {
         String timeStamp = dateFormatter.format(date);
         // Prepares variables and INSERT statement
         String url = DatabaseManager.getURL();
-        String format = "";
-        if (sentences) {
-            format = "sentences";
-        } else {
-            format = "random";
-        }
+        String format = sentences ? "sentences" : "random";
         String insert = """
                       INSERT INTO attempts
                       (typing_score, correct_words, total_words, accuracy, wpm, 
@@ -164,9 +159,6 @@ public class Attempt {
         }
     }
     
-    // Getters
-    
-    // Returns the stats message based on the attempt's typing score.
     public double getAccuracy() {
         return accuracy;
     }
@@ -188,8 +180,6 @@ public class Attempt {
     public int getWPM() {
         return wpm;
     }
-    
-    // Setters
     
     public void setCorrectWordCount(int count) {
         correctCount = count;

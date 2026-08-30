@@ -272,12 +272,7 @@ public class AttemptController {
         typingArea.setStyle("-fx-effect: dropshadow(gaussian, rgba(255,0,0,1), 15, 0.5, 0, 0);");
         // Resets practice words
         boolean sentences = sentencesToggle.isSelected();
-        int count = 0;
-        if (sentences) {
-            count = sentencesSpinner.getValue();
-        } else {
-            count = (int) randomSlider.getValue();
-        }
+        int count = sentences ? sentencesSpinner.getValue() : (int) randomSlider.getValue();
         updateAttemptWords(count, sentences);
         // Resets counters
         totalCounter.setText(String.valueOf(attemptWords.size()));
@@ -319,7 +314,6 @@ public class AttemptController {
         double accuracyProgress = attempt.getAccuracy() / 100.0;
         double wpmProgress = attempt.getWPM() / 100.0;
         double typingScoreProgress = attempt.getTypingScore() / 10.0;
-        int maxWPM = attempt.getMaxWPM();
         int worstScoreR = 255;
         int worstScoreG = 110;
         int worstScoreB = 110;
@@ -358,10 +352,9 @@ public class AttemptController {
     // This method toggles the format of the words between random words and full sentences.
     @FXML
     private void toggleWordsFormat() {
-        int count = 0;
         // If "Sentences" is selected
         if (sentencesToggle.isSelected()) {
-            count = sentencesSpinner.getValue();
+            int count = sentencesSpinner.getValue();
             updateAttemptWords(count, true);
             randomSlider.setVisible(false);
             randomSlider.setManaged(false);
@@ -369,7 +362,7 @@ public class AttemptController {
             sentencesSpinner.setManaged(true);
             sentencesToggle.setText("Sentences");
         } else {
-            count = (int) randomSlider.getValue();
+            int count = (int) randomSlider.getValue();
             updateAttemptWords(count, false);
             sentencesToggle.setText("Random");
             sentencesSpinner.setVisible(false);
@@ -386,12 +379,7 @@ public class AttemptController {
      * @param sentences : if the content should be full sentences
      */
     private void updateAttemptWords(int count, boolean sentences) {
-        String words = "";
-        if (sentences) {
-            words = SentenceBank.getSentences(count);
-        } else {
-            words = WordBank.getWords(count);
-        }
+        String words = sentences ? SentenceBank.getSentences(count) : WordBank.getWords(count);
         attemptWords = createWordList(words);
         wordsArea.setText(words);
         typingArea.clear();

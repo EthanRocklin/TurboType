@@ -1,6 +1,5 @@
 package com.typingspeed.app;
 
-import static com.typingspeed.app.DatabaseDropper.URL;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.io.BufferedReader;

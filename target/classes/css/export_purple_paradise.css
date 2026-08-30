@@ -24,7 +24,7 @@
     -fx-selected-path-text: #000000;
 }
 
-#dialogPane {
+.dialog-pane {
     -fx-background-color: -fx-background;
 }
 

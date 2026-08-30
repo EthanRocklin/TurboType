@@ -59,13 +59,13 @@ public class Settings {
     }
     
     public void setGenre(String genre) {
-       this.genre = genre;
+       Settings.genre = genre;
     }
     public void setTheme(String theme) {
-       this.theme = theme;
+       Settings.theme = theme;
     }
     public void setTronColor(String tronColor) {
-        this.tronColor = tronColor;
+        Settings.tronColor = tronColor;
     }
     
 }

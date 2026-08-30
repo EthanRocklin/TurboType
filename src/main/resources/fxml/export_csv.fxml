@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<DialogPane xmlns:fx="http://javafx.com/fxml/1" id="dialogPane" fx:id="dialogPane" xmlns="http://javafx.com/javafx/26" fx:controller="com.typingspeed.app.CsvExportController">
+<DialogPane fx:id="dialogPane" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/26" fx:controller="com.typingspeed.app.CsvExportController">
     <content>
         <VBox>
             <HBox id="infoContainer">

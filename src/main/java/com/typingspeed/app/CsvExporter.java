@@ -9,7 +9,6 @@ import java.nio.file.StandardOpenOption;
 import java.time.Instant;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -167,24 +166,23 @@ public class CsvExporter {
     // This method handles the writing of the averages to the file.
     private void writeAverages(BufferedWriter writer) {
         try {
-            double average = 0.0;
             writer.write("Averages");
             writer.write(System.lineSeparator());
             // Determines which averages to include
             if (dataOptions.averageAccuracy()) {
-                average = DatabaseManager.getAverageAccuracy();
+                double average = DatabaseManager.getAverageAccuracy();
                 writer.write("Accuracy,");
                 writer.write(String.valueOf(average));
                 writer.newLine();
             }
             if (dataOptions.averageWpm()) {
-                average = DatabaseManager.getAverageWPM();
+                double average = DatabaseManager.getAverageWPM();
                 writer.write("Words Per Minute,");
                 writer.write(String.valueOf(average));
                 writer.newLine();
             }
             if (dataOptions.averageTypingScore()) {
-                average = DatabaseManager.getAverageTypingScore();
+                double average = DatabaseManager.getAverageTypingScore();
                 writer.write("Typing Score,");
                 writer.write(String.valueOf(average));
                 writer.newLine();

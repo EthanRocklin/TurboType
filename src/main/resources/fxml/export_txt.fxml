@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<DialogPane id="dialogPane" fx:id="dialogPane" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.typingspeed.app.TxtExportController">
+<DialogPane fx:id="dialogPane" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.typingspeed.app.TxtExportController">
     <content>
         <VBox>
             <HBox id="infoContainer">

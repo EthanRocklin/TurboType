@@ -3,8 +3,6 @@ package com.typingspeed.app;
 import java.net.URL;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.lang.IllegalArgumentException;
-import java.lang.RuntimeException;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import java.io.IOException;
@@ -160,8 +158,6 @@ public class MusicManager {
         }
     }
     
-    // Getters
-    
     public static String getCurrentTrack() {
         return currentTrackText;
     }
@@ -174,8 +170,6 @@ public class MusicManager {
     public static int getTrackIndex() {
         return trackIndex;
     }
-    
-    // Setters
     
     public static void setGenre(String newGenre) {
         currentGenre = newGenre;
@@ -192,17 +186,12 @@ public class MusicManager {
            musicPlayer.play();
         });
     }
-    
-    // State Setters
-    
+
     public static void play() {
         musicPlayer.play();
     }
     public static void pause() {
         musicPlayer.pause();
-    }
-    private static void dispose() {
-        musicPlayer.dispose();
     }
     
 }

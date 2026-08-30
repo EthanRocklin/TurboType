@@ -166,7 +166,7 @@ public class DatabaseManager {
                 return null;
             }
             // Builds list of attempt records
-            attempts = new ArrayList<AttemptRecord>();
+            attempts = new ArrayList<>();
             ResultSetMetaData metaData = rs.getMetaData();
             Map<String, Boolean> cols = getColBooleans(metaData);
             do {

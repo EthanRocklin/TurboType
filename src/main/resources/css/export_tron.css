@@ -7,7 +7,7 @@
     -fx-gray: #404040;
 }
 
-#dialogPane {
+.dialog-pane {
     -fx-background-color: -fx-primary;
 }
 
