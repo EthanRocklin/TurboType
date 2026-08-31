@@ -12,6 +12,8 @@
     -fx-cancel-button-pressed: #ff2929;
     -fx-checkbox: #d980ff;
     -fx-checkbox-hover: #e4a3ff;
+    -fx-dropdown-background: #212124;
+    -fx-dropdown-text: #f79e45;
     -fx-export-button: #cf61ff;
     -fx-export-button-hover: #d778ff;
     -fx-export-button-pressed: #c847ff;
@@ -61,6 +63,22 @@
 .info-option .box:hover {
     -fx-background-color: -fx-checkbox-hover;
 }
+
+.model-dropdown {
+    -fx-pref-width: 200;
+    -fx-font-family: "Quantico";
+    -fx-font-size: 14;
+}
+
+.model-dropdown,
+.model-dropdown .list-cell {
+    -fx-background-insets: 0;
+    -fx-border-insets: 0;
+    -fx-background-color: -fx-dropdown-background;
+    -fx-text-fill: -fx-dropdown-text;
+}
+
+/* CONTINUE ADDING STYLES HERE */
 
 #pathSelectionContainer {
     -fx-pref-height: 35;
