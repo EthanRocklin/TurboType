@@ -170,10 +170,10 @@
 
 .dialog-pane .button {
     -fx-background-insets: 0;
-    -fx-background-radius: 5;
+    -fx-background-radius: 7;
     -fx-border-insets: 0;
     -fx-border-radius: 5;
-    -fx-border-size: 1;
+    -fx-border-size: 2;
     -fx-border-color: -fx-button-border;
     -fx-padding: 5 10 5 10;
     -fx-font-family: "VT323";

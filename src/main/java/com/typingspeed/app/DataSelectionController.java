@@ -1,5 +1,6 @@
 package com.typingspeed.app;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.CheckBox;
 import java.util.ArrayList;
@@ -34,6 +35,7 @@ public class DataSelectionController {
     private CheckBox wpmBox;
     
     private List<CheckBox> checkboxes;
+    private List<CheckBox> options;
     
     @FXML
     public void initialize() {
@@ -42,7 +44,7 @@ public class DataSelectionController {
     
     // This method handles any initializing tasks for the checkboxes.
     private void initiatizeCheckboxes() {
-        // Makes an iterateable list with the UI's checkboxes
+        // Makes an iterateable list with the data selection checkboxes
         checkboxes = new ArrayList<>(Arrays.asList(
             accuracyBox,
             averageAccuracyBox,
@@ -56,9 +58,31 @@ public class DataSelectionController {
             wordCountsBox,
             wpmBox
         ));
+        options = new ArrayList<>(checkboxes);
+        options.remove(selectAllBox);
         // Gets rid of focus visual when clicked
         for (CheckBox box : checkboxes) {
             box.setFocusTraversable(false);
+        }
+    }
+    
+    // This method updates the selectAll box's select status for edge cases.
+    @FXML
+    private void checkSelectAll(ActionEvent event) {
+        CheckBox box = (CheckBox) event.getSource();
+        // The user deselected an option after clicking Select All
+        if (!box.isSelected() && selectAllBox.isSelected()) {
+            selectAllBox.setSelected(false);
+            return;
+        }
+        // The user selected all options without clicking Select All
+        if (!selectAllBox.isSelected()) {
+            for (CheckBox option : options) {
+                if (!option.isSelected()) {
+                    return;
+                }
+            }
+            selectAllBox.setSelected(true);
         }
     }
     

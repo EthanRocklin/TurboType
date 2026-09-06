@@ -69,7 +69,7 @@ public class TurboType extends Application {
             scene.setRoot(loadFXML(fxml));
             // Maintains the Tron color of the previous page if Tron is the theme
             if (currentTheme.equals("tron")) {
-                changeThemeColor(tronColor);
+                changeTronColor(tronColor);
             }
         } catch (IOException e) {
             logger.log(Level.SEVERE, "Could not set FXML root. ", e);
@@ -93,7 +93,7 @@ public class TurboType extends Application {
     }
     
     // This method changes the secondary color(s) of eligible themes.
-    public static void changeThemeColor(String color) {
+    public static void changeTronColor(String color) {
         tronColor = color;
         scene.getRoot().setStyle("-fx-tron: " + color + ";");
     }
@@ -124,7 +124,7 @@ public class TurboType extends Application {
             String theme = settings.getTheme();
             changeTheme(theme);
             if (theme.equals("tron")) {
-                changeThemeColor(settings.getTronColor());
+                changeTronColor(settings.getTronColor());
             }
             // Loads and applies the last genre played
             MusicManager.initializePlayer(settings.getGenre());

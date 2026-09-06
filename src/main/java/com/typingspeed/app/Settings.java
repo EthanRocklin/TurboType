@@ -17,7 +17,7 @@ public class Settings {
 
     private static String theme = "original";
     private static String genre = "techno";
-    private static String tronColor = "00ffff";
+    private static String tronColor = "#00ffff";
     private static final ObjectMapper MAPPER = new ObjectMapper();
     private static final ObjectWriter WRITER = MAPPER.writerWithDefaultPrettyPrinter();
     private final static String SETTINGS_DATA_DIR = System.getProperty("user.home") + File.separator + ".turbotype";
@@ -54,7 +54,7 @@ public class Settings {
     public static String getThemeStatic() {
         return theme;
     }
-    public String getTronColor() {
+    public static String getTronColor() {
         return tronColor;
     }
     

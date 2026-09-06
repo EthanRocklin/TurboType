@@ -41,52 +41,52 @@
                 <Insets bottom="5" />
             </VBox.margin>
         </CheckBox>
-        <CheckBox fx:id="accuracyBox" styleClass="info-option" text="Accuracy">
+        <CheckBox fx:id="accuracyBox" styleClass="info-option" onAction="#checkSelectAll" text="Accuracy">
             <VBox.margin>
                 <Insets bottom="5" left="10" />
             </VBox.margin>
         </CheckBox>
-        <CheckBox fx:id="dateBox" styleClass="info-option" text="Date">
+        <CheckBox fx:id="dateBox" styleClass="info-option" onAction="#checkSelectAll" text="Date">
             <VBox.margin>
                 <Insets bottom="5" left="10" />
             </VBox.margin>
         </CheckBox>
-        <CheckBox fx:id="formatBox" styleClass="info-option" text="Format">
+        <CheckBox fx:id="formatBox" styleClass="info-option" onAction="#checkSelectAll" text="Format">
             <VBox.margin>
                 <Insets bottom="5" left="10" />
             </VBox.margin>
         </CheckBox>
-        <CheckBox fx:id="millisecondsBox" styleClass="info-option" text="Milliseconds">
+        <CheckBox fx:id="millisecondsBox" styleClass="info-option" onAction="#checkSelectAll" text="Milliseconds">
             <VBox.margin>
                 <Insets bottom="5" left="10" />
             </VBox.margin>
         </CheckBox>
-        <CheckBox fx:id="timeElapsedBox" styleClass="info-option" text="Time Elapsed">
+        <CheckBox fx:id="timeElapsedBox" styleClass="info-option" onAction="#checkSelectAll" text="Time Elapsed">
             <VBox.margin>
                 <Insets bottom="5" left="10" />
             </VBox.margin>
         </CheckBox>
-        <CheckBox fx:id="wordCountsBox" styleClass="info-option" text="Word Counts">
+        <CheckBox fx:id="wordCountsBox" styleClass="info-option" onAction="#checkSelectAll" text="Word Counts">
             <VBox.margin>
                 <Insets bottom="5" left="10" />
             </VBox.margin>
         </CheckBox>
-        <CheckBox fx:id="wpmBox" styleClass="info-option" text="Words Per Minute">
+        <CheckBox fx:id="wpmBox" styleClass="info-option" onAction="#checkSelectAll" text="Words Per Minute">
             <VBox.margin>
                 <Insets bottom="5" left="10" />
             </VBox.margin>
         </CheckBox>
-        <CheckBox fx:id="averageAccuracyBox" styleClass="info-option" text="Average Accuracy">
+        <CheckBox fx:id="averageAccuracyBox" styleClass="info-option" onAction="#checkSelectAll" text="Average Accuracy">
             <VBox.margin>
                 <Insets bottom="5" left="10" />
             </VBox.margin>
         </CheckBox>
-        <CheckBox fx:id="averageTypingScoreBox" styleClass="info-option" text="Average Typing Score">
+        <CheckBox fx:id="averageTypingScoreBox" styleClass="info-option" onAction="#checkSelectAll" text="Average Typing Score">
             <VBox.margin>
                 <Insets bottom="5" left="10" />
             </VBox.margin>
         </CheckBox>
-        <CheckBox fx:id="averageWpmBox" styleClass="info-option" text="Average WPM">
+        <CheckBox fx:id="averageWpmBox" styleClass="info-option" onAction="#checkSelectAll" text="Average WPM">
             <VBox.margin>
                 <Insets bottom="30" left="10" />
             </VBox.margin>

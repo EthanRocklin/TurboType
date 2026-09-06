@@ -20,7 +20,6 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-
 /** @author Ethan Rocklin */
 
 public class MenuBarController {
@@ -69,7 +68,13 @@ public class MenuBarController {
             Dialog<List<String>> dialog = new Dialog<>();
             dialog.setDialogPane(pane);
             dialog.initOwner(currentStage);
-            // Sets configurations
+            // Changing the color to the user's choice if the theme is Tron
+            boolean tronTheme = Settings.getThemeStatic().equalsIgnoreCase("tron");
+            if (tronTheme) {
+                String tronColor = "-fx-tron: " + Settings.getTronColor() + ";";
+                pane.setStyle(tronColor);
+            }
+            // Sets window configurations
             dialog.setTitle("." + fileType + " Export");
             dialog.initModality(Modality.WINDOW_MODAL);
             dialog.showAndWait();
@@ -128,7 +133,7 @@ public class MenuBarController {
             }
         };
         TurboType.changeTheme("tron");
-        TurboType.changeThemeColor(color);
+        TurboType.changeTronColor(color);
         // Saves the color's name to the user's settings
         try {
             TurboType.settings.setTheme("tron");
@@ -145,6 +150,7 @@ public class MenuBarController {
     private void handlePreviousTrack() {
         MusicManager.readyNewTrack(false);
         currentTrackText.setText(MusicManager.getCurrentTrack());
+        handlePausePlay();
         MusicManager.play();
     }
     
@@ -165,6 +171,7 @@ public class MenuBarController {
     private void handleNextTrack() {
         MusicManager.readyNewTrack(true);
         currentTrackText.setText(MusicManager.getCurrentTrack());
+        handlePausePlay();
         MusicManager.play();
     }
     

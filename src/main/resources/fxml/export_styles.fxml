@@ -21,12 +21,12 @@
                 <Insets bottom="5" left="30" />
             </VBox.margin>
         </CheckBox>
-        <CheckBox fx:id="boldLabelsBox" styleClass="info-option" text="Bold Labels">
+        <CheckBox fx:id="boldLabelsBox" styleClass="info-option" onAction="#checkSelectAll" text="Bold Labels">
             <VBox.margin>
                 <Insets bottom="5" left="40" />
             </VBox.margin>
         </CheckBox>
-        <CheckBox fx:id="coloredCellsBox" styleClass="info-option" text="Colored Cells">
+        <CheckBox fx:id="coloredCellsBox" styleClass="info-option" onAction="#checkSelectAll" text="Colored Cells">
             <VBox.margin>
                 <Insets bottom="5" left="40" />
             </VBox.margin>
@@ -35,7 +35,7 @@
             <VBox.margin>
                     <Insets bottom="5" left="40" />
             </VBox.margin>
-            <CheckBox fx:id="dataAlignmentBox" styleClass="info-option" text="Data Alignment" />
+            <CheckBox fx:id="dataAlignmentBox" styleClass="info-option" onAction="#checkSelectAll" text="Data Alignment" />
             <ComboBox styleClass="alignment-dropdown" promptText="Select Direction">
                 <HBox.margin>
                     <Insets left="10" />
@@ -53,7 +53,7 @@
             <VBox.margin>
                     <Insets bottom="5" left="40" />
             </VBox.margin>
-            <CheckBox fx:id="labelAlignmentBox" styleClass="info-option" text="Label Alignment" />
+            <CheckBox fx:id="labelAlignmentBox" styleClass="info-option" onAction="#checkSelectAll" text="Label Alignment" />
             <ComboBox styleClass="alignment-dropdown" promptText="Select Direction">
                 <HBox.margin>
                     <Insets left="10" />

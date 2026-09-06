@@ -3,6 +3,7 @@ package com.typingspeed.app;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.CheckBox;
 
@@ -34,6 +35,7 @@ public class StyleSelectionController {
     private CheckBox selectAllBox;
     
     private List<CheckBox> checkboxes;
+    private List<CheckBox> options;
     
     @FXML
     public void initialize() {
@@ -58,12 +60,34 @@ public class StyleSelectionController {
             labelRightAlignBox,
             selectAllBox
         ));
+        options = new ArrayList<>(checkboxes);
+        options.remove(selectAllBox);
         // Gets rid of focus visual when clicked
         for (CheckBox box : checkboxes) {
             box.setFocusTraversable(false);
         }
     }
     
+    // This method updates the selectAll box's select status for edge cases.
+    @FXML
+    private void checkSelectAll(ActionEvent event) {
+        CheckBox box = (CheckBox) event.getSource();
+        // The user deselected an option after clicking Select All
+        if (!box.isSelected() && selectAllBox.isSelected()) {
+            selectAllBox.setSelected(false);
+            return;
+        }
+        // The user selected all options without clicking Select All
+        if (!selectAllBox.isSelected()) {
+            for (CheckBox option : options) {
+                if (!option.isSelected()) {
+                    return;
+                }
+            }
+            selectAllBox.setSelected(true);
+        }
+    }       
+
     // This method constructs and returns a record of the states of the model checkboxes.
     public StyleExportOptions getStyleOptions() {
         return new StyleExportOptions(

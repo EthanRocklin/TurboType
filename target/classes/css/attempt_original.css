@@ -249,6 +249,7 @@
     -fx-font-size: 24;
     -fx-border-color: -fx-controls-border;
     -fx-background-color: -fx-spinner-background;
+    -fx-cursor: hand;
 }
 
 .spinner .text-field {
@@ -262,7 +263,6 @@
 .spinner .decrement-arrow-button {
     -fx-padding: 0 5 0 5;
     -fx-pref-height: 18;
-    -fx-cursor: hand;
     -fx-background-color: -fx-spinner-arrow-button;
     -fx-background-radius: 0;
 }
