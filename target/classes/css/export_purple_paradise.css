@@ -12,6 +12,8 @@
     -fx-cancel-button-pressed: #b8b8b8;
     -fx-checkbox: #b36bff;
     -fx-checkbox-hover: #000000;
+    -fx-dropdown-background: #e3e3e3;
+    -fx-dropdown-text: #a550ff;
     -fx-checkmark: #000000;
     -fx-checkmark-hover: #b36bff;
     -fx-export-button: #b36bff;
@@ -22,6 +24,9 @@
     -fx-selected-path: #b36bff;
     -fx-selected-path-prompt: #000000;
     -fx-selected-path-text: #000000;
+    /* Targeting JavaFX Modena defaults */
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
 }
 
 .dialog-pane {
@@ -66,6 +71,55 @@
 
 .info-option:selected .box:hover .mark {
     -fx-background-color: -fx-checkmark-hover;
+}
+
+.model-dropdown {
+    -fx-pref-width: 150;
+}
+
+.alignment-dropdown {
+    -fx-pref-width: 200;
+}
+
+.model-dropdown,
+.alignment-dropdown {
+    -fx-font-family: "Quantico";
+    -fx-font-size: 14;
+}
+
+.model-dropdown,
+.model-dropdown .list-cell,
+.alignment-dropdown,
+.alignment-dropdown .list-cell {
+    -fx-background-insets: 0;
+    -fx-border-insets: 0;
+    -fx-background-color: -fx-dropdown-background;
+    -fx-text-fill: -fx-dropdown-text;
+}
+
+.model-dropdown .arrow,
+.alignment-dropdown .arrow {
+   -fx-background-color: -fx-dropdown-text;
+}
+
+.model-dropdown .box,
+.alignment-dropdown .box {
+    -fx-background-color: -fx-checkbox;
+}
+
+.model-dropdown .box:hover,
+.alignment-dropdown .box:hover {
+    -fx-background-color: -fx-checkbox-hover;
+}
+
+.model-dropdown .list-view,
+.alignment-dropdown .list-view {
+    -fx-background-color: -fx-dropdown-background;
+}
+
+.model-option,
+.style-option {
+    -fx-text-fill: -fx-dropdown-text;
 }
 
 #pathSelectionContainer {

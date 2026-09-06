@@ -23,6 +23,8 @@ public class StyleSelectionController {
     @FXML
     private CheckBox dataRightAlignBox;
     @FXML
+    private CheckBox labelAlignmentBox;
+    @FXML
     private CheckBox labelCenterAlignBox;
     @FXML
     private CheckBox labelLeftAlignBox;
@@ -50,6 +52,7 @@ public class StyleSelectionController {
             dataCenterAlignBox,
             dataLeftAlignBox,
             dataRightAlignBox,
+            labelAlignmentBox,
             labelCenterAlignBox,
             labelLeftAlignBox,
             labelRightAlignBox,

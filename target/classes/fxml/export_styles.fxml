@@ -36,17 +36,17 @@
                     <Insets bottom="5" left="40" />
             </VBox.margin>
             <CheckBox fx:id="dataAlignmentBox" styleClass="info-option" text="Data Alignment" />
-            <ComboBox styleClass="alignment-direction-box" promptText="Select Direction">
+            <ComboBox styleClass="alignment-dropdown" promptText="Select Direction">
+                <HBox.margin>
+                    <Insets left="10" />
+                </HBox.margin>
                 <items>
                     <FXCollections fx:id="dataAlignmentSelections" fx:factory="observableArrayList">
-                        <CheckBox fx:id="dataCenterAlignBox" text="center" />
-                        <CheckBox fx:id="dataLeftAlignBox" text="left" />
-                        <CheckBox fx:id="dataRightAlignBox" text="right" />
+                        <CheckBox fx:id="dataCenterAlignBox" styleClass="style-option" text="center" />
+                        <CheckBox fx:id="dataLeftAlignBox" styleClass="style-option" text="left" />
+                        <CheckBox fx:id="dataRightAlignBox" styleClass="style-option" text="right" />
                     </FXCollections>
                 </items>
-                <HBox.margin>
-                    <Insets right="30" />
-                </HBox.margin>
             </ComboBox>
         </HBox>
         <HBox styleClass="style-option-ontainer">
@@ -54,17 +54,17 @@
                     <Insets bottom="5" left="40" />
             </VBox.margin>
             <CheckBox fx:id="labelAlignmentBox" styleClass="info-option" text="Label Alignment" />
-            <ComboBox styleClass="alignment-direction-box" promptText="Select Direction">
+            <ComboBox styleClass="alignment-dropdown" promptText="Select Direction">
+                <HBox.margin>
+                    <Insets left="10" />
+                </HBox.margin>
                 <items>
                     <FXCollections fx:id="labelAlignmentSelections" fx:factory="observableArrayList">
-                        <CheckBox fx:id="labelCenterAlignBox" text="center" />
-                        <CheckBox fx:id="labelLeftAlignBox" text="left" />
-                        <CheckBox fx:id="labelRightAlignBox" text="right" />
+                        <CheckBox fx:id="labelCenterAlignBox" styleClass="style-option" text="center" />
+                        <CheckBox fx:id="labelLeftAlignBox" styleClass="style-option" text="left" />
+                        <CheckBox fx:id="labelRightAlignBox" styleClass="style-option" text="right" />
                     </FXCollections>
                 </items>
-                <HBox.margin>
-                    <Insets right="30" />
-                </HBox.margin>
             </ComboBox>
         </HBox>
     </VBox>

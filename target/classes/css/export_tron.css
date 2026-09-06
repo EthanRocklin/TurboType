@@ -5,6 +5,9 @@
     -fx-dark-gray: #303030;
     -fx-light-gray: #525252;
     -fx-gray: #404040;
+    /* Targeting JavaFX Modena defaults */
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
 }
 
 .dialog-pane {
@@ -46,6 +49,57 @@
 
 .info-option:selected .box:hover .mark {
     -fx-background-color: -fx-tron;
+}
+
+.model-dropdown {
+    -fx-pref-width: 150;
+}
+
+.alignment-dropdown {
+    -fx-pref-width: 200;
+}
+
+.model-dropdown,
+.alignment-dropdown {
+    -fx-font-family: "Quantico";
+    -fx-font-size: 14;
+    -fx-border-width: 1;
+    -fx-border-color: -fx-tron;
+}
+
+.model-dropdown,
+.model-dropdown .list-cell,
+.alignment-dropdown,
+.alignment-dropdown .list-cell {
+    -fx-background-insets: 0;
+    -fx-border-insets: 0;
+    -fx-background-color: -fx-primary;
+    -fx-text-fill: -fx-tron;
+}
+
+.model-dropdown .arrow,
+.alignment-dropdown .arrow {
+   -fx-background-color: -fx-tron;
+}
+
+.model-dropdown .box,
+.alignment-dropdown .box {
+    -fx-background-color: -fx-tron;
+}
+
+.model-dropdown .box:hover,
+.alignment-dropdown .box:hover {
+    -fx-background-color: -fx-gray;
+}
+
+.model-dropdown .list-view,
+.alignment-dropdown .list-view {
+    -fx-background-color: -fx-tron;
+}
+
+.model-option,
+.style-option {
+    -fx-text-fill: -fx-tron;
 }
 
 #pathSelectionContainer {

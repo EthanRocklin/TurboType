@@ -8,6 +8,8 @@ import javafx.scene.control.CheckBox;
 public class ModelSelectionController {
     
     @FXML
+    private CheckBox barBox;
+    @FXML
     private CheckBox barAccuracyFormatBox;
     @FXML
     private CheckBox barAccuracyTotalWordsBox;
@@ -20,6 +22,8 @@ public class ModelSelectionController {
     @FXML
     private CheckBox barWpmTotalWordsBox;
     @FXML
+    private CheckBox histoBox;
+    @FXML
     private CheckBox histoAccuracyBox;
     @FXML
     private CheckBox histoCorrectWordsBox;
@@ -28,6 +32,8 @@ public class ModelSelectionController {
     @FXML
     private CheckBox histoWpmBox;
     @FXML
+    private CheckBox lineBox;
+    @FXML
     private CheckBox lineAccuracyBox;
     @FXML
     private CheckBox lineCorrectWordsBox;
@@ -35,6 +41,8 @@ public class ModelSelectionController {
     private CheckBox lineScoreBox;
     @FXML
     private CheckBox lineWpmBox;
+    @FXML
+    private CheckBox scatterBox;
     @FXML
     private CheckBox scatterGraphAccuracyBox;
     @FXML
@@ -50,20 +58,24 @@ public class ModelSelectionController {
     // This method handles any initializing tasks for the checkboxes.
     private void initiatizeCheckboxes() {
         // Gets rid of focus visual when clicked
+        barBox.setFocusTraversable(false);
         barAccuracyFormatBox.setFocusTraversable(false);
         barAccuracyTotalWordsBox.setFocusTraversable(false);
         barScoreFormatBox.setFocusTraversable(false);
         barScoreTotalWordsBox.setFocusTraversable(false);
         barWpmFormatBox.setFocusTraversable(false);
         barWpmTotalWordsBox.setFocusTraversable(false);
+        histoBox.setFocusTraversable(false);
         histoAccuracyBox.setFocusTraversable(false);
         histoCorrectWordsBox.setFocusTraversable(false);
         histoScoreBox.setFocusTraversable(false);
         histoWpmBox.setFocusTraversable(false);
+        lineBox.setFocusTraversable(false);
         lineAccuracyBox.setFocusTraversable(false);
         lineCorrectWordsBox.setFocusTraversable(false);
         lineScoreBox.setFocusTraversable(false);
         lineWpmBox.setFocusTraversable(false);
+        scatterBox.setFocusTraversable(false);
         scatterGraphAccuracyBox.setFocusTraversable(false);
         scatterGraphCorrectWordsBox.setFocusTraversable(false);
         scatterGraphScoreBox.setFocusTraversable(false);
